@@ -1,0 +1,5 @@
+/* 글꼴: Black Han Sans, Gothic A1 (SIL Open Font License 1.1, OFL-*.txt 참고) · 이 앱에서 쓰는 글자와 KS X 1001 한글 2,350자만 담아 줄인 파일 */
+@font-face{font-family:"Black Han Sans";font-style:normal;font-weight:400;font-display:swap;src:url(BlackHanSans.woff2) format("woff2")}
+@font-face{font-family:"Gothic A1";font-style:normal;font-weight:400;font-display:swap;src:url(GothicA1-400.woff2) format("woff2")}
+@font-face{font-family:"Gothic A1";font-style:normal;font-weight:600;font-display:swap;src:url(GothicA1-600.woff2) format("woff2")}
+@font-face{font-family:"Gothic A1";font-style:normal;font-weight:800;font-display:swap;src:url(GothicA1-800.woff2) format("woff2")}

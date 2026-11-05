@@ -1,0 +1,12 @@
+{
+  "name": "pe-handbook-tests",
+  "private": true,
+  "description": "내 손 안의 체육 자동 점검 (Playwright)",
+  "scripts": {
+    "test": "node run-all.js",
+    "test:quick": "node run-all.js quick"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

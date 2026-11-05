@@ -1,0 +1,68 @@
+/* 기능 점검 44개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
+const path=require('path');
+const BASE=process.env.PE_URL||('file://'+path.resolve(__dirname,'..','index.html'));
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch(); const out=[]; const errs=[];
+ const c=await b.newContext({...devices[process.env.DEV||'iPhone 13'],deviceScaleFactor:1}); const p=await c.newPage(); p.on('pageerror',x=>errs.push(x.message));
+ await p.goto(BASE); await p.waitForTimeout(500);
+ const T=async(name,fn)=>{ try{ const r=await fn(); out.push((r?'OK  ':'FAIL')+' '+name+(r&&r!==true?' '+r:'')); }catch(e){ out.push('ERR  '+name+' '+e.message.split('\n')[0]); } };
+ const go=async h=>{ await p.evaluate(h=>{location.hash=h},h); await p.waitForTimeout(120); };
+ const ev=(f,a)=>p.evaluate(f,a);
+ // shelf
+ await go('map');
+ await T('shelf has 8 unit cards', async()=> (await ev(()=>document.querySelectorAll('.ucard').length))===8);
+ await T('unit card link opens unit', async()=>{ await p.tap('.ucard[href="#u-bad-3"]'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-3' && (await ev(()=>!!document.querySelector('.gtabs'))); });
+ await T('grade tab switches', async()=>{ await p.tap('.gtabs a:nth-child(3)'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-5'; });
+ await T('node opens yellow card', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); return await ev(()=>!!document.querySelector('.pick .qcard')); });
+ await T('node again closes card', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); return !(await ev(()=>!!document.querySelector('.pick .qcard'))); });
+ await T('start card opens lesson', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); await p.tap('.pick .qcard'); await p.waitForTimeout(200); return (await ev(()=>location.hash))==='#lesson-bad5-3'; });
+ // lesson controls
+ await T('people button sets 23', async()=>{ await p.tap('.pp [data-v="23"]'); await p.waitForTimeout(80); return await ev(()=>store.people===23); });
+ await T('timer play starts', async()=>{ await p.tap('.b-timer'); await p.waitForTimeout(400); return await ev(()=>main.run && main.left<600); });
+ await T('timer pause', async()=>{ await p.tap('.b-timer'); await p.waitForTimeout(100); return await ev(()=>!main.run); });
+ await T('+1분', async()=>{ const a=await ev(()=>main.left); await p.tap('.b-plus'); return (await ev(()=>main.left))>a+59; });
+ await T('next goes to 연습1 + stamp', async()=>{ await p.tap('#nextBtn'); await p.waitForTimeout(150); return await ev(()=>stepOf('bad5-3')===1 && stampsOf('bad5-3')[0]); });
+ await T('diff button', async()=>{ await p.tap('[data-action=diff][data-v=hard]'); await p.waitForTimeout(80); return await ev(()=>document.querySelector('[data-action=diff][data-v=hard]').getAttribute('aria-pressed')==='true'); });
+ await T('fold opens', async()=>{ await p.tap('details.fold summary'); await p.waitForTimeout(80); return await ev(()=>document.querySelector('details.fold').open); });
+ await T('step pill jumps', async()=>{ await p.tap('[data-action=step][data-k="4"]'); await p.waitForTimeout(100); return await ev(()=>stepOf('bad5-3')===4); });
+ await T('score overlay opens/+', async()=>{ await p.tap('.b-score'); await p.waitForTimeout(150); await p.tap('#scoreOver [data-action=sc][data-k=g][data-d="1"]'); return await ev(()=>document.getElementById('scoreOver').classList.contains('open') && document.querySelector('#scoreOver output').textContent==='1'); });
+ await T('score overlay team count', async()=>{ await p.tap('#scoreOver [data-action=ovcount][data-v="4"]'); await p.waitForTimeout(100); return (await ev(()=>document.querySelectorAll('#scoreOver .soteam').length))===4; });
+ await T('score overlay timer button', async()=>{ await p.tap('#scoreOver .sotime'); await p.waitForTimeout(300); const r=await ev(()=>main.run); await p.tap('#scoreOver .sotime'); return r; });
+ await T('score overlay close', async()=>{ await p.tap('[data-action=closescore]'); await p.waitForTimeout(100); return !(await ev(()=>document.getElementById('scoreOver').classList.contains('open'))); });
+ await T('stop overlay + close', async()=>{ await p.tap('.b-stop'); await p.waitForTimeout(100); const o=await ev(()=>document.getElementById('stopOver').classList.contains('open')); await p.tap('#stopOver b'); await p.waitForTimeout(100); const c=await ev(()=>document.getElementById('stopOver').classList.contains('open')); return o&&!c; });
+ await T('rewhistle keeps overlay', async()=>{ await p.tap('.b-stop'); await p.tap('[data-action=rewhistle]'); const r=await ev(()=>document.getElementById('stopOver').classList.contains('open')); await ev(()=>document.getElementById('stopOver').classList.remove('open')); return r; });
+ await T('back link to unit', async()=>{ await p.tap('.lhead .back'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-5'; });
+ await T('home button', async()=>{ await p.tap('.t-home'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#map'; });
+ // finish lesson flow
+ await T('finish lesson -> back to unit', async()=>{ await go('lesson-nb-2'); for(let k=0;k<6;k++){ await p.tap('#nextBtn'); await p.waitForTimeout(80);} const lab=await ev(()=>document.getElementById('nextBtn').textContent); await p.tap('#nextBtn'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-nb' ? true : 'label='+lab+' hash='+(await ev(()=>location.hash)); });
+ await T('crown on finished node', async()=> await ev(()=>!!document.querySelector('[data-n="nb-2"].crowned .crown')));
+ // emotions
+ await T('emotion count', async()=>{ await go('lesson-tb4-3'); await p.tap('[data-action=step][data-k="5"]'); await p.tap('[data-action=emo][data-w="신나는"]'); await p.waitForTimeout(80); return await ev(()=>/1/.test(document.querySelector('[data-action=emo][data-w="신나는"]').textContent)); });
+ // sub timer (foot) and picker, light, ox
+ await T('sub timer starts', async()=>{ await go('lesson-1'); await p.tap('[data-action=step][data-k="2"]'); await p.tap('.subchip'); await p.waitForTimeout(400); return await ev(()=>sub.run); });
+ await T('picker number', async()=>{ await p.tap('[data-action=step][data-k="4"]'); await p.tap('[data-action=pick]'); return /\d/.test(await ev(()=>document.getElementById('pickOut').textContent)); });
+ await T('light signal', async()=>{ await go('lesson-2'); await p.tap('[data-action=step][data-k="1"]'); await p.tap('[data-action=light][data-w="멈춤!"]'); return (await ev(()=>document.getElementById('lightShow').textContent))==='멈춤!'; });
+ await T('ox quiz', async()=>{ await go('lesson-17'); await p.tap('[data-action=step][data-k="2"]'); await p.tap('[data-action=oxnext]'); await p.tap('[data-action=oxans]'); return await ev(()=>document.getElementById('oxA').classList.contains('on')); });
+ await T('league table', async()=>{ await go('lesson-19'); await p.tap('[data-action=step][data-k="2"]'); await p.tap('[data-action=lg][data-j="0"][data-k="a"][data-d="1"]'); await p.tap('[data-action=lgdone][data-j="0"]'); return (await ev(()=>document.querySelector('.lgtable tbody tr td').textContent))==='1'; });
+ await T('reshuffle in lesson', async()=>{ await go('lesson-14'); await p.tap('[data-action=step][data-k="2"]'); const s=await ev(()=>ui.seed); await ev(()=>document.querySelectorAll('details.fold').forEach(d=>d.open=true)); await p.tap('[data-action=reshuffle]'); return (await ev(()=>ui.seed))===s+1; });
+ // tools pages
+ await T('teams page controls', async()=>{ await go('teams'); await p.tap('[data-action=people][data-v="21"]'); await p.tap('[data-action=form][data-v=six]'); await p.tap('[data-action=shuf][data-v="0"]'); return (await ev(()=>document.querySelectorAll('.grp').length))===6 && (await ev(()=>store.people))===21; });
+ await T('score page controls', async()=>{ await go('score'); await p.tap('[data-action=teams][data-v="4"]'); await p.tap('[data-action=sc][data-k=g][data-d="1"]'); return (await ev(()=>document.querySelectorAll('.srow').length))===4 && (await ev(()=>document.querySelector('.srow output').textContent))==='1'; });
+ await T('score page reset', async()=>{ await p.tap('[data-action=scorereset]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelector('.srow output').textContent))==='0'; });
+ await T('header stop on teams page', async()=>{ await go('teams'); const v=await ev(()=>getComputedStyle(document.querySelector('.top .stopfab')).display!=='none'); await p.tap('.top .stopfab'); const o=await ev(()=>document.getElementById('stopOver').classList.contains('open')); await ev(()=>document.getElementById('stopOver').classList.remove('open')); return v&&o; });
+ // cards
+ await T('game card opens', async()=>{ await go('u-tb56'); await p.tap('[data-action=card][data-no="12"]'); await p.waitForTimeout(100); return await ev(()=>document.getElementById('peek').classList.contains('open')); });
+ await T('card score button', async()=>{ await p.tap('[data-action=cardscore]'); await p.waitForTimeout(150); return await ev(()=>document.getElementById('scoreOver').classList.contains('open')); });
+ await T('card scoreboard +', async()=>{ await p.tap('#scoreOver [data-action=sc][data-k=g][data-d="1"]'); return (await ev(()=>document.querySelector('#scoreOver output').textContent))==='1'; });
+ await T('card scoreboard count', async()=>{ await p.tap('#scoreOver [data-action=ovcount][data-v="4"]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelectorAll('#scoreOver .soteam').length))===4; });
+ await T('card scoreboard close', async()=>{ await p.tap('[data-action=closescore]'); return !(await ev(()=>document.getElementById('scoreOver').classList.contains('open'))); });
+ await T('card close button', async()=>{ await p.tap('[data-action=card][data-no="1"]'); await p.tap('#peek [data-action=closepeek]'); return !(await ev(()=>document.getElementById('peek').classList.contains('open'))); });
+ // guide link from shelf
+ await T('guide link', async()=>{ await go('map'); await p.tap('.t-guide'); await p.waitForTimeout(100); return (await ev(()=>location.hash))==='#guide'; });
+ // keyboard
+ await T('keyboard space/arrow', async()=>{ await go('lesson-tb4-2'); await p.keyboard.press('Space'); await p.waitForTimeout(300); const r=await ev(()=>main.run); await p.keyboard.press('ArrowRight'); await p.waitForTimeout(100); return r && (await ev(()=>stepOf('tb4-2')))===1; });
+ // persistence after reload
+ await T('stamps persist after reload', async()=>{ await p.reload(); await p.waitForTimeout(500); return await ev(()=>stampsOf('nb-2').every(Boolean)); });
+ console.log(out.join('\n')); console.log('errors',errs);
+ await b.close();
+ const bad=out.filter(x=>!x.startsWith('OK')); console.log((bad.length||errs.length)?'실패 '+bad.length+'개':'통과 '+out.length+'개'); process.exit(bad.length||errs.length?1:0);})();

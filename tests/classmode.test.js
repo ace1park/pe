@@ -1,0 +1,25 @@
+/* 수업 중 모드 점검: 켜기·큰 타이머·+1분·팀 보기·대형 그림·난이도·정지·점수판·인원 바꾸기·왕관·1분 알림·끄기 (기기: DEV, 기본 Galaxy S9+) */
+const path=require('path');
+const BASE=process.env.PE_URL||('file://'+path.resolve(__dirname,'..','index.html'));
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();const ctx=await b.newContext({...devices[process.env.DEV||'Galaxy S9+']});const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto(BASE+'#lesson-tb4-2');await p.waitForTimeout(800);
+let bad=0; const T=async(n,f)=>{ try{ const r=await f(); if(!r) bad++; console.log((r?'OK  ':'FAIL')+' '+n); }catch(e){ bad++; console.log('ERR '+n+' '+e.message.split('\n')[0]); } };
+await T('toggle on', async()=>{ await p.tap('.cm-toggle'); await p.waitForTimeout(150); return await p.evaluate(()=>!!document.querySelector('.cm') && store.classMode); });
+await T('next to 연습1', async()=>{ await p.tap('#nextBtn'); await p.waitForTimeout(150); return await p.evaluate(()=>stepOf('tb4-2')===1 && !!document.querySelector('.cm-name')); });
+await T('big timer start', async()=>{ await p.tap('.cm-time'); await p.waitForTimeout(400); await p.waitForTimeout(900); return await p.evaluate(()=>main.run && document.getElementById('bigTime').textContent!=='10:00'); });
+await T('+1분', async()=>{ const a=await p.evaluate(()=>main.left); await p.tap('.b-plus'); return (await p.evaluate(()=>main.left))>a+59; });
+await T('teams peek', async()=>{ await p.tap('[data-action=step][data-k="2"]'); await p.waitForTimeout(100); await p.tap('[data-action=cmteams]'); await p.waitForTimeout(100); return await p.evaluate(()=>document.getElementById('peek').classList.contains('open') && !!document.querySelector('#peek .grp')); });
+await T('reshuffle in peek', async()=>{ const s=await p.evaluate(()=>ui.seed); await p.tap('[data-action=cmreshuffle]'); return (await p.evaluate(()=>ui.seed))===s+1; });
+await T('close peek', async()=>{ await p.tap('#peek [data-action=closepeek]'); return !(await p.evaluate(()=>document.getElementById('peek').classList.contains('open'))); });
+await T('diag peek', async()=>{ await p.tap('[data-action=cmdiag]'); await p.waitForTimeout(100); const r=await p.evaluate(()=>!!document.querySelector('#peek svg.diagram')); await p.tap('#peek [data-action=closepeek]'); return r; });
+await T('diff', async()=>{ await p.tap('.cm-lv [data-v=hard]'); await p.waitForTimeout(80); return await p.evaluate(()=>store.diff['tb4-2-2']==='hard' && !!document.querySelector('.cm')); });
+await T('stop', async()=>{ await p.tap('.cm-bar .b-stop'); await p.waitForTimeout(100); const o=await p.evaluate(()=>document.getElementById('stopOver').classList.contains('open')); await p.tap('#stopOver b'); return o; });
+await T('score', async()=>{ await p.tap('.cm-bar .b-score'); await p.waitForTimeout(100); const o=await p.evaluate(()=>document.getElementById('scoreOver').classList.contains('open')); await p.tap('[data-action=closescore]'); await p.waitForTimeout(100); return o && await p.evaluate(()=>!!document.querySelector('.cm')); });
+await T('people peek', async()=>{ await p.tap('[data-action=step][data-k="0"]'); await p.waitForTimeout(100); await p.tap('[data-action=cmpeople]'); await p.tap('#peek [data-action=pcat][data-v=small]'); await p.tap('#peek [data-action=people][data-v="8"]'); await p.waitForTimeout(100); return await p.evaluate(()=>store.people===8 && !document.getElementById('peek').classList.contains('open') && /8명/.test(document.querySelector('[data-action=cmpeople]').textContent)); });
+await T('finish -> crown', async()=>{ for(let k=0;k<6;k++){ await p.tap('#nextBtn'); await p.waitForTimeout(80);} const c=await p.evaluate(()=>!!document.querySelector('.cm .crownwin')); await p.tap('#nextBtn'); await p.waitForTimeout(150); return c && (await p.evaluate(()=>location.hash))==='#u-tb4' && await p.evaluate(()=>lessonDone('tb4-2')); });
+await T('persists class mode', async()=>{ await p.evaluate(()=>location.hash='lesson-nb-9'); await p.waitForTimeout(150); return await p.evaluate(()=>!!document.querySelector('.cm')); });
+await T('exit', async()=>{ await p.tap('.cm-exit'); await p.waitForTimeout(100); return await p.evaluate(()=>!document.querySelector('.cm') && !!document.querySelector('.lhead') && !store.classMode); });
+await T('1min warn', async()=>{ await p.evaluate(()=>{store.classMode=true; save(); renderLesson('nb-9');}); await p.tap('[data-action=step][data-k="1"]'); await p.tap('.cm-time'); await p.evaluate(()=>{ main.end=Date.now()+61000; }); await p.waitForTimeout(1600); return await p.evaluate(()=>main.warned===true && document.querySelector('.cm-time').classList.contains('warn')); });
+await p.evaluate(()=>{store.people=22; store.classMode=false; save();});
+console.log('errs',errs); console.log(bad||errs.length?'실패 '+bad+'개':'통과'); await b.close(); process.exit(bad||errs.length?1:0);})();
