@@ -1,4 +1,4 @@
-/* 기능 점검 44개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
+/* 기능 점검 48개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
 const path=require('path');
 const BASE=process.env.PE_URL||('file://'+path.resolve(__dirname,'..','index.html'));
 const {chromium,devices}=require('playwright');
@@ -17,7 +17,8 @@ const {chromium,devices}=require('playwright');
  await T('node again closes card', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); return !(await ev(()=>!!document.querySelector('.pick .qcard'))); });
  await T('start card opens lesson', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); await p.tap('.pick .qcard'); await p.waitForTimeout(200); return (await ev(()=>location.hash))==='#lesson-bad5-3'; });
  // lesson controls
- await T('people button sets 23', async()=>{ await p.tap('.pp [data-v="23"]'); await p.waitForTimeout(80); return await ev(()=>store.people===23); });
+ await T('lesson shows one people button', async()=>{ return await ev(()=>document.querySelectorAll('#app [data-action=people]').length===0 && !!document.querySelector('#app [data-action=cmpeople]')); });
+ await T('people button sets 23', async()=>{ await p.tap('#app [data-action=cmpeople]'); await p.waitForTimeout(100); await p.tap('#peek [data-action=people][data-v="23"]'); await p.waitForTimeout(100); return await ev(()=>store.people===23 && !document.getElementById('peek').classList.contains('open') && document.querySelector('.people.pline b').textContent==='23명'); });
  await T('timer play starts', async()=>{ await p.tap('.b-timer'); await p.waitForTimeout(400); return await ev(()=>main.run && main.left<600); });
  await T('timer pause', async()=>{ await p.tap('.b-timer'); await p.waitForTimeout(100); return await ev(()=>!main.run); });
  await T('+1분', async()=>{ const a=await ev(()=>main.left); await p.tap('.b-plus'); return (await ev(()=>main.left))>a+59; });
@@ -49,7 +50,9 @@ const {chromium,devices}=require('playwright');
  await T('teams page controls', async()=>{ await go('teams'); await p.tap('[data-action=people][data-v="21"]'); await p.tap('[data-action=form][data-v=six]'); await p.tap('[data-action=shuf][data-v="0"]'); return (await ev(()=>document.querySelectorAll('.grp').length))===6 && (await ev(()=>store.people))===21; });
  await T('score page controls', async()=>{ await go('score'); await p.tap('[data-action=teams][data-v="4"]'); await p.tap('[data-action=sc][data-k=g][data-d="1"]'); return (await ev(()=>document.querySelectorAll('.srow').length))===4 && (await ev(()=>document.querySelector('.srow output').textContent))==='1'; });
  await T('score page reset', async()=>{ await p.tap('[data-action=scorereset]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelector('.srow output').textContent))==='0'; });
- await T('header stop on teams page', async()=>{ await go('teams'); const v=await ev(()=>getComputedStyle(document.querySelector('.top .stopfab')).display!=='none'); await p.tap('.top .stopfab'); const o=await ev(()=>document.getElementById('stopOver').classList.contains('open')); await ev(()=>document.getElementById('stopOver').classList.remove('open')); return v&&o; });
+ await T('stop signal only on lesson screen', async()=>{ const bad=[]; for(const h of ['map','u-foot-4','teams','score','guide']){ await go(h); const n=await ev(()=>[...document.querySelectorAll('[data-action=stop]')].filter(e=>e.offsetParent||getComputedStyle(e).position==='fixed'&&getComputedStyle(e).display!=='none').length); await p.keyboard.press('s'); const o=await ev(()=>document.getElementById('stopOver').classList.contains('open')); if(n||o) bad.push(h); await ev(()=>document.getElementById('stopOver').classList.remove('open')); } await go('lesson-tb4-3'); const L=await ev(()=>!!document.querySelector('.actionbar [data-action=stop]').offsetParent); return !bad.length&&L ? true : 'bad '+bad.join(','); });
+ await T('no duplicate home links', async()=>{ await go('u-foot-4'); const a=await ev(()=>[...document.querySelectorAll('a[href="#map"]')].filter(e=>e.offsetParent).length); await go('map'); const g=await ev(()=>[...document.querySelectorAll('a[href="#guide"]')].filter(e=>e.offsetParent).length); return a===1&&g===1 ? true : `map ${a} guide ${g}`; });
+ await T('fullscreen button hidden on phone', async()=>{ return await ev(()=>getComputedStyle(document.querySelector('.t-full')).display==='none'); });
  // cards
  await T('game card opens', async()=>{ await go('u-tb56'); await p.tap('[data-action=card][data-no="12"]'); await p.waitForTimeout(100); return await ev(()=>document.getElementById('peek').classList.contains('open')); });
  await T('card score button', async()=>{ await p.tap('[data-action=cardscore]'); await p.waitForTimeout(150); return await ev(()=>document.getElementById('scoreOver').classList.contains('open')); });
@@ -61,6 +64,7 @@ const {chromium,devices}=require('playwright');
  await T('guide link', async()=>{ await go('map'); await p.tap('.t-guide'); await p.waitForTimeout(100); return (await ev(()=>location.hash))==='#guide'; });
  // keyboard
  await T('keyboard space/arrow', async()=>{ await go('lesson-tb4-2'); await p.keyboard.press('Space'); await p.waitForTimeout(300); const r=await ev(()=>main.run); await p.keyboard.press('ArrowRight'); await p.waitForTimeout(100); return r && (await ev(()=>stepOf('tb4-2')))===1; });
+ await T('keyboard left/plus', async()=>{ await p.keyboard.press('ArrowLeft'); await p.waitForTimeout(100); const k=await ev(()=>stepOf('tb4-2')); const a=await ev(()=>main.left); await p.keyboard.press('+'); return k===0 && (await ev(()=>main.left))>a+59; });
  // persistence after reload
  await T('stamps persist after reload', async()=>{ await p.reload(); await p.waitForTimeout(500); return await ev(()=>stampsOf('nb-2').every(Boolean)); });
  console.log(out.join('\n')); console.log('errors',errs);
