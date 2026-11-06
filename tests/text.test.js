@@ -32,7 +32,8 @@ const body=(MODE,WARM)=>{
  const openAll=()=>document.querySelectorAll('#app details').forEach(d=>d.open=true);
  const run=(where,fn)=>{ try{ fn(); openAll(); if(WARM){ document.body.getBoundingClientRect(); return; } fitAll(); check(where);}catch(e){ out.push({w:where,type:'err',text:e.message}); } };
  if(MODE!=='lessons'){
- run('shelf',()=>{ ui.route='map'; render(); });
+ run('shelf',()=>{ store.homeView='sport'; ui.route='map'; render(); });
+ for(const g of [null,'3','4','5','6']) run('home-'+(g||'pick'),()=>{ store.homeView='grade'; store.homeGrade=g; store.last='vb4-5'; ui.route='map'; render(); });
  run('guide',()=>{ ui.route='guide'; render(); });
  run('score',()=>{ ui.route='score'; render(); });
  for(const f of [...Object.keys(FORMS),...Object.keys(BIGF)]) run('teams-'+f,()=>{ ui.route='teams'; ui.form=f; render(); });

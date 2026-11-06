@@ -1,4 +1,4 @@
-/* 기능 점검 48개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
+/* 기능 점검 54개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
 const path=require('path');
 const BASE=process.env.PE_URL||('file://'+path.resolve(__dirname,'..','index.html'));
 const {chromium,devices}=require('playwright');
@@ -10,7 +10,10 @@ const {chromium,devices}=require('playwright');
  const ev=(f,a)=>p.evaluate(f,a);
  // shelf
  await go('map');
- await T('shelf has 8 unit cards', async()=> (await ev(()=>document.querySelectorAll('.ucard').length))===8);
+ await T('home starts with grade view prompt', async()=> (await ev(()=>document.querySelector('[data-action=hview][data-v=grade]').getAttribute('aria-pressed')==='true' && !!document.querySelector('.hpick') && document.querySelectorAll('.ucard').length===0)));
+ await T('grade 3/4/5/6 shows that grade units', async()=>{ const r=[]; for(const g of ['3','4','5','6']){ await p.tap(`[data-action=hgrade][data-v="${g}"]`); await p.waitForTimeout(250); r.push(await ev(()=>document.querySelectorAll('.ucard').length)); } const ok=r.join()==='3,5,6,6'; return ok?true:r.join(); });
+ await T('grade card opens that grade', async()=>{ await p.tap('[data-action=hgrade][data-v="5"]'); await p.tap('.ucard[href="#u-vb-5"]'); await p.waitForTimeout(150); const h=await ev(()=>location.hash); await go('map'); return h==='#u-vb-5' && (await ev(()=>store.homeGrade==='5' && document.querySelector('[data-action=hgrade][data-v="5"]').getAttribute('aria-pressed')==='true')); });
+ await T('sport view has 8 unit cards', async()=>{ await p.tap('[data-action=hview][data-v=sport]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelectorAll('.ucard').length))===8 && (await ev(()=>store.homeView==='sport')); });
  await T('unit card link opens unit', async()=>{ await p.tap('.ucard[href="#u-bad-3"]'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-3' && (await ev(()=>!!document.querySelector('.gtabs'))); });
  await T('grade tab switches', async()=>{ await p.tap('.gtabs a:nth-child(3)'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-5'; });
  await T('node opens yellow card', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); return await ev(()=>!!document.querySelector('.pick .qcard')); });
@@ -65,6 +68,9 @@ const {chromium,devices}=require('playwright');
  // keyboard
  await T('keyboard space/arrow', async()=>{ await go('lesson-tb4-2'); await p.keyboard.press('Space'); await p.waitForTimeout(300); const r=await ev(()=>main.run); await p.keyboard.press('ArrowRight'); await p.waitForTimeout(100); return r && (await ev(()=>stepOf('tb4-2')))===1; });
  await T('keyboard left/plus', async()=>{ await p.keyboard.press('ArrowLeft'); await p.waitForTimeout(100); const k=await ev(()=>stepOf('tb4-2')); const a=await ev(()=>main.left); await p.keyboard.press('+'); return k===0 && (await ev(()=>main.left))>a+59; });
+ await T('data/links.js 기본 자료가 보임', async()=>{ await ev(()=>{ LINKS['tb4-2-1']=[['받기 시범','https://youtu.be/dQw4w9WgXcQ'],['손 모양','media/x.jpg']]; sharedInit(); }); await go('lesson-tb4-2'); await ev(()=>{ ui.step['tb4-2']=1; renderLesson('tb4-2'); }); await p.waitForTimeout(150); const n=await ev(()=>document.querySelectorAll('.media .mtile .mbadge').length); await ev(()=>{ delete LINKS['tb4-2-1']; sharedInit(); }); return n===2 ? true : 'tiles '+n; });
+ await T('넣기 창에 자료 번호', async()=>{ await go('lesson-tb4-2'); await ev(()=>{ ui.step['tb4-2']=1; renderLesson('tb4-2'); }); await p.waitForTimeout(100); await p.tap('.media [data-action=madd]'); await p.waitForTimeout(150); const k=await ev(()=>{ const e=document.querySelector('#mediaOver .mkey'); return e&&e.textContent; }); await ev(()=>closeMedia()); return k==='tb4-2-1' ? true : 'key '+k; });
+ await T('continue card opens last lesson', async()=>{ await go('lesson-vb4-5'); await go('map'); const h=await ev(()=>{ const c=document.querySelector('.contcard'); return c&&c.getAttribute('href'); }); await p.tap('.contcard'); await p.waitForTimeout(120); return h==='#lesson-vb4-5' && (await ev(()=>location.hash))==='#lesson-vb4-5'; });
  // persistence after reload
  await T('stamps persist after reload', async()=>{ await p.reload(); await p.waitForTimeout(500); return await ev(()=>stampsOf('nb-2').every(Boolean)); });
  console.log(out.join('\n')); console.log('errors',errs);

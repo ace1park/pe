@@ -1,0 +1,33 @@
+html.js #static{display:none!important}
+html:not(.js) .top,html:not(.js) #app,html:not(.js) .toast,html:not(.js) #fx{display:none!important}
+#static{background:#f7f4df;color:#1c2a21;font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-size:16px;line-height:1.6;padding:0 0 40px}
+#static a{color:#0d6334;font-weight:700}
+.st-head{background:#168b4b;color:#fff;padding:14px 16px;border-bottom:4px solid #ffd43b}
+.st-head b{display:block;font-size:22px}.st-head span{font-size:13px;color:#ffd43b;font-weight:700}
+.st-note{margin:12px;background:#fff;border:3px dashed #c8372d;border-radius:12px;padding:10px 12px;font-size:15px}
+.st-toc,.st-unit,.st-les{margin:12px;background:#fff;border-radius:14px;padding:12px 14px;border:2px solid #e1dcbc}
+.st-toc h2,.st-unit h2{margin:0 0 6px;font-size:21px;color:#0d6334}
+.st-toc ul{list-style:none;margin:0;padding:0}.st-toc li{padding:8px 0;border-bottom:1px solid #eee}
+.st-toc li div{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:2px}
+.st-toc small,.st-sub{color:#5b6a5f;font-weight:600}
+.st-box{background:#f7f4df;border-radius:10px;padding:8px 12px;margin:8px 0}
+.st-box h3{margin:0;font-size:17px}.st-box ol,.st-box ul{margin:4px 0;padding-left:20px}
+.st-stage h3{margin:12px 0 4px;font-size:17px;border-left:6px solid #168b4b;padding-left:8px}
+.st-stage h3 small{color:#5b6a5f}
+.st-stage ul{margin:0;padding-left:20px}
+.st-les h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.st-les h3 span{display:block;font-size:13px;color:#5b6a5f}
+.st-goal{background:#ffd43b;border-radius:8px;padding:6px 10px;margin:6px 0}
+.st-dl{display:grid;grid-template-columns:84px 1fr;gap:4px 10px;margin:8px 0;font-size:15px}
+.st-dl dt{font-weight:800;color:#0d6334}.st-dl dd{margin:0}
+.st-act{border-top:2px dashed #e1dcbc;padding-top:8px;margin-top:10px}
+.st-act h4{margin:0 0 4px;font-size:18px}.st-act h4 span{display:block;font-size:13px;color:#168b4b}
+.st-act h4 small{color:#5b6a5f;font-weight:600}
+.st-act p{margin:4px 0}
+.st-k{font-weight:800;margin:6px 0 0}
+.st-steps{margin:2px 0 6px;padding-left:22px}
+.st-ev{background:#fff7d6;border-radius:8px;padding:4px 8px}
+.st-dg svg.diagram{width:100%;max-width:420px;height:auto;display:block;border-radius:12px;margin:6px 0}
+.st-dg .legend2{list-style:none;padding:0;margin:0 0 6px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;font-weight:700}
+.st-dg .legend2 li{display:flex;align-items:center;gap:6px}.st-dg .legend2 svg{width:34px;height:22px;background:#178c4b;border-radius:6px}
+.st-up{text-align:right;font-size:14px;margin:8px 0 0}
