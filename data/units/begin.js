@@ -19,14 +19,17 @@ function addUnit(u, list){
     const FM={'개인':'none','2인':'pair','짝':'pair','3인':'group','모둠':'group','팀':'four','경기':'four'};
     const WHO={'개인':'혼자 · 각자','2인':'짝과 둘이','짝':'짝과 둘이','3인':'세 명이','모둠':'모둠 친구와','팀':'우리 팀과','경기':'우리 팀과'};
     const PIC={'개인':'gen_solo','2인':'gen_pair','짝':'gen_pair','3인':'gen_group','모둠':'gen_group','팀':'gen_goal','경기':'gen_goal'};
+    /* '4인 모둠' · '4팀(5~6명)' · '반 2팀'처럼 지도안의 형태 이름도 알아들음 */
+    const formKey=f=>/반\s*2팀|두 팀/.test(f)?'반2팀':/6\s*팀|3\s*대\s*3/.test(f)?'6팀':/팀/.test(f)?'팀':/모둠|3인/.test(f)?'모둠':/2인|짝/.test(f)?'2인':/개인|혼자/.test(f)?'개인':f;
+    FM['반2팀']='half'; WHO['반2팀']='반 두 팀'; PIC['반2팀']='gen_pair'; FM['6팀']='six'; WHO['6팀']='우리 팀과'; PIC['6팀']='gen_goal';
     const stageName={};
     list.forEach(c=>{
       const g=String(c.학년||grades[0]), s=+c.단계||1;
       if(c.단계이름) stageName[g+'-'+s]=c.단계이름;
       const acts=(c.활동||[]).slice(0,4).map(a=>{
-        const form=a.형태||'모둠', kids=a.이렇게해요||a.방법||[], how=a.방법||a.이렇게해요||[];
-        return {tw:false, name:a.이름||'', form, fm:FM[form]||'group', who:a.누구와||WHO[form]||'', steps:kids, tip:a.꿀팁||'', easy:a.쉽게||'', hard:a.어렵게||'',
-          eval:a.평가||'', d:{t:a.그림||PIC[form]||'gen_group'}, t:{prep:a.대형||c.대형||'', how, point:a.지도포인트||a.꿀팁||'', easy:a.쉽게||'', hard:a.어렵게||'', odd:a.홀수반||c.홀수반||''}};
+        const form=formKey(a.형태||'모둠'), kids=a.이렇게해요||a.방법||[], how=a.방법||a.이렇게해요||[];
+        return {tw:false, name:a.이름||'', form:a.형태||form, fm:FM[form]||'group', who:a.누구와||WHO[form]||'', steps:kids, tip:a.꿀팁||'', easy:a.쉽게||'', hard:a.어렵게||'',
+          eval:a.평가||'', d:(a.그림&&typeof a.그림==='object')?a.그림:{t:a.그림||PIC[form]||'gen_group'}, t:{prep:a.대형||c.대형||'', how, point:a.지도포인트||a.꿀팁||'', easy:a.쉽게||'', hard:a.어렵게||'', odd:a.홀수반||c.홀수반||''}};
       });
       while(acts.length<4) acts.push({tw:false,name:'(활동을 적어 주세요)',form:'모둠',fm:'group',who:'',steps:['활동 방법을 적어 주세요'],tip:'',easy:'',hard:'',eval:'',d:{t:'gen_group'},t:{prep:'',how:[],point:'',easy:'',hard:'',odd:''}});
       const lid=id+(grades.length>1?g.replace('~',''):'')+'-'+c.차시;

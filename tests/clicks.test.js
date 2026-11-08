@@ -5,7 +5,7 @@ const {chromium,devices}=require('playwright');
 (async()=>{const b=await chromium.launch();
  const res=[]; const errs=[];
  async function newPage(vp){ const c=await b.newContext(vp==='phone'?{...devices['iPhone 13'],deviceScaleFactor:1}:{viewport:{width:1440,height:900}}); const p=await c.newPage(); p.on('pageerror',x=>errs.push(vp+': '+x.message)); p.on('dialog',d=>{errs.push('dialog '+d.message()); d.dismiss();}); await p.goto(BASE); await p.waitForTimeout(500); return p; }
- const screens=['map','u-foot','u-tb4','u-tb56','u-bad-3','u-bad-5','u-ath-4','u-nb','teams','score','guide'];
+ const screens=['map','u-foot-3','u-foot-4','u-tb4','u-tb56','u-bad-3','u-bad-5','u-ath-4','u-nb','teams','score','guide'];
  const lessons=[1,7,14,17,19,20,'tb4-1','tb4-24','tb56-11','tb56-20','bad3-5','bad6-13','ath3-1','ath6-26','nb-1','nb-17'];
  for(const vp of ['desktop','phone']){
   const p=await newPage(vp);

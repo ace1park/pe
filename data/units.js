@@ -1,7 +1,7 @@
 /* [고쳐도 되는 파일] 단원 목록(이름·색·학년)·종목별 약속·정지 신호 */
 /* ===== 종합 안내서: 종목·학년·차시 ===== */
 const UMETA={
- foot:{title:'발로 하는 공놀이',sub:'공 다루기에서 미니 풋살까지',area:'스포츠 · 영역형',grades:['4'],sport:'foot',color:'#168b4b'},
+ foot:{title:'발로 하는 공놀이',sub:'공 다루기에서 미니 풋살까지',area:'스포츠 · 영역형',grades:['3','4'],sport:'foot',color:'#168b4b'},
  tb4:{title:'티볼',sub:'던지고 받기에서 티볼 경기까지',area:'스포츠 · 필드형',grades:['4'],sport:'tb',color:'#e0700f'},
  tb56:{title:'티볼 심화',sub:'기능 → 전술 → 경기 운영 · 게임 카드 28장',area:'스포츠 · 필드형',grades:['5~6'],sport:'tb',color:'#c2367a',cards:true},
  bad:{title:'배드민턴',sub:'라켓 잡기에서 복식 경기까지',area:'스포츠 · 네트형',grades:['3','4','5','6'],sport:'bm',color:'#2f6fd6'},

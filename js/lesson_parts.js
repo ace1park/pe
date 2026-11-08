@@ -1,8 +1,8 @@
 /* [프로그램] 대형 그림 고르기·차시 아이콘·리그표·큰 점수판 */
 let dgN=0;
-function hasDiag(n,i){ const D=getD(n), M=D.m[i-1]; return !!(DIAG[n+'-'+i] || (M&&M.d&&TPL[M.d.t])); }
+function hasDiag(n,i){ const D=getD(n), M=D.m[i-1]; return !!(DIAG[bkey(n+'-'+i)] || (M&&M.d&&TPL[M.d.t])); }
 function diagHTML(n,i){
-  const key=n+'-'+i, M=getD(n).m[i-1];
+  const key=bkey(n+'-'+i), M=getD(n).m[i-1];
   if(DIAG[key]) return field(DIAG[key](), M.name+' 대형 그림')+legendHTML(key);
   const r=TPL[M.d.t](M.d); return field(r.s, M.name+' 대형 그림')+legendList(r.l,'g'+(++dgN))+(isFoot(n)?'':'<p class="dgcap">종목 대형 예시 · 실제 자리와 거리는 지도안의 \'대형·준비\'를 따름</p>');
 }
@@ -45,7 +45,7 @@ const LICON={
  19:()=>`<rect x="8" y="12" width="40" height="38" rx="3" fill="#fff" stroke="${INK}" stroke-width="2.2"/><path d="M8,22 H48 M8,32 H48 M8,41 H48 M22,12 V50" stroke="${INK}" stroke-width="1.6"/>`+[[15,27,VESTS[0][1]],[15,36,VESTS[1][1]],[15,46,VESTS[2][1]]].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="3" fill="${c}"/>`).join('')+icBall(48,46,9),
  20:()=>`<path d="M20,12 H44 V24 Q44,38 32,40 Q20,38 20,24 Z" fill="${COL.mk}" stroke="${INK}" stroke-width="2"/><path d="M20,16 Q10,16 12,24 Q14,30 21,30 M44,16 Q54,16 52,24 Q50,30 43,30" fill="none" stroke="${INK}" stroke-width="2"/><rect x="29" y="40" width="6" height="8" fill="${COL.mk}" stroke="${INK}" stroke-width="1.6"/><rect x="22" y="48" width="20" height="6" rx="2" fill="${INK}"/><polygon points="${(()=>{let p=[];for(let k=0;k<10;k++){const r=k%2?3:7,a=(-90+k*36)*Math.PI/180;p.push((32+r*Math.cos(a)).toFixed(1)+','+(25+r*Math.sin(a)).toFixed(1));}return p.join(' ');})()}" fill="#fff" stroke="${INK}" stroke-width="1.2"/>`
 };
-function lessonIcon(n){ const l=LESSONS.find(x=>x.n===n); return icWrap(LICON[n](), n+'차시 '+l.t+' 그림'); }
+function lessonIcon(n){ const b=fBase(n), l=LESSONS.find(x=>x.n===b); return icWrap(LICON[b](), b+'차시 '+l.t+' 그림'); }
 /* 단계 아이콘 (어두운 바탕용) */
 const ZW='#fff';
 Object.assign(ZICON,{
@@ -107,27 +107,30 @@ const MORE={
 const LTEAMS=[['A','빨강',VESTS[0][1]],['B','파랑',VESTS[1][1]],['C','노랑',VESTS[2][1]],['D','초록',VESTS[3][1]]];
 const LMATCH=[[1,0,1],[1,2,3],[2,0,2],[2,1,3],[3,0,3],[3,1,2]];
 const LROUND={'19-2':1,'19-4':2,'20-2':3};
-function leagueRows(){ const L=store.league||(store.league={}); const T=LTEAMS.map((t,k)=>({k,t,pts:0,fp:0,gf:0,ga:0,pl:0}));
+/* 리그표는 학년마다 따로 (3학년: store.league3) */
+function leagueStore(key){ const g3=+String(key).split('-')[0]>100; const k=g3?'league3':'league'; return store[k]||(store[k]={}); }
+function leagueRows(key){ const L=leagueStore(key||''); const T=LTEAMS.map((t,k)=>({k,t,pts:0,fp:0,gf:0,ga:0,pl:0}));
   LMATCH.forEach((m,j)=>{ const r=L[j]; if(!r||!r.done) return; const a=T[m[1]], b=T[m[2]]; a.pl++; b.pl++; a.gf+=r.a; a.ga+=r.b; b.gf+=r.b; b.ga+=r.a; a.fp+=r.fa; b.fp+=r.fb;
     if(r.a>r.b){a.pts+=3;b.pts+=1;} else if(r.a<r.b){b.pts+=3;a.pts+=1;} else {a.pts+=2;b.pts+=2;} });
   T.forEach(x=>x.sum=x.pts+x.fp); const S=[...T].sort((x,y)=>y.sum-x.sum||y.fp-x.fp); let rank=0,prev=null; S.forEach((x,i)=>{ if(prev===null||x.sum!==prev.sum||x.fp!==prev.fp) rank=i+1; x.rank=rank; prev=x; }); return S; }
 function leagueHTML(key){
-  const L=store.league||(store.league={}), round=LROUND[key];
+  const L=leagueStore(key), round=LROUND[bkey(key)], g3=key!==bkey(key);
   const cnt=(j,k)=>{ const r=L[j]||{a:0,b:0,fa:0,fb:0,done:false}; return `<span class="lgc"><button data-action="lg" data-j="${j}" data-k="${k}" data-d="-1" aria-label="빼기">−</button><output>${r[k]}</output><button data-action="lg" data-j="${j}" data-k="${k}" data-d="1" aria-label="더하기">+</button></span>`; };
   const chip=t=>`<span class="lgteam" style="--v:${t[2]}">${t[0]} ${t[1]}</span>`;
-  let h=`<div class="lgrule"><div><b>경기</b>5 대 5(골키퍼 포함) · 4분 경기, 1분 인사·기록</div><div><b>경기 점수</b>이기면 3 · 비기면 2 · 져도 1(끝까지 뛴 점수)</div><div><b>페어플레이</b>★ 1개 = 1점, 경기 점수에 더함</div><div><b>같은 점수</b>페어플레이 점수가 많은 팀이 앞, 그래도 같으면 공동 순위</div><div><b>쉬는 사람</b>교대 대기 = 기록원·응원단</div></div>
+  let h=`<div class="lgrule"><div><b>경기</b>${g3?FOOT3.리그규칙:'5 대 5(골키퍼 포함) · 4분 경기, 1분 인사·기록'}</div><div><b>경기 점수</b>이기면 3 · 비기면 2 · 져도 1(끝까지 뛴 점수)</div><div><b>페어플레이</b>★ 1개 = 1점, 경기 점수에 더함</div><div><b>같은 점수</b>페어플레이 점수가 많은 팀이 앞, 그래도 같으면 공동 순위</div><div><b>쉬는 사람</b>교대 대기 = 기록원·응원단</div></div>
   <div class="lgmatches">`;
   const mrow=([r,a,b],j)=>{ const R=L[j]||{}; return `<div class="lgm ${r===round?'now':''} ${R.done?'done':''}">
      <div class="lgl1"><span class="lgr">${r}라운드</span>${chip(LTEAMS[a])}<span class="vs">대</span>${chip(LTEAMS[b])}</div>
      <div class="lgl2"><span class="lab">골</span>${cnt(j,'a')}<span class="colon">:</span>${cnt(j,'b')}</div>
      <div class="lgl2 fp"><span class="lab">페어플레이 ★</span>${cnt(j,'fa')}<span class="colon">:</span>${cnt(j,'fb')}<button class="lgdone" data-action="lgdone" data-j="${j}" aria-pressed="${!!R.done}">${R.done?'경기 끝 ✓':'경기 끝'}</button></div></div>`; };
   LMATCH.forEach((m,j)=>{ if(m[0]===round) h+=mrow(m,j); });
-  h+=`</div>${fold('lgall-'+key,'다른 라운드 경기 <em>결과 보기·고치기</em>',`<div class="lgmatches">${LMATCH.map((m,j)=>m[0]===round?'':mrow(m,j)).join('')}</div>`,ICON_SCORE)}<table class="lgtable"><thead><tr><th>순위</th><th>팀</th><th>경기</th><th>경기 점수</th><th>페어 ★</th><th>합계</th></tr></thead><tbody>${leagueRows().map(x=>`<tr><td>${x.pl?x.rank:'-'}</td><td>${chip(x.t)}</td><td>${x.pl}</td><td>${x.pts}</td><td>${x.fp}</td><td><b>${x.sum}</b></td></tr>`).join('')}</tbody></table>
+  h+=`</div>${fold('lgall-'+key,'다른 라운드 경기 <em>결과 보기·고치기</em>',`<div class="lgmatches">${LMATCH.map((m,j)=>m[0]===round?'':mrow(m,j)).join('')}</div>`,ICON_SCORE)}<table class="lgtable"><thead><tr><th>순위</th><th>팀</th><th>경기</th><th>경기 점수</th><th>페어 ★</th><th>합계</th></tr></thead><tbody>${leagueRows(key).map(x=>`<tr><td>${x.pl?x.rank:'-'}</td><td>${chip(x.t)}</td><td>${x.pl}</td><td>${x.pts}</td><td>${x.fp}</td><td><b>${x.sum}</b></td></tr>`).join('')}</tbody></table>
   <div class="row" style="margin-top:8px"><small style="color:var(--muted);font-weight:600">'경기 끝'을 누른 경기만 순위에 들어가요 · 이 기기에만 저장</small><button class="btn ghost" data-action="lgreset" style="padding:4px 10px;margin-left:auto">리그표 지우기</button></div>`;
   return h;
 }
 function moreHTML(key){
-  const X=MORE[key]; if(!X) return '';
+  let X=MORE[bkey(key)]; if(!X) return '';
+  if(key!==bkey(key) && X.kind==='roles') X=Object.assign({},X,{items:X.items.filter(r=>r[0]!=='gk'),note:'판마다 자리를 바꿔 모든 학생이 수비·공격을 한 번씩 맡음'});
   let body='';
   if(X.kind==='league') body=leagueHTML(key);
   else if(X.kind==='rules') body=`<ol class="mrules">${X.items.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ol>`;
@@ -143,9 +146,9 @@ function scoreSetup(n){
   if(n==null) return {base:'free-card', key:'free-card-'+((ui.ovCount&&ui.ovCount['free-card'])||2), form:'free', cnt:(ui.ovCount&&ui.ovCount['free-card'])||2, title:'게임 카드', slot:''};
   const i=stepOf(n), D=getD(n), M=(i>=1&&i<=4)?D.m[i-1]:null, key=M?n+'-'+i:'L'+n+'-free';
   let form=null;
-  if(M){ const sf=M.score||MSCORE[n+'-'+i]; const fm=M.fm||MFORM[n+'-'+i];
+  if(M){ const sf=M.score||MSCORE[bkey(n+'-'+i)]; const fm=M.fm||MFORM[bkey(n+'-'+i)];
     if(sf==='four'||sf==='six'||sf==='half') form=sf; else if(fm==='four'||fm==='six'||fm==='half') form=fm; }
-  const nT=form?sizesOf(form,store.people).length:2, cnt=(ui.ovCount&&ui.ovCount[key])||(nT>6?6:nT);
+  const nT=form?sizesOf(form,todayN()).length:2, cnt=(ui.ovCount&&ui.ovCount[key])||(nT>6?6:nT);
   const useForm = form && cnt===nT ? form : 'free';
   return {base:key, key:useForm==='free'?key+'-'+cnt:key, form:useForm, cnt, title:M?M.name:(i===0?'약속':'돌아보기'), slot:M?SLOTS[i-1]:''};
 }

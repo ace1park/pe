@@ -36,7 +36,9 @@ function sharedWrite(key,mut){
   mq[key]=p.catch(()=>{}); return p;
 }
 function mediaItems(key){
-  return [...(MEDIA.shared[key]||[]).map(x=>Object.assign({},x,{src:'s'})), ...(MEDIA.local[key]||[]).map(x=>Object.assign({},x,{src:'l'}))];
+  const b=bkey(key), same=b!==key&&!(typeof FOOT3==='object'&&FOOT3.활동바꾸기[b]); /* 3학년 공놀이: 바꾸지 않은 활동은 4학년 기본 자료도 보임 */
+  const sh=[...(MEDIA.shared[key]||[]), ...(same?(MEDIA.shared[b]||[]):[])];
+  return [...sh.map(x=>Object.assign({},x,{src:'s'})), ...(MEDIA.local[key]||[]).map(x=>Object.assign({},x,{src:'l'}))];
 }
 function mediaSrc(it){
   if(it.kind==='link') return it.url;

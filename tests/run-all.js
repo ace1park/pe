@@ -12,7 +12,7 @@ const jobs=[
   ['화면 점검 · 390px', 'screens.test.js', {WIDTH:'390'}],
   ...(quick?[]:[
     ['화면 점검 · 360px', 'screens.test.js', {WIDTH:'360'}],
-    ['인원 점검 · 6~24명', 'people.test.js', {}],
+    ['인원 점검 · 6~50명', 'people.test.js', {}],
     ['글자 점검 · 360px', 'text.test.js', {WIDTH:'360'}],
     ['글자 점검 · 390px', 'text.test.js', {WIDTH:'390'}],
     ['글자 점검 · 1280px', 'text.test.js', {WIDTH:'1280'}],

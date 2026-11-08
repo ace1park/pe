@@ -29,10 +29,12 @@ function isWholeGame(n,i){
   return false;
 }
 function bigGroups(sp,f,N,seed){
-  const sizes=bigSizes(sp,f,N); let nums=[...Array(N)].map((_,i)=>i+1);
+  const R0=store.people, sizes=bigSizes(sp,f,R0); let nums=[...Array(R0)].map((_,i)=>i+1);
   let s=seed*9301+49297; const rnd=()=>{s=(s*9301+49297)%233280; return s/233280;};
   for(let i=nums.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [nums[i],nums[j]]=[nums[j],nums[i]]; }
-  const out=[]; let p=0; for(const z of sizes){ out.push(nums.slice(p,p+z).sort((a,b)=>a-b)); p+=z; } return out;
+  const out=[]; let p=0; for(const z of sizes){ out.push(nums.slice(p,p+z).sort((a,b)=>a-b)); p+=z; }
+  lastMoved=new Set(); if(!absList().length) return out;
+  const r=keepGroups(out,bigSizes(sp,f,N)); lastMoved=r.moved; return r.groups;
 }
 function bigGroupsHTML(sp,f,N,seed){
   const side=bigSide(sp,f), groups=bigGroups(sp,f,N,seed);
@@ -41,13 +43,13 @@ function bigGroupsHTML(sp,f,N,seed){
     const A=side?g.slice(0,side):g, B=side?g.slice(side,side*2):[], R=side?g.slice(side*2):[];
     h+=`<div class="grp bigg"><h3>${gi+1}모둠${side?` · ${gi+1}번 구역`:''}<small class="${R.length?'':'n'}">${g.length}명${R.length?` · 교대 ${R.length}명`:''}</small></h3>`;
     if(side){
-      h+=`<div class="bside"><b style="--v:${VESTS[0][1]}">빨강</b><div class="jerseys">${A.map(x=>jersey(x,VESTS[0][1])).join('')}</div></div>`;
-      h+=`<div class="bside"><b style="--v:${VESTS[1][1]}">파랑</b><div class="jerseys">${B.map(x=>jersey(x,VESTS[1][1])).join('')}</div></div>`;
-      if(R.length) h+=`<div class="bside"><b class="sub">교대</b><div class="jerseys">${R.map(x=>jersey(x,'#6f7d73')).join('')}</div></div>`;
-    } else h+=`<div class="jerseys">${g.map(x=>jersey(x,COL.mint)).join('')}</div>`;
+      h+=`<div class="bside"><b style="--v:${VESTS[0][1]}">빨강</b><div class="jerseys">${A.map(x=>jz(x,VESTS[0][1])).join('')}</div></div>`;
+      h+=`<div class="bside"><b style="--v:${VESTS[1][1]}">파랑</b><div class="jerseys">${B.map(x=>jz(x,VESTS[1][1])).join('')}</div></div>`;
+      if(R.length) h+=`<div class="bside"><b class="sub">교대</b><div class="jerseys">${R.map(x=>jz(x,'#6f7d73')).join('')}</div></div>`;
+    } else h+=`<div class="jerseys">${g.map(x=>jz(x,COL.mint)).join('')}</div>`;
     h+='</div>';
   });
-  return h+'</div>';
+  return h+'</div>'+absLine();
 }
 function bigHow(sp,f,practice){
   const side=bigSide(sp,f), vs=bigVs(sp,f), k=BIGF[f].label;
@@ -68,8 +70,8 @@ function bigOdd(sp,f){
 }
 function bigFold(n,i,key){
   const sp=UMETA[LI(n).unit].sport;
-  if(isWholeGame(n,i)) return `<p class="bignote"><b>종합 게임</b>6~10명 모둠으로 바꾸는 형태에는 해당하지 않아요. 단원에서 정한 팀과 규칙으로 진행해요.${isSmall(store.people)?` 소규모 학급(${store.people}명)은 '우리 반 나누기'의 팀 수로 줄여서 해요.`:''}</p>`;
-  const N=store.people; let cur=(store.big||{})[key]||''; const practice=(i===1||i===3);
+  if(isWholeGame(n,i)) return `<p class="bignote"><b>종합 게임</b>6~10명 모둠으로 바꾸는 형태에는 해당하지 않아요. 단원에서 정한 팀과 규칙으로 진행해요.${isSmall(todayN())?` 소규모 학급(${todayN()}명)은 '우리 반 나누기'의 팀 수로 줄여서 해요.`:''}</p>`;
+  const N=todayN(); let cur=(store.big||{})[key]||''; const practice=(i===1||i===3);
   if(cur&&!bigOk(sp,cur,N)) cur='';
   const can=bigList(sp).filter(f=>bigOk(sp,f,N)); if(!can.length) return '';
   const opts=[['','원안 그대로'],...can.map(f=>[f,`${BIGF[f].label.replace(' 모둠','')} ${bigVs(sp,f)}`])];
@@ -84,7 +86,7 @@ function bigFold(n,i,key){
   const summ=`연습·게임 형태 바꾸기 <em>${cur?`${BIGF[cur].label} ${bigVs(sp,cur)}`:'6~10명 모둠'}</em>`;
   return fold('big-'+key, summ, inner, ICON_TEAM);
 }
-function bigChip(key,n){ const f=(store.big||{})[key]; if(!f) return ''; const sp=UMETA[LI(n).unit].sport; if(!bigOk(sp,f,store.people)||isWholeGame(n,+String(key).split('-').pop())) return ''; return `<span class="chip bigchip">${BIGF[f].label} ${bigVs(sp,f)} 진행 중</span>`; }
+function bigChip(key,n){ const f=(store.big||{})[key]; if(!f) return ''; const sp=UMETA[LI(n).unit].sport; if(!bigOk(sp,f,todayN())||isWholeGame(n,+String(key).split('-').pop())) return ''; return `<span class="chip bigchip">${BIGF[f].label} ${bigVs(sp,f)} 진행 중</span>`; }
 
 /* 성공 인증 왕관: 차시 마지막 '수업 끝'을 누르면 차시 번호 공이 왕관으로 바뀜 */
 function lessonDone(id){ return !!stampsOf(id)[5]; }
@@ -144,6 +146,8 @@ function qcardHTML(id){
     <span class="qacts">${L.acts.map((a,i)=>`<i>${SLOTS[i]} ${esc(a)}</i>`).join('')}</span>
     ${ok?'<span class="qok">성공 왕관 받은 차시</span>':''}<span class="qgo">${ok?'다시 하기':st?'이어 하기':'시작하기'} →</span></a>`;
 }
+/* 난이도 기본값: 발로 하는 공놀이 3학년은 '쉽게'부터 */
+function diffDefault(n){ return isFoot(n)&&n>100?'easy':'base'; }
 /* 단원·차시 수는 자료에서 바로 셈 (자료를 고치면 저절로 맞음) */
 function totalLessons(){ return UORDER.reduce((a,u)=>a+unitProgress(u)[1],0); }
 function totalsText(){ const gs=[...new Set(UORDER.flatMap(u=>UMETA[u].grades.flatMap(g=>String(g).split('~').map(Number))))].sort((a,b)=>a-b); return `${gs[0]}~${gs[gs.length-1]}학년 · ${UORDER.length}개 단원 · ${totalLessons()}차시`; }
@@ -193,33 +197,38 @@ function openCard(no){
 
 /* ===== 편성 ===== */
 function buildGroups(form,people,seed,shuffle=true){
-  const sizes=sizesOf(form,people);
-  let nums=[...Array(people)].map((_,i)=>i+1);
+  const R0=store.people, sizes=sizesOf(form,R0);
+  let nums=[...Array(R0)].map((_,i)=>i+1);
   if(shuffle){ let s=seed*9301+49297; const rnd=()=>{s=(s*9301+49297)%233280; return s/233280;};
     for(let i=nums.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [nums[i],nums[j]]=[nums[j],nums[i]]; } }
-  const out=[]; let p=0; for(const z of sizes){ out.push(nums.slice(p,p+z).sort((a,b)=>a-b)); p+=z; } return out;
+  const out=[]; let p=0; for(const z of sizes){ out.push(nums.slice(p,p+z).sort((a,b)=>a-b)); p+=z; }
+  lastMoved=new Set(); if(!absList().length) return out;
+  const r=keepGroups(out,sizesOf(form,todayN())); lastMoved=r.moved; return r.groups;
 }
+const courtStyle=(form,n)=>form==='six'||(form==='four'&&n>4);
 function teamDefs(form,count){
-  if(form==='six') return [...Array(sizesOf('six',store.people).length)].map((_,i)=>{ const v=VESTS[(i%2)+(Math.floor(i/2)%2?2:0)]; return {nm:`${Math.floor(i/2)+1}경기장 ${v[0]}`, c:v[1], court:Math.floor(i/2)+1}; });
-  if(form==='four') return VESTS.slice(0,sizesOf('four',store.people).length).map(([n,c])=>({nm:n+' 팀',c}));
+  if((form==='six'||form==='four')&&courtStyle(form,sizesOf(form,todayN()).length)) return [...Array(sizesOf(form,todayN()).length)].map((_,i)=>{ const v=VESTS[(i%2)+(Math.floor(i/2)%2?2:0)]; return {nm:`${Math.floor(i/2)+1}경기장 ${v[0]}`, c:v[1], court:Math.floor(i/2)+1}; });
+  if(form==='four') return VESTS.slice(0,sizesOf('four',todayN()).length).map(([n,c])=>({nm:n+' 팀',c}));
   if(form==='half') return VESTS.slice(0,2).map(([n,c])=>({nm:n+' 팀',c}));
   const all=[...VESTS,['보라','#7b4fc9'],['주황','#e0700f']]; return all.slice(0,count).map(([n,c])=>({nm:n+' 팀',c}));
 }
 function groupsHTML(form,people,seed,shuffle=true){
   const F=FORMS[form], groups=buildGroups(form,people,seed,shuffle), sizes=sizesOf(form,people);
   const base=Math.min(...sizes), uneven=base!==Math.max(...sizes);
-  const vests=(form==='four'||form==='six'||form==='half')?teamDefs(form):null;
+  const vests=(form==='four'||form==='six'||form==='half')?teamDefs(form):null, cs=courtStyle(form,groups.length);
+  const nM=Math.ceil(groups.length/2), cOK=Math.min(gear().courts||nM,gear().balls||nM)>=nM;
   let h='<div class="groups">';
   groups.forEach((g,i)=>{
     const t=vests?vests[i]:null;
-    if(form==='six'&&i%2===0) h+=`<div class="court">${i/2+1}번 경기장</div>`;
-    const title=t?(form==='six'?t.nm.split(' ')[1]+' 팀':t.nm):`${i+1}${F.unit}`;
+    if(cs&&i%2===0) h+=`<div class="court">${cOK?`${i/2+1}번 경기장`:`${i/2+1}경기`}</div>`;
+    else if(form==='four'&&!cs&&!cOK&&i%2===0) h+=`<div class="court">${i/2+1}경기</div>`;
+    const title=t?(cs?t.nm.split(' ')[1]+' 팀':t.nm):`${i+1}${F.unit}`;
     const extra=uneven&&g.length>base;
-    h+=`<div class="grp" style="${t?`--v:${t.c}`:''}"><h3><span class="gt">${title}</span><small class="${extra?'':'n'}">${g.length}명${extra?' · 홀수 반':''}</small></h3><div class="jerseys">${g.map(x=>jersey(x,t?t.c:COL.mint)).join('')}</div></div>`;
+    h+=`<div class="grp" style="${t?`--v:${t.c}`:''}"><h3><span class="gt">${title}</span><small class="${extra?'':'n'}">${g.length}명${extra?' · 홀수 반':''}</small></h3><div class="jerseys">${g.map(x=>jz(x,t?t.c:COL.mint)).join('')}</div></div>`;
   });
   h+='</div>';
   if(uneven) h+=`<div class="oddnote"><b>${people%2?'홀수 반':'인원이 다른 모둠'}</b> · ${esc(oddText(form,sizes))}</div>`;
-  h+=smallNote(form,people);
+  h+=smallNote(form,people)+absLine();
   return h;
 }
 function scoreHTML(key,form,count){
@@ -238,9 +247,9 @@ const ICON_GUIDE=`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10 Q16
 const ICON_PLAN=`<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="6" width="30" height="38" rx="4" fill="#fff" stroke="${COL.ink}" stroke-width="2.5"/><rect x="17" y="3" width="14" height="7" rx="2" fill="${COL.mk}" stroke="${COL.ink}" stroke-width="2"/><path d="M15 19 h18 M15 26 h18 M15 33 h11" stroke="${COL.ink}" stroke-width="2.5"/></svg>`;
 
 function renderPeek(n){
-  const l=LESSONS.find(x=>x.n===n), s=STAGES[l.s-1], box=document.getElementById('peekBox');
+  const b=fBase(n), l=LESSONS.find(x=>x.n===b), s=STAGES[l.s-1], box=document.getElementById('peekBox');
   box.style.setProperty('--c',s.c);
-  box.innerHTML=`<p style="margin:0;font-weight:800;color:var(--muted)">${s.n}단계 ${esc(s.name)} · ${n}차시${EVAL[n]?' · ★ '+EVAL[n]:''}</p>
+  box.innerHTML=`<p style="margin:0;font-weight:800;color:var(--muted)">${s.n}단계 ${esc(s.name)} · ${b}차시${EVAL[b]?' · ★ '+EVAL[b]:''}</p>
    <h3 id="peekTitle">${esc(l.t)}</h3>
    <ol>${l.acts.map((a,i)=>`<li><span>${SLOTS[i]}</span>${esc(a)}</li>`).join('')}</ol>
    <p style="margin:0 0 14px;font-size:15px;color:var(--muted)">이 차시의 미션 카드는 아직 넣지 않았어요. 샘플에는 1차시와 14차시만 들어 있어요.</p>
@@ -258,13 +267,13 @@ function cmPeek(title,inner){
   document.getElementById('peek').classList.add('open');
 }
 function cmTeamInfo(n,i){
-  const D=getD(n), M=D.m[i-1], key=n+'-'+i, sp=UMETA[LI(n).unit].sport, N=store.people;
+  const D=getD(n), M=D.m[i-1], key=n+'-'+i, sp=UMETA[LI(n).unit].sport, N=todayN(), game=(i===2||i===4);
   const bf=(store.big||{})[key];
-  if(bf && !isWholeGame(n,i) && bigOk(sp,bf,N)){ const z=bigSizes(sp,bf,N); return {label:`${BIGF[bf].label} ${bigVs(sp,bf)} · ${z.length}모둠`, html:()=>bigGroupsHTML(sp,bf,N,ui.seed)+`<div class="oddnote"><b>남는 친구</b> · ${esc(bigOdd(sp,bf))}</div>`}; }
-  const form=M.fm?(M.fm==='none'?null:M.fm):MFORM[key];
+  if(bf && !isWholeGame(n,i) && bigOk(sp,bf,N)){ const z=bigSizes(sp,bf,N); return {label:`${BIGF[bf].label} ${bigVs(sp,bf)} · ${z.length}모둠`, html:()=>bigGroupsHTML(sp,bf,N,ui.seed)+`<div class="oddnote"><b>남는 친구</b> · ${esc(bigOdd(sp,bf))}</div>`+gearNote(bigSide(sp,bf)?'big':'bignoside',z,game)}; }
+  const form=M.fm?(M.fm==='none'?null:M.fm):MFORM[bkey(key)];
   if(!form) return {label:`모두 1인 1공 · ${N}명`, html:null};
   const F=FORMS[form], z=sizesOf(form,N);
-  return {label:`${N}명 → ${z.length}${F.unit} (${szText(z)})`, html:()=>groupsHTML(form,N,ui.seed)};
+  return {label:`${N}명 → ${z.length}${F.unit} (${szText(z)})`, html:()=>groupsHTML(form,N,ui.seed)+gearNote(form,z,game)};
 }
 function renderClass(n){
   const D=getD(n), l=LI(n), st=stampsOf(n), i=stepOf(n), U=UMETA[l.unit], sp=U.sport;
@@ -279,7 +288,7 @@ function renderClass(n){
       <ol class="cm-steps cm-rules">${rules.map(r=>`<li><span class="fit">${esc(r)}</span></li>`).join('')}</ol>
       <p class="cm-sig"><b>정지 신호</b><span class="fit">${esc(sp==='foot'?SIGNAL:SIGBY[sp])}</span></p>
       ${l.rec&&l.rec.safe?`<p class="cm-tip"><b>오늘 안전</b><span>${esc(l.rec.safe)}</span></p>`:''}
-      <div class="cm-row"><button class="cm-chip" data-action="cmpeople">오늘 ${store.people}명 · 바꾸기</button>${mediaItems(n+'-0').length?`<button class="cm-chip" data-action="mview" data-key="${n}-0" data-id="${esc(mediaItems(n+'-0')[0].id)}">차시 영상·사진 ${mediaItems(n+'-0').length}</button>`:''}</div>
+      <div class="cm-row"><button class="cm-chip" data-action="cmpeople">오늘 ${todayN()}명 · 바꾸기</button><button class="cm-chip" data-action="abs0">결석·지각${absList().length?' '+absList().length+'명':''}</button><button class="cm-chip" data-action="gear">경기장·공</button>${mediaItems(n+'-0').length?`<button class="cm-chip" data-action="mview" data-key="${n}-0" data-id="${esc(mediaItems(n+'-0')[0].id)}">차시 영상·사진 ${mediaItems(n+'-0').length}</button>`:''}</div>
       <p class="cm-next">다음 · 연습1 <b>${esc(D.m[0]?D.m[0].name:'')}</b></p></div>`;
   } else if(i===5){
     const em=store.emo[n]||{};
@@ -289,7 +298,7 @@ function renderClass(n){
       <div class="emos cm-emos">${Object.entries(EMOS).map(([g,ws],gi)=>{const k=['pos','mid','neg'][gi]; return `<div class="row">${ws.map(w=>`<button class="${k}" data-action="emo" data-w="${w}">${w}${em[w]?`<i>${em[w]}</i>`:''}</button>`).join('')}</div>`;}).join('')}</div>
       <p class="cm-next">${ui.cleared[n]?'다음 · 처음 화면':'다음 · 수업 끝 ✓'}</p></div>`;
   } else {
-    const T=M.lite?{label:'',html:null}:cmTeamInfo(n,i), lv=store.diff[key]||'base';
+    const T=M.lite?{label:'',html:null}:cmTeamInfo(n,i), lv=store.diff[key]||diffDefault(n);
     const lvText=M.lite?'':lv==='easy'?M.easy:lv==='hard'?M.hard:'기본 방법대로 해요';
     const nx=i<4?`${SLOTS[i]} <b>${esc(D.m[i]?D.m[i].name:'')}</b>`:'돌아보기';
     const mi=mediaItems(key);
@@ -322,12 +331,13 @@ function renderLesson(n){
   if(i===0){
     h+=`<div class="card"><div class="slot">출발 전</div><h2>우리의 약속</h2>
       <ul class="rules">${(sp==='foot'?RULES:RULESBY[sp]).map((r,j)=>`<li>${sp==='foot'?RULEICON[j]:`<span class="rnum">${j+1}</span>`}<span class="fit">${esc(r)}</span></li>`).join('')}<li class="sig">${SIGICON}<span class="fit">${esc(sp==='foot'?SIGNAL:SIGBY[sp])}</span></li></ul>
+      ${l.unit==='foot'&&l.g==='3'?`<div class="todaysafe g3"><b>3학년 기준</b><span>${esc(FOOT3.기준)}</span></div>`:''}
       ${l.rec&&l.rec.safe?`<div class="todaysafe"><b>오늘의 안전</b><span>${esc(l.rec.safe)}</span></div>`:''}
       <div class="tip"><b>꿀팁</b><span class="fit">다 같이 "약속!" 외치고 출발!</span></div>
-      <div class="people pline"><h3>오늘 우리 반 <b>${store.people}명</b> <span class="psub">고른 인원에 맞춰 짝·모둠·팀이 자동으로 나뉘어요</span></h3>
-        <button class="cm-chip" data-action="cmpeople">인원 바꾸기</button></div>
+      <div class="people pline"><h3>오늘 우리 반 <b>${pText()}</b> <span class="psub">이 인원으로 팀을 나눠요</span></h3>
+        ${todayBar()}</div>
       ${mediaHTML(n+'-0',true)}
-      <div class="folds">${l.rec?lessonFolds(l.rec,n):''}${fold('plan-'+n+'-0','선생님 메모',`<dl><dt>준비운동</dt><dd>연습1 처음 1~2분에 발목·무릎 돌리기</dd>${sp==='foot'?'<dt>공</dt><dd>덜 튀는 공(폼 볼, 풋살공 4호)</dd>':''}<dt>정지 신호</dt><dd>아래 빨간 '정지' 버튼(단축키 S): 화면 표시 + 호루라기 소리 두 번</dd></dl>`,ICON_PLAN)}</div>
+      <div class="folds">${l.rec?lessonFolds(l.rec,n):''}${fold('plan-'+n+'-0','선생님 메모',`<dl><dt>준비운동</dt><dd>연습1 처음 1~2분에 발목·무릎 돌리기</dd>${sp==='foot'?`<dt>공</dt><dd>${l.g==='3'?FOOT3.공:'덜 튀는 공(폼 볼, 풋살공 4호)'}</dd>`:''}<dt>정지 신호</dt><dd>아래 빨간 '정지' 버튼(단축키 S): 화면 표시 + 호루라기 소리 두 번</dd></dl>`,ICON_PLAN)}</div>
     </div>`;
   } else if(i===5){
     const em=store.emo[n]||{}, all=st.slice(0,5).every(Boolean);
@@ -341,17 +351,19 @@ function renderLesson(n){
     const M=D.m[i-1], key=n+'-'+i, form=ui.liteForm[key]||'none';
     const forms=[['none','1인 1공'],['pair','2인'],['group','4인 모둠'],['six','6팀(3:3)'],['four','4팀'],['half','반 2팀']];
     let grp='';
-    if(form!=='none'){ const F=FORMS[form], sz=sizesOf(form,store.people); grp=groupsHTML(form,store.people,ui.seed)+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="reshuffle">다시 섞기</button></div>`; }
-    const summ = form==='none' ? `우리 반 나누기 <em>${store.people}명 · 1인 1공</em>` : `우리 반 나누기 <em>${store.people}명 → ${sizesOf(form,store.people).length}${FORMS[form].unit} (${szText(sizesOf(form,store.people))})</em>`;
+    const gm=(i===2||i===4);
+    if(form!=='none'){ const F=FORMS[form], sz=sizesOf(form,todayN()); grp=groupsHTML(form,todayN(),ui.seed)+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="reshuffle">다시 섞기</button><button class="btn" data-action="abs0">결석·지각</button></div>`+gearNote(form,sz,gm); }
+    else grp=gearNote('none',[todayN()],false);
+    const summ = form==='none' ? `우리 반 나누기 <em>${todayN()}명 · 1인 1공</em>` : `우리 반 나누기 <em>${todayN()}명 → ${sizesOf(form,todayN()).length}${FORMS[form].unit} (${szText(sizesOf(form,todayN()))})</em>`;
     h+=`<div class="card"><div class="slot">${SLOTS[i-1]} · 10분</div><h2 class="fit">${esc(M.name)}</h2>
-      ${EVAL[n]&&(i===4||(n===7&&i===3)||(n===10&&i===4))?`<div class="chips"><span class="chip">★ ${esc(EVAL[n])}</span></div>`:''}
+      ${(()=>{ const b=fBase(n); return EVAL[b]&&(i===4||(b===7&&i===3)||(b===10&&i===4))?`<div class="chips"><span class="chip">★ ${esc(EVAL[b])}</span></div>`:''; })()}
       <div class="litebox"><b>활동 이름으로 진행하는 차시</b><span>방법·대형 그림은 아직 넣지 않았어요. 지도안을 보며 타이머와 팀 나누기로 진행해요.</span></div>
       ${mediaHTML(key)}
       <div class="folds">${fold('grp-'+key, summ, `<div class="row" style="margin-bottom:10px">${forms.map(([v,t])=>`<button class="pill" aria-pressed="${form===v}" data-action="liteform" data-key="${key}" data-v="${v}">${t}</button>`).join('')}</div>${grp}`, ICON_TEAM)}
       ${bigFold(n,i,key)}${fold('sc-'+key,'점수판 <em>골 · 페어플레이</em>', scoreHTML(key,'free',form==='six'?6:form==='four'?4:2), ICON_SCORE)}</div>
     </div>`;
   } else {
-    const M=D.m[i-1], key=n+'-'+i, lv=store.diff[key]||'base', form=M.fm?(M.fm==='none'?null:M.fm):MFORM[key], sform=M.score||MSCORE[key];
+    const M=D.m[i-1], key=n+'-'+i, lv=store.diff[key]||diffDefault(n), form=M.fm?(M.fm==='none'?null:M.fm):MFORM[bkey(key)], sform=M.score||MSCORE[bkey(key)];
     const lvText=lv==='easy'?M.easy:lv==='hard'?M.hard:'기본 방법대로 해요';
     let tools='';
     if(M.subs) tools+=`<div class="tools2">${M.subs.map((x,j)=>`<button class="subchip" data-action="sub" data-j="${j}" data-label="${esc(x.label)}"><b>${esc(x.label)}</b><small>누르면 바로 시작</small></button>`).join('')}</div>`;
@@ -359,8 +371,8 @@ function renderLesson(n){
     if(M.light) tools+=`<div class="lightbox"><div class="lightshow" id="lightShow">신호를 눌러요</div><div class="row">${[['g','초록','공 몰기','#2fb35c'],['y','노랑','천천히','#ffd43b'],['r','빨강','멈춤!','#e2463b']].map(([k,t,w,c])=>`<button class="lbtn" style="--lc:${c}" data-action="light" data-w="${w}" data-c="${c}">${t}</button>`).join('')}</div></div>`;
     if(M.ox) tools+=`<div class="oxbox"><div class="oxq" id="oxQ">'다음 문제'를 누르면 문제가 나와요</div><div class="oxa" id="oxA"></div><div class="row"><button class="btn y" data-action="oxnext">다음 문제</button><button class="btn" data-action="oxans">정답 보기</button></div></div>`;
     let folds='';
-    if(form){ const F=FORMS[form], sz=sizesOf(form,store.people);
-      folds+=fold('grp-'+key,`우리 반 나누기 <em>${store.people}명 → ${sz.length}${F.unit} (${szText(sz)})</em>`, groupsHTML(form,store.people,ui.seed)+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="reshuffle">다시 섞기</button><small style="color:var(--muted);font-weight:600">인원은 '약속' 화면에서 바꿔요</small></div>`, ICON_TEAM); }
+    if(form){ const F=FORMS[form], sz=sizesOf(form,todayN());
+      folds+=fold('grp-'+key,`우리 반 나누기 <em>${todayN()}명 → ${sz.length}${F.unit} (${szText(sz)})</em>`, groupsHTML(form,todayN(),ui.seed)+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="reshuffle">다시 섞기</button><button class="btn" data-action="abs0">결석·지각</button></div>`+gearNote(form,sz,i===2||i===4), ICON_TEAM); }
     folds+=bigFold(n,i,key);
     if(sform) folds+=fold('sc-'+key,'점수판 <em>골 · 페어플레이</em>', sform.startsWith('free')?scoreHTML(key,'free',+sform.slice(4)||2):scoreHTML(key,sform), ICON_SCORE);
     folds+=fold('plan-'+key,'선생님 지도안 <em>목표 · 대형 · 4단계</em>',`<dl>
@@ -379,7 +391,7 @@ function renderLesson(n){
       <div class="level"><div class="seg" role="group" aria-label="난이도 고르기">${[['easy','쉽게'],['base','기본'],['hard','어렵게']].map(([v,t])=>`<button aria-pressed="${lv===v}" data-action="diff" data-v="${v}" data-key="${key}">${t}</button>`).join('')}</div><p class="fit">${esc(lvText)}</p></div>
       ${moreHTML(key)}
       ${mediaHTML(key)}
-      ${form?'':`<div class="static">모두 1인 1공 · ${store.people}명</div>`}
+      ${form?'':`<div class="static">모두 1인 1공 · ${todayN()}명</div>${(gear().balls&&gear().balls<todayN())?gearNote('none',[todayN()],false):''}`}
       <div class="folds">${folds}</div>
     </div>`;
   }
@@ -404,36 +416,38 @@ function goNext(n){
 /* ===== 도구 화면 ===== */
 function teamForms(N){ return Object.keys(FORMS).filter(k=> k==='six'?sizesOf('six',N).length>=4 : k==='four'?N>=8 : true); }
 function formLabel(k,N){ const z=sizesOf(k,N), n=z.length, mn=Math.min(...z), mx=Math.max(...z), r=mn===mx?mn+'명':mn+'~'+mx+'명';
-  if(k==='pair') return '2인 (짝)'; if(k==='group') return `모둠 (${n}모둠 · ${r})`; if(k==='six') return `경기장 ${n/2}곳 · ${n}팀 (${r})`; if(k==='four') return `4팀 (${r})`; return `반 2팀 (${r})`; }
+  if(k==='pair') return '2인 (짝)'; if(k==='group') return `모둠 (${n}모둠 · ${r})`; if(k==='six') return `경기장 ${n/2}곳 · ${n}팀 (${r})`; if(k==='four') return `${n}팀 (${r})`; return `반 2팀 (${r})`; }
 function renderTeams(){
   if(BIGF[ui.form]) return renderTeamsBig();
-  if(!teamForms(store.people).includes(ui.form)) ui.form='half';
-  const F=FORMS[ui.form], sz=sizesOf(ui.form,store.people);
+  if(!teamForms(todayN()).includes(ui.form)) ui.form='half';
+  const F=FORMS[ui.form], sz=sizesOf(ui.form,todayN());
   app.innerHTML=`<section class="panel"><h1>팀 나누기</h1><p class="lead">출석 번호로 나눠요. 이름은 화면에 나오지 않아요.</p>
    <div class="opts">
     ${peopleHTML(true)}
-    <div class="row"><span>대형</span>${teamForms(store.people).map(k=>`<button class="pill" aria-pressed="${ui.form===k}" data-action="form" data-v="${k}">${formLabel(k,store.people)}</button>`).join('')}</div>
+    <div class="row"><span>오늘</span><button class="pill ${absList().length?'on':''}" data-action="abs0">결석·지각${absList().length?' '+absList().length+'명':''}</button><button class="pill" data-action="gear">경기장·공 · ${gearText()}</button></div>
+    <div class="row"><span>대형</span>${teamForms(todayN()).map(k=>`<button class="pill" aria-pressed="${ui.form===k}" data-action="form" data-v="${k}">${formLabel(k,todayN())}</button>`).join('')}</div>
     ${bigTeamsRow()}
     <div class="row"><span>순서</span><button class="pill" aria-pressed="${ui.shuffle}" data-action="shuf" data-v="1">섞기</button><button class="pill" aria-pressed="${!ui.shuffle}" data-action="shuf" data-v="0">번호 순서대로</button>${ui.shuffle?'<button class="btn y" data-action="reshuffle">다시 섞기</button>':''}</div>
    </div>
-   <p style="margin:0 0 10px;font-weight:800">${store.people}명 → ${sz.length}${F.unit} (${sz.join('·')}명, 합계 ${sz.reduce((a,b)=>a+b,0)}명)</p>
-   ${groupsHTML(ui.form,store.people,ui.seed,ui.shuffle)}
+   <p style="margin:0 0 10px;font-weight:800">${todayN()}명 → ${sz.length}${F.unit} (${sz.join('·')}명, 합계 ${sz.reduce((a,b)=>a+b,0)}명)</p>
+   ${groupsHTML(ui.form,todayN(),ui.seed,ui.shuffle)}${gearNote(ui.form,sz,true)}
    <div class="oddnote" style="border-left-color:var(--turf)">리그용 팀은 단원 중반 전에 기능 수준을 고르게 섞어 선생님이 정하고 리그까지 유지함. 이 화면은 차시 안의 짝·모둠·연습 팀용.</div></section>`;
 }
-function bigTeamsRow(){ const can=Object.keys(BIGF).filter(k=>bigOk('foot',k,store.people)); return can.length?`<div class="row"><span>6~10명 모둠</span>${can.map(k=>`<button class="pill" aria-pressed="${ui.form===k}" data-action="form" data-v="${k}">${BIGF[k].label} (${BIGF[k].vs})</button>`).join('')}</div>`:''; }
+function bigTeamsRow(){ const can=Object.keys(BIGF).filter(k=>bigOk('foot',k,todayN())); return can.length?`<div class="row"><span>6~10명 모둠</span>${can.map(k=>`<button class="pill" aria-pressed="${ui.form===k}" data-action="form" data-v="${k}">${BIGF[k].label} (${BIGF[k].vs})</button>`).join('')}</div>`:''; }
 function renderTeamsBig(){
-  if(!bigOk('foot',ui.form,store.people)) ui.form='half';
+  if(!bigOk('foot',ui.form,todayN())) ui.form='half';
   if(!BIGF[ui.form]) return renderTeams();
-  const f=ui.form, sz=bigSizes('foot',f,store.people);
+  const f=ui.form, sz=bigSizes('foot',f,todayN());
   app.innerHTML=`<section class="panel"><h1>팀 나누기</h1><p class="lead">출석 번호로 나눠요. 이름은 화면에 나오지 않아요.</p>
    <div class="opts">
     ${peopleHTML(true)}
-    <div class="row"><span>대형</span>${teamForms(store.people).map(k=>`<button class="pill" aria-pressed="false" data-action="form" data-v="${k}">${formLabel(k,store.people)}</button>`).join('')}</div>
+    <div class="row"><span>오늘</span><button class="pill ${absList().length?'on':''}" data-action="abs0">결석·지각${absList().length?' '+absList().length+'명':''}</button><button class="pill" data-action="gear">경기장·공 · ${gearText()}</button></div>
+    <div class="row"><span>대형</span>${teamForms(todayN()).map(k=>`<button class="pill" aria-pressed="false" data-action="form" data-v="${k}">${formLabel(k,todayN())}</button>`).join('')}</div>
     ${bigTeamsRow()}
     <div class="row"><span>순서</span><button class="btn y" data-action="reshuffle">다시 섞기</button></div>
    </div>
    <p style="margin:0 0 10px;font-weight:800">${BIGF[f].label} (${BIGF[f].vs}) · ${sz.length}모둠 (${sz.join('·')}명, 합계 ${sz.reduce((a,b)=>a+b,0)}명)</p>
-   ${bigGroupsHTML('foot',f,store.people,ui.seed)}
+   ${bigGroupsHTML('foot',f,todayN(),ui.seed)}${gearNote('big',sz,true)}
    <div class="oddnote"><b>남는 친구</b> · ${esc(bigOdd('foot',f))}</div>
    <div class="oddnote" style="border-left-color:var(--stop)"><b>종합 게임</b> · 리그·순위 결정전·티볼 경기 같은 종합 게임은 이 형태에 해당하지 않음. 단원에서 정한 팀으로 진행함.</div></section>`;
 }
@@ -458,7 +472,8 @@ function renderGuide(){
   <div class="gsec"><h2><i>1</i>수업 전 준비</h2>
    <ol class="gsteps">
     <li><b>오늘 차시 고르기</b><span>홈 위쪽에서 <b>학년으로 보기</b>(학년을 고르면 그 학년 단원만) 또는 <b>종목으로 보기</b>(8개 단원 모두)를 고르고 종목 카드를 누릅니다. 고른 방식과 학년은 다음에도 기억합니다. 지난 시간에 하던 차시는 맨 위 <b>이어서 하기</b>로 바로 열립니다. 단계 길에서 차시 번호(공)를 누르면 안내 카드가 열립니다. 순서대로 하지 않아도 되고, 어느 차시든 바로 시작할 수 있습니다. ◇는 시간이 되면 하는 선택 차시, ★는 관찰 평가를 하는 차시입니다.</span></li>
-    <li><b>오늘 인원 고르기</b><span>첫 화면 '약속'의 <b>인원 바꾸기</b>를 눌러 오늘 출석 인원을 고릅니다. 짝·모둠·팀이 이 인원에 맞춰 자동으로 나뉘고, 다음 수업 때도 기억합니다.</span></li>
+    <li><b>오늘 인원 고르기</b><span>첫 화면 '약속'의 <b>반 인원</b>을 눌러 출석부 인원을 고릅니다(합반은 25~50명). 결석·지각은 <b>결석·지각</b>에서 번호만 누르면, 나머지 친구 모둠은 그대로 두고 빈자리만 채웁니다. 빠진 번호는 그날만 기억합니다.</span></li>
+    <li><b>경기장·공 넣기(한 번만)</b><span><b>경기장·공</b>에 학교의 코트 수와 공 수를 넣으면, 모자랄 때 동시에 할 경기 수와 판마다 기다리는 순서를 알려 줍니다.</span></li>
     <li><b>소리 켜기</b><span>TV나 휴대폰 볼륨을 올려 둡니다. 화면을 한 번 누른 뒤부터 소리가 납니다.</span></li>
    </ol></div>
 
@@ -518,7 +533,7 @@ function renderGuide(){
     <div class="gc-row"><span class="gtag w">형태 바꾸기</span><span>연습·게임을 <b>6인(3:3)·8인(4:4)·10인(5:5) 모둠</b>으로 바꿔 진행할 때 엽니다. 모둠·편·교대 인원이 자동으로 나뉩니다. 리그·순위 결정전 같은 <b>종합 게임</b>은 해당하지 않아 안내 문구만 나옵니다.</span></div>
     <div class="gc-row"><span class="gtag">영상·사진</span><span>활동마다 시범 사진·영상·유튜브 링크를 넣어 두고 학생에게 바로 보여 줍니다. 넣는 법은 아래 자주 묻는 질문에 있습니다.</span></div>
     <div class="gc-row"><span class="gtag y">★ 평가</span><span>평가 활동 표시. 지도안 칸에 관찰할 내용이 적혀 있습니다.</span></div>
-    <div class="gc-row"><span class="gtag w">약속 화면</span><span>티볼·배드민턴·배구형 게임·육상·넷볼·농구는 약속 화면 아래 접힌 칸에 그 차시의 <b>오늘 준비</b>(대형·준비물), <b>홀수 반</b>, <b>변형 게임</b>이 원본 지도안 그대로 들어 있습니다.</span></div>
+    <div class="gc-row"><span class="gtag w">약속 화면</span><span>티볼·배드민턴·배구형 게임·육상·넷볼·농구는 약속 화면 아래 접힌 칸에 그 차시의 <b>오늘 준비</b>(대형·준비물), <b>홀수 반</b>, <b>변형 게임</b>이 들어 있습니다.</span></div>
    </div></div>
 
   <div class="gsec"><h2><i>5</i>소리 안내</h2>
@@ -529,11 +544,16 @@ function renderGuide(){
     <div><b>호루라기 ×2</b><span>정지 신호</span></div>
    </div></div>
 
-  <div class="gsec"><h2><i>6</i>자주 묻는 질문</h2>
+  <div class="gsec"><h2><i>6</i>인원 나누기 규칙</h2>
+   <p class="glead">출석 번호만으로 짝·모둠·팀을 나눕니다. 아래 표는 화면이 실제로 나누는 값과 같습니다. (모둠 수 · 모둠별 인원)</p>
+   ${ruleTableHTML()}
+   <ul class="prules">${RULES_PEOPLE.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
+
+  <div class="gsec"><h2><i>7</i>자주 묻는 질문</h2>
    <dl class="gfaq">
     <dt>홀수 반은 어떻게 하나요?</dt><dd>자동으로 처리합니다. 남는 1명은 3인 1조, 5인 모둠, 교대, 심판 중 활동에 맞는 방법으로 나뉘고, 그 방법이 팀 아래에 적혀 나옵니다.</dd>
-    <dt>인원은 어떻게 고르나요?</dt><dd>'약속' 화면의 <b>인원 바꾸기</b>(또는 팀 나누기 화면)에서 먼저 <b>일반학급(추천 · 16~24명)</b>과 <b>소규모 학급(가능 · 12명 이하, 6~12명)</b> 중 하나를 누르고, 오늘 인원을 고릅니다.</dd>
-    <dt>소규모 학급(6~12명)도 되나요?</dt><dd>됩니다. '약속' 화면의 <b>인원 바꾸기</b>에서 <b>소규모 학급</b>을 누른 뒤 6~12명 중 하나를 고르면 모든 연습·게임·기타 활동의 짝·모둠·팀과 점수판 팀 수가 그 인원에 맞게 다시 나뉩니다(예: 6명이면 4인 모둠 → 3인 2모둠, 6팀 3:3 → 경기장 1곳 2팀). 팀 나누기 화면에도 같은 줄이 있습니다. '연습·게임 형태 바꾸기'와 팀 나누기 화면에는 그 인원으로 할 수 있는 형태만 나옵니다. 종합 게임은 팀 수만 줄여 단원에서 정한 규칙으로 진행합니다.</dd>
+    <dt>인원은 어떻게 고르나요?</dt><dd>'약속' 화면의 <b>인원 바꾸기</b>(또는 팀 나누기 화면)에서 먼저 <b>일반학급(추천 · 15~24명)</b>, <b>소규모 학급(가능 · 6~14명)</b>, <b>합반(두 반 · 25~50명)</b> 중 하나를 누르고 반 인원을 고릅니다. 결석·지각은 <b>결석·지각</b>에서 번호로 뺍니다.</dd>
+    <dt>소규모 학급(6~14명)도 되나요?</dt><dd>됩니다. '약속' 화면의 <b>반 인원</b>에서 <b>소규모 학급</b>을 누른 뒤 6~14명 중 하나를 고르면 모든 연습·게임·기타 활동의 짝·모둠·팀과 점수판 팀 수가 그 인원에 맞게 다시 나뉩니다(예: 6명이면 4인 모둠 → 3인 2모둠, 6팀 3:3 → 경기장 1곳 2팀). 팀 나누기 화면에도 같은 줄이 있습니다. '연습·게임 형태 바꾸기'와 팀 나누기 화면에는 그 인원으로 할 수 있는 형태만 나옵니다. 종합 게임은 팀 수만 줄여 단원에서 정한 규칙으로 진행합니다.</dd>
     <dt>오늘 결석생이 있어요.</dt><dd>'약속' 화면의 <b>인원 바꾸기</b>로 오늘 인원만 바꾸면 됩니다. 번호는 1번부터 순서대로 씁니다.</dd>
     <dt>휴대폰에서 앱처럼 쓰려면?</dt><dd><b>아이폰</b> Safari로 링크를 연 뒤 아래쪽 공유 버튼(네모에 위 화살표) → '홈 화면에 추가' → '추가'.<br><b>안드로이드</b> Chrome으로 링크를 연 뒤 오른쪽 위 ⋮ → '홈 화면에 추가'(또는 '앱 설치'). 삼성 인터넷은 ≡ → '현재 페이지 추가' → '홈 화면'.<br>홈 화면의 아이콘을 누르면 바로 열립니다.</dd>
     <dt>인터넷이 안 되는 체육관에서도 되나요?</dt><dd>공개 주소로 한 번 열어 두면 그 뒤로는 인터넷 없이도 열립니다. '홈 화면에 추가'를 해 두면 아이콘을 눌러 앱처럼 엽니다. 새 내용이 올라오면 인터넷이 될 때 알아서 받아 두고, 다음에 열 때 바뀝니다.</dd>
@@ -552,29 +572,16 @@ function renderGuide(){
     <dt>차시를 건너뛰어도 되나요?</dt><dd>됩니다. 홈에서 원하는 차시 번호를 누르면 됩니다. 끝낸 차시는 왕관, 하다 만 차시는 노란 점으로 표시됩니다.</dd>
    </dl></div>
 
-  <div class="gsec"><h2><i>7</i>단원별 원본</h2>
-   <div class="tw"><table><thead><tr><th>단원</th><th>학년·차시</th><th>내용을 가져온 원본</th></tr></thead><tbody>
-    <tr><td>발로 하는 공놀이</td><td>4학년&nbsp;20</td><td>05 예시 단원(1·14차시 상세) + 흐름표 활동 이름을 바탕으로 웹앱에서 설계</td></tr>
-    <tr><td>티볼</td><td>4학년&nbsp;30</td><td>초등 4학년 티볼 지도 및 게임 프로그램(.docx)</td></tr>
-    <tr><td>티볼 심화</td><td>5~6학년 24 + 게임 카드 28</td><td>초등 5~6학년 티볼 심화 단원과 게임 모음(.pdf)</td></tr>
-    <tr><td>배구형 게임</td><td>3~6학년&nbsp;48</td><td>초등 3~6학년 배구형 게임 차시 지도안(.pdf)</td></tr>
-    <tr><td>배드민턴</td><td>3~6학년&nbsp;48</td><td>초등 3~6학년 배드민턴 차시 지도안(.docx)</td></tr>
-    <tr><td>육상</td><td>3~6학년&nbsp;92</td><td>초등 3~6학년 육상 지도 및 게임 프로그램(.docx)</td></tr>
-    <tr><td>넷볼</td><td>5~6학년&nbsp;20</td><td>초등 5~6학년 넷볼 차시 지도안 20차시(.pdf)</td></tr>
-    <tr><td>농구</td><td>5~6학년&nbsp;20</td><td>초등 5~6학년 농구 차시 지도안 20차시(.pdf)</td></tr>
-   </tbody></table></div>
-   <p>원본의 활동 이름·방법 4단계·지도 포인트·쉽게/어렵게·홀수 반·변형 게임·안전은 그대로 옮겼습니다. 학생 화면의 짧은 설명과 꿀팁은 원본 문장을 줄여 만든 것입니다.</p></div>
-
-  <div class="gsec gwarn"><h2><i>!</i>꼭 확인해 주세요</h2>
+<div class="gsec gwarn"><h2><i>!</i>꼭 확인해 주세요</h2>
    <ul>
     <li>티볼·배드민턴·배구형 게임·육상·넷볼·농구의 대형 그림은 종목별 <b>예시 그림</b>입니다. 실제 자리와 거리는 지도안 칸의 '대형·준비'를 따르세요.</li>
-    <li>성취기준 코드와 문구, 교과서 활동 이름, 종목 공식 경기 규칙, 대회·연수 일정은 원본과 마찬가지로 넣지 않았습니다. 대회 준비 때는 주관 단체 최신 규정을 확인하세요.</li>
+    <li>성취기준 코드와 문구, 교과서 활동 이름, 종목 공식 경기 규칙, 대회·연수 일정은 넣지 않았습니다. 대회 준비 때는 주관 단체 최신 규정을 확인하세요.</li>
     <li>육상의 교육과정 영역 표기는 확인이 필요해 '육상'으로만 적었습니다.</li>
-    <li>배구형 게임의 코트 크기·네트 높이·점수(7·11·15점 내기)는 원본처럼 초등 수업용으로 줄인 값이며 공식 규격이 아닙니다. 6학년 과정의 교과서 활동 이름과 쪽수(76~81쪽)는 원본이 쓴 지도서 기준이니, 사용 중인 교과서로 확인해 주세요. 대회 준비 때는 대한민국배구협회·FIVB 최신 규칙을 따르세요.</li>
-    <li>농구는 원본 지도안처럼 공식 경기 규칙을 적지 않고, 17차시에서 '학급 규칙'으로 정하도록 했습니다. 대회·학교스포츠클럽 준비 때는 대한민국농구협회·FIBA 최신 규칙으로 바꿔 쓰세요. 골대 높이는 조절할 수 있으면 5학년 2.6m · 6학년 3.05m(원본 기준)입니다.</li>
-    <li>발로 하는 공놀이 2~13, 15~20차시는 흐름표의 활동 이름을 바탕으로 새로 짠 것입니다. 원본 지도안과 다른 곳은 고쳐서 쓰세요.</li>
-    <li>발로 하는 공놀이 13차시 '콘 맞혀 콘 가져오기'는 교과서 원래 규칙을, 17차시 킥인·킥오프는 풋살 공식 규칙 세부를 확인해 주세요.</li>
-    <li>학생 화면의 짧은 설명은 원본 문장을 자동으로 줄인 것이라 어색한 곳이 있을 수 있습니다. 정확한 문장은 '선생님 지도안' 칸을 보세요.</li>
+    <li>배구형 게임의 코트 크기·네트 높이·점수(7·11·15점 내기)는 초등 수업용으로 줄인 값이며 공식 규격이 아닙니다. 대회 준비 때는 대한민국배구협회·FIVB 최신 규칙을 따르세요.</li>
+    <li>농구는 공식 경기 규칙을 적지 않고, 17차시에서 '학급 규칙'으로 정하도록 했습니다. 대회·학교스포츠클럽 준비 때는 대한민국농구협회·FIBA 최신 규칙으로 바꿔 쓰세요. 골대 높이는 조절할 수 있으면 5학년 2.6m · 6학년 3.05m입니다.</li>
+    <li>발로 하는 공놀이 2~13, 15~20차시는 단원 흐름에 맞춰 새로 짠 것입니다. 수업에 맞지 않는 곳은 고쳐서 쓰세요.</li>
+    <li>발로 하는 공놀이 13차시 '콘 맞혀 콘 가져오기'의 세부 규칙과 17차시 킥인·킥오프는 풋살 공식 규칙 세부를 확인해 주세요.</li>
+    <li>학생 화면의 짧은 설명은 지도안 문장을 자동으로 줄인 것이라 어색한 곳이 있을 수 있습니다. 정확한 문장은 '선생님 지도안' 칸을 보세요.</li>
    </ul></div>
   </section>`;
 }
@@ -600,7 +607,7 @@ function render(){
 }
 function route(){
   const h=(location.hash||'#map').slice(1);
-  const okLesson=h.startsWith('lesson-') && (()=>{ const id=toId(h.slice(7)); return isFoot(id)?(id>=1&&id<=20):!!PL[id]; })();
+  const okLesson=h.startsWith('lesson-') && (()=>{ const id=toId(h.slice(7)); return isFoot(id)?((id>=1&&id<=20)||(id>=101&&id<=120)):!!PL[id]; })();
   const okUnit=/^u-[a-z0-9]+(-\d+)?$/.test(h) && !!UMETA[h.split('-')[1]];
   const next=['map','teams','score','guide'].includes(h)||okLesson||okUnit?h:'map';
   if(next!==ui.route){ resetClock(); if(!next.startsWith('lesson-')) keepAwake(false); }

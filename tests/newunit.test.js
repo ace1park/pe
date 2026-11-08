@@ -10,7 +10,7 @@ const {chromium}=require('playwright');
    await p.goto(BASE); await p.waitForTimeout(500); return p; };
  let p=await open("'견본_새종목',");
  const ev=(f,a)=>p.evaluate(f,a), go=async h=>{ await ev(h=>{location.hash=h},h); await p.waitForTimeout(150); };
- await T('새 종목 카드 9번째', async()=>{ await ev(()=>{store.homeView='sport';render();}); return (await ev(()=>[...document.querySelectorAll('.ucard')].map(a=>a.getAttribute('href')).join(' ')))==='#u-foot #u-tb4 #u-tb56 #u-bad-3 #u-vb-3 #u-ath-3 #u-nb #u-bb #u-fd' || 'cards'; });
+ await T('새 종목 카드가 기존 단원 뒤에', async()=>{ await ev(()=>{store.homeView='sport';render();}); return (await ev(()=>[...document.querySelectorAll('.ucard')].map(a=>a.getAttribute('href')).join(' ')))==='#u-foot-3 #u-tb4 #u-tb56 #u-bad-3 #u-vb-3 #u-ath-3 #u-nb #u-bb #u-fd #u-sc-5 #u-ck' || 'cards'; });
  await T('학년 보기 5·6학년에 나옴', async()=>{ const r=await ev(()=>{store.homeView='grade';store.homeGrade='5';render();const a=!!document.querySelector('.ucard[href="#u-fd"]');store.homeGrade='4';render();const c=!!document.querySelector('.ucard[href="#u-fd"]');return [a,c];}); return (r[0]&&!r[1])||JSON.stringify(r); });
  await T('단원 화면 차시 2개', async()=>{ await go('u-fd'); return (await ev(()=>document.querySelectorAll('.node').length))===2 || 'nodes'; });
  await T('차시 6단계 모두 열림', async()=>{ const r=await ev(()=>{ const bad=[]; for(const id of ['fd-1','fd-2']) for(let k=0;k<6;k++){ try{ ui.route='lesson-'+id; ui.step[id]=k; renderLesson(id); if(!document.querySelector('#app h1')) bad.push(id+'/'+k); }catch(e){ bad.push(id+'/'+k+':'+e.message); } } return bad; }); return !r.length || r.join(', '); });

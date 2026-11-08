@@ -1,4 +1,4 @@
-/* 기능 점검 54개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
+/* 기능 점검 58개: 버튼·타이머·점수판·팀 나누기·왕관·기록 유지 (기기: DEV 환경변수, 기본 iPhone 13) */
 const path=require('path');
 const BASE=process.env.PE_URL||('file://'+path.resolve(__dirname,'..','index.html'));
 const {chromium,devices}=require('playwright');
@@ -11,9 +11,9 @@ const {chromium,devices}=require('playwright');
  // shelf
  await go('map');
  await T('home starts with grade view prompt', async()=> (await ev(()=>document.querySelector('[data-action=hview][data-v=grade]').getAttribute('aria-pressed')==='true' && !!document.querySelector('.hpick') && document.querySelectorAll('.ucard').length===0)));
- await T('grade 3/4/5/6 shows that grade units', async()=>{ const r=[]; for(const g of ['3','4','5','6']){ await p.tap(`[data-action=hgrade][data-v="${g}"]`); await p.waitForTimeout(250); r.push(await ev(()=>document.querySelectorAll('.ucard').length)); } const ok=r.join()==='3,5,6,6'; return ok?true:r.join(); });
+ await T('grade 3/4/5/6 shows that grade units', async()=>{ const r=[]; for(const g of ['3','4','5','6']){ await p.tap(`[data-action=hgrade][data-v="${g}"]`); await p.waitForTimeout(250); r.push(await ev(()=>document.querySelectorAll('.ucard').length)); } const ok=r.join()==='4,5,8,8'; return ok?true:r.join(); });
  await T('grade card opens that grade', async()=>{ await p.tap('[data-action=hgrade][data-v="5"]'); await p.tap('.ucard[href="#u-vb-5"]'); await p.waitForTimeout(150); const h=await ev(()=>location.hash); await go('map'); return h==='#u-vb-5' && (await ev(()=>store.homeGrade==='5' && document.querySelector('[data-action=hgrade][data-v="5"]').getAttribute('aria-pressed')==='true')); });
- await T('sport view has 8 unit cards', async()=>{ await p.tap('[data-action=hview][data-v=sport]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelectorAll('.ucard').length))===8 && (await ev(()=>store.homeView==='sport')); });
+ await T('sport view has 10 unit cards', async()=>{ await p.tap('[data-action=hview][data-v=sport]'); await p.waitForTimeout(80); return (await ev(()=>document.querySelectorAll('.ucard').length))===10 && (await ev(()=>store.homeView==='sport')); });
  await T('unit card link opens unit', async()=>{ await p.tap('.ucard[href="#u-bad-3"]'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-3' && (await ev(()=>!!document.querySelector('.gtabs'))); });
  await T('grade tab switches', async()=>{ await p.tap('.gtabs a:nth-child(3)'); await p.waitForTimeout(150); return (await ev(()=>location.hash))==='#u-bad-5'; });
  await T('node opens yellow card', async()=>{ await p.tap('[data-action=open][data-n="bad5-3"]'); await p.waitForTimeout(200); return await ev(()=>!!document.querySelector('.pick .qcard')); });
@@ -56,6 +56,16 @@ const {chromium,devices}=require('playwright');
  await T('stop signal only on lesson screen', async()=>{ const bad=[]; for(const h of ['map','u-foot-4','teams','score','guide']){ await go(h); const n=await ev(()=>[...document.querySelectorAll('[data-action=stop]')].filter(e=>e.offsetParent||getComputedStyle(e).position==='fixed'&&getComputedStyle(e).display!=='none').length); await p.keyboard.press('s'); const o=await ev(()=>document.getElementById('stopOver').classList.contains('open')); if(n||o) bad.push(h); await ev(()=>document.getElementById('stopOver').classList.remove('open')); } await go('lesson-tb4-3'); const L=await ev(()=>!!document.querySelector('.actionbar [data-action=stop]').offsetParent); return !bad.length&&L ? true : 'bad '+bad.join(','); });
  await T('no duplicate home links', async()=>{ await go('u-foot-4'); const a=await ev(()=>[...document.querySelectorAll('a[href="#map"]')].filter(e=>e.offsetParent).length); await go('map'); const g=await ev(()=>[...document.querySelectorAll('a[href="#guide"]')].filter(e=>e.offsetParent).length); return a===1&&g===1 ? true : `map ${a} guide ${g}`; });
  await T('fullscreen button hidden on phone', async()=>{ return await ev(()=>getComputedStyle(document.querySelector('.t-full')).display==='none'); });
+ // 결석·지각 · 경기장·공 · 합반
+ await T('absent: tap number, only that friend leaves', async()=>{ await ev(()=>{store.people=22;store.absent=null;store.gear={};save();}); await go('lesson-14'); await p.tap('[data-action=step][data-k="2"]'); await p.waitForTimeout(80);
+   const before=await ev(()=>buildGroups('four',22,ui.seed)); await ev(()=>openAbs()); const x=before[0][0]; await p.tap(`#peek [data-action=abs][data-v="${x}"]`); await p.waitForTimeout(80);
+   const after=await ev(()=>buildGroups('four',21,ui.seed)); const kept=after.flat().filter(v=>before.findIndex(g=>g.includes(v))===after.findIndex(g=>g.includes(v))).length;
+   const txt=await ev(()=>document.querySelector('.pline, .lhead')?document.body.innerText:''); await p.tap('#peek [data-action=closepeek]');
+   return (after.flat().length===21 && !after.flat().includes(x) && kept>=20) || ('kept '+kept); });
+ await T('absent: late friend comes back to own team', async()=>{ const x=await ev(()=>absList()[0]); await ev(()=>openAbs()); await p.tap(`#peek [data-action=abs][data-v="${x}"]`); await p.waitForTimeout(80); await p.tap('#peek [data-action=closepeek]'); return await ev(()=>absList().length===0 && buildGroups('four',22,ui.seed).flat().length===22); });
+ await T('gear: 2 courts shows rotation for 6 teams', async()=>{ await ev(()=>openGear()); await p.tap('#peek [data-action=gearc][data-v="2"]'); await p.waitForTimeout(80); await p.tap('#peek [data-action=closepeek]'); await go('lesson-14'); await p.tap('[data-action=step][data-k="4"]'); await p.waitForTimeout(100);
+   const r=await ev(()=>{ const t=document.querySelector('.rot'); return t?t.querySelectorAll('tbody tr').length:0; }); await ev(()=>{store.gear={};save();}); return r===3 || ('rows '+r); });
+ await T('merged class 44: teams screen splits', async()=>{ await ev(()=>{store.people=44;save();}); await go('teams'); await p.tap('[data-action=form][data-v=six]'); await p.waitForTimeout(80); const n=await ev(()=>document.querySelectorAll('.groups .grp').length); await ev(()=>{store.people=22;save();}); return n===12 || ('teams '+n); });
  // cards
  await T('game card opens', async()=>{ await go('u-tb56'); await p.tap('[data-action=card][data-no="12"]'); await p.waitForTimeout(100); return await ev(()=>document.getElementById('peek').classList.contains('open')); });
  await T('card score button', async()=>{ await p.tap('[data-action=cardscore]'); await p.waitForTimeout(150); return await ev(()=>document.getElementById('scoreOver').classList.contains('open')); });

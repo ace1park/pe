@@ -1,19 +1,23 @@
 /* [프로그램] 단원·학년·차시 찾기 도구 */
 function isFoot(id){ return typeof id==='number'; }
+/* 발로 하는 공놀이: 4학년 1~20, 3학년 101~120 (data/foot3.js) */
+function fBase(id){ return id>100?id-100:id; }
+function fGrade(id){ return id>100?'3':'4'; }
+function bkey(key){ const k=String(key), j=k.indexOf('-'), n=+k.slice(0,j); return (j>0&&n>100)?(n-100)+k.slice(j):k; }
 function toId(s){ s=String(s); return /^\d+$/.test(s)?+s:s; }
 function LI(id){
-  if(isFoot(id)){ const l=LESSONS.find(x=>x.n===id), s=STAGES[l.s-1]; return {id,unit:'foot',g:'4',n:id,t:l.t,s:l.s,sn:s.name,c:s.c,ev:!!EVAL[id],evtxt:EVAL[id]||'',ext:false,acts:l.acts}; }
+  if(isFoot(id)){ const b=fBase(id), l=LESSONS.find(x=>x.n===b), s=STAGES[l.s-1]; return {id,unit:'foot',g:fGrade(id),n:b,t:l.t,s:l.s,sn:s.name,c:s.c,ev:!!EVAL[b],evtxt:EVAL[b]||'',ext:false,acts:(DETAIL[id]&&DETAIL[id].m)?DETAIL[id].m.map(m=>m.name):l.acts}; }
   const r=PL[id]; return {id,unit:r.unit,g:r.g,n:r.n,t:r.t,s:r.s,sn:r.sn,c:SCOL[(r.s-1)%6],ev:r.ev,evtxt:r.ev?'평가 차시':'',ext:r.ext,acts:r.D.m.map(m=>m.name),rec:r};
 }
-function lessonsOf(unit,g){ if(unit==='foot') return LESSONS.map(l=>l.n); return Object.values(PL).filter(r=>r.unit===unit&&r.g===String(g)).sort((a,b)=>a.n-b.n).map(r=>r.id); }
+function lessonsOf(unit,g){ if(unit==='foot') return LESSONS.map(l=>String(g)==='3'?l.n+100:l.n); return Object.values(PL).filter(r=>r.unit===unit&&r.g===String(g)).sort((a,b)=>a.n-b.n).map(r=>r.id); }
 function stagesOf(unit,g){
-  if(unit==='foot') return STAGES.map(s=>({n:s.n,name:s.name,range:s.range,c:s.c,ids:LESSONS.filter(l=>l.s===s.n).map(l=>l.n)}));
+  if(unit==='foot') return STAGES.map(s=>({n:s.n,name:s.name,range:s.range,c:s.c,ids:LESSONS.filter(l=>l.s===s.n).map(l=>String(g)==='3'?l.n+100:l.n)}));
   const ids=lessonsOf(unit,g), map={};
   ids.forEach(id=>{ const r=PL[id]; (map[r.s]=map[r.s]||{n:r.s,name:r.sn,c:SCOL[(r.s-1)%6],ids:[]}).ids.push(id); });
   return Object.values(map).sort((a,b)=>a.n-b.n).map(x=>({...x,range:PL[x.ids[0]].n+'~'+PL[x.ids[x.ids.length-1]].n}));
 }
 function unitRoute(unit,g){ const m=UMETA[unit]; return '#u-'+unit+(m.grades.length>1?'-'+gk(g):''); }
-function lessonNo(id){ return isFoot(id)?id:PL[id].n; }
+function lessonNo(id){ return isFoot(id)?fBase(id):PL[id].n; }
 /* 종목 아이콘 */
 const SPICON={
  foot:()=>icBall(32,32,18),

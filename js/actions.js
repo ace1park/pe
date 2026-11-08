@@ -19,7 +19,7 @@ document.addEventListener('click',e=>{
     case 'cmteams': { const i=stepOf(n), T=cmTeamInfo(n,i); if(T.html) cmPeek('우리 반 나누기 · '+esc(T.label), T.html()+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="cmreshuffle">다시 섞기</button></div>`); break; }
     case 'cmreshuffle': { ui.seed++; const i=stepOf(n), T=cmTeamInfo(n,i); if(T.html) cmPeek('우리 반 나누기 · '+esc(T.label), T.html()+`<div class="row" style="margin-top:10px"><button class="btn y" data-action="cmreshuffle">다시 섞기</button></div>`); break; }
     case 'cmdiag': { const i=stepOf(n); cmPeek('대형 그림 · '+esc(getD(n).m[i-1].name), `<div class="diagram-wrap cm-diag">${diagHTML(n,i)}</div>`); break; }
-    case 'cmpeople': cmPeek('오늘 우리 반은 몇 명?', `<div class="people cm-people">${peopleHTML(false)}</div>`); break;
+    case 'cmpeople': cmPeek('우리 반은 몇 명?', peopleBox()); break;
     case 'step': ui.step[n]=+t.dataset.k; ui.cleared[n]=false; resetClock(); renderLesson(n); break;
     case 'next': goNext(n); break;
     case 'play': toggleMain(); break;
@@ -35,8 +35,14 @@ document.addEventListener('click',e=>{
     case 'diff': store.diff[t.dataset.key]=t.dataset.v; save(); renderLesson(n); break;
     case 'hview': store.homeView=t.dataset.v; save(); render(); break;
     case 'hgrade': store.homeGrade=t.dataset.v; save(); render(); break;
-    case 'pcat': ui.pcat=t.dataset.v; if(t.closest('#peek')){ cmPeek('오늘 우리 반은 몇 명?', `<div class="people cm-people">${peopleHTML(false)}</div>`); break; } n?renderLesson(n):renderTeams(); break;
-    case 'people': store.people=+t.dataset.v; ui.pcat=isSmall(store.people)?'small':'reg'; save(); n?renderLesson(n):renderTeams(); if(t.closest('#peek')) document.getElementById('peek').classList.remove('open'); break;
+    case 'pcat': ui.pcat=t.dataset.v; if(t.closest('#peek')){ cmPeek('우리 반은 몇 명?', peopleBox()); break; } n?renderLesson(n):renderTeams(); break;
+    case 'people': store.people=+t.dataset.v; ui.pcat=pcatOf(store.people); save(); refreshUnder(); if(t.closest('#peek')) document.getElementById('peek').classList.remove('open'); break;
+    case 'abs0': openAbs(); break;
+    case 'abs': { if(!toggleAbs(+t.dataset.v)) toast(`오늘 인원은 ${MINP}명보다 적게 줄일 수 없어요`); refreshUnder(); openAbs(); break; }
+    case 'absclear': clearAbs(); refreshUnder(); openAbs(); break;
+    case 'gear': openGear(); break;
+    case 'gearc': store.gear=Object.assign({},gear(),{courts:+t.dataset.v}); save(); refreshUnder(); openGear(); break;
+    case 'gearb': { const g=gear(); let v=t.dataset.d?Math.max(0,(g.balls||0)+ +t.dataset.d):+t.dataset.v; store.gear=Object.assign({},g,{balls:Math.min(v,60)}); save(); refreshUnder(); openGear(); break; }
     case 'emo': { const em=store.emo[n]||(store.emo[n]={}); em[t.dataset.w]=(em[t.dataset.w]||0)+1; save(); renderLesson(n); break; }
     case 'emoreset': store.emo[n]={}; save(); renderLesson(n); break;
     case 'uncrown': store.stamps[n]=[false,false,false,false,false,false]; ui.cleared[n]=false; save(); renderLesson(n); break;
@@ -50,9 +56,9 @@ document.addEventListener('click',e=>{
     case 'closescore': document.getElementById('scoreOver').classList.remove('open'); if(n) renderLesson(n); break;
     case 'ovcount': ui.ovCount=ui.ovCount||{}; ui.ovCount[t.dataset.key]=+t.dataset.v; openScoreOver(n); break;
     case 'scorereset': store.scores[t.dataset.key]={}; save(); if(document.getElementById('scoreOver').classList.contains('open')) openScoreOver(n); else render(); break;
-    case 'lg': { const L=store.league||(store.league={}), j=+t.dataset.j, k=t.dataset.k; const r=L[j]||(L[j]={a:0,b:0,fa:0,fb:0,done:false}); r[k]=Math.max(0,r[k]+ +t.dataset.d); save(); renderLesson(n); break; }
-    case 'lgdone': { const L=store.league||(store.league={}), j=+t.dataset.j; const r=L[j]||(L[j]={a:0,b:0,fa:0,fb:0,done:false}); r.done=!r.done; save(); renderLesson(n); if(r.done) chime(); break; }
-    case 'lgreset': store.league={}; save(); renderLesson(n); break;
+    case 'lg': { const L=leagueStore(n+'-'), j=+t.dataset.j, k=t.dataset.k; const r=L[j]||(L[j]={a:0,b:0,fa:0,fb:0,done:false}); r[k]=Math.max(0,r[k]+ +t.dataset.d); save(); renderLesson(n); break; }
+    case 'lgdone': { const L=leagueStore(n+'-'), j=+t.dataset.j; const r=L[j]||(L[j]={a:0,b:0,fa:0,fb:0,done:false}); r.done=!r.done; save(); renderLesson(n); if(r.done) chime(); break; }
+    case 'lgreset': store[n>100?'league3':'league']={}; save(); renderLesson(n); break;
     case 'stop': openStop(); break;
     case 'full': toggleFull(); break;
     case 'rewhistle': e.stopPropagation(); whistle(); break;

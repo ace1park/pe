@@ -13,23 +13,25 @@ const FORMS = {
         odd:'1명 많은 팀: 골이 날 때마다 1명 교대해 경기 인원 같게'}
 };
 const VESTS = [['빨강','#d9433a'],['파랑','#2f6fd6'],['노랑','#e9b400'],['초록','#168b4b']];
-/* 소규모 학급(6·8·10·12명)도 같은 대형으로: 표에 없는 인원은 계산해서 나눔 */
-/* 인원 선택: 일반학급(추천) 16~24명 · 소규모 학급(가능) 6~12명 */
-const PCAT={reg:{name:'일반학급',tag:'추천',range:'16~24명',nums:[16,17,18,19,20,21,22,23,24]}, small:{name:'소규모 학급',tag:'가능',range:'12명 이하',nums:[6,7,8,9,10,11,12]}};
-const isSmall=N=>N<=12;
+/* 소규모 학급(6~14명)도 같은 대형으로: 표에 없는 인원은 계산해서 나눔 */
+/* 인원 선택: 일반학급(추천) 15~24명 · 소규모 학급(가능) 6~14명 · 합반 25~50명 */
+const PCAT={reg:{name:'일반학급',tag:'추천',range:'15~24명',nums:[15,16,17,18,19,20,21,22,23,24]}, small:{name:'소규모 학급',tag:'가능',range:'14명 이하',nums:[6,7,8,9,10,11,12,13,14]}, big:{name:'합반',tag:'두 반',range:'25~50명',nums:[...Array(26)].map((_,i)=>25+i)}};
+const isSmall=N=>N<=14, isBig=N=>N>=25;
+const pcatOf=N=>isSmall(N)?'small':isBig(N)?'big':'reg';
 function peopleHTML(pill){
-  const cat=ui.pcat||(isSmall(store.people)?'small':'reg');
+  const cat=ui.pcat||pcatOf(store.people);
   const tabs=`<div class="pcat" role="group" aria-label="학급 크기">${Object.entries(PCAT).map(([k,c])=>`<button aria-pressed="${cat===k}" data-action="pcat" data-v="${k}"><b>${c.name}</b><small><i class="${k}">${c.tag}</i>${c.range}</small></button>`).join('')}</div>`;
   const nums=PCAT[cat].nums.map(v=>`<button ${pill?'class="pill"':''} aria-pressed="${store.people===v}" data-action="people" data-v="${v}">${v}명</button>`).join('');
-  return pill?`<div class="row prow"><span>인원</span><div class="pwrap">${tabs}<div class="pnums">${nums}</div></div></div>`:`${tabs}<div class="pp nums">${nums}</div>`;
+  const tip=cat==='big'?`<p class="pnote">두 반이 함께하면 번호를 이어서 써요. 예) 1반 22명이면 2반 1번이 23번</p>`:'';
+  return pill?`<div class="row prow"><span>인원</span><div class="pwrap">${tabs}<div class="pnums">${nums}</div>${tip}</div></div>`:`${tabs}<div class="pp nums">${nums}</div>${tip}`;
 }
 function spread(N,cnt){ cnt=Math.max(1,Math.min(cnt,N)); return [...Array(cnt)].map((_,i)=>Math.floor(N/cnt)+(i<N%cnt?1:0)); }
 function sizesOf(form,N){
   const F=FORMS[form]; if(F.size[N]) return F.size[N];
   if(form==='pair') return N%2?[...Array((N-3)/2)].map(()=>2).concat([3]):[...Array(N/2)].map(()=>2);
   if(form==='group') return spread(N,Math.max(2,Math.round(N/4)));
-  if(form==='six') return spread(N,Math.max(2,Math.min(6,2*Math.floor(N/6))));
-  if(form==='four') return spread(N,N>=8?4:2);
+  if(form==='six') return spread(N,N>24?2*Math.floor(N/7):Math.max(2,Math.min(6,2*Math.floor(N/6))));
+  if(form==='four') return spread(N,N>24?2*Math.round(N/12):N>=8?4:2);
   return spread(N,2);
 }
 function szText(sz){ const c={}; sz.forEach(v=>c[v]=(c[v]||0)+1); return Object.keys(c).map(Number).sort((a,b)=>b-a).map(v=>v+'명'+(c[v]>1?'×'+c[v]:'')).join('·'); }
@@ -61,8 +63,8 @@ function stepOf(n){ return ui.step[n]||0; }
 function getD(n){
   if(DETAIL[n]) return DETAIL[n];
   if(typeof PL!=='undefined' && PL[n]) return PL[n].D;
-  const l=LESSONS.find(x=>x.n===n);
-  return {lite:true, goal:l.t+(EVAL[n]?' ('+EVAL[n]+')':''), short:l.t,
+  const b=n>100?n-100:n, l=LESSONS.find(x=>x.n===b);
+  return {lite:true, goal:l.t+(EVAL[b]?' ('+EVAL[b]+')':''), short:l.t,
     reflect:['오늘 가장 잘된 동작은?','오늘 나를 도와준 친구 한 명','오늘 기분을 낱말 하나로!'],
     m:l.acts.map(a=>({name:a, lite:true}))};
 }
