@@ -2,12 +2,13 @@
 /* ===== 대형 그림 틀 (2~13·15~20차시) ===== */
 const GKC='#ff9f1c';
 function legendList(ids,u){
-  const mini=(inner)=>`<svg viewBox="0 0 34 22" aria-hidden="true"><defs><marker id="lw${u}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#fff"/></marker><marker id="ly${u}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${COL.mk}"/></marker></defs>${inner}</svg>`;
+  const mini=(inner)=>`<svg viewBox="0 0 34 22" aria-hidden="true"><defs><marker id="lw${u}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fff"/></marker><marker id="ly${u}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${COL.mk}"/></marker></defs>${inner}</svg>`;
   const dot=c=>`<circle cx="17" cy="11" r="7" fill="${c}" stroke="#fff" stroke-width="2"/>`;
   const L={
     me:[dot(COL.mint),'나'], blue:[dot(COL.blue),'우리 편'], red:[dot(COL.red),'수비'], obs:[dot(COL.obs),'관찰·기다림'], gk:[dot(GKC),'골키퍼'],
     ball:[`<circle cx="17" cy="11" r="5" fill="#fff" stroke="${COL.ink}" stroke-width="1.5"/>`,'공'],
     pass:[`<line x1="4" y1="11" x2="27" y2="11" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#lw${u})"/>`,'패스'],
+    pass2:[`<line x1="7" y1="11" x2="27" y2="11" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 4" marker-start="url(#lw${u})" marker-end="url(#lw${u})"/>`,'주고받기'],
     run:[`<path d="M4,15 Q17,2 28,12" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#ly${u})"/>`,'달리기'],
     drib:[`<path d="M4,11 l4,-4 l4,8 l4,-8 l4,8 l4,-4 l3,0" fill="none" stroke="#fff" stroke-width="2" marker-end="url(#lw${u})"/>`,'공 몰기'],
     tap:[`<path d="M7,14 q10,-9 20,0" fill="none" stroke="${COL.mk}" stroke-width="2.5" marker-end="url(#ly${u})"/>`,'발로 톡톡'],
@@ -54,8 +55,8 @@ const TPL={
      if(o.mirror){ s+=`<path d="M${xl},${y-20} h-0" />`+rn(xl,y,xl,y-30,14)+rn(xr,y,xr,y-30,-14); return; }
      if(o.catchr){ s+=`<path d="M${xr-14},${y-8} Q200,${y-55} ${xl+16},${y-8}" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="4 5" marker-end="url(#w§)"/>`+bl(xl+20,y-10); return; }
      if(o.roll){ s+=ps(xr-16,y,xl+16,y)+bl(xr-22,y+8); return; }
-     s+=bl(xl+18,y+6)+ps(xl+22,y,xr,y); });
-   const l= o.gk?['me','gk','ball','pass']: o.mirror?['blue:공격','red','run:옆걸음']: o.catchr?['me','obs:던져 주는 친구','ball','pass:던지기']: o.roll?['me','ball','pass:굴려 주기']:['me','ball','pass'];
+     s+=bl(xl+18,y+6)+ps2(xl+22,y,xr,y); });
+   const l= o.gk?['me','gk','ball','pass']: o.mirror?['blue:공격','red','run:옆걸음']: o.catchr?['me','obs:던져 주는 친구','ball','pass:던지기']: o.roll?['me','ball','pass:굴려 주기']:['me','ball','pass2'];
    if(o.gate) l.push('cone'); return {s,l}; },
  net:o=>{ let s=border(40,40,360,210)+`<line x1="200" y1="40" x2="200" y2="210" stroke="#fff" stroke-width="5"/>`;
    s+=pl(110,90)+pl(120,170)+pl(280,85,COL.red)+pl(290,165,COL.red)+bl(134,170)+`<path d="M134,165 Q200,70 270,150" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#w§)"/>`;
@@ -100,13 +101,14 @@ const TPL={
    if(o.four) s+=goalC(30,80,36)+goalC(30,170,36)+goalC(370,80,36)+goalC(370,170,36);
    else if(o.cones) [[45,70],[45,125],[45,180],[355,70],[355,125],[355,180]].forEach(([x,y])=>s+=cn(x,y));
    else if(!o.noGoal) s+=goalR(20,125,60)+goalR(370,125,60);
+   if(o.ez) s+=`<rect x="30" y="30" width="40" height="190" fill="rgba(255,212,59,.28)" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/><rect x="330" y="30" width="40" height="190" fill="rgba(255,212,59,.28)" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/>`;
    const nb=o.n||3, B=[[150,95],[110,165],[250,60],[90,90],[170,190]].slice(0,nb), R=[[235,115],[290,170],[300,85],[320,130],[250,195]].slice(0,nb);
    B.forEach(([x,y])=>s+=pl(x,y)); R.forEach(([x,y])=>s+=pl(x,y,COL.red));
    if(o.gk) s+=gkp(48,125)+gkp(352,125);
    if(o.side){ for(let k=0;k<4;k++){ s+=pl(70+k*40,12,COL.obs)+pl(70+k*40,238,COL.obs);} }
    if(o.waves){ s+=pl(8,30,COL.obs)+pl(8,55,COL.obs)+pl(392,195,COL.obs)+pl(392,220,COL.obs); }
    s+=bl(166,101)+ps(166,95,250,60)+rn(110,165,250,175,30);
-   return {s,l:['blue','red:상대','ball','pass','run'].concat(o.gk?['gk']:[]).concat(o.side||o.waves?['obs:기다림']:[]).concat(o.four||o.cones?['cone']:[])}; },
+   return {s,l:['blue','red:상대','ball','pass','run'].concat(o.gk?['gk']:[]).concat(o.side||o.waves?['obs:기다림']:[]).concat(o.four||o.cones?['cone']:[]).concat(o.ez?['ezone:끝 구역']:[])}; },
  shoot:o=>{ let s=goalR(370,125,o.wide?120:90)+ln(250,30,250,220);
    if(o.gk) s+=gkp(352,125);
    if(o.two){ s+=pl(120,90)+bl(136,96)+pl(140,170)+pl(230,120,COL.red)+ps(138,100,260,165)+rn(140,170,270,170,-20)+ps(270,165,362,140,8); if(o.three) s+=pl(90,125)+pl(260,70,COL.red); return {s,l:['blue','red','ball','pass','run']}; }
@@ -124,7 +126,8 @@ const TPL={
      if(o.start){ s+=pl(290,110,COL.red)+bl(106,128)+ps(102,128,190,172)+ps(212,176,330,130); return {s,l:['blue:수비 1·공격 2','red:상대(걷기)','ball','pass']}; }
      s+=bl(300,200,7)+[[90,125],[200,70],[200,180]].map(([x,y])=>rn(x,y,x+40,y+18,-10)).join('');
      return {s,l:['blue:수비 1·공격 2','ball','run:함께 이동']}; }
-   s+=gkp(50,125)+pl(120,75)+pl(120,175)+pl(220,90)+pl(220,160);
+   s+=(o.nogk?'':gkp(50,125))+pl(120,75)+pl(120,175)+pl(220,90)+pl(220,160);
+   if(o.nogk){ s+=bl(300,200,7)+[[120,75],[120,175],[220,90],[220,160]].map(([x,y])=>rn(x,y,x+40,y+18,-10)).join(''); return {s,l:['blue','ball','run:함께 이동']}; }
    if(o.gk){ s+=bl(66,128)+ps(62,128,108,170)+ps(132,170,210,165); return {s,l:['gk','blue','ball','pass']}; }
    s+=bl(300,200,7)+[[120,75],[120,175],[220,90],[220,160]].map(([x,y])=>rn(x,y,x+40,y+18,-10)).join('');
    return {s,l:['gk','blue','ball','run:함께 이동']}; },

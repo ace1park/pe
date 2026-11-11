@@ -34,6 +34,10 @@ document.addEventListener('click',e=>{
     case 'oxans': { const Q=getD(n).m[stepOf(n)-1].ox; if(ui.oxi==null||ui.oxi<0) break; const it=Q[ui.oxi], a=document.getElementById('oxA'); a.innerHTML=`<b>${it.a}</b><small>${esc(it.why)}</small>`; a.className='oxa on '+(it.a==='O'?'o':'x'); chime(); break; }
     case 'diff': store.diff[t.dataset.key]=t.dataset.v; save(); renderLesson(n); break;
     case 'hview': store.homeView=t.dataset.v; save(); render(); break;
+    case 'track': store.track=t.dataset.v; save(); render(); break;
+    case 'tipnext': { ui.tipK=(ui.tipK??dayNo())+1; const el=document.querySelector('.today'); if(el) el.outerHTML=todayHTML(); fitAll&&fitAll(); break; }
+    case 'pickfun': pickFun(); break;
+    case 'fplace': store.fplace=t.dataset.v; save(); render(); break;
     case 'hgrade': store.homeGrade=t.dataset.v; save(); render(); break;
     case 'pcat': ui.pcat=t.dataset.v; if(t.closest('#peek')){ cmPeek('우리 반은 몇 명?', peopleBox()); break; } n?renderLesson(n):renderTeams(); break;
     case 'people': store.people=+t.dataset.v; ui.pcat=pcatOf(store.people); save(); refreshUnder(); if(t.closest('#peek')) document.getElementById('peek').classList.remove('open'); break;

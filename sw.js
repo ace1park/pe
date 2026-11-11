@@ -20,6 +20,7 @@ const CORE=[
   'data/foot.js',
   'js/core.js',
   'js/people.js',
+  'js/gloss.js',
   'js/draw.js',
   'js/foot_diagrams.js',
   'data/foot_missions.js',

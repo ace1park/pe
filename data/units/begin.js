@@ -14,7 +14,7 @@ function addUnit(u, list){
   try{
     const id=String(u.번호표||'').trim(); if(!id) throw new Error('번호표가 없어요');
     const grades=(u.학년&&u.학년.length?u.학년:['5~6']).map(String);
-    NEWUNITS.push({id, meta:{title:u.이름||id, sub:u.설명||'', area:u.영역||'스포츠', grades, sport:id, color:u.색||'#168b4b'},
+    NEWUNITS.push({id, meta:{title:u.이름||id, sub:u.설명||'', area:u.영역||'스포츠', grades, sport:id, color:u.색||'#168b4b', track:/오늘\s*뭐하지/.test(u.갈래||'')?'fun':'learn', place:u.장소||''},
       rules:u.약속||[], signal:u.정지신호||'호루라기 두 번 = 멈추고 선생님 보기', icon:u.아이콘||''});
     const FM={'개인':'none','2인':'pair','짝':'pair','3인':'group','모둠':'group','팀':'four','경기':'four'};
     const WHO={'개인':'혼자 · 각자','2인':'짝과 둘이','짝':'짝과 둘이','3인':'세 명이','모둠':'모둠 친구와','팀':'우리 팀과','경기':'우리 팀과'};
@@ -34,7 +34,7 @@ function addUnit(u, list){
       while(acts.length<4) acts.push({tw:false,name:'(활동을 적어 주세요)',form:'모둠',fm:'group',who:'',steps:['활동 방법을 적어 주세요'],tip:'',easy:'',hard:'',eval:'',d:{t:'gen_group'},t:{prep:'',how:[],point:'',easy:'',hard:'',odd:''}});
       const lid=id+(grades.length>1?g.replace('~',''):'')+'-'+c.차시;
       PL[lid]={id:lid, unit:id, g, n:+c.차시, t:c.제목||'', s, sn:stageName[g+'-'+s]||(s+'단계'), ext:!!c.선택차시, ev:!!c.평가차시,
-        items:c.준비물||'', prep:c.대형||'', safe:c.안전||'', odd:c.홀수반||'', vars:c.변형게임||[], evnote:c.평가내용||'', move:'',
+        items:c.준비물||'', place:c.장소||u.장소||'', prep:c.대형||'', safe:c.안전||'', odd:c.홀수반||'', vars:c.변형게임||[], evnote:c.평가내용||'', move:'',
         D:{goal:c.목표||'', short:c.제목||'', reflect:c.돌아보기||['오늘 가장 잘된 동작은?','오늘 나를 도와준 친구 한 명','오늘 기분을 낱말 하나로!'], m:acts}};
     });
   }catch(e){ window.DATAERR.push(String(u&&u.번호표||'새 종목')+': '+e.message); }

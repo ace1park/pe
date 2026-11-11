@@ -16,6 +16,7 @@ const V={
   zn:(x,y,w,h,f='rgba(255,212,59,.35)')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>`,
   ring:(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5"/>`,
   sw:(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="#fff" stroke="${COL.ink}" stroke-width="2"/><rect x="${x-3}" y="${y-15}" width="6" height="4" fill="${COL.ink}"/><line x1="${x}" y1="${y}" x2="${x+4}" y2="${y-5}" stroke="${COL.red}" stroke-width="2"/>`,
+  ps2:(x1,y1,x2,y2,d=18)=>{const [a,b]=back(x1,y1,x2,y2,d), [c,e]=back(x2,y2,x1,y1,d); return `<line x1="${c.toFixed(1)}" y1="${e.toFixed(1)}" x2="${a.toFixed(1)}" y2="${b.toFixed(1)}" stroke="#fff" stroke-width="3" stroke-dasharray="7 6" marker-start="url(#w§)" marker-end="url(#w§)"/>`;},
   tap:(x,y)=>`<path d="M${x-11},${y} q11,-9 22,0" fill="none" stroke="${COL.mk}" stroke-width="2.5" marker-end="url(#y§)" marker-start="url(#y§)"/>`
 };
 function field(inner,label){
@@ -26,7 +27,7 @@ function field(inner,label){
   <pattern id="st${u}" width="50" height="250" patternUnits="userSpaceOnUse"><rect width="25" height="250" fill="#1e9b56"/><rect x="25" width="25" height="250" fill="#178c4b"/></pattern></defs>
   <rect width="400" height="250" rx="14" fill="url(#st${u})"/>${inner.replace(/§/g,u)}</svg>`;
 }
-const {pl,bl,cn,mk,ln,ps,rn,dr,zn,ring,sw,tap}=V;
+const {pl,bl,cn,mk,ln,ps,ps2,rn,dr,zn,ring,sw,tap}=V;
 const DIAG={
   '1-1':()=>{let s='';[[90,90],[200,90],[310,90],[90,185],[200,185],[310,185]].forEach(([x,y])=>{s+=mk(x,y+26)+pl(x,y,COL.mint)+bl(x,y+24)+tap(x,y+44);});return s;},
   '1-2':()=>{let s='';[80,200,320].forEach(x=>{s+=pl(x-28,120,COL.mint)+bl(x-28,144)+tap(x-28,163)+pl(x+28,120,COL.obs)+sw(x+28,160);});return s;},

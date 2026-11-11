@@ -105,14 +105,14 @@ function chime(){
 }
 
 /* 호루라기 두 번 (정지 신호) */
-function whistle(){
+function whistle(times=2){
   try{
     actx = actx || new (window.AudioContext||window.webkitAudioContext)();
     if(actx.state==='suspended') actx.resume();
     const t0=actx.currentTime+0.03, dur=0.45;
     const nbuf=actx.createBuffer(1, actx.sampleRate*dur, actx.sampleRate), nd=nbuf.getChannelData(0);
     for(let i=0;i<nd.length;i++) nd[i]=Math.random()*2-1;
-    [0,0.62].forEach(off=>{
+    [0,0.62].slice(0,times).forEach(off=>{
       const t=t0+off;
       const out=actx.createGain();
       out.gain.setValueAtTime(0.0001,t);
@@ -137,7 +137,8 @@ function whistle(){
     });
   }catch(e){}
 }
-function openStop(){ const o=document.getElementById('stopOver'); if(!o.classList.contains('open')){ o.classList.add('open'); whistle(); buzz([400,200,400]); } if(main.run){ main.run=false; paintClock(); } }
+function stopTimes(){ try{ const n=curId(); if(n==null) return 2; const sp=UMETA[LI(n).unit].sport; return /^호루라기 한 번/.test(SIGBY[sp]||'')?1:2; }catch(e){ return 2; } }
+function openStop(){ const o=document.getElementById('stopOver'); if(!o.classList.contains('open')){ o.classList.add('open'); whistle(stopTimes()); buzz([400,200,400]); } if(main.run){ main.run=false; paintClock(); } }
 
 
 /* ===== 타이머 ===== */

@@ -4,7 +4,7 @@ function hasDiag(n,i){ const D=getD(n), M=D.m[i-1]; return !!(DIAG[bkey(n+'-'+i)
 function diagHTML(n,i){
   const key=bkey(n+'-'+i), M=getD(n).m[i-1];
   if(DIAG[key]) return field(DIAG[key](), M.name+' 대형 그림')+legendHTML(key);
-  const r=TPL[M.d.t](M.d); return field(r.s, M.name+' 대형 그림')+legendList(r.l,'g'+(++dgN))+(isFoot(n)?'':'<p class="dgcap">종목 대형 예시 · 실제 자리와 거리는 지도안의 \'대형·준비\'를 따름</p>');
+  const r=tplOf(M.d); return field(r.s, M.name+' 대형 그림')+legendList(r.l,'g'+(++dgN))+(isFoot(n)?'':'<p class="dgcap">종목 대형 예시 · 실제 자리와 거리는 지도안의 \'대형·준비\'를 따름</p>');
 }
 
 /* ===== 차시·단계 아이콘 (설명과 같은 장면) ===== */
@@ -58,7 +58,7 @@ Object.assign(ZICON,{
 });
 
 /* ===== 6단계 추가 설명 · 스테이션 예시 · 리그표 ===== */
-function miniDiag(key){ const [n,i]=key.split('-').map(Number); if(DIAG[key]) return field(DIAG[key](),''); const M=getD(n).m[i-1]; const r=TPL[M.d.t](M.d); return field(r.s,''); }
+function miniDiag(key){ const [n,i]=key.split('-').map(Number); if(DIAG[key]) return field(DIAG[key](),''); const M=getD(n).m[i-1]; const r=tplOf(M.d); return field(r.s,''); }
 const SETPLAY={
  a:()=>field(ln(30,220,370,220)+pl(180,214)+bl(198,210)+pl(232,165)+ps(196,206,228,176)+rn(180,206,270,140,-30)+ps(240,160,262,146,10)+pl(260,110,COL.red),'짧게 주고 돌기'),
  b:()=>field(ln(30,220,370,220)+pl(90,214)+bl(108,210)+pl(150,170,COL.red)+pl(120,150)+pl(310,60)+`<path d="M108,204 Q210,40 300,70" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#w§)"/>`,'길게 바꾸기'),

@@ -112,31 +112,55 @@ function ucardHTML(u,gv){ const m=UMETA[u], [d,a]=gv?gradeProgress(u,gv):unitPro
 function contHTML(){
   let id=store.last; if(id==null) return '';
   try{ let L=LI(id), tag='이어서 하기';
+    if(lessonDone(id)&&isFunU(L.unit)) return '';
     if(lessonDone(id)){ const ids=lessonsOf(L.unit,L.g), k=ids.indexOf(id); if(k<0||k===ids.length-1) return ''; id=ids[k+1]; L=LI(id); tag='다음 차시'; }
     const U=UMETA[L.unit], st=stampsOf(id).filter(Boolean).length;
-    return `<a class="contcard" href="#lesson-${id}" style="--uc:${U.color}"><span class="uicon">${sportIcon(L.unit)}</span><span class="ctext"><small>${tag}</small><b class="fit">${esc(U.title)} ${U.grades.length>1?L.g+'학년 ':''}${L.n}차시</b><span class="fit">${esc(L.t.split(' — ')[0])}</span></span><i>${st?`활동 도장 ${st}/6`:'시작하기'} →</i></a>`;
+    return `<a class="contcard" href="#lesson-${id}" style="--uc:${U.color}"><span class="uicon">${sportIcon(L.unit)}</span><span class="ctext"><small>${tag}</small><b class="fit">${isFunU(L.unit)?'오늘 뭐하지? · '+esc(U.title):esc(U.title)+' '+(U.grades.length>1?L.g+'학년 ':'')+L.n+'차시'}</b><span class="fit">${esc(L.t.split(' — ')[0])}</span></span><i>${st?`활동 도장 ${st}/6`:'시작하기'} →</i></a>`;
   }catch(e){ return ''; }
 }
 function renderShelf(){
   const view=store.homeView==='sport'?'sport':'grade', G=HGRADES.includes(store.homeGrade)?store.homeGrade:null;
-  let h=`<section class="hero"><div><h1 class="fit">내 손 안의 <em>체육</em></h1><p class="hlead">${view==='grade'?'학년을 고르고, 종목을 고르고, 차시 번호를 누르면 수업이 시작돼요.':'종목을 고르고, 학년을 고르고, 차시 번호를 누르면 수업이 시작돼요.'}</p></div><div class="art">${heroArt()}</div></section>
+  let h=`<section class="hero"><div><h1 class="fit">내 손 안의 <em>체육</em></h1><p class="hlead">${store.track==='fun'?'장소를 고르고 놀이를 누르면 40분 한 판이 바로 시작돼요.':view==='grade'?'학년을 고르고, 종목을 고르고, 차시 번호를 누르면 수업이 시작돼요.':'종목을 고르고, 학년을 고르고, 차시 번호를 누르면 수업이 시작돼요.'}</p></div><div class="art">${heroArt()}</div></section>
   ${(window.DATAERR||[]).length?`<div class="dataerrbar"><b>자료 파일을 확인해 주세요</b>${[...new Set(window.DATAERR)].map(x=>`<span><code>${esc(x)}</code></span>`).join('')}<small>따옴표(")·쉼표(,)·괄호가 빠졌는지 보고, 바로 전에 고친 곳을 되돌리면 다시 나옵니다.</small></div>`:''}
+  ${todayHTML()}
   ${contHTML()}
-  <div class="hview" role="group" aria-label="보는 방식">${[['grade','학년으로 보기'],['sport','종목으로 보기']].map(([v,t])=>`<button aria-pressed="${view===v}" data-action="hview" data-v="${v}">${t}</button>`).join('')}</div>`;
+  ${trackHTML()}`;
+  if(store.track==='fun'){ h+=funHomeHTML()+toolsHTML(); app.innerHTML=h; return; }
+  h+=`<div class="hview" role="group" aria-label="보는 방식">${[['grade','학년으로 보기'],['sport','종목으로 보기']].map(([v,t])=>`<button aria-pressed="${view===v}" data-action="hview" data-v="${v}">${t}</button>`).join('')}</div>`;
   if(view==='grade'){
     h+=`<nav class="hgrade" aria-label="학년 고르기">${HGRADES.map(g=>`<button aria-pressed="${G===g}" data-action="hgrade" data-v="${g}">${g}학년</button>`).join('')}</nav>`;
     if(!G) h+=`<p class="hpick fit">가르치는 학년을 골라 주세요</p>`;
-    else { const us=UORDER.filter(u=>unitGradeFor(u,G)), n=us.reduce((a,u)=>a+gradeProgress(u,unitGradeFor(u,G))[1],0);
+    else { const us=LUNITS().filter(u=>unitGradeFor(u,G)), n=us.reduce((a,u)=>a+gradeProgress(u,unitGradeFor(u,G))[1],0);
       h+=`<h2 class="sec">${G}학년 종목 <small>${n}차시 · ${us.length}개 단원</small></h2><section class="shelf">${us.map(u=>ucardHTML(u,unitGradeFor(u,G))).join('')}</section>`; }
   } else {
-    h+=`<h2 class="sec">종목 고르기 <small>${totalLessons()}차시 · ${UORDER.length}개 단원</small></h2><section class="shelf">${UORDER.map(u=>ucardHTML(u)).join('')}</section>`;
+    h+=`<h2 class="sec">종목 고르기 <small>${totalLessons()}차시 · ${LUNITS().length}개 단원</small></h2><section class="shelf">${LUNITS().map(u=>ucardHTML(u)).join('')}</section>`;
   }
-  h+=`
+  h+=toolsHTML();
+  app.innerHTML=h;
+}
+function toolsHTML(){ return `
   <h2 class="sec">수업 도구</h2><section class="tools">
     <a class="tool" href="#teams">${ICON_TEAM}<span>팀 나누기<small>번호로 짝·모둠·팀</small></span></a>
     <a class="tool" href="#score">${ICON_SCORE}<span>점수판<small>골과 페어플레이</small></span></a>
-  </section>`;
-  app.innerHTML=h;
+  </section>`; }
+/* 두 갈래 고르기: 차근차근 배울까?(단원) · 오늘 뭐하지?(40분 놀이 한 판) */
+function trackHTML(){ const t=store.track==='fun'?'fun':'learn';
+  return `<div class="htrack" role="group" aria-label="수업 고르기">${[['learn','차근차근 배울까?','단원으로 깊게 배우기'],['fun','오늘 뭐하지?','40분 놀이 한 판']].map(([v,b,s])=>`<button aria-pressed="${t===v}" data-action="track" data-v="${v}"><b>${b}</b><small>${s}</small></button>`).join('')}</div>`; }
+function funIds(place){ return FUNITS().flatMap(u=>UMETA[u].grades.flatMap(g=>lessonsOf(u,g))).filter(id=>!place||(PL[id].place||UMETA[PL[id].unit].place)===place); }
+const FPLACES=['교실','강당','운동장'];
+function funHomeHTML(){
+  const has=FPLACES.filter(p=>funIds(p).length);
+  if(!has.length) return `<p class="hpick">아직 놀이가 없어요</p>`;
+  const P=has.includes(store.fplace)?store.fplace:has[0], ids=funIds(P);
+  return `${diceHTML()}<nav class="hgrade fplace" aria-label="장소 고르기">${has.map(p=>`<button aria-pressed="${P===p}" data-action="fplace" data-v="${p}">${p}<small>${funIds(p).length}가지</small></button>`).join('')}</nav>
+   <h2 class="sec">${P}에서 <small>${ids.length}가지 · 한 판 40분 · ${todayN()}명</small></h2>
+   <section class="fcards">${ids.map(funCardHTML).join('')}</section>`;
+}
+function funCardHTML(id){
+  const r=PL[id], U=UMETA[r.unit], ok=lessonDone(id), st=stampsOf(id).filter(Boolean).length;
+  return `<a class="fcard ${ok?'crowned':''}" href="#lesson-${id}" style="--uc:${U.color}"><span class="fno">${r.n}</span>
+    <span class="ftext"><b class="fit">${esc(r.t)}</b><small>${esc(r.D.m.map(m=>m.name).join(' → '))}</small><em>준비물 · ${esc(r.items)}</em></span>
+    <span class="fgo">${ok?CROWN_MINI+'다시':st?'이어 하기':'시작'} →</span></a>`;
 }
 /* 단원 화면 */
 function qcardHTML(id){
@@ -149,8 +173,8 @@ function qcardHTML(id){
 /* 난이도 기본값: 발로 하는 공놀이 3학년은 '쉽게'부터 */
 function diffDefault(n){ return isFoot(n)&&n>100?'easy':'base'; }
 /* 단원·차시 수는 자료에서 바로 셈 (자료를 고치면 저절로 맞음) */
-function totalLessons(){ return UORDER.reduce((a,u)=>a+unitProgress(u)[1],0); }
-function totalsText(){ const gs=[...new Set(UORDER.flatMap(u=>UMETA[u].grades.flatMap(g=>String(g).split('~').map(Number))))].sort((a,b)=>a-b); return `${gs[0]}~${gs[gs.length-1]}학년 · ${UORDER.length}개 단원 · ${totalLessons()}차시`; }
+function totalLessons(){ return LUNITS().reduce((a,u)=>a+unitProgress(u)[1],0); }
+function totalsText(){ const gs=[...new Set(LUNITS().flatMap(u=>UMETA[u].grades.flatMap(g=>String(g).split('~').map(Number))))].sort((a,b)=>a-b); return `${gs[0]}~${gs[gs.length-1]}학년 · ${LUNITS().length}개 단원 · ${totalLessons()}차시`; }
 /* 자료 파일을 읽지 못했을 때(따옴표·쉼표 빠짐 등) 알려 주는 칸 */
 function dataFile(u){ return u==='foot'?'data/foot.js':'data/units/'+u+'.js'; }
 function dataErrHTML(u){ const m=UMETA[u]; return `<div class="ucard dataerr" style="--uc:${m.color}"><span class="utext"><span class="uarea">자료를 읽지 못했어요</span><b>${esc(m.title)}</b><small><code>${dataFile(u)}</code> 파일에서 따옴표(")·쉼표(,)·괄호가 빠졌는지 확인해 주세요. 바로 전에 고친 곳을 되돌리면 다시 나옵니다.</small></span></div>`; }
@@ -280,7 +304,7 @@ function renderClass(n){
   document.getElementById('brandTitle').textContent=U.title; document.getElementById('brandSub').textContent='수업 중 모드';
   const M=(i>=1&&i<=4)?D.m[i-1]:null, key=n+'-'+i, title=l.t.split(' — ')[0];
   let h=`<section class="cm" style="--c:${l.c}">
-   <div class="cm-top"><a class="cm-back" href="${unitRoute(l.unit,l.g)}" aria-label="단원으로">←</a><b class="cm-where fit">${l.n}차시 · ${esc(title)}</b><button class="cm-exit" data-action="classmode" data-v="0">자세히 보기</button></div>
+   <div class="cm-top"><a class="cm-back" href="${unitRoute(l.unit,l.g)}" aria-label="단원으로">←</a><b class="cm-where fit">${isFunU(l.unit)?esc(U.title):l.n+'차시'} · ${esc(title)}</b><button class="cm-exit" data-action="classmode" data-v="0">자세히 보기</button></div>
    <nav class="cm-dots" aria-label="차시 순서">${[0,1,2,3,4,5].map(k=>`<button class="${st[k]?'done':''}" ${k===i?'aria-current="step"':''} data-action="step" data-k="${k}">${stepName(k,D)}</button>`).join('')}</nav>`;
   if(i===0){
     const rules=sp==='foot'?RULES:RULESBY[sp];
@@ -324,8 +348,8 @@ function renderLesson(n){
   if(store.classMode) return renderClass(n);
   const D=getD(n), l=LI(n), s={c:l.c}, st=stampsOf(n), i=stepOf(n), U=UMETA[l.unit], sp=U.sport;
   document.getElementById('brandTitle').textContent=U.title; document.getElementById('brandSub').textContent=(U.grades.length>1?l.g+'학년':U.grades[0]+'학년')+' · '+l.s+'단계 '+l.sn;
-  let h=`<section class="lhead" style="--c:${s.c}"><div class="lhrow"><a class="back" href="${unitRoute(l.unit,l.g)}">← ${esc(U.title)}${U.grades.length>1?' '+l.g+'학년':''}</a><button class="cm-toggle" data-action="classmode" data-v="1"><b>수업 중 모드</b><small>크게 보고 바로 진행</small></button></div>
-    <h1><span class="licon">${anyIcon(n)}</span><span class="lno">${l.n}차시${l.ext?' ◇':''}${l.ev?' ★':''}</span><span class="fit">${esc(l.t.split(' — ')[0])}</span></h1>${l.t.includes(' — ')?`<p class="lsubt fit">${esc(l.t.split(' — ').slice(1).join(' — '))}</p>`:''}<p class="goal fit" title="${esc(D.goal)}">오늘의 목표 · ${esc(D.short)}</p>
+  let h=`<section class="lhead" style="--c:${s.c}"><div class="lhrow"><a class="back" href="${unitRoute(l.unit,l.g)}">← ${isFunU(l.unit)?'오늘 뭐하지?':esc(U.title)+(U.grades.length>1?' '+l.g+'학년':'')}</a><button class="cm-toggle" data-action="classmode" data-v="1"><b>수업 중 모드</b><small>크게 보고 바로 진행</small></button></div>
+    <h1><span class="licon">${anyIcon(n)}</span><span class="lno">${isFunU(l.unit)?esc(U.title):l.n+'차시'}${l.ext?' ◇':''}${l.ev?' ★':''}</span><span class="fit">${esc(l.t.split(' — ')[0])}</span></h1>${l.t.includes(' — ')?`<p class="lsubt fit">${esc(l.t.split(' — ').slice(1).join(' — '))}</p>`:''}<p class="goal fit" title="${esc(D.goal)}">오늘의 목표 · ${esc(D.short)}</p>
     <nav class="prog" aria-label="차시 순서">${[0,1,2,3,4,5].map(k=>`<button class="pill2 ${st[k]?'done':''}" ${k===i?'aria-current="step"':''} data-action="step" data-k="${k}">${stepIcon(k)}<span>${stepName(k,D)}</span></button>`).join('')}</nav></section>
   <section class="stage ${(i>=1&&i<=4&&hasDiag(n,i))?'':'one'}">`;
   if(i===0){
@@ -337,7 +361,7 @@ function renderLesson(n){
       <div class="people pline"><h3>오늘 우리 반 <b>${pText()}</b> <span class="psub">이 인원으로 팀을 나눠요</span></h3>
         ${todayBar()}</div>
       ${mediaHTML(n+'-0',true)}
-      <div class="folds">${l.rec?lessonFolds(l.rec,n):''}${fold('plan-'+n+'-0','선생님 메모',`<dl><dt>준비운동</dt><dd>연습1 처음 1~2분에 발목·무릎 돌리기</dd>${sp==='foot'?`<dt>공</dt><dd>${l.g==='3'?FOOT3.공:'덜 튀는 공(폼 볼, 풋살공 4호)'}</dd>`:''}<dt>정지 신호</dt><dd>아래 빨간 '정지' 버튼(단축키 S): 화면 표시 + 호루라기 소리 두 번</dd></dl>`,ICON_PLAN)}</div>
+      <div class="folds">${l.rec?lessonFolds(l.rec,n):''}${glossFold(n+'-0',[...(sp==='foot'?RULES:RULESBY[sp]),l.t,D.goal,...(l.rec?[l.rec.safe,l.rec.odd,l.rec.items,...(l.rec.vars||[])]:[])],l.unit)}${fold('plan-'+n+'-0','선생님 메모',`<dl><dt>준비운동</dt><dd>연습1 처음 1~2분에 발목·무릎 돌리기</dd>${sp==='foot'?`<dt>공</dt><dd>${l.g==='3'?FOOT3.공:'덜 튀는 공(폼 볼, 풋살공 4호)'}</dd>`:''}<dt>정지 신호</dt><dd>아래 빨간 '정지' 버튼(단축키 S): 화면 표시 + 호루라기 소리 ${stopTimes()===1?'한':'두'} 번</dd></dl>`,ICON_PLAN)}</div>
     </div>`;
   } else if(i===5){
     const em=store.emo[n]||{}, all=st.slice(0,5).every(Boolean);
@@ -382,6 +406,7 @@ function renderLesson(n){
         <dt>지도 포인트</dt><dd>${esc(M.t.point)}</dd>
         <dt>수준 조절</dt><dd>쉽게: ${esc(M.t.easy)} / 어렵게: ${esc(M.t.hard)}</dd>
         ${M.t.odd?`<dt>홀수 반</dt><dd>${esc(M.t.odd)}</dd>`:''}${M.eval?`<dt>★ 평가</dt><dd>${esc(M.eval)} (교사 관찰)</dd>`:''}</dl>`, ICON_PLAN);
+    folds+=glossFold(key,actTexts(M),l.unit);
     h+=`<div class="card"><div class="slot">${SLOTS[i-1]} · 10분</div><h2 class="fit">${esc(M.name)}</h2>
       <div class="chips"><span class="chip">${esc(M.form)}</span><span class="chip">${esc(M.who)}</span>${M.eval?`<span class="chip evalchip">★ ${esc(M.eval.split(' · ')[0])}</span>`:''}${bigChip(key,n)}</div>
       <div class="diagram-wrap m-only">${diagHTML(n,i)}</div>
@@ -462,7 +487,7 @@ function renderGuide(){
   const dot=c=>`<circle cx="17" cy="11" r="7" fill="${c}" stroke="#fff" stroke-width="2"/>`;
   app.innerHTML=`<section class="guide">
   <div class="gsec ghead"><h1>안내사항</h1>
-   <p class="glead">${UORDER.length}개 단원 ${totalLessons()}차시(${UORDER.map(u=>UMETA[u].title).join('·')})를 화면 하나로 진행하는 수업 도우미입니다. 체육관 TV·전자칠판에 띄우거나, 선생님 휴대폰으로 같은 링크를 열어 운동장에서 쓰면 됩니다.</p>
+   <p class="glead">${LUNITS().length}개 단원 ${totalLessons()}차시(${LUNITS().map(u=>UMETA[u].title).join('·')})와 '오늘 뭐하지?' 놀이 ${funIds().length}가지를 화면 하나로 진행하는 수업 도우미입니다. 체육관 TV·전자칠판에 띄우거나, 선생님 휴대폰으로 같은 링크를 열어 운동장에서 쓰면 됩니다.</p>
    <div class="gquick">
     <div><b>1</b><span>학년 → 종목 → 차시 번호 누르기</span></div>
     <div><b>2</b><span>노란 카드의 <em>시작하기</em></span></div>
@@ -471,7 +496,8 @@ function renderGuide(){
 
   <div class="gsec"><h2><i>1</i>수업 전 준비</h2>
    <ol class="gsteps">
-    <li><b>오늘 차시 고르기</b><span>홈 위쪽에서 <b>학년으로 보기</b>(학년을 고르면 그 학년 단원만) 또는 <b>종목으로 보기</b>(8개 단원 모두)를 고르고 종목 카드를 누릅니다. 고른 방식과 학년은 다음에도 기억합니다. 지난 시간에 하던 차시는 맨 위 <b>이어서 하기</b>로 바로 열립니다. 단계 길에서 차시 번호(공)를 누르면 안내 카드가 열립니다. 순서대로 하지 않아도 되고, 어느 차시든 바로 시작할 수 있습니다. ◇는 시간이 되면 하는 선택 차시, ★는 관찰 평가를 하는 차시입니다.</span></li>
+    <li><b>오늘 차시 고르기</b><span>홈 위쪽에서 <b>학년으로 보기</b>(학년을 고르면 그 학년 단원만) 또는 <b>종목으로 보기</b>(${LUNITS().length}개 단원 모두)를 고르고 종목 카드를 누릅니다. 고른 방식과 학년은 다음에도 기억합니다. 지난 시간에 하던 차시는 맨 위 <b>이어서 하기</b>로 바로 열립니다. 단계 길에서 차시 번호(공)를 누르면 안내 카드가 열립니다. 순서대로 하지 않아도 되고, 어느 차시든 바로 시작할 수 있습니다. ◇는 시간이 되면 하는 선택 차시, ★는 관찰 평가를 하는 차시입니다.</span></li>
+    <li><b>배울까? 놀까? 고르기</b><span>홈 맨 위 두 버튼 중 하나를 고릅니다. <b>차근차근 배울까?</b>는 단원을 차시 순서대로 배우는 정규 수업, <b>오늘 뭐하지?</b>는 단원과 상관없이 40분 한 판으로 끝나는 놀이입니다. 비 오는 날·자투리 시간·행사 전날에는 '오늘 뭐하지?'에서 교실·강당·운동장을 골라 바로 시작합니다.</span></li>
     <li><b>오늘 인원 고르기</b><span>첫 화면 '약속'의 <b>반 인원</b>을 눌러 출석부 인원을 고릅니다(합반은 25~50명). 결석·지각은 <b>결석·지각</b>에서 번호만 누르면, 나머지 친구 모둠은 그대로 두고 빈자리만 채웁니다. 빠진 번호는 그날만 기억합니다.</span></li>
     <li><b>경기장·공 넣기(한 번만)</b><span><b>경기장·공</b>에 학교의 코트 수와 공 수를 넣으면, 모자랄 때 동시에 할 경기 수와 판마다 기다리는 순서를 알려 줍니다.</span></li>
     <li><b>소리 켜기</b><span>TV나 휴대폰 볼륨을 올려 둡니다. 화면을 한 번 누른 뒤부터 소리가 납니다.</span></li>
@@ -482,7 +508,7 @@ function renderGuide(){
     ${key('k-stop','정지','호루라기')}${key('k-timer','10:00','시작·멈춤')}${key('k-plus','+1분','')}${key('k-plus','점수판','')}${key('k-next','다음 →','도장 자동')}
    </div>
    <ul class="gdesc">
-    <li><b>정지</b> 화면 가득 '멈춰!'가 뜨고 호루라기가 두 번 울립니다. 타이머도 같이 멈춥니다.</li>
+    <li><b>정지</b> 화면 가득 '멈춰!'가 뜨고 호루라기가 울립니다(종목 약속에 따라 한 번 또는 두 번). 타이머도 같이 멈춥니다.</li>
     <li><b>타이머</b> 누르면 10분이 시작되고, 다시 누르면 멈춥니다. 1분 남으면 빨간색이 됩니다.</li>
     <li><b>+1분</b> 활동을 조금 더 하고 싶을 때 1분씩 늘립니다.</li>
     <li><b>점수판</b> 화면 가득 큰 점수판이 열립니다. 팀 수(2·4·6팀)를 고르고 골과 페어플레이 ★를 셉니다. 위쪽 시계로 타이머도 같이 볼 수 있습니다.</li>
@@ -528,12 +554,12 @@ function renderGuide(){
     <div class="gc-row"><span class="gtag">이렇게 해요</span><span>학생에게 읽어 주는 3줄. 한 줄에 한 동작입니다.</span></div>
     <div class="gc-row"><span class="gtag y">꿀팁</span><span>이 활동에서 가장 중요한 한 가지.</span></div>
     <div class="gc-row"><span class="gtag">쉽게·기본·어렵게</span><span>학생이 스스로 고르게 합니다. 고른 단계의 방법이 바로 아래에 나옵니다.</span></div>
-    <div class="gc-row"><span class="gtag w">접힌 칸</span><span>필요할 때만 엽니다. <b>우리 반 나누기</b>(번호로 팀 편성), <b>점수판</b>(골·페어플레이), <b>선생님 지도안</b>(목표·준비물·4단계·지도 포인트·홀수 반).</span></div>
+    <div class="gc-row"><span class="gtag w">접힌 칸</span><span>필요할 때만 엽니다. <b>우리 반 나누기</b>(번호로 팀 편성), <b>점수판</b>(골·페어플레이), <b>선생님 지도안</b>(목표·준비물·4단계·지도 포인트·홀수 반), <b>낱말 풀이</b>(그 활동에 나온 경기 용어 설명).</span></div>
     <div class="gc-row"><span class="gtag y">수업 중 모드</span><span>차시 화면 위쪽의 <b>수업 중 모드</b>를 누르면 휴대폰을 힐끗 보고 진행하도록 지금 활동 이름, 큰 타이머, 이렇게 해요, 꿀팁, 팀, 다음 활동만 크게 나옵니다. 화면이 꺼지지 않고, 1분 남으면 소리·진동으로 알려 줍니다. 원래 화면은 <b>자세히 보기</b>를 누르면 돌아오며, 고른 모드는 다음에도 기억합니다.</span></div>
     <div class="gc-row"><span class="gtag w">형태 바꾸기</span><span>연습·게임을 <b>6인(3:3)·8인(4:4)·10인(5:5) 모둠</b>으로 바꿔 진행할 때 엽니다. 모둠·편·교대 인원이 자동으로 나뉩니다. 리그·순위 결정전 같은 <b>종합 게임</b>은 해당하지 않아 안내 문구만 나옵니다.</span></div>
     <div class="gc-row"><span class="gtag">영상·사진</span><span>활동마다 시범 사진·영상·유튜브 링크를 넣어 두고 학생에게 바로 보여 줍니다. 넣는 법은 아래 자주 묻는 질문에 있습니다.</span></div>
     <div class="gc-row"><span class="gtag y">★ 평가</span><span>평가 활동 표시. 지도안 칸에 관찰할 내용이 적혀 있습니다.</span></div>
-    <div class="gc-row"><span class="gtag w">약속 화면</span><span>티볼·배드민턴·배구형 게임·육상·넷볼·농구는 약속 화면 아래 접힌 칸에 그 차시의 <b>오늘 준비</b>(대형·준비물), <b>홀수 반</b>, <b>변형 게임</b>이 들어 있습니다.</span></div>
+    <div class="gc-row"><span class="gtag w">약속 화면</span><span>발로 하는 공놀이를 뺀 단원은 약속 화면 아래 접힌 칸에 그 차시의 <b>오늘 준비</b>(대형·준비물), <b>홀수 반</b>, <b>변형 게임</b>이 들어 있습니다.</span></div>
    </div></div>
 
   <div class="gsec"><h2><i>5</i>소리 안내</h2>
@@ -541,7 +567,7 @@ function renderGuide(){
     <div><b>삑</b><span>타이머 시작</span></div>
     <div><b>띵동댕동</b><span>시작하기·이어 하기</span></div>
     <div><b>삑삑삑</b><span>10분 끝</span></div>
-    <div><b>호루라기 ×2</b><span>정지 신호</span></div>
+    <div><b>호루라기</b><span>정지 신호(한 번 또는 두 번)</span></div>
    </div></div>
 
   <div class="gsec"><h2><i>6</i>인원 나누기 규칙</h2>
@@ -549,12 +575,16 @@ function renderGuide(){
    ${ruleTableHTML()}
    <ul class="prules">${RULES_PEOPLE.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
 
-  <div class="gsec"><h2><i>7</i>자주 묻는 질문</h2>
+  <div class="gsec" id="g-gloss"><h2><i>7</i>낱말 풀이</h2>
+   <p class="glead">경기 용어를 몰라도 수업할 수 있게 쉬운 말로 풀었습니다. 활동 화면에서도 그 활동에 나온 낱말만 골라 <b>낱말 풀이</b> 칸에 자동으로 모여 나옵니다.</p>
+   ${glossGuideHTML()}</div>
+
+  <div class="gsec"><h2><i>8</i>자주 묻는 질문</h2>
    <dl class="gfaq">
     <dt>홀수 반은 어떻게 하나요?</dt><dd>자동으로 처리합니다. 남는 1명은 3인 1조, 5인 모둠, 교대, 심판 중 활동에 맞는 방법으로 나뉘고, 그 방법이 팀 아래에 적혀 나옵니다.</dd>
     <dt>인원은 어떻게 고르나요?</dt><dd>'약속' 화면의 <b>인원 바꾸기</b>(또는 팀 나누기 화면)에서 먼저 <b>일반학급(추천 · 15~24명)</b>, <b>소규모 학급(가능 · 6~14명)</b>, <b>합반(두 반 · 25~50명)</b> 중 하나를 누르고 반 인원을 고릅니다. 결석·지각은 <b>결석·지각</b>에서 번호로 뺍니다.</dd>
     <dt>소규모 학급(6~14명)도 되나요?</dt><dd>됩니다. '약속' 화면의 <b>반 인원</b>에서 <b>소규모 학급</b>을 누른 뒤 6~14명 중 하나를 고르면 모든 연습·게임·기타 활동의 짝·모둠·팀과 점수판 팀 수가 그 인원에 맞게 다시 나뉩니다(예: 6명이면 4인 모둠 → 3인 2모둠, 6팀 3:3 → 경기장 1곳 2팀). 팀 나누기 화면에도 같은 줄이 있습니다. '연습·게임 형태 바꾸기'와 팀 나누기 화면에는 그 인원으로 할 수 있는 형태만 나옵니다. 종합 게임은 팀 수만 줄여 단원에서 정한 규칙으로 진행합니다.</dd>
-    <dt>오늘 결석생이 있어요.</dt><dd>'약속' 화면의 <b>인원 바꾸기</b>로 오늘 인원만 바꾸면 됩니다. 번호는 1번부터 순서대로 씁니다.</dd>
+    <dt>오늘 결석생이 있어요.</dt><dd>'약속' 화면의 <b>결석·지각</b>을 누르고 빠진 친구 번호만 누릅니다. 나머지 친구 모둠은 그대로 두고 빈자리만 채웁니다. 빠진 번호는 그날만 기억하고, 다음 날에는 원래 인원으로 돌아갑니다.</dd>
     <dt>휴대폰에서 앱처럼 쓰려면?</dt><dd><b>아이폰</b> Safari로 링크를 연 뒤 아래쪽 공유 버튼(네모에 위 화살표) → '홈 화면에 추가' → '추가'.<br><b>안드로이드</b> Chrome으로 링크를 연 뒤 오른쪽 위 ⋮ → '홈 화면에 추가'(또는 '앱 설치'). 삼성 인터넷은 ≡ → '현재 페이지 추가' → '홈 화면'.<br>홈 화면의 아이콘을 누르면 바로 열립니다.</dd>
     <dt>인터넷이 안 되는 체육관에서도 되나요?</dt><dd>공개 주소로 한 번 열어 두면 그 뒤로는 인터넷 없이도 열립니다. '홈 화면에 추가'를 해 두면 아이콘을 눌러 앱처럼 엽니다. 새 내용이 올라오면 인터넷이 될 때 알아서 받아 두고, 다음에 열 때 바뀝니다.</dd>
     <dt>받은 HTML 파일로도 되나요?</dt><dd><b>안드로이드</b>는 파일을 누른 뒤 'Chrome으로 열기'를 고르면 모든 기능이 작동합니다. <b>아이폰</b>은 저장된 HTML의 버튼을 실행하지 못해 파일 앱·카카오톡에서는 읽기 화면만 보입니다. 아이폰은 링크로 쓰세요. 컴퓨터(윈도·맥)는 파일을 더블클릭하면 됩니다.</dd>
@@ -567,8 +597,9 @@ function renderGuide(){
     <dt>아이폰으로 찍은 영상이 공유가 안 돼요.</dt><dd>공유는 MP4·WebM 영상만 됩니다. 아이폰 영상(MOV)은 올라가지 않을 수 있으니 '이 기기에만'으로 넣거나, 유튜브 링크로 넣으세요. 설정 → 카메라 → 포맷 → '높은 호환성'으로 찍으면 더 잘 올라갑니다.</dd>
     <dt>학생이 나오는 영상을 넣어도 되나요?</dt><dd>보호자 동의를 받은 것만 넣고, 얼굴은 뒷모습·먼 거리로 가리며 이름표가 보이지 않게 찍습니다. 공유 자료는 링크를 여는 모든 사람이 보니, 학생이 나오는 자료는 '이 기기에만'을 권합니다. 배경 음악은 저작권 문제 없는 것만 씁니다.</dd>
     <dt>기록이 사라질 수 있나요?</dt><dd>브라우저 기록을 지우면 도장과 감정 기록이 지워질 수 있습니다. 성적에 쓰는 기록은 따로 적어 두세요.</dd>
-    <dt>리그 순위는 어떻게 매기나요?</dt><dd>19·20차시 리그 경기 화면의 리그표에 골과 페어플레이 ★를 넣고 '경기 끝'을 누르면 순위가 자동으로 계산됩니다. 이기면 3점, 비기면 2점, 져도 1점이고 ★ 1개는 1점입니다.</dd>
+    <dt>리그 순위는 어떻게 매기나요?</dt><dd>리그표가 있는 차시(발로 하는 공놀이 19·20차시)의 경기 화면 리그표에 골과 페어플레이 ★를 넣고 '경기 끝'을 누르면 순위가 자동으로 계산됩니다. 이기면 3점, 비기면 2점, 져도 1점이고 ★ 1개는 1점입니다.</dd>
     <dt>다른 종목으로 바꾸려면?</dt><dd>오른쪽 위 홈 버튼 → 종목 카드를 누르면 됩니다. 다른 학년 단원은 '학년으로 보기'에서 학년을 바꾸거나 '종목으로 보기'를 누릅니다. 도장과 점수는 종목·차시마다 따로 남습니다.</dd>
+    <dt>경기 용어를 잘 몰라요.</dt><dd>활동 화면 아래 <b>낱말 풀이</b> 칸을 열면 그 활동에 나온 용어만 쉬운 말로 나옵니다. 전체 목록은 이 안내사항의 7번에 있습니다. 학생에게는 '이렇게 해요' 세 줄만 읽어 주어도 활동이 됩니다.</dd>
     <dt>차시를 건너뛰어도 되나요?</dt><dd>됩니다. 홈에서 원하는 차시 번호를 누르면 됩니다. 끝낸 차시는 왕관, 하다 만 차시는 노란 점으로 표시됩니다.</dd>
    </dl></div>
 
@@ -601,7 +632,7 @@ function render(){
   else if(ui.route==='score') renderScore();
   else if(ui.route==='guide') renderGuide();
   else if(ui.route.startsWith('lesson-')) renderLesson(curId());
-  else if(ui.route.startsWith('u-')){ const [,u,g]=ui.route.split('-'); const m=UMETA[u]; const gg=m.grades.find(x=>gk(x)===g)||m.grades[0]; renderUnit(u,gg); }
+  else if(ui.route.startsWith('u-')){ const [,u,g]=ui.route.split('-'); const m=UMETA[u]; if(m.track==='fun'){ store.track='fun'; save(); renderShelf(); } else { const gg=m.grades.find(x=>gk(x)===g)||m.grades[0]; renderUnit(u,gg); } }
   else renderShelf();
   if(!ui.route.startsWith('lesson-')){ document.getElementById('brandTitle').textContent=ui.route.startsWith('u-')?UMETA[ui.route.split('-')[1]].title:'내 손 안의 체육'; document.getElementById('brandSub').textContent=ui.route.startsWith('u-')?UMETA[ui.route.split('-')[1]].area:totalsText(); }
 }
@@ -615,3 +646,28 @@ function route(){
 }
 window.addEventListener('hashchange',route);
 
+
+/* ===== 첫 화면 재미 요소: 오늘 인사 · 오늘의 꿀팁 · 내 왕관 · 놀이 뽑기 주사위 ===== */
+const DAYLINE=['일요일 · 쉬는 날도 가볍게 움직이기','월요일 · 한 주를 여는 첫 체육!','화요일 · 몸이 풀리는 날','수요일 · 한 주의 한가운데, 힘내요','목요일 · 조금만 더 달려 볼까요','금요일 · 신나게 한 판!','토요일 · 주말에도 몸 쓰는 하루'];
+const TIPS=['물은 목마르기 전에 한 모금','준비운동 2분이 다치는 걸 막아요','"괜찮아!" 한마디가 팀을 살려요','공은 허리 아래로, 웃음은 크게','진 팀에게 먼저 박수 치기','어제보다 한 번 더, 그게 기록이에요','호루라기 두 번이면 바로 멈춤','신발 끈은 출발 전에 꽉','쉬는 친구도 응원으로 함께 뛰어요','처음은 쉽게, 익숙해지면 어렵게','넘어진 친구 먼저 일으키기','잘한 친구 이름 불러 칭찬하기','숨이 차면 코로 마시고 입으로 후','오늘 처음 해 본 동작 하나 찾기'];
+function dayNo(){ const d=new Date(); return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5); }
+function myCrowns(){ return Object.values(store.stamps||{}).filter(s=>s&&s[5]).length; }
+function myStamps(){ return Object.values(store.stamps||{}).reduce((a,s)=>a+(s?s.filter(Boolean).length:0),0); }
+const HOMEBALL=`<svg viewBox="0 0 60 70" aria-hidden="true"><ellipse class="bshadow" cx="30" cy="64" rx="14" ry="3.5" fill="rgba(0,0,0,.28)"/><g class="bball">${icBall(30,22,16)}</g></svg>`;
+function todayHTML(){
+  const k=((ui.tipK??dayNo())%TIPS.length+TIPS.length)%TIPS.length, c=myCrowns(), st=myStamps();
+  return `<section class="today"><span class="tball">${HOMEBALL}</span>
+    <b class="tday fit">${DAYLINE[new Date().getDay()]}</b>
+    <span class="tstat ${c?'':'zero'}" title="${c?`왕관 ${c}개 · 활동 도장 ${st}개`:'차시를 끝내면 왕관을 받아요'}">${CROWN_MINI}<b>${c}</b></span>
+    <button class="ttip" data-action="tipnext" aria-label="다음 꿀팁"><i>꿀팁</i><span>${esc(TIPS[k])}</span><em aria-hidden="true">↻</em></button></section>`;
+}
+const DICE=`<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="6" width="36" height="36" rx="9" fill="#fff" stroke="${INK}" stroke-width="3"/>${[[16,16],[32,16],[24,24],[16,32],[32,32]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${INK}"/>`).join('')}</svg>`;
+function diceHTML(){ return `<button class="dice" data-action="pickfun"><span class="dicon">${DICE}</span><span><b>놀이 뽑기</b><small>고민될 땐 주사위에 맡겨요</small></span></button><div id="dicebox" aria-live="polite"></div>`; }
+function pickFun(){
+  const P=FPLACES.find(p=>p===store.fplace&&funIds(p).length)||FPLACES.find(p=>funIds(p).length), ids=funIds(P); if(!ids.length) return;
+  const box=document.getElementById('dicebox'), btn=document.querySelector('.dice'); if(!box) return;
+  const pick=ids[Math.floor(Math.random()*ids.length)], still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still){ box.innerHTML=funCardHTML(pick); chime(); return; }
+  btn&&btn.classList.add('rolling'); let t=0;
+  const iv=setInterval(()=>{ const id=ids[Math.floor(Math.random()*ids.length)]; box.innerHTML=`<div class="dspin">${esc(PL[id].t)}</div>`; beep(1); if(++t>=9){ clearInterval(iv); btn&&btn.classList.remove('rolling'); box.innerHTML=funCardHTML(pick); box.firstElementChild&&box.firstElementChild.classList.add('picked'); chime(); } },110);
+}

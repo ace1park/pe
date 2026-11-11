@@ -16,7 +16,11 @@ function stagesOf(unit,g){
   ids.forEach(id=>{ const r=PL[id]; (map[r.s]=map[r.s]||{n:r.s,name:r.sn,c:SCOL[(r.s-1)%6],ids:[]}).ids.push(id); });
   return Object.values(map).sort((a,b)=>a.n-b.n).map(x=>({...x,range:PL[x.ids[0]].n+'~'+PL[x.ids[x.ids.length-1]].n}));
 }
-function unitRoute(unit,g){ const m=UMETA[unit]; return '#u-'+unit+(m.grades.length>1?'-'+gk(g):''); }
+function unitRoute(unit,g){ const m=UMETA[unit]; if(m.track==='fun') return '#map'; return '#u-'+unit+(m.grades.length>1?'-'+gk(g):''); }
+/* 두 갈래: 차근차근 배울까?(단원) · 오늘 뭐하지?(40분 놀이 한 판) */
+function isFunU(u){ return !!(UMETA[u]&&UMETA[u].track==='fun'); }
+function LUNITS(){ return UORDER.filter(u=>!isFunU(u)); }
+function FUNITS(){ return UORDER.filter(isFunU); }
 function lessonNo(id){ return isFoot(id)?fBase(id):PL[id].n; }
 /* 종목 아이콘 */
 const SPICON={
@@ -37,7 +41,8 @@ const NEWICON={
  '디스크':()=>`<ellipse cx="32" cy="34" rx="22" ry="10" fill="#ffd43b" stroke="${INK}" stroke-width="2.6"/><ellipse cx="32" cy="31" rx="14" ry="5.5" fill="none" stroke="${INK}" stroke-width="1.8" opacity=".55"/><path d="M8,22 q6,-8 14,-6 M48,16 q8,1 10,8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>`,
  '츄크볼':()=>`<g transform="rotate(-12 30 34)"><rect x="12" y="14" width="34" height="34" rx="3" fill="#dfe7e2" stroke="${INK}" stroke-width="2.6"/><path d="M12,25 H46 M12,36 H46 M23,14 V48 M34,14 V48" stroke="${INK}" stroke-width="1.2" opacity=".5"/><line x1="18" y1="48" x2="14" y2="58" stroke="${INK}" stroke-width="3"/><line x1="40" y1="48" x2="44" y2="58" stroke="${INK}" stroke-width="3"/></g><circle cx="50" cy="20" r="8" fill="#ffd43b" stroke="${INK}" stroke-width="2.2"/>`,
  '플로어볼':()=>`<path d="M44,8 L22,46 Q19,52 12,51 L8,50" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/><path d="M44,8 L22,46 Q19,52 12,51" fill="none" stroke="#2f6fd6" stroke-width="2.4" stroke-linecap="round"/><circle cx="44" cy="48" r="8" fill="#fff" stroke="${INK}" stroke-width="2.2"/><circle cx="41" cy="46" r="1.6" fill="${INK}"/><circle cx="47" cy="46" r="1.6" fill="${INK}"/><circle cx="44" cy="51" r="1.6" fill="${INK}"/>`,
- '공':()=>icBall(32,32,18)
+ '공':()=>icBall(32,32,18),
+ '교실':()=>`<rect x="10" y="26" width="44" height="8" rx="2" fill="#e0b77a" stroke="${INK}" stroke-width="2.4"/><path d="M15,34 V52 M49,34 V52" stroke="${INK}" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="18" r="7" fill="#ffd43b" stroke="${INK}" stroke-width="2.2"/><path d="M36,22 l4,-10 l4,10 z" fill="#e2463b" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/><rect x="38" y="14" width="14" height="10" rx="2" fill="#fff" stroke="${INK}" stroke-width="2" opacity="0"/>`
 };
 NEWUNITS.forEach(x=>{ if(UMETA[x.id]) return;
   UMETA[x.id]=x.meta; UORDER.push(x.id);
