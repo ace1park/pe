@@ -307,7 +307,7 @@ body:not([data-page="map"]) .t-guide{display:none}
 .gdesc li{background:#fff;border-radius:10px;padding:8px 12px}
 .gdesc b{display:inline-block;min-width:64px;color:var(--turf)}
 .gnote{margin:10px 0 0;background:#fff;border-left:8px solid var(--tape);border-radius:8px;padding:10px 12px}
-.gcard{display:grid;gap:8px;margin-top:10px}
+div.gcard{display:grid;gap:8px;margin-top:10px}
 .gc-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;background:#fff;border-radius:10px;padding:8px 12px}
 .gtag{background:var(--ink);color:#fff;border-radius:999px;padding:4px 10px;font-weight:800;font-size:14px;text-align:center}
 .gtag.y{background:var(--tape);color:var(--ink)}.gtag.w{background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
@@ -456,10 +456,10 @@ body:not([data-page="map"]) .t-guide{display:none}
 .gcat{background:rgba(10,60,30,.6);border-radius:14px;padding:12px;color:#fff}
 .gcat h3{font-family:var(--display);font-weight:400;font-size:22px;margin-bottom:8px}
 .gclist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:8px}
-.gcard{display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:center;text-align:left;background:var(--cream);border:0;border-radius:12px;padding:10px;color:var(--ink)}
-.gcard b{grid-row:span 2;font-family:var(--display);font-weight:400;font-size:26px;background:var(--ink);color:var(--tape);border-radius:10px;padding:2px 8px}
-.gcard span{font-weight:800}
-.gcard small{color:var(--muted);font-weight:600;font-size:12px}
+button.gcard{display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:center;text-align:left;background:var(--cream);border:0;border-radius:12px;padding:10px;color:var(--ink)}
+button.gcard b{grid-row:span 2;font-family:var(--display);font-weight:400;font-size:26px;background:var(--ink);color:var(--tape);border-radius:10px;padding:2px 8px}
+button.gcard span{font-weight:800}
+button.gcard small{color:var(--muted);font-weight:600;font-size:12px}
 .cgoal{margin:6px 0 10px;font-weight:800;background:var(--tape);border-radius:8px;padding:6px 10px}
 .cdl{display:grid;grid-template-columns:60px 1fr;gap:4px 10px;margin:8px 0;font-size:15px}
 .cdl dt{font-weight:800;color:var(--turf)}.cdl dd{margin:0}
@@ -1039,3 +1039,82 @@ body.lesson .installbar{bottom:calc(var(--barH) + 16px + env(safe-area-inset-bot
 .glgrp summary small{color:var(--muted);font-weight:700;margin-left:4px}
 .glgrp[open]{padding-bottom:12px}
 @media (max-width:420px){.gloss{grid-template-columns:1fr;gap:2px}.gloss dd{margin-bottom:8px}}
+
+/* 만든 사람 */
+.maker{margin:28px 0 12px;text-align:center;font-size:.85em;font-weight:700;color:rgba(255,255,255,.75)}
+.gmaker{margin:4px 0 10px;font-weight:800;color:var(--muted)}
+
+/* ===== 좁은 화면 줄바뀜 정리 (320~420px) ===== */
+/* 단원 화면 학년 버튼: 한 줄에 모두 */
+.gtabs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);max-width:560px}
+.gtabs a{white-space:nowrap;min-width:0}
+/* 인원 나누기 표: 숫자와 단위는 붙여 두고, 인원 줄은 · 에서만 줄바꿈 */
+.ruletbl .rn{white-space:nowrap}
+.ruletbl td small{overflow-wrap:normal;word-break:keep-all}
+.ruletbl th,.ruletbl td{overflow-wrap:normal}
+.gsounds b{white-space:nowrap}
+.gkeys th{width:1%;padding-right:12px}
+.tool>span{min-width:0}
+@media (max-width:420px){
+  .gtabs a{font-size:16px;padding:6px 2px;border-width:2px}
+  .gtabs a small{font-size:11px}
+  .ruletbl table{font-size:11px}
+  .ruletbl .rn{font-size:11px}
+  .ruletbl td b{font-size:14px}
+  .ruletbl td small{font-size:10.5px}
+  .ruletbl thead th:first-child,.ruletbl tbody th{width:40px}
+  .gsounds b{font-size:19px}
+  .prules li{grid-template-columns:1fr;gap:2px}
+  .tools{gap:8px}
+  .tool{padding:12px 8px;gap:4px;font-size:16px;flex-direction:column;text-align:center}
+  .tool svg{width:34px;height:34px}
+  .tool small{font-size:12px}
+  /* 안내사항의 아래 버튼 그림: 두 줄로 */
+  .gbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .gbar .k-timer{grid-column:span 2;font-size:24px}
+  .gbar .k-next{font-size:18px}
+  .gbar .gkey{white-space:nowrap;min-height:52px}
+}
+/* 점수판: 골 · 페어플레이 줄의 버튼 위치를 맞춤 */
+.sc > span{flex:0 0 96px;white-space:nowrap}
+@media (max-width:420px){
+  .sc > span{flex-basis:84px;font-size:12px}
+  /* 팀 나누기 화면: 이름표(인원·오늘·대형·순서)를 위에, 버튼은 아래 한 줄에 */
+  .opts .row{flex-wrap:wrap}
+  .opts .row > span{flex-basis:100%;min-width:0;margin-bottom:-2px}
+  .pwrap{width:100%}
+  .pwrap .pcat{max-width:none}
+  .pcat b{font-size:14px}
+  .pcat small{font-size:11px}
+}
+@media (max-width:420px){
+  /* 약속 화면 '반 인원 · 결석·지각 · 경기장·공' 세 버튼을 한 줄에 */
+  .todaybar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+  .todaybar>*{min-width:0;padding-left:4px;padding-right:4px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lhrow{gap:6px}
+}
+
+/* 줄바뀜 정리: 좁은 화면 · 큰 글씨 설정에서도 한 줄 유지 */
+.gsec h2{font-size:clamp(22px,6.6vw,28px);line-height:1.2}
+.gsec h2 i{width:clamp(32px,9vw,40px);height:clamp(32px,9vw,40px);font-size:clamp(17px,5vw,21px)}
+.ugr{flex-wrap:nowrap;min-width:0}
+.ugr i{flex:none}
+.today .tday{white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;font-size:clamp(14px,4.2vw,22px)}
+.htrack small{font-size:clamp(11px,3.4vw,13px)}
+.htrack b{font-size:clamp(15px,4.6vw,24px)}
+.gsounds span{word-break:keep-all}
+@media (max-width:480px){
+  .gdesc li>b:first-child{display:block;min-width:0;margin-bottom:2px}
+  .ugr i{font-size:12px;padding:0 6px}
+  .ugr .cw{display:none}
+  .pill2{font-size:clamp(10px,3.2vw,12px);padding:5px 1px}
+  .pill2 span{white-space:nowrap}
+}
+.ruletbl small span{display:block;white-space:nowrap}
+.guide .gsteps span b,.guide .gfaq dd b,.guide .gdesc li b,.guide .glead b,.gquick em{white-space:nowrap}
+.guide .gc-row{min-width:0}.guide .gc-row>span{min-width:0}
+@media (min-width:481px){.gloss{grid-template-columns:minmax(84px,max-content) 1fr}.gloss dt{white-space:nowrap}}
+.guide .gc-row span b{white-space:nowrap}.guide .gc-row span b.wrap{white-space:normal}
+.gfaq dt{font-size:clamp(15px,4.6vw,18px)}
+@media (min-width:621px){.gquick span{font-size:clamp(14px,1.9vw,20px);white-space:nowrap}}
+@media (max-width:340px){.prog{grid-template-columns:repeat(3,1fr)}.pill2{font-size:12px}}

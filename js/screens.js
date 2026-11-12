@@ -98,6 +98,10 @@ function crownSVG(num,cls=''){ const g='cg'+Math.random().toString(36).slice(2,7
   ${num!=null?`<text x="50" y="87" text-anchor="middle" font-family="Black Han Sans, Gothic A1, sans-serif" font-size="${String(num).length>1?38:44}" font-weight="800" fill="#1c2a21" stroke="#fff6cc" stroke-width="6" paint-order="stroke">${num}</text>`:''}</svg>`; }
 const CROWN_MINI=`<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 36 L31 58 L50 22 L69 58 L88 36 L83 90 H17 Z" fill="#ffc21a" stroke="#1c2a21" stroke-width="8" stroke-linejoin="round"/></svg>`;
 function unitProgress(unit){ let done=0,all=0; UMETA[unit].grades.forEach(g=>lessonsOf(unit,g).forEach(id=>{ all++; if(lessonDone(id)) done++; })); return [done,all]; }
+/* 단원 카드 학년 표시: 3·4·5·6학년처럼 이어지면 '3~6학년' 한 개로 묶어 한 줄에 */
+function gradeLabel(gs){ if(gs.length<2||gs.some(g=>!/^\d$/.test(g))) return gs; const n=gs.map(Number); return n.every((v,i)=>!i||v===n[i-1]+1)?[n[0]+'~'+n[n.length-1]]:gs; }
+/* 만든 사람: 홈 아래 · 안내사항 맨 위와 맨 아래에 보임 */
+const MAKER='박찬수';
 /* 홈: 학년으로 보기 / 종목으로 보기 (고른 방식과 학년은 다음에도 기억) */
 const HGRADES=['3','4','5','6'];
 function gradeHas(gv,G){ const [a,b]=String(gv).split('~').map(Number); return b?(+G>=a&&+G<=b):String(gv)===String(G); }
@@ -107,7 +111,7 @@ function ucardHTML(u,gv){ const m=UMETA[u], [d,a]=gv?gradeProgress(u,gv):unitPro
   if(!a) return dataErrHTML(u);
   return `<a class="ucard" href="${unitRoute(u,gv||m.grades[0])}" style="--uc:${m.color}"><span class="uicon">${sportIcon(u)}</span>
       <span class="utext"><span class="uarea">${m.area}</span><b class="fit">${m.title}</b><small class="fit">${m.sub}</small>
-      <span class="ugr">${(gv?[gv]:m.grades).map(g=>`<i>${g}학년</i>`).join('')}<i class="cnt">${a}차시</i>${d?`<i class="done crowncnt">${CROWN_MINI}왕관 ${d}</i>`:''}</span></span></a>`; }
+      <span class="ugr">${gradeLabel(gv?[gv]:m.grades).map(g=>`<i>${g}학년</i>`).join('')}<i class="cnt">${a}차시</i>${d?`<i class="done crowncnt">${CROWN_MINI}<span class="cw">왕관 </span>${d}</i>`:''}</span></span></a>`; }
 /* 이어서 하기: 마지막으로 연 차시(왕관을 받았으면 같은 단원의 다음 차시) */
 function contHTML(){
   let id=store.last; if(id==null) return '';
@@ -135,7 +139,7 @@ function renderShelf(){
   } else {
     h+=`<h2 class="sec">종목 고르기 <small>${totalLessons()}차시 · ${LUNITS().length}개 단원</small></h2><section class="shelf">${LUNITS().map(u=>ucardHTML(u)).join('')}</section>`;
   }
-  h+=toolsHTML();
+  h+=toolsHTML()+`<footer class="maker">만든 사람 · ${MAKER}</footer>`;
   app.innerHTML=h;
 }
 function toolsHTML(){ return `
@@ -487,6 +491,7 @@ function renderGuide(){
   const dot=c=>`<circle cx="17" cy="11" r="7" fill="${c}" stroke="#fff" stroke-width="2"/>`;
   app.innerHTML=`<section class="guide">
   <div class="gsec ghead"><h1>안내사항</h1>
+   <p class="gmaker">만든 사람 · ${MAKER}</p>
    <p class="glead">${LUNITS().length}개 단원 ${totalLessons()}차시(${LUNITS().map(u=>UMETA[u].title).join('·')})와 '오늘 뭐하지?' 놀이 ${funIds().length}가지를 화면 하나로 진행하는 수업 도우미입니다. 체육관 TV·전자칠판에 띄우거나, 선생님 휴대폰으로 같은 링크를 열어 운동장에서 쓰면 됩니다.</p>
    <div class="gquick">
     <div><b>1</b><span>학년 → 종목 → 차시 번호 누르기</span></div>
@@ -499,7 +504,7 @@ function renderGuide(){
     <li><b>오늘 차시 고르기</b><span>홈 위쪽에서 <b>학년으로 보기</b>(학년을 고르면 그 학년 단원만) 또는 <b>종목으로 보기</b>(${LUNITS().length}개 단원 모두)를 고르고 종목 카드를 누릅니다. 고른 방식과 학년은 다음에도 기억합니다. 지난 시간에 하던 차시는 맨 위 <b>이어서 하기</b>로 바로 열립니다. 단계 길에서 차시 번호(공)를 누르면 안내 카드가 열립니다. 순서대로 하지 않아도 되고, 어느 차시든 바로 시작할 수 있습니다. ◇는 시간이 되면 하는 선택 차시, ★는 관찰 평가를 하는 차시입니다.</span></li>
     <li><b>배울까? 놀까? 고르기</b><span>홈 맨 위 두 버튼 중 하나를 고릅니다. <b>차근차근 배울까?</b>는 단원을 차시 순서대로 배우는 정규 수업, <b>오늘 뭐하지?</b>는 단원과 상관없이 40분 한 판으로 끝나는 놀이입니다. 비 오는 날·자투리 시간·행사 전날에는 '오늘 뭐하지?'에서 교실·강당·운동장을 골라 바로 시작합니다.</span></li>
     <li><b>오늘 인원 고르기</b><span>첫 화면 '약속'의 <b>반 인원</b>을 눌러 출석부 인원을 고릅니다(합반은 25~50명). 결석·지각은 <b>결석·지각</b>에서 번호만 누르면, 나머지 친구 모둠은 그대로 두고 빈자리만 채웁니다. 빠진 번호는 그날만 기억합니다.</span></li>
-    <li><b>경기장·공 넣기(한 번만)</b><span><b>경기장·공</b>에 학교의 코트 수와 공 수를 넣으면, 모자랄 때 동시에 할 경기 수와 판마다 기다리는 순서를 알려 줍니다.</span></li>
+    <li><b>경기장·공 넣기</b><span>처음 한 번만 하면 됩니다. <b>경기장·공</b>에 학교의 코트 수와 공 수를 넣으면, 모자랄 때 동시에 할 경기 수와 판마다 기다리는 순서를 알려 줍니다.</span></li>
     <li><b>소리 켜기</b><span>TV나 휴대폰 볼륨을 올려 둡니다. 화면을 한 번 누른 뒤부터 소리가 납니다.</span></li>
    </ol></div>
 
@@ -508,7 +513,7 @@ function renderGuide(){
     ${key('k-stop','정지','호루라기')}${key('k-timer','10:00','시작·멈춤')}${key('k-plus','+1분','')}${key('k-plus','점수판','')}${key('k-next','다음 →','도장 자동')}
    </div>
    <ul class="gdesc">
-    <li><b>정지</b> 화면 가득 '멈춰!'가 뜨고 호루라기가 울립니다(종목 약속에 따라 한 번 또는 두 번). 타이머도 같이 멈춥니다.</li>
+    <li><b>정지</b> 화면 가득 '멈춰!'가 뜨고 호루라기가 두 번 울립니다. 모든 종목이 같은 신호입니다. 타이머도 같이 멈춥니다.</li>
     <li><b>타이머</b> 누르면 10분이 시작되고, 다시 누르면 멈춥니다. 1분 남으면 빨간색이 됩니다.</li>
     <li><b>+1분</b> 활동을 조금 더 하고 싶을 때 1분씩 늘립니다.</li>
     <li><b>점수판</b> 화면 가득 큰 점수판이 열립니다. 팀 수(2·4·6팀)를 고르고 골과 페어플레이 ★를 셉니다. 위쪽 시계로 타이머도 같이 볼 수 있습니다.</li>
@@ -516,7 +521,7 @@ function renderGuide(){
    </ul>
    <p class="gnote">한 차시 순서: <b>약속 → 연습1 → 게임1 → 연습2 → 게임2 → 돌아보기</b> (각 10분, 위쪽 칸을 눌러 앞뒤로 옮겨 갈 수도 있음)</p></div>
 
-  <div class="gsec gbig"><h2><i>3</i>전자칠판·컴퓨터에서 쓰기</h2>
+  <div class="gsec gbig"><h2><i>3</i>전자칠판에서 쓰기</h2>
    <ul class="gdesc">
     <li><b>여는 법</b> 전자칠판이나 컴퓨터의 Chrome·Edge·웨일 브라우저 주소창에 앱 주소를 넣고, 즐겨찾기(☆)에 추가해 둡니다.</li>
     <li><b>앱으로 설치</b> Chrome·Edge 주소창 오른쪽의 설치 아이콘(또는 메뉴의 '앱 설치')을 누르면 바탕 화면에 아이콘이 생깁니다. 한 번 연 뒤에는 인터넷이 끊겨도 열립니다.</li>
@@ -556,7 +561,7 @@ function renderGuide(){
     <div class="gc-row"><span class="gtag">쉽게·기본·어렵게</span><span>학생이 스스로 고르게 합니다. 고른 단계의 방법이 바로 아래에 나옵니다.</span></div>
     <div class="gc-row"><span class="gtag w">접힌 칸</span><span>필요할 때만 엽니다. <b>우리 반 나누기</b>(번호로 팀 편성), <b>점수판</b>(골·페어플레이), <b>선생님 지도안</b>(목표·준비물·4단계·지도 포인트·홀수 반), <b>낱말 풀이</b>(그 활동에 나온 경기 용어 설명).</span></div>
     <div class="gc-row"><span class="gtag y">수업 중 모드</span><span>차시 화면 위쪽의 <b>수업 중 모드</b>를 누르면 휴대폰을 힐끗 보고 진행하도록 지금 활동 이름, 큰 타이머, 이렇게 해요, 꿀팁, 팀, 다음 활동만 크게 나옵니다. 화면이 꺼지지 않고, 1분 남으면 소리·진동으로 알려 줍니다. 원래 화면은 <b>자세히 보기</b>를 누르면 돌아오며, 고른 모드는 다음에도 기억합니다.</span></div>
-    <div class="gc-row"><span class="gtag w">형태 바꾸기</span><span>연습·게임을 <b>6인(3:3)·8인(4:4)·10인(5:5) 모둠</b>으로 바꿔 진행할 때 엽니다. 모둠·편·교대 인원이 자동으로 나뉩니다. 리그·순위 결정전 같은 <b>종합 게임</b>은 해당하지 않아 안내 문구만 나옵니다.</span></div>
+    <div class="gc-row"><span class="gtag w">형태 바꾸기</span><span>연습·게임을 <b class="wrap">6인(3:3)·8인(4:4)·10인(5:5) 모둠</b>으로 바꿔 진행할 때 엽니다. 모둠·편·교대 인원이 자동으로 나뉩니다. 리그·순위 결정전 같은 <b>종합 게임</b>은 해당하지 않아 안내 문구만 나옵니다.</span></div>
     <div class="gc-row"><span class="gtag">영상·사진</span><span>활동마다 시범 사진·영상·유튜브 링크를 넣어 두고 학생에게 바로 보여 줍니다. 넣는 법은 아래 자주 묻는 질문에 있습니다.</span></div>
     <div class="gc-row"><span class="gtag y">★ 평가</span><span>평가 활동 표시. 지도안 칸에 관찰할 내용이 적혀 있습니다.</span></div>
     <div class="gc-row"><span class="gtag w">약속 화면</span><span>발로 하는 공놀이를 뺀 단원은 약속 화면 아래 접힌 칸에 그 차시의 <b>오늘 준비</b>(대형·준비물), <b>홀수 반</b>, <b>변형 게임</b>이 들어 있습니다.</span></div>
@@ -565,9 +570,9 @@ function renderGuide(){
   <div class="gsec"><h2><i>5</i>소리 안내</h2>
    <div class="gsounds">
     <div><b>삑</b><span>타이머 시작</span></div>
-    <div><b>띵동댕동</b><span>시작하기·이어 하기</span></div>
+    <div><b>띵동댕동</b><span>시작·이어서</span></div>
     <div><b>삑삑삑</b><span>10분 끝</span></div>
-    <div><b>호루라기</b><span>정지 신호(한 번 또는 두 번)</span></div>
+    <div><b>호루라기 ×2</b><span>정지 신호</span></div>
    </div></div>
 
   <div class="gsec"><h2><i>6</i>인원 나누기 규칙</h2>
@@ -603,17 +608,9 @@ function renderGuide(){
     <dt>차시를 건너뛰어도 되나요?</dt><dd>됩니다. 홈에서 원하는 차시 번호를 누르면 됩니다. 끝낸 차시는 왕관, 하다 만 차시는 노란 점으로 표시됩니다.</dd>
    </dl></div>
 
-<div class="gsec gwarn"><h2><i>!</i>꼭 확인해 주세요</h2>
-   <ul>
-    <li>티볼·배드민턴·배구형 게임·육상·넷볼·농구의 대형 그림은 종목별 <b>예시 그림</b>입니다. 실제 자리와 거리는 지도안 칸의 '대형·준비'를 따르세요.</li>
-    <li>성취기준 코드와 문구, 교과서 활동 이름, 종목 공식 경기 규칙, 대회·연수 일정은 넣지 않았습니다. 대회 준비 때는 주관 단체 최신 규정을 확인하세요.</li>
-    <li>육상의 교육과정 영역 표기는 확인이 필요해 '육상'으로만 적었습니다.</li>
-    <li>배구형 게임의 코트 크기·네트 높이·점수(7·11·15점 내기)는 초등 수업용으로 줄인 값이며 공식 규격이 아닙니다. 대회 준비 때는 대한민국배구협회·FIVB 최신 규칙을 따르세요.</li>
-    <li>농구는 공식 경기 규칙을 적지 않고, 17차시에서 '학급 규칙'으로 정하도록 했습니다. 대회·학교스포츠클럽 준비 때는 대한민국농구협회·FIBA 최신 규칙으로 바꿔 쓰세요. 골대 높이는 조절할 수 있으면 5학년 2.6m · 6학년 3.05m입니다.</li>
-    <li>발로 하는 공놀이 2~13, 15~20차시는 단원 흐름에 맞춰 새로 짠 것입니다. 수업에 맞지 않는 곳은 고쳐서 쓰세요.</li>
-    <li>발로 하는 공놀이 13차시 '콘 맞혀 콘 가져오기'의 세부 규칙과 17차시 킥인·킥오프는 풋살 공식 규칙 세부를 확인해 주세요.</li>
-    <li>학생 화면의 짧은 설명은 지도안 문장을 자동으로 줄인 것이라 어색한 곳이 있을 수 있습니다. 정확한 문장은 '선생님 지도안' 칸을 보세요.</li>
-   </ul></div>
+  <div class="gsec gend"><h2><i>✎</i>만든 사람</h2>
+   <p class="glead">${MAKER}</p>
+   <p class="gnote">수업에서 고칠 곳이나 더 넣고 싶은 활동이 있으면 만든 사람에게 알려 주세요.</p></div>
   </section>`;
 }
 function curId(){ return ui.route.startsWith('lesson-')?toId(ui.route.slice(7)):null; }

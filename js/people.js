@@ -95,7 +95,7 @@ function todayBar(){
 const RULE_NS=[6,8,10,12,14,16,18,20,21,22,23,24,26,30,35,40,46,50];
 function ruleTableHTML(){
   const cols=[['pair','짝'],['group','모둠'],['six','3:3 팀'],['four','팀 경기'],['half','반 2팀']];
-  return `<p class="rulehint">빨간 인원은 홀수 · 굵은 숫자는 모둠(팀) 수</p><div class="ruletbl"><table><thead><tr><th>인원</th>${cols.map(([,t])=>`<th>${t}</th>`).join('')}</tr></thead><tbody>${RULE_NS.map(N=>`<tr${N%2?' class="odd"':''}><th>${N}명</th>${cols.map(([f])=>{ const z=sizesOf(f,N); return `<td><b>${z.length}</b>${FORMS[f].unit}<small>${szText(z).split('·').join('·<wbr>')}</small></td>`; }).join('')}</tr>`).join('')}</tbody></table></div>`; }
+  return `<p class="rulehint">빨간 인원은 홀수 · 굵은 숫자는 모둠(팀) 수</p><div class="ruletbl"><table><thead><tr><th>인원</th>${cols.map(([,t])=>`<th>${t}</th>`).join('')}</tr></thead><tbody>${RULE_NS.map(N=>`<tr${N%2?' class="odd"':''}><th>${N}명</th>${cols.map(([f])=>{ const z=sizesOf(f,N); return `<td><span class="rn"><b>${z.length}</b>${FORMS[f].unit}</span><small>${szText(z).split('·').map(x=>`<span>${x}</span>`).join('')}</small></td>`; }).join('')}</tr>`).join('')}</tbody></table></div>`; }
 const RULES_PEOPLE=[
   ['기본','학급 20~23명은 미리 정한 표대로 나눔. 그 밖의 인원(6~50명)은 같은 규칙으로 계산함'],
   ['홀수','남는 1명을 혼자 두지 않음. 짝은 3인 1조, 모둠·팀은 1명 많은 쪽이 교대·기록을 맡음'],
