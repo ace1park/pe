@@ -47,7 +47,8 @@ addLessons([
      "easy": "손 높이까지만 띄우기",
      "hard": "천장 가까이 높이 띄우기",
      "d": {
-      "t": "vb_solo"
+      "t": "vb_solo",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목과 어깨 돌리기 먼저",
@@ -79,7 +80,8 @@ addLessons([
      "easy": "낮게 띄워 빠르게 반복",
      "hard": "높이 띄워 한 바퀴 돌고 받기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목과 어깨 돌리기 먼저",
@@ -111,7 +113,8 @@ addLessons([
      "easy": "짝이 제자리로 띄워 주기",
      "hard": "좌우·앞뒤로 멀리 비껴 띄워 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목과 어깨 돌리기 먼저",
@@ -143,7 +146,13 @@ addLessons([
      "easy": "후프를 두 개로 줄여 가깝게",
      "hard": "후프를 여섯 개로 늘려 멀리 놓기",
      "d": {
-      "t": "vb_group"
+      "t": "pk_target",
+      "zone": "hoop",
+      "nopad": true,
+      "lab": {
+       "pass": "후프 안으로 올려 주기"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목과 어깨 돌리기 먼저",
@@ -208,7 +217,10 @@ addLessons([
      "easy": "구역 2m 로 좁게",
      "hard": "구역 5m 로 넓게 · 빠르게",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "4m × 4m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -240,7 +252,14 @@ addLessons([
      "easy": "좌우 간격 2m",
      "hard": "좌우 간격 4m",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "4m × 4m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -272,7 +291,8 @@ addLessons([
      "easy": "머리 바로 위로 띄워 주기",
      "hard": "3m 뒤까지 넘겨 띄워 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "4m × 4m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -304,7 +324,10 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "네 칸으로 나누고 좌우까지 넣기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "n": 3,
+      "rot": false,
+      "ball": "vball"
      },
      "t": {
       "prep": "4m × 4m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -369,7 +392,10 @@ addLessons([
      "easy": "네트에서 2m 앞에서",
      "hard": "네트에서 4m 뒤에서",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(4m × 8m) · 네트 높이 1.2m · 네트가 없으면 콘 두 개에 고무줄을 매어 대신함",
@@ -401,7 +427,8 @@ addLessons([
      "easy": "코트를 5m × 5m 로 넓히기",
      "hard": "코트를 3m × 3m 로 좁히기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(4m × 8m) · 네트 높이 1.2m · 네트가 없으면 콘 두 개에 고무줄을 매어 대신함",
@@ -433,7 +460,14 @@ addLessons([
      "easy": "네트 바로 위를 넘기면 인정",
      "hard": "네트 위 2m 보다 높게",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(4m × 8m) · 네트 높이 1.2m · 네트가 없으면 콘 두 개에 고무줄을 매어 대신함",
@@ -465,7 +499,8 @@ addLessons([
      "easy": "코트 3m × 3m · 네트 1m",
      "hard": "코트 5m × 5m · 네트 1.4m",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(4m × 8m) · 네트 높이 1.2m · 네트가 없으면 콘 두 개에 고무줄을 매어 대신함",
@@ -530,7 +565,8 @@ addLessons([
      "easy": "다섯 걸음까지 허용",
      "hard": "두 걸음까지만 · 잡고 3초 안에",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 3대 3 · 코트 안을 앞·뒤 두 칸으로 나눠 원마커로 표시",
@@ -562,7 +598,10 @@ addLessons([
      "easy": "다섯 걸음 · 5점 내기",
      "hard": "두 걸음 · 11점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 3대 3 · 코트 안을 앞·뒤 두 칸으로 나눠 원마커로 표시",
@@ -594,7 +633,8 @@ addLessons([
      "easy": "거치지 않고 바로 넘겨도 인정",
      "hard": "세 사람을 모두 거쳐야 인정",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 3대 3 · 코트 안을 앞·뒤 두 칸으로 나눠 원마커로 표시",
@@ -626,7 +666,8 @@ addLessons([
      "easy": "거치지 않아도 1점",
      "hard": "두 사람을 거쳐야만 점수 인정",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 3대 3 · 코트 안을 앞·뒤 두 칸으로 나눠 원마커로 표시",
@@ -691,7 +732,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 상대 코트를 네 칸으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -723,7 +765,8 @@ addLessons([
      "easy": "모든 칸을 1점으로",
      "hard": "말한 칸이 아니면 1점 감점",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 상대 코트를 네 칸으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -755,7 +798,8 @@ addLessons([
      "easy": "상대가 아주 한쪽에 몰려 서기",
      "hard": "상대가 고르게 벌려 서기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 상대 코트를 네 칸으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -788,7 +832,8 @@ addLessons([
      "easy": "다섯 걸음 허용 · 5점 내기",
      "hard": "두 걸음 · 11점 내기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 상대 코트를 네 칸으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -854,7 +899,9 @@ addLessons([
      "easy": "앉아서 손 모양만 만들기",
      "hard": "눈을 감고 손 모양 만들기",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -886,7 +933,8 @@ addLessons([
      "easy": "한 번 잡았다 다시 올려도 됨",
      "hard": "잡지 않고 이어서만",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_solo",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -918,7 +966,14 @@ addLessons([
      "easy": "거리 2m · 짝이 천천히 띄워 주기",
      "hard": "거리 5m · 짝이 높이 띄워 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -950,7 +1005,12 @@ addLessons([
      "easy": "원 지름 3m · 한 번 잡아도 됨",
      "hard": "원 지름 5m · 잡지 않고",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -1015,7 +1075,10 @@ addLessons([
      "easy": "올려 주지 않고 손으로 건네주기",
      "hard": "올려 준 공을 잡지 않고 바로 넘기기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 올려 주는 사람 자리를 원마커로 표시 · 2인 1조",
@@ -1047,7 +1110,8 @@ addLessons([
      "easy": "한 번에 넘겨도 1점",
      "hard": "꼭 두 번 만에 넘겨야 인정",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 올려 주는 사람 자리를 원마커로 표시 · 2인 1조",
@@ -1079,7 +1143,8 @@ addLessons([
      "easy": "올려 주는 사람이 움직여 받아도 됨",
      "hard": "올려 주는 사람이 한 걸음도 움직이지 않기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 올려 주는 사람 자리를 원마커로 표시 · 2인 1조",
@@ -1111,7 +1176,8 @@ addLessons([
      "easy": "두 사람만 거쳐도 2점",
      "hard": "가운데 사람이 매 판 바뀌어야 인정",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 올려 주는 사람 자리를 원마커로 표시 · 2인 1조",
@@ -1177,7 +1243,14 @@ addLessons([
      "easy": "짝이 가까이서 약하게 튀겨 주기",
      "hard": "짝이 멀리서 세게 튀겨 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "한 번 튀겨 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 바닥이 고른 곳 · 2인 1조",
@@ -1209,7 +1282,14 @@ addLessons([
      "easy": "두 번까지 튀겨도 됨",
      "hard": "튀기지 않고 바로 받기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_pair",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "한 번 튀겨 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 바닥이 고른 곳 · 2인 1조",
@@ -1241,7 +1321,14 @@ addLessons([
      "easy": "잡았다가 올려 줘도 됨",
      "hard": "잡지 않고 바로 올려 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "한 번 튀겨 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 바닥이 고른 곳 · 2인 1조",
@@ -1273,7 +1360,10 @@ addLessons([
      "easy": "코트 3m × 3m · 두 번까지 튀기기",
      "hard": "코트 5m × 5m · 한 번만 튀기기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.2m · 바닥이 고른 곳 · 2인 1조",
@@ -1338,7 +1428,8 @@ addLessons([
      "easy": "셋 가운데 두 가지만",
      "hard": "세 가지를 끊지 않고 이어서",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(4m × 8m) · 네트 1.2m · 6팀 · 코트마다 심판 1명",
@@ -1370,7 +1461,8 @@ addLessons([
      "easy": "5점 내기",
      "hard": "11점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(4m × 8m) · 네트 1.2m · 6팀 · 코트마다 심판 1명",
@@ -1403,7 +1495,8 @@ addLessons([
      "easy": "교사가 고칠 것을 골라 주기",
      "hard": "팀이 스스로 정하고 까닭까지 말하기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(4m × 8m) · 네트 1.2m · 6팀 · 코트마다 심판 1명",
@@ -1435,7 +1528,8 @@ addLessons([
      "easy": "5점 내기",
      "hard": "11점 내기 · 세 사람 모두 거쳐야 점수",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(4m × 8m) · 네트 1.2m · 6팀 · 코트마다 심판 1명",
@@ -1502,7 +1596,8 @@ addLessons([
      "easy": "셋 가운데 두 가지만",
      "hard": "세 가지를 끊지 않고 이어서",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.2m · 6팀 · 평가 관찰은 게임 2 에서",
@@ -1534,7 +1629,8 @@ addLessons([
      "easy": "5점 내기",
      "hard": "11점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.2m · 6팀 · 평가 관찰은 게임 2 에서",
@@ -1567,7 +1663,9 @@ addLessons([
      "easy": "한 가지만 적기",
      "hard": "나아진 점과 그 까닭까지 적기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.2m · 6팀 · 평가 관찰은 게임 2 에서",
@@ -1599,7 +1697,8 @@ addLessons([
      "easy": "5점 내기 · 두 사람만 거쳐도 점수",
      "hard": "11점 내기 · 세 사람 모두 거쳐야 점수",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.2m · 6팀 · 평가 관찰은 게임 2 에서",
@@ -1666,7 +1765,8 @@ addLessons([
      "easy": "거리 6m · 걸어서",
      "hard": "거리 15m · 뛰면서",
      "d": {
-      "t": "vb_solo"
+      "t": "vb_solo",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목·어깨·무릎 돌리기 먼저",
@@ -1698,7 +1798,8 @@ addLessons([
      "easy": "돌지 않고 손뼉 한 번 치고 잡기",
      "hard": "두 바퀴 돌고 잡기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목·어깨·무릎 돌리기 먼저",
@@ -1730,7 +1831,13 @@ addLessons([
      "easy": "머리 위로만 넘기기",
      "hard": "머리 위와 다리 사이를 번갈아",
      "d": {
-      "t": "vb_court"
+      "t": "pk_lines",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기고 줄 뒤로"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목·어깨·무릎 돌리기 먼저",
@@ -1762,7 +1869,13 @@ addLessons([
      "easy": "후프 두 개로 가깝게",
      "hard": "후프 여섯 개로 멀리",
      "d": {
-      "t": "vb_group"
+      "t": "pk_target",
+      "zone": "hoop",
+      "nopad": true,
+      "lab": {
+       "pass": "후프 안으로 올려 주기"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 넓게 흩어져 서기 · 손목·어깨·무릎 돌리기 먼저",
@@ -1827,7 +1940,9 @@ addLessons([
      "easy": "5초 버티기 · 무릎 조금만 굽히기",
      "hard": "15초 버티기 · 발 옮기며",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -1859,7 +1974,10 @@ addLessons([
      "easy": "구역 6m × 6m · 걸어서",
      "hard": "구역 4m × 4m · 빠르게",
      "d": {
-      "t": "vb_group"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -1891,7 +2009,8 @@ addLessons([
      "easy": "방향을 말로도 알려 주기",
      "hard": "손짓만 보고 · 빠르게 바꾸기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -1923,7 +2042,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "번호를 두 개 이어 외치기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개를 원마커로 표시 · 2인 1조",
@@ -1988,7 +2108,9 @@ addLessons([
      "easy": "앉아서 손 모양만 만들기",
      "hard": "낮은 자세로 서서 모양 만들기",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 4m 간격 두 줄 · 바닥이 고른 곳 · 2인 1조",
@@ -2020,7 +2142,9 @@ addLessons([
      "easy": "거리 2m · 천천히 굴려 주기",
      "hard": "거리 6m · 빠르게 굴려 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 4m 간격 두 줄 · 바닥이 고른 곳 · 2인 1조",
@@ -2052,7 +2176,8 @@ addLessons([
      "easy": "거리 2m · 아주 느리게 띄워 주기",
      "hard": "거리 6m · 낮게 보내 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 4m 간격 두 줄 · 바닥이 고른 곳 · 2인 1조",
@@ -2084,7 +2209,12 @@ addLessons([
      "easy": "원 지름 3m · 한 번 잡아도 됨",
      "hard": "원 지름 5m · 잡지 않고",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 4m 간격 두 줄 · 바닥이 고른 곳 · 2인 1조",
@@ -2149,7 +2279,14 @@ addLessons([
      "easy": "짝이 가까이서 약하게 튀겨 주기",
      "hard": "짝이 멀리서 세게 튀겨 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "한 번 튀겨 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(5m × 10m) · 네트 1.4m · 바닥이 고른 곳 · 2인 1조",
@@ -2181,7 +2318,14 @@ addLessons([
      "easy": "두 번까지 튀겨도 됨",
      "hard": "튀기지 않고 바로 받기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_pair",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "한 번 튀겨 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(5m × 10m) · 네트 1.4m · 바닥이 고른 곳 · 2인 1조",
@@ -2213,7 +2357,8 @@ addLessons([
      "easy": "잡았다가 올려 줘도 됨",
      "hard": "잡지 않고 두 번 만에 넘기기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(5m × 10m) · 네트 1.4m · 바닥이 고른 곳 · 2인 1조",
@@ -2245,7 +2390,8 @@ addLessons([
      "easy": "코트 4m × 8m · 5점 내기",
      "hard": "코트 6m × 12m · 11점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면(5m × 10m) · 네트 1.4m · 바닥이 고른 곳 · 2인 1조",
@@ -2310,7 +2456,10 @@ addLessons([
      "easy": "좌우 간격 1.5m",
      "hard": "좌우 간격 3m",
      "d": {
-      "t": "vb_pair"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개 · 각 구역을 앞·뒤·좌·우 네 칸으로 나눠 원마커로 표시",
@@ -2342,7 +2491,13 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "pk_quad",
+      "nopad": true,
+      "lab": {
+       "pass": "아무 칸으로 넘기기",
+       "run": "놓치면 줄 뒤로"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개 · 각 구역을 앞·뒤·좌·우 네 칸으로 나눠 원마커로 표시",
@@ -2374,7 +2529,14 @@ addLessons([
      "easy": "머리 바로 위로 띄워 주기",
      "hard": "3m 뒤까지 넘겨 띄워 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개 · 각 구역을 앞·뒤·좌·우 네 칸으로 나눠 원마커로 표시",
@@ -2406,7 +2568,10 @@ addLessons([
      "easy": "한쪽 코트 4m × 4m",
      "hard": "한쪽 코트 6m × 6m",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "5m × 5m 구역 여섯 개 · 각 구역을 앞·뒤·좌·우 네 칸으로 나눠 원마커로 표시",
@@ -2471,7 +2636,9 @@ addLessons([
      "easy": "앉아서 손 모양만 만들기",
      "hard": "낮은 자세로 서서 눈을 감고 만들기",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -2503,7 +2670,8 @@ addLessons([
      "easy": "한 번 잡았다 다시 올려도 됨",
      "hard": "잡지 않고 이어서만",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_solo",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -2535,7 +2703,8 @@ addLessons([
      "easy": "거리 2m · 천천히 띄워 주기",
      "hard": "거리 6m · 높이 띄워 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -2567,7 +2736,12 @@ addLessons([
      "easy": "원 지름 3m · 한 번 잡아도 됨",
      "hard": "원 지름 5m · 잡지 않고",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "1인 1 공 · 2m 간격으로 흩어져 서기 · 손가락과 손목 풀기 먼저",
@@ -2632,7 +2806,8 @@ addLessons([
      "easy": "올려 주는 사람이 공을 잡았다 올려 줘도 됨",
      "hard": "잡지 않고 한 번에 올려 주기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 올려 주는 자리를 네트 앞 2m 에 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -2664,7 +2839,10 @@ addLessons([
      "easy": "한 번에 넘겨도 2점",
      "hard": "꼭 두 번 만에 넘겨야 점수 인정",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 올려 주는 자리를 네트 앞 2m 에 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -2696,7 +2874,8 @@ addLessons([
      "easy": "각 단계에서 한 번 잡았다 보내도 됨",
      "hard": "잡지 않고 세 번 만에 넘기기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 올려 주는 자리를 네트 앞 2m 에 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -2729,7 +2908,8 @@ addLessons([
      "easy": "두 번에 넘겨도 3점",
      "hard": "꼭 세 번 만에 넘겨야 3점",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 올려 주는 자리를 네트 앞 2m 에 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -2794,7 +2974,14 @@ addLessons([
      "easy": "높낮이를 크게 달리해 주기",
      "hard": "높낮이를 비슷하게 섞어 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 허리 높이를 기준으로 삼기로 약속",
@@ -2826,7 +3013,8 @@ addLessons([
      "easy": "거리 3m · 느리게",
      "hard": "거리 6m · 빠르게",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 허리 높이를 기준으로 삼기로 약속",
@@ -2858,7 +3046,8 @@ addLessons([
      "easy": "두 공 사이를 넉넉히 두기",
      "hard": "두 공을 이어서 빠르게 보내기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 허리 높이를 기준으로 삼기로 약속",
@@ -2890,7 +3079,10 @@ addLessons([
      "easy": "높낮이를 크게 달리해 주기",
      "hard": "같은 높이를 두 번 이어 보내지 않기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 허리 높이를 기준으로 삼기로 약속",
@@ -2955,7 +3147,9 @@ addLessons([
      "easy": "앉은 자세에서 팔 휘두르기만",
      "hard": "한 발 내디디며 몸 전체로",
      "d": {
-      "t": "vb_serve"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 시작선을 코트 뒤 5m 에 원마커로 표시 · 4인 모둠",
@@ -2987,7 +3181,8 @@ addLessons([
      "easy": "네트에서 3m 앞에서 치기",
      "hard": "코트 뒤 5m 시작선에서 치기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 시작선을 코트 뒤 5m 에 원마커로 표시 · 4인 모둠",
@@ -3019,7 +3214,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸으로 나누기",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 시작선을 코트 뒤 5m 에 원마커로 표시 · 4인 모둠",
@@ -3051,7 +3247,8 @@ addLessons([
      "easy": "네트 높이 1.2m · 거리 3m",
      "hard": "네트 높이 1.6m · 거리 6m",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 시작선을 코트 뒤 5m 에 원마커로 표시 · 4인 모둠",
@@ -3116,7 +3313,8 @@ addLessons([
      "easy": "시작 공을 손으로 던져 주기",
      "hard": "시작선 뒤에서 세게 쳐 주기",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 받는 자리 세 곳을 원마커로 표시 · 4대 4",
@@ -3148,7 +3346,8 @@ addLessons([
      "easy": "한 번 튀겨도 되고 네 번까지 허용",
      "hard": "튀기지 않고 꼭 세 번 안에",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 받는 자리 세 곳을 원마커로 표시 · 4대 4",
@@ -3180,7 +3379,10 @@ addLessons([
      "easy": "자리를 바꾸지 않고 한 역할만",
      "hard": "한 번 넘길 때마다 자리 돌기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "n": 3,
+      "rot": false,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 받는 자리 세 곳을 원마커로 표시 · 4대 4",
@@ -3212,7 +3414,10 @@ addLessons([
      "easy": "한 번 튀겨도 됨 · 7점 내기",
      "hard": "튀기지 않고 · 15점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 받는 자리 세 곳을 원마커로 표시 · 4대 4",
@@ -3278,7 +3483,8 @@ addLessons([
      "easy": "공을 올려놓고 흔들기만",
      "hard": "열 번 연속 튀기며 자리 옮기기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_cloth",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 2인 1조가 보자기 한 장 · 보자기는 가로 50cm 세로 80cm 정도",
@@ -3310,7 +3516,8 @@ addLessons([
      "easy": "다섯 걸음까지 허용",
      "hard": "제자리에서 바로 넘기기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_cloth",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 2인 1조가 보자기 한 장 · 보자기는 가로 50cm 세로 80cm 정도",
@@ -3342,7 +3549,8 @@ addLessons([
      "easy": "거치지 않고 바로 넘겨도 인정",
      "hard": "두 조를 꼭 거쳐야 인정",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 2인 1조가 보자기 한 장 · 보자기는 가로 50cm 세로 80cm 정도",
@@ -3374,7 +3582,8 @@ addLessons([
      "easy": "코트 4m × 8m · 7점 내기",
      "hard": "코트 6m × 12m · 15점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_cloth",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.4m · 2인 1조가 보자기 한 장 · 보자기는 가로 50cm 세로 80cm 정도",
@@ -3441,7 +3650,8 @@ addLessons([
      "easy": "셋 가운데 두 가지만",
      "hard": "세 가지를 끊지 않고 이어서",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(5m × 10m) · 네트 1.4m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -3473,7 +3683,8 @@ addLessons([
      "easy": "7점 내기 · 한 번 튀겨도 됨",
      "hard": "15점 내기 · 튀기지 않고",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(5m × 10m) · 네트 1.4m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -3506,7 +3717,8 @@ addLessons([
      "easy": "교사가 고칠 것을 골라 주기",
      "hard": "팀이 스스로 정하고 까닭까지 말하기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(5m × 10m) · 네트 1.4m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -3538,7 +3750,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기 · 두 사람 이상 거쳐야 점수",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(5m × 10m) · 네트 1.4m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -3605,7 +3818,9 @@ addLessons([
      "easy": "짝이 천천히 띄워 주기",
      "hard": "짝이 낮고 빠르게 보내 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 받는 사람 머리 위 3m 높이를 눈으로 정해 두기",
@@ -3637,7 +3852,14 @@ addLessons([
      "easy": "기준을 머리 위 2m 로 낮추기",
      "hard": "기준을 천장 조명 높이로 올리기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 받는 사람 머리 위 3m 높이를 눈으로 정해 두기",
@@ -3669,7 +3891,8 @@ addLessons([
      "easy": "짝이 가까이 떨어뜨려 주기",
      "hard": "짝이 네트 바로 앞에 떨어뜨려 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 받는 사람 머리 위 3m 높이를 눈으로 정해 두기",
@@ -3701,7 +3924,12 @@ addLessons([
      "easy": "원 지름 3m · 한 번 튀겨도 됨",
      "hard": "원 지름 6m · 튀기지 않고",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 받는 사람 머리 위 3m 높이를 눈으로 정해 두기",
@@ -3766,7 +3994,9 @@ addLessons([
      "easy": "앉아서 손 모양만 만들기",
      "hard": "낮은 자세로 서서 눈 감고 만들기",
      "d": {
-      "t": "vb_solo"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 손가락과 손목 풀기 먼저 · 2인 1조",
@@ -3798,7 +4028,8 @@ addLessons([
      "easy": "한 번 잡았다 다시 올려도 됨",
      "hard": "자리를 옮기며 이어서 올리기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_solo",
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 손가락과 손목 풀기 먼저 · 2인 1조",
@@ -3830,7 +4061,14 @@ addLessons([
      "easy": "보낼 곳을 한 군데로 정해 두기",
      "hard": "짝이 보낼 곳을 손으로 가리켜 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 손가락과 손목 풀기 먼저 · 2인 1조",
@@ -3862,7 +4100,12 @@ addLessons([
      "easy": "한 변 3m · 한 번 잡아도 됨",
      "hard": "한 변 6m · 잡지 않고",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "짝과 5m 간격 두 줄 · 손가락과 손목 풀기 먼저 · 2인 1조",
@@ -3927,7 +4170,8 @@ addLessons([
      "easy": "높낮이를 크게 달리해 주기",
      "hard": "높낮이를 비슷하게 섞어 주기",
      "d": {
-      "t": "vb_pair"
+      "t": "vb_pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 허리 높이를 기준으로 삼기로 약속 · 2인 1조",
@@ -3959,7 +4203,14 @@ addLessons([
      "easy": "거리 3m · 느리게",
      "hard": "거리 7m · 빠르게",
      "d": {
-      "t": "vb_pair"
+      "t": "pk_pair",
+      "nopad": true,
+      "nonet": true,
+      "lab": {
+       "pass2": "띄워 주고받기",
+       "mk2": ""
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 허리 높이를 기준으로 삼기로 약속 · 2인 1조",
@@ -3991,7 +4242,8 @@ addLessons([
      "easy": "앞뒤 간격 2m",
      "hard": "앞뒤 간격 5m",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 허리 높이를 기준으로 삼기로 약속 · 2인 1조",
@@ -4023,7 +4275,8 @@ addLessons([
      "easy": "같은 높이로만 보내 주기",
      "hard": "같은 높이를 두 번 이어 보내지 않기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 허리 높이를 기준으로 삼기로 약속 · 2인 1조",
@@ -4088,7 +4341,10 @@ addLessons([
      "easy": "세 명이 한 줄로 단순하게",
      "hard": "네 명이 앞뒤 두 명씩 나눠 서기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "n": 3,
+      "rot": false,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 자리를 네트 앞 2m 가운데에 원마커로 표시",
@@ -4120,7 +4376,10 @@ addLessons([
      "easy": "각 단계에서 한 번 잡았다 보내도 됨",
      "hard": "잡지 않고 세 번 만에",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 자리를 네트 앞 2m 가운데에 원마커로 표시",
@@ -4152,7 +4411,8 @@ addLessons([
      "easy": "두 바퀴만 돌기",
      "hard": "옮기는 중에도 공이 끊기지 않게",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 자리를 네트 앞 2m 가운데에 원마커로 표시",
@@ -4184,7 +4444,8 @@ addLessons([
      "easy": "두 번에 넘겨도 3점",
      "hard": "꼭 세 번 만에 넘겨야 3점",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 자리를 네트 앞 2m 가운데에 원마커로 표시",
@@ -4249,7 +4510,13 @@ addLessons([
      "easy": "한 번 튀겨도 됨 · 코트 4m × 8m",
      "hard": "튀기지 않고 · 코트 6m × 12m",
      "d": {
-      "t": "vb_court"
+      "t": "pk_lines",
+      "nopad": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기고 줄 뒤로"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 4대 4 · 평가 관찰은 연습 2 에서",
@@ -4281,7 +4548,8 @@ addLessons([
      "easy": "한 번 튀겨도 됨",
      "hard": "꼭 세 번씩 거쳐 넘겨야 인정",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 4대 4 · 평가 관찰은 연습 2 에서",
@@ -4314,7 +4582,10 @@ addLessons([
      "easy": "두 번 만에 넘겨도 인정",
      "hard": "꼭 세 번 만에 · 같은 사람이 두 번 치지 않기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 4대 4 · 평가 관찰은 연습 2 에서",
@@ -4347,7 +4618,8 @@ addLessons([
      "easy": "7점 내기 · 같은 사람 두 번 허용",
      "hard": "15점 내기 · 세 번을 꼭 다 쓰기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 4대 4 · 평가 관찰은 연습 2 에서",
@@ -4413,7 +4685,8 @@ addLessons([
      "easy": "올려 주는 사람이 움직여 받아도 됨",
      "hard": "올려 주는 사람이 한 걸음도 움직이지 않기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 사람 자리를 조끼 색으로 구분 · 4대 4",
@@ -4445,7 +4718,8 @@ addLessons([
      "easy": "거치지 않아도 2점",
      "hard": "꼭 거쳐야만 점수 인정",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 사람 자리를 조끼 색으로 구분 · 4대 4",
@@ -4477,7 +4751,8 @@ addLessons([
      "easy": "두 명만 번갈아 맡기",
      "hard": "넘길 때마다 바꾸기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 사람 자리를 조끼 색으로 구분 · 4대 4",
@@ -4509,7 +4784,8 @@ addLessons([
      "easy": "7점 내기 · 올려 주는 사람 고정",
      "hard": "15점 내기 · 세 번을 꼭 다 쓰기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 올려 주는 사람 자리를 조끼 색으로 구분 · 4대 4",
@@ -4575,7 +4851,9 @@ addLessons([
      "easy": "앉은 자세에서 팔 휘두르기만",
      "hard": "한 발 내디디며 몸 전체로",
      "d": {
-      "t": "vb_serve"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 서브 지점을 코트 뒤 6m 에 원마커로 표시 · 4인 모둠",
@@ -4607,7 +4885,8 @@ addLessons([
      "easy": "네트에서 3m 앞에서 치기",
      "hard": "코트 뒤 6m 서브 지점에서 치기",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 서브 지점을 코트 뒤 6m 에 원마커로 표시 · 4인 모둠",
@@ -4639,7 +4918,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸 가운데 뒤쪽 세 칸만 쓰기",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 서브 지점을 코트 뒤 6m 에 원마커로 표시 · 4인 모둠",
@@ -4671,7 +4951,8 @@ addLessons([
      "easy": "네트 높이 1.3m · 거리 4m",
      "hard": "네트 높이 1.7m · 거리 7m",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 서브 지점을 코트 뒤 6m 에 원마커로 표시 · 4인 모둠",
@@ -4737,7 +5018,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "네 칸으로 나누고 앞쪽까지 넣기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 받는 자리 세 곳과 올려 주는 자리를 원마커로 표시",
@@ -4769,7 +5051,8 @@ addLessons([
      "easy": "받기만 해도 2점",
      "hard": "올려 주는 사람 한 걸음 안에 보내야 2점",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 받는 자리 세 곳과 올려 주는 자리를 원마커로 표시",
@@ -4801,7 +5084,10 @@ addLessons([
      "easy": "각 단계에서 한 번 잡았다 보내도 됨",
      "hard": "잡지 않고 세 번 만에",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 받는 자리 세 곳과 올려 주는 자리를 원마커로 표시",
@@ -4833,7 +5119,8 @@ addLessons([
      "easy": "7점 내기 · 서브를 가까이서 넣기",
      "hard": "15점 내기 · 서브 지점에서만",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 받는 자리 세 곳과 올려 주는 자리를 원마커로 표시",
@@ -4899,7 +5186,9 @@ addLessons([
      "easy": "앉은 자세에서 팔만 휘두르기",
      "hard": "한 발 내디디며 몸 전체로",
      "d": {
-      "t": "vb_spike"
+      "t": "gen_shadow",
+      "mark": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 2m 에 치는 선을 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -4931,7 +5220,8 @@ addLessons([
      "easy": "올려 준 공을 한 번 잡았다 던져 넘겨도 됨",
      "hard": "치는 선을 네트 앞 3m 로 뒤로 물리기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 2m 에 치는 선을 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -4963,7 +5253,8 @@ addLessons([
      "easy": "올려 준 공을 잡았다 던져 넘기기",
      "hard": "잡지 않고 세 번 만에 끝내기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 2m 에 치는 선을 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -4996,7 +5287,9 @@ addLessons([
      "easy": "콘을 30개로 늘리고 간격을 좁히기",
      "hard": "콘을 12개로 줄이고 구역을 1.5m 로 좁히기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_block",
+      "cones": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 2m 에 치는 선을 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -5062,7 +5355,8 @@ addLessons([
      "easy": "제자리에서 손만 올리기",
      "hard": "옆으로 두 걸음 옮기며 올리기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_block",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 1m 선을 원마커로 표시 · 4인 모둠",
@@ -5094,7 +5388,8 @@ addLessons([
      "easy": "치는 사람이 천천히 밀어 넘기기",
      "hard": "치는 사람이 좌우로 비껴 치기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_block",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 1m 선을 원마커로 표시 · 4인 모둠",
@@ -5126,7 +5421,8 @@ addLessons([
      "easy": "뒤 사람이 두 명",
      "hard": "뒤 사람이 한 명 · 코트 넓게",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 1m 선을 원마커로 표시 · 4인 모둠",
@@ -5158,7 +5454,8 @@ addLessons([
      "easy": "막기만 해도 2점",
      "hard": "막고 세 번 안에 넘겨야 2점",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_block",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네트 앞 1m 선을 원마커로 표시 · 4인 모둠",
@@ -5224,7 +5521,8 @@ addLessons([
      "easy": "줄 높이 30cm · 거리 2m",
      "hard": "줄 높이 70cm · 거리 5m",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "땅 탁구 코트 6 면(3m × 5m · 네트 50cm) · 콘 쓰러뜨리기 코트 2 면 · 코트는 원마커로 표시",
@@ -5256,7 +5554,13 @@ addLessons([
      "easy": "탱탱볼로 · 코트 3m × 4m",
      "hard": "배구공으로 · 코트 3m × 6m",
      "d": {
-      "t": "vb_court"
+      "t": "pk_quad",
+      "nopad": true,
+      "lab": {
+       "pass": "손바닥으로 쳐 넘기기",
+       "run": "놓치면 줄 뒤로"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "땅 탁구 코트 6 면(3m × 5m · 네트 50cm) · 콘 쓰러뜨리기 코트 2 면 · 코트는 원마커로 표시",
@@ -5288,7 +5592,8 @@ addLessons([
      "easy": "구역 3m × 3m 로 넓히기",
      "hard": "구역 1.5m × 1.5m 로 좁히기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "땅 탁구 코트 6 면(3m × 5m · 네트 50cm) · 콘 쓰러뜨리기 코트 2 면 · 코트는 원마커로 표시",
@@ -5320,7 +5625,9 @@ addLessons([
      "easy": "콘 30개 · 구역 3m × 3m",
      "hard": "콘 12개 · 구역 1.5m × 1.5m",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_block",
+      "cones": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "땅 탁구 코트 6 면(3m × 5m · 네트 50cm) · 콘 쓰러뜨리기 코트 2 면 · 코트는 원마커로 표시",
@@ -5386,7 +5693,8 @@ addLessons([
      "easy": "네 가지 가운데 두 가지만",
      "hard": "네 가지를 끊지 않고 이어서",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -5418,7 +5726,8 @@ addLessons([
      "easy": "7점 내기 · 한 번 튀겨도 됨",
      "hard": "15점 내기 · 튀기지 않고",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -5451,7 +5760,8 @@ addLessons([
      "easy": "교사가 고칠 것을 골라 주기",
      "hard": "팀이 스스로 정하고 까닭까지 말하기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -5483,7 +5793,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기 · 같은 사람이 두 번 이어 치지 않기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 4팀 · 평가 관찰은 게임 2 에서",
@@ -5550,7 +5861,8 @@ addLessons([
      "easy": "네 자리 가운데 두 자리만",
      "hard": "네 자리를 쉬지 않고 이어서",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네 곳에 연습 자리를 만들어 모둠이 돌아가기",
@@ -5582,7 +5894,8 @@ addLessons([
      "easy": "열 번 가운데 세 번 성공이면 통과",
      "hard": "열 번 가운데 일곱 번 성공이어야 통과",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네 곳에 연습 자리를 만들어 모둠이 돌아가기",
@@ -5614,7 +5927,8 @@ addLessons([
      "easy": "교사가 고칠 것을 짚어 주기",
      "hard": "친구가 보고 한 가지만 말해 주기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네 곳에 연습 자리를 만들어 모둠이 돌아가기",
@@ -5646,7 +5960,8 @@ addLessons([
      "easy": "각 단계에서 한 번 잡았다 보내도 됨",
      "hard": "잡지 않고 끊김 없이 이어서",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 네 곳에 연습 자리를 만들어 모둠이 돌아가기",
@@ -5712,7 +6027,13 @@ addLessons([
      "easy": "구역 두 개만 쓰기",
      "hard": "구역 네 개를 빠르게 섞어 부르기",
      "d": {
-      "t": "vb_zones"
+      "t": "pk_quad",
+      "nopad": true,
+      "lab": {
+       "pass": "아무 칸으로 넘기기",
+       "run": "놓치면 줄 뒤로"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 한쪽 코트를 3m 씩 네 구역으로 나눠 원마커로 표시",
@@ -5744,7 +6065,8 @@ addLessons([
      "easy": "20초 동안",
      "hard": "45초 동안 · 구역 사이가 먼 순서로",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 한쪽 코트를 3m 씩 네 구역으로 나눠 원마커로 표시",
@@ -5776,7 +6098,8 @@ addLessons([
      "easy": "구역 두 개로만 보내 주기",
      "hard": "구역 네 개를 섞어 빠르게 보내 주기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 한쪽 코트를 3m 씩 네 구역으로 나눠 원마커로 표시",
@@ -5808,7 +6131,10 @@ addLessons([
      "easy": "셋이 나눠 맡기",
      "hard": "혼자 코트 전체 맡기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 한쪽 코트를 3m 씩 네 구역으로 나눠 원마커로 표시",
@@ -5874,7 +6200,8 @@ addLessons([
      "easy": "네 자리로 줄여 서기",
      "hard": "여섯 자리에서 공이 올 범위까지 말하기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 한쪽 코트에 여섯 자리를 원마커로 표시 · 세 모둠",
@@ -5906,7 +6233,8 @@ addLessons([
      "easy": "네 자리로 줄이기",
      "hard": "여섯 자리 · 자리 사이로 보내 주기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 한쪽 코트에 여섯 자리를 원마커로 표시 · 세 모둠",
@@ -5939,7 +6267,8 @@ addLessons([
      "easy": "두 바퀴만 돌기",
      "hard": "옮기는 중에도 공이 끊기지 않게",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 한쪽 코트에 여섯 자리를 원마커로 표시 · 세 모둠",
@@ -5971,7 +6300,8 @@ addLessons([
      "easy": "11점 내기 · 자리 돌기 없이",
      "hard": "21점 내기 · 서브도 자리 순서대로",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_rot",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 한쪽 코트에 여섯 자리를 원마커로 표시 · 세 모둠",
@@ -6037,7 +6367,12 @@ addLessons([
      "easy": "두 번 튀겨도 됨",
      "hard": "튀기지 않고 바로 받기",
      "d": {
-      "t": "vb_group"
+      "t": "square",
+      "lab": {
+       "pass": "올려 이어 주기",
+       "mk": "서는 자리"
+      },
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 3명씩 두 모둠",
@@ -6069,7 +6404,8 @@ addLessons([
      "easy": "7점 내기 · 두 번 튀겨도 됨",
      "hard": "15점 내기 · 튀기지 않고",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 3명씩 두 모둠",
@@ -6102,7 +6438,8 @@ addLessons([
      "easy": "두 구역으로만 나누기",
      "hard": "여섯 구역으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 3명씩 두 모둠",
@@ -6134,7 +6471,8 @@ addLessons([
      "easy": "7점 내기 · 모든 구역 1점",
      "hard": "15점 내기 · 빈 구역만 점수 인정",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 3명씩 두 모둠",
@@ -6200,7 +6538,8 @@ addLessons([
      "easy": "두 구역으로만 나누기",
      "hard": "좌우까지 나눠 여섯 구역으로",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 점수 구역으로 나눠 원마커로 표시",
@@ -6232,7 +6571,8 @@ addLessons([
      "easy": "서브를 네트 가까이서 넣기",
      "hard": "서브를 코트 뒤 6m 에서 넣기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 점수 구역으로 나눠 원마커로 표시",
@@ -6265,7 +6605,8 @@ addLessons([
      "easy": "뒤 구역을 넓게 잡기",
      "hard": "뒤 구역을 2m 로 좁히기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 점수 구역으로 나눠 원마커로 표시",
@@ -6297,7 +6638,8 @@ addLessons([
      "easy": "15점 내기",
      "hard": "35점 내기 · 뒤 구역만 점수 인정",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 점수 구역으로 나눠 원마커로 표시",
@@ -6363,7 +6705,8 @@ addLessons([
      "easy": "상대가 한쪽에 몰려 서기",
      "hard": "상대가 고르게 벌려 서기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 네 구역으로 나눠 원마커로 표시",
@@ -6395,7 +6738,8 @@ addLessons([
      "easy": "말하지 않아도 빈 구역이면 2점",
      "hard": "말한 구역에 들어가야만 2점",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 네 구역으로 나눠 원마커로 표시",
@@ -6427,7 +6771,8 @@ addLessons([
      "easy": "상대가 두 명만 서기",
      "hard": "상대가 네 명 고르게 서기",
      "d": {
-      "t": "vb_serve"
+      "t": "vb_serve",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 네 구역으로 나눠 원마커로 표시",
@@ -6459,7 +6804,8 @@ addLessons([
      "easy": "11점 내기",
      "hard": "21점 내기 · 같은 구역을 두 번 이어 노리지 않기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 네 구역으로 나눠 원마커로 표시",
@@ -6525,7 +6871,8 @@ addLessons([
      "easy": "세게와 살짝을 말해 주고 치기",
      "hard": "말하지 않고 섞어 치기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 앞 · 뒤 두 구역으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -6557,7 +6904,8 @@ addLessons([
      "easy": "수비가 외치지 않고 받기만",
      "hard": "수비가 두 번 이어 맞히면 2점",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 앞 · 뒤 두 구역으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -6589,7 +6937,8 @@ addLessons([
      "easy": "몸을 보낼 쪽으로 돌려서 치기",
      "hard": "몸은 그대로 두고 손목으로만 바꾸기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 앞 · 뒤 두 구역으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -6622,7 +6971,8 @@ addLessons([
      "easy": "11점 내기",
      "hard": "21점 내기 · 같은 세기를 두 번 이어 쓰지 않기",
      "d": {
-      "t": "vb_spike"
+      "t": "vb_spike",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 상대 코트를 앞 · 뒤 두 구역으로 나눠 원마커로 표시 · 평가 관찰은 연습 2 에서",
@@ -6688,7 +7038,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -6720,7 +7071,8 @@ addLessons([
      "easy": "서브를 네트 가까이서 넣기",
      "hard": "서브를 코트 뒤 6m 에서 넣기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -6753,7 +7105,8 @@ addLessons([
      "easy": "수비가 두 명만 서기",
      "hard": "수비가 네 명 고르게 서기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -6785,7 +7138,8 @@ addLessons([
      "easy": "세 번씩 하고 바꾸기",
      "hard": "여섯 번씩 하고 바꾸기",
      "d": {
-      "t": "vb_court"
+      "t": "vb_court",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -6851,7 +7205,8 @@ addLessons([
      "easy": "돌아올 시간을 넉넉히 주기",
      "hard": "돌아오자마자 다음 공 보내기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 자리를 원마커로 표시",
@@ -6883,7 +7238,8 @@ addLessons([
      "easy": "마커 한 걸음 안이면 인정",
      "hard": "마커를 밟고 있어야 인정",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 자리를 원마커로 표시",
@@ -6915,7 +7271,8 @@ addLessons([
      "easy": "교사가 빈 곳을 가리켜 주기",
      "hard": "학생이 스스로 찾아 말하기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 자리를 원마커로 표시",
@@ -6947,7 +7304,8 @@ addLessons([
      "easy": "두 명만 자리에 있어도 인정",
      "hard": "전원이 마커를 밟고 있어야 인정",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 자리를 원마커로 표시",
@@ -7013,7 +7371,8 @@ addLessons([
      "easy": "교사가 자리를 정해 주고 까닭만 말하기",
      "hard": "모둠이 스스로 정하고 까닭까지 적기",
      "d": {
-      "t": "vb_zones"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 작전판에 수비 자리를 그려 보기",
@@ -7045,7 +7404,8 @@ addLessons([
      "easy": "수비가 세 명만 서기",
      "hard": "수비가 여섯 명 고르게 서기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 작전판에 수비 자리를 그려 보기",
@@ -7077,7 +7437,8 @@ addLessons([
      "easy": "\"내 거!\"만 쓰기",
      "hard": "구역 이름까지 외치기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 작전판에 수비 자리를 그려 보기",
@@ -7109,7 +7470,10 @@ addLessons([
      "easy": "11점 내기 · 소리 없이도 1점",
      "hard": "21점 내기 · 소리 없으면 점수 없음",
      "d": {
-      "t": "vb_group"
+      "t": "vb_rot",
+      "n": 3,
+      "rot": false,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 작전판에 수비 자리를 그려 보기",
@@ -7175,7 +7539,8 @@ addLessons([
      "easy": "두 칸으로만 나누기",
      "hard": "여섯 칸으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -7207,7 +7572,8 @@ addLessons([
      "easy": "수비가 다섯 번 안에 넘겨도 인정",
      "hard": "수비가 꼭 세 번을 다 써야 인정",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -7240,7 +7606,8 @@ addLessons([
      "easy": "두 구역만 번갈아 맡기",
      "hard": "넘길 때마다 구역 바꾸기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -7272,7 +7639,8 @@ addLessons([
      "easy": "구역을 두 칸으로만 나누기",
      "hard": "구역을 여섯 칸으로 나누기",
      "d": {
-      "t": "vb_zones"
+      "t": "vb_zones",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 4 면 · 네트 1.5m · 수비 구역을 네 칸으로 나눠 원마커로 표시",
@@ -7338,7 +7706,8 @@ addLessons([
      "easy": "교사가 모둠과 자리를 정해 주기",
      "hard": "모둠이 스스로 정하고 까닭까지 말하기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 학급을 세 모둠으로 나눔",
@@ -7370,7 +7739,8 @@ addLessons([
      "easy": "교사가 주심을 맡고 학생은 선심만",
      "hard": "학생이 주심 · 선심 · 기록을 모두 맡기",
      "d": {
-      "t": "vb_group"
+      "t": "vb_group",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 학급을 세 모둠으로 나눔",
@@ -7403,7 +7773,9 @@ addLessons([
      "easy": "교사가 규칙을 적어 주고 읽기만",
      "hard": "학급이 두 가지를 더 보태기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 학급을 세 모둠으로 나눔",
@@ -7435,7 +7807,10 @@ addLessons([
      "easy": "교사가 고칠 곳을 짚어 주기",
      "hard": "학급이 스스로 찾아 고치기",
      "d": {
-      "t": "vb_court"
+      "t": "pk_double",
+      "nopad": true,
+      "nokit": true,
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면(6m × 12m) · 네트 1.5m · 학급을 세 모둠으로 나눔",
@@ -7501,7 +7876,8 @@ addLessons([
      "easy": "교사가 전략을 골라 주기",
      "hard": "모둠이 상대에 맞춰 전략을 바꿔 정하기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 15점 내기 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7533,7 +7909,8 @@ addLessons([
      "easy": "11점 내기 · 한 번 튀겨도 됨",
      "hard": "21점 내기 · 튀기지 않고",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 15점 내기 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7567,7 +7944,8 @@ addLessons([
      "easy": "교사가 고칠 것을 골라 주기",
      "hard": "모둠이 스스로 정하고 다음 경기에서 확인하기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 15점 내기 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7599,7 +7977,8 @@ addLessons([
      "easy": "11점 내기",
      "hard": "21점 내기 · 전원이 한 번 이상 공을 만져야 점수",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 15점 내기 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7666,7 +8045,9 @@ addLessons([
      "easy": "세 가지를 읽기만 하기",
      "hard": "우리 반 예절을 두 가지 더 만들기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7698,7 +8079,8 @@ addLessons([
      "easy": "11점 내기",
      "hard": "21점 내기",
      "d": {
-      "t": "vb_court"
+      "t": "gen_courts",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7732,7 +8114,9 @@ addLessons([
      "easy": "한 가지만 적기",
      "hard": "나아진 점과 그 까닭까지 적기",
      "d": {
-      "t": "vb_group"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 평가 관찰은 게임 1 과 게임 2 에서",
@@ -7764,7 +8148,8 @@ addLessons([
      "easy": "11점 내기",
      "hard": "21점 내기 · 전원이 한 번 이상 공을 만져야 점수",
      "d": {
-      "t": "vb_court"
+      "t": "gen_net",
+      "ball": "vball"
      },
      "t": {
       "prep": "코트 2 면 · 네트 1.5m · 세 모둠 · 평가 관찰은 게임 1 과 게임 2 에서",

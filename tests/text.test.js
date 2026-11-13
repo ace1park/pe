@@ -34,7 +34,7 @@ const body=(MODE,WARM)=>{
  if(MODE!=='lessons'){
  run('shelf',()=>{ store.homeView='sport'; ui.route='map'; render(); });
  for(const g of [null,'3','4','5','6']) run('home-'+(g||'pick'),()=>{ store.homeView='grade'; store.homeGrade=g; store.last='vb4-5'; ui.route='map'; render(); });
- run('guide',()=>{ ui.route='guide'; render(); });
+ run('guide',()=>{ store.gsec='all'; ui.route='guide'; render(); });
  run('score',()=>{ ui.route='score'; render(); });
  for(const f of [...Object.keys(FORMS),...Object.keys(BIGF)]) run('teams-'+f,()=>{ ui.route='teams'; ui.form=f; render(); });
  for(const u of UORDER) for(const g of UMETA[u].grades) run('unit-'+u+g,()=>{ location.hash; ui.route='u-'+u+'-'+gk(g); for(const k in ui.sel) ui.sel[k]=0; renderUnit(u,g); });

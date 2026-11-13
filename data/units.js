@@ -5,7 +5,7 @@ const UMETA={
  tb4:{title:'티볼',sub:'던지고 받기에서 티볼 경기까지',area:'스포츠 · 필드형',grades:['4'],sport:'tb',color:'#e0700f'},
  tb56:{title:'티볼 심화',sub:'기능 → 전술 → 경기 운영 · 게임 카드 28장',area:'스포츠 · 필드형',grades:['5~6'],sport:'tb',color:'#c2367a',cards:true},
  bad:{title:'배드민턴',sub:'라켓 잡기에서 복식 경기까지',area:'스포츠 · 네트형',grades:['3','4','5','6'],sport:'bm',color:'#2f6fd6'},
- ath:{title:'육상',sub:'달리기·뛰기·던지기 · 학년별 단계',area:'육상',grades:['3','4','5','6'],sport:'at',color:'#7b4fc9'},
+ ath:{title:'육상',sub:'달리기·뛰기·던지기 · 학년별 단계',area:'스포츠 · 기술형',grades:['3','4','5','6'],sport:'at',color:'#7b4fc9'},
  nb:{title:'넷볼',sub:'공 감각에서 7 대 7 경기까지',area:'스포츠 · 영역형',grades:['5~6'],sport:'nb',color:'#26357a'},
  bb:{title:'농구',sub:'공 다루기에서 리그 경기까지',area:'스포츠 · 영역형',grades:['5~6'],sport:'bb',color:'#d9622b'},
  vb:{title:'배구형 게임',sub:'공 띄워 받기에서 6 대 6 경기까지',area:'스포츠 · 네트형',grades:['3','4','5','6'],sport:'vb',color:'#0e8c8c'}

@@ -334,3 +334,339 @@ legendList=function(ids,u){
      return {s,l:['blue:모둠','cl_sheet','mk2:다음 판에 반으로 접는 선','run:판마다 좁히기']}; }
   });
 })();
+
+/* ===== 종목 공 바꾸기 · 장면 더하기 (티볼·배드민턴·배구·육상·넷볼·농구) =====
+   그림 이름에 ball:'shuttle'|'vball'|'bball'|'nball'|'sball'|'bag' 를 붙이면 축구공 대신 그 종목 공으로 그림
+   racket:true 패들 → 라켓 · nopad:true 패들 지우기 · nokit:true 키친 지우기 · lab:{run:'새 이름'} 범례 이름 바꾸기('' 이면 빼기) */
+const XB={
+  shuttle:(x,y)=>SV.shuttle(x,y),
+  vball:(x,y,r=6)=>`<g><circle cx="${x}" cy="${y}" r="${r}" fill="#fff" stroke="${COL.ink}" stroke-width="2"/><path d="M${x-r*.9},${y-r*.3} Q${x},${y-r*.2} ${x+r*.35},${y-r*.95}" fill="none" stroke="${COL.blue}" stroke-width="1.6"/><path d="M${x-r*.5},${y+r*.85} Q${x+r*.1},${y+r*.1} ${x+r*.95},${y+r*.2}" fill="none" stroke="#e8b40f" stroke-width="1.6"/></g>`,
+  bball:(x,y,r=6)=>`<g><circle cx="${x}" cy="${y}" r="${r}" fill="#e8721c" stroke="${COL.ink}" stroke-width="2"/><path d="M${x-r},${y} H${x+r} M${x},${y-r} V${y+r}" stroke="${COL.ink}" stroke-width="1.1"/><path d="M${x-r*.7},${y-r*.7} Q${x-r*.25},${y} ${x-r*.7},${y+r*.7} M${x+r*.7},${y-r*.7} Q${x+r*.25},${y} ${x+r*.7},${y+r*.7}" fill="none" stroke="${COL.ink}" stroke-width="1.1"/></g>`,
+  nball:(x,y,r=6)=>`<g><circle cx="${x}" cy="${y}" r="${r}" fill="#fff4dc" stroke="${COL.ink}" stroke-width="2"/><path d="M${x-r*.95},${y+r*.1} Q${x},${y-r*.55} ${x+r*.95},${y+r*.1} M${x},${y-r} Q${x+r*.45},${y} ${x},${y+r}" fill="none" stroke="${COL.ink}" stroke-width="1" opacity=".7"/></g>`,
+  sball:(x,y,r=6)=>`<g><circle cx="${x}" cy="${y}" r="${r}" fill="#fff" stroke="${COL.ink}" stroke-width="2"/><path d="M${x-r*.55},${y-r*.75} Q${x-r*.05},${y} ${x-r*.55},${y+r*.75} M${x+r*.55},${y-r*.75} Q${x+r*.05},${y} ${x+r*.55},${y+r*.75}" fill="none" stroke="${COL.red}" stroke-width="1.3" stroke-dasharray="1.6 1.2"/></g>`,
+  bag:(x,y,r=6)=>`<rect x="${x-r}" y="${y-r*.8}" width="${r*2}" height="${r*1.6}" rx="${r*.45}" fill="#e05a9c" stroke="${COL.ink}" stroke-width="1.8"/>`
+};
+const XBN={shuttle:'셔틀콕',vball:'배구공',bball:'농구공',nball:'공',sball:'공',bag:'콩주머니'};
+const PADRE=/<g transform="translate\(([-\d.]+),([-\d.]+)\) rotate\(([-\d.]+)\)"><rect x="-6" y="-17" width="12" height="15" rx="5"[^>]*\/><line[^>]*\/><\/g>/g;
+const RKT=(x,y,rot=30)=>`<g transform="translate(${x},${y}) rotate(${rot})"><ellipse cx="0" cy="-12" rx="6" ry="8" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="2"/><line x1="0" y1="-4" x2="0" y2="8" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></g>`;
+const KITRE=/<rect x="150" y="35" width="100" height="180" fill="rgba\(255,212,59,.3\)"\/>|<text x="(?:175|225)" y="52"[^>]*>키친<\/text>/g;
+const _tplOf0=tplOf;
+tplOf=function(d){
+  const r=_tplOf0(d), k=d.ball;
+  if(k&&XB[k]){
+    r.s=r.s.replace(BALLRE,(m,x,y,rr)=>XB[k](+x,+y,+rr));
+    r.l=r.l.map(id=>{ const [a,b]=id.split(':');
+      if(a==='ball') return k==='shuttle'?'shuttle'+(b?':'+b:''):'x_'+k+(b?':'+b:'');
+      if(a==='drib'&&(!b||b==='공 몰기')) return 'drib:'+(k==='bball'||k==='nball'?'드리블':'공 몰고 가기');
+      if(a==='tap') return 'tap:'+(b&&!/발/.test(b)?b:'손으로 톡톡');
+      if(id==='pass:차기') return 'pass:던지기';
+      if(a==='gk') return null;
+      return id; }).filter(Boolean);
+  }
+  if(d.racket){ r.s=r.s.replace(PADRE,(m,x,y,rot)=>RKT(+x,+y,+rot)); r.l=r.l.map(id=>id==='paddle'?'racket':id); }
+  if(d.nopad){ r.s=r.s.replace(PADRE,''); r.l=r.l.filter(id=>id!=='paddle'); }
+  if(d.nokit){ r.s=r.s.replace(KITRE,''); r.l=r.l.filter(id=>id!=='kitchen'); }
+  if(d.lab){ r.l=r.l.map(id=>{ const a=id.split(':')[0], v=d.lab[a]; return v===undefined?id:v===''?null:a+':'+v; }).filter(Boolean);
+    Object.keys(d.lab).forEach(a=>{ if(d.lab[a]&&!r.l.some(id=>id.split(':')[0]===a)) r.l.push(a+':'+d.lab[a]); }); }
+  return r;
+};
+/* 장면에 쓰는 작은 그림 */
+const BOARD=(x,y,w=70,h=48)=>`<g><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="5" fill="#fff" stroke="${COL.ink}" stroke-width="2"/><rect x="${x-w/2+8}" y="${y-h/2+8}" width="${w-16}" height="${h-16}" fill="none" stroke="#7aa88f" stroke-width="1.6"/><line x1="${x}" y1="${y-h/2+8}" x2="${x}" y2="${y+h/2-8}" stroke="#7aa88f" stroke-width="1.6"/><circle cx="${x-12}" cy="${y-4}" r="3" fill="${COL.blue}"/><circle cx="${x-16}" cy="${y+8}" r="3" fill="${COL.blue}"/><circle cx="${x+12}" cy="${y}" r="3" fill="${COL.red}"/><path d="M${x-10},${y-4} q12,-10 20,2" fill="none" stroke="${COL.ink}" stroke-width="1.3" stroke-dasharray="2 2"/></g>`;
+const CLIP=(x,y)=>`<rect x="${x-7}" y="${y-9}" width="14" height="18" rx="2" fill="#fff" stroke="${COL.ink}" stroke-width="1.5"/><line x1="${x-4}" y1="${y-3}" x2="${x+4}" y2="${y-3}" stroke="${COL.ink}" stroke-width="1"/><line x1="${x-4}" y1="${y+1}" x2="${x+4}" y2="${y+1}" stroke="${COL.ink}" stroke-width="1"/>`;
+const SCORE=(x,y,a='3',b='2')=>`<g><rect x="${x-22}" y="${y-14}" width="44" height="28" rx="4" fill="${COL.ink}" stroke="#fff" stroke-width="2"/><text x="${x-10}" y="${y+6}" text-anchor="middle" fill="#7fc4ff" font-size="15" font-weight="900" font-family="Gothic A1,sans-serif">${a}</text><text x="${x+10}" y="${y+6}" text-anchor="middle" fill="#ff8f86" font-size="15" font-weight="900" font-family="Gothic A1,sans-serif">${b}</text></g>`;
+const NETV=(x,y1=35,y2=215)=>`<line x1="${x}" y1="${y1-7}" x2="${x}" y2="${y2+7}" stroke="#fff" stroke-width="5"/><circle cx="${x}" cy="${y1-7}" r="4.5" fill="#fff" stroke="${COL.ink}"/><circle cx="${x}" cy="${y2+7}" r="4.5" fill="#fff" stroke="${COL.ink}"/>`;
+const WEDGE=(x,y)=>`<rect x="${x-4}" y="${y-16}" width="8" height="32" rx="3" fill="#ffd43b" stroke="#fff" stroke-width="1.5"/>`;
+const T=(x,y,t,c='#fff',fs=12)=>`<text x="${x}" y="${y}" text-anchor="middle" fill="${c}" font-size="${fs}" font-weight="800" font-family="Gothic A1,sans-serif">${t}</text>`;
+const YP=(x,y)=>pl(x,y,COL.mk);
+const HOOPG=(x,y,r=18,n)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="rgba(255,255,255,.1)" stroke="${COL.mk}" stroke-width="3.5"/>`+(n!==undefined?T(x,y+5,n,'#fff',13):'');
+Object.assign(TPL,{
+ /* 작전판 앞 모둠 회의 · 반 전체 둥글게 · 짝 기록 */
+ gen_talk:o=>{ let s='';
+   if(o.m==='class'){ s+=`<circle cx="200" cy="125" r="88" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="4 6"/>`+BOARD(200,125,74,50);
+     for(let k=0;k<12;k++){ const a=k/12*Math.PI*2; s+=pl(200+Math.cos(a)*92,125+Math.sin(a)*84,k%2?COL.blue:COL.red); }
+     return {s,l:['blue','red:다른 팀','board:우리 반 규칙판']}; }
+   if(o.m==='pair'){ [[80,80],[200,80],[320,80],[80,180],[200,180],[320,180]].forEach(([x,y])=>s+=pl(x-26,y,COL.mint)+pl(x+26,y,COL.blue)+CLIP(x,y));
+     return {s,l:['me','blue:짝','clip:기록지']}; }
+   [[110,125,COL.blue],[290,125,COL.red]].forEach(([cx,cy,c])=>{ s+=BOARD(cx,cy,60,42); for(let k=0;k<5;k++){ const a=-Math.PI/2+k/5*Math.PI*2+.3; s+=pl(cx+Math.cos(a)*62,cy+Math.sin(a)*62,c); } });
+   return {s,l:['blue:우리 모둠','red:다른 모둠','board:작전판']}; },
+ /* 하는 사람 · 봐 주는 사람 */
+ gen_watch:o=>{ let s='';
+   [[90,70],[90,180],[250,70],[250,180]].forEach(([x,y])=>{ s+=pl(x,y,COL.mint)+(o.noball?'':bl(x+16,y-14))+`<path d="M${x+6},${y-24} q14,-14 26,0" fill="none" stroke="${COL.mk}" stroke-width="2.5" marker-end="url(#y§)"/>`+pl(x+80,y,COL.obs)+CLIP(x+100,y)+`<line x1="${x+66}" y1="${y}" x2="${x+20}" y2="${y}" stroke="#fff" stroke-width="1.6" stroke-dasharray="2 4"/>`; });
+   return {s,l:['me:하는 사람','obs:봐 주는 친구','clip:관찰 기록지'].concat(o.noball?[]:['ball']).concat(['run:동작'])}; },
+ /* 코트 여러 개에서 리그 · 순위전 */
+ gen_courts:o=>{ let s=''; const X=[22,147,272];
+   X.forEach((x,k)=>{ s+=border(x,50,x+106,200)+(o.kind==='goal'?ln(x,125,x+106,125)+`<circle cx="${x+53}" cy="58" r="7" fill="none" stroke="${COL.cone}" stroke-width="3"/><circle cx="${x+53}" cy="192" r="7" fill="none" stroke="${COL.cone}" stroke-width="3"/>`:o.kind==='field'?`<path d="M${x+53},192 L${x+90},150 L${x+53},108 L${x+16},150 Z" fill="none" stroke="#fff" stroke-width="2"/>`:`<line x1="${x-4}" y1="125" x2="${x+110}" y2="125" stroke="#fff" stroke-width="4"/>`)+T(x+53,42,(k+1)+'코트');
+     s+=pl(x+32,88)+pl(x+76,88)+pl(x+32,165,COL.red)+pl(x+76,165,COL.red)+(k===1?bl(x+52,104):''); });
+   s+=rn(110,214,170,214,-10)+rn(235,214,295,214,-10)+pl(200,232,COL.obs)+YP(30,232)+SCORE(372,232,'2','1').replace(/<g>/,'<g transform="scale(.8) translate(93,58)">');
+   return {s,l:['blue:한 팀','red:상대 팀','obs:다음 팀·기록','mk3:심판','run:다음 경기 코트로']}; },
+ /* 심판 · 기록 맡기 */
+ gen_ref:o=>{ let s=o.c==='bb'?bbCourt():o.c==='nb'?nbCourt():o.c==='tb'?diamond():court();
+   if(o.c==='tb'){ s+=pl(176,214,COL.blue)+pl(300,118,COL.red)+pl(200,72,COL.red)+pl(118,150,COL.red)+YP(240,222)+sw(258,224)+pl(40,232,COL.obs)+CLIP(62,232)+SCORE(352,232); return {s,l:['blue:공격','red:수비','mk3:심판(판정 동작)','obs:기록','clip:기록지','base']}; }
+   s+=pl(110,90)+pl(150,165)+pl(260,90,COL.red)+pl(300,160,COL.red)+bl(124,96)+YP(200,236)+sw(218,238)+pl(60,236,COL.obs)+CLIP(82,236)+SCORE(340,236);
+   return {s,l:['blue','red:상대','ball','mk3:심판(손짓으로 알리기)','obs:기록·점수판','clip:기록지'].concat(o.c?[]:['net'])}; },
+ /* 줄 서서 머리 위·다리 사이로 넘기기 */
+ gen_line:o=>{ let s='';
+   [[80,COL.blue],[170,COL.red]].forEach(([y,c])=>{ [300,250,200,150,100].forEach(x=>s+=pl(x,y,c)); s+=bl(285,y-16)+arc(282,y-18,214,y-18,20)+arc(232,y+20,164,y+20,-14).replace(/Q([\d.]+),([\d.]+)/,(m,a,b)=>'Q'+a+','+(+b+30))+rn(100,y+22,312,y+26,-12); });
+   return {s,l:['blue:우리 팀','red:다른 팀','ball','pass:머리 위 · 다리 사이로 넘기기','run:맨 뒤 사람이 앞으로']}; },
+ /* 가운데 자리에서 네 구석 다녀오기 */
+ gen_home:o=>{ let s=border(60,30,340,220)+(o.net?NETV(200,30,220).replace(/x1="200"/g,'x1="200"'):'')+mk(200,125); const C=[[95,62],[305,62],[95,188],[305,188]];
+   C.forEach(([x,y])=>s+=cn(x,y)); s+=pl(200,125,COL.mint)+rn(206,112,292,70,-14)+rn(296,82,214,124,-14)+rn(188,136,104,180,-14).replace(/stroke-width="[\d.]+"/,'stroke-width="2.4" stroke-dasharray="5 4"');
+   if(o.shuttle) C.forEach(([x,y])=>s+=SV.shuttle(x+18,y-2));
+   s+=pl(30,90,COL.obs)+pl(30,160,COL.obs);
+   return {s,l:['me','obs:기다림','mk:가운데 자리','cone','run:다녀와서 가운데로']}; },
+ /* 줄지어 서서 동작 따라 하기(매단 공 · 거울) */
+ gen_shadow:o=>{ let s=YP(200,40)+T(200,22,'시범'); const X=[70,150,250,330];
+   if(o.net) s+=`<line x1="20" y1="72" x2="380" y2="72" stroke="#fff" stroke-width="4"/>`;
+   X.forEach(x=>{ s+=pl(x,165,COL.mint)+`<path d="M${x-22},${o.low?190:150} Q${x-6},${o.low?150:108} ${x+20},${o.low?128:126}" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`;
+     if(o.hang) s+=`<line x1="${x+8}" y1="80" x2="${x+8}" y2="112" stroke="#fff" stroke-width="1.5"/>`+bl(x+8,118);
+     if(o.mark) s+=mk(x-10,198)+mk(x+12,192); });
+   return {s,l:['mk3:보여 주는 사람(선생님)','me','run:동작 따라 하기'].concat(o.hang?['ball:매달린 공']:[]).concat(o.mark?['mk:발 놓는 자리']:[]).concat(o.net?['net']:[])}; },
+ /* 보자기로 받아 넘기기 */
+ vb_cloth:o=>{ let s=court(); const P=[[[100,95],[100,155],COL.blue],[[300,95],[300,155],COL.red]];
+   P.forEach(([a,b,c])=>s+=`<path d="M${a[0]-4},${a[1]+12} Q${a[0]+22},125 ${b[0]-4},${b[1]-12} L${b[0]+14},${b[1]-12} Q${a[0]+40},125 ${a[0]+14},${a[1]+12} Z" fill="rgba(255,212,59,.8)" stroke="#fff" stroke-width="2"/>`+pl(...a,c)+pl(...b,c));
+   s+=bl(124,108)+arc(128,104,272,108,60)+pl(40,232,COL.obs)+pl(70,232,COL.obs);
+   return {s,l:['blue:보자기 잡은 짝','red:상대 짝','obs:다음 짝','ball','pass:보자기로 받아 튕겨 넘기기','cloth','net']}; },
+ /* 여섯 자리 · 세 자리와 자리 돌기 */
+ vb_rot:o=>{ let s=border(40,35,360,215)+NETV(360,35,215); const n=o.n||6;
+   const P=n===3?[[290,70,1],[290,180,2],[130,125,3]]:n===4?[[290,70,1],[290,180,2],[130,70,3],[130,180,4]]:[[300,180,2],[300,125,3],[300,70,4],[150,70,5],[150,125,6],[150,180,1]];
+   P.forEach(([x,y,t])=>s+=pl(x,y)+T(x+22,y-14,t,COL.mk,15));
+   if(o.rot!==false) for(let k=0;k<P.length;k++){ const [x1,y1]=P[k], [x2,y2]=P[(k+1)%P.length]; s+=rn(x1+(x2-x1)*.25,y1+(y2-y1)*.25,x1+(x2-x1)*.75,y1+(y2-y1)*.75,8); }
+   return {s,l:['blue:우리 팀','run:자리 돌기(시계 방향)','net']}; },
+ /* 막기: 두 손 올려 벽 */
+ vb_block:o=>{ let s=court(); [[176,70],[176,180]].forEach(([x,y])=>s+=pl(x,y,COL.red)+`<path d="M${x-6},${y-16} v-14 M${x+6},${y-16} v-14" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>`);
+   [[232,70],[232,180]].forEach(([x,y])=>s+=pl(x,y)+bl(x-6,y-26)+`<path d="M${x-8},${y-28} L${x-34},${y-6}" stroke="#fff" stroke-width="2.6" stroke-dasharray="5 4" marker-end="url(#w§)"/>`);
+   if(o.cones) [[90,90],[110,160],[70,200]].forEach(([x,y])=>s+=cn(x,y));
+   s+=pl(330,90,COL.obs)+pl(330,160,COL.obs);
+   return {s,l:['red:막는 사람(두 손 벽)','blue:치는 사람','obs:기다림','ball','pass:내려치기','net'].concat(o.cones?['cone:맞히는 콘']:[])}; },
+ /* 육상: 출발 */
+ at_start:o=>{ const L=lanes(4); let s=L.s+`<line x1="80" y1="${L.top}" x2="80" y2="212" stroke="#fff" stroke-width="5"/>`+T(80,30,'출발선');
+   for(let k=0;k<4;k++){ const y=L.top+L.h*(k+.5); s+=pl(70,y,COL.mint)+rn(88,y,o.react?150:200,y,0); if(o.react&&k%2) s+=cn(160,y); }
+   s+=YP(30,232)+(o.react?T(78,240,'"땅!" 손뼉 · 깃발','#fff',11):'')+(o.roll?mk(46,L.top+L.h*.5):'');
+   return {s,l:['me','mk3:신호 주는 사람','run:출발해 달리기'].concat(o.react?['cone:멈추는 자리']:[])}; },
+ /* 왕복 달리기 */
+ at_shuttle:o=>{ let s=`<line x1="80" y1="30" x2="80" y2="220" stroke="#fff" stroke-width="4"/><line x1="320" y1="30" x2="320" y2="220" stroke="${COL.mk}" stroke-width="4" stroke-dasharray="8 6"/>`+T(80,24,'출발')+T(320,24,o.m||'10m 반환선');
+   [70,125,180].forEach(y=>{ s+=pl(58,y,COL.mint)+mk(320,y)+`<path d="M74,${y-6} H312 Q330,${y} 312,${y+6} H90" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`; });
+   s+=pl(26,90,COL.obs)+pl(26,160,COL.obs);
+   return {s,l:['me','obs:기다림·세는 친구','mk:밟고 도는 자리','run:왕복 달리기']}; },
+ /* 둘레 달리기 · 경보 */
+ at_oval:o=>{ let s=`<ellipse cx="200" cy="125" rx="168" ry="92" fill="none" stroke="#fff" stroke-width="3"/><ellipse cx="200" cy="125" rx="128" ry="58" fill="none" stroke="#fff" stroke-width="3"/>`;
+   [[0,COL.mint],[1.4,COL.blue],[2.6,COL.blue],[3.9,COL.blue],[5.1,COL.blue]].forEach(([a,c])=>s+=pl(200+Math.cos(a)*148,125+Math.sin(a)*75,c));
+   s+=`<path d="M356,140 Q360,200 280,208" fill="none" stroke="${COL.mk}" stroke-width="3.5" marker-end="url(#y§)"/>`+cn(200,125)+(o.walk?T(200,130+22,'경보: 한 발은 늘 땅에'):'')+(o.time?YP(200,98)+sw(220,100):'');
+   return {s,l:['me','blue:함께 달리는 친구','run:'+(o.walk?'걸어서 돌기(경보)':'트랙 따라 돌기')].concat(o.time?['mk3:시간 알려 주는 사람']:[])}; },
+ /* 칸 밟기 · 사다리 · 후프 · 마커 간격 */
+ at_ladder:o=>{ let s=''; const ys=[80,170];
+   ys.forEach(y=>{ s+=pl(50,y,COL.mint)+pl(24,y,COL.obs);
+     if(o.m==='hoop'){ [110,150,190,230,270].forEach((x,k)=>s+=`<circle cx="${x}" cy="${y+(k%2?14:-14)}" r="16" fill="none" stroke="${COL.mk}" stroke-width="3"/>`); s+=`<path d="M66,${y} L110,${y-14} L150,${y+14} L190,${y-14} L230,${y+14} L270,${y-14} L340,${y}" fill="none" stroke="#fff" stroke-width="2.4" stroke-dasharray="4 4" marker-end="url(#w§)"/>`; }
+     else if(o.m==='mk'){ let x=90; [24,30,36,44,54,64].forEach(g=>{ x+=g; s+=mk(x,y); }); s+=rn(66,y-10,340,y-10,-8)+T(110,y+26,'좁게',COL.mk,11)+T(320,y+26,'넓게',COL.mk,11); }
+     else { s+=`<rect x="90" y="${y-20}" width="200" height="40" fill="none" stroke="#fff" stroke-width="2.5"/>`; for(let x=115;x<290;x+=25) s+=`<line x1="${x}" y1="${y-20}" x2="${x}" y2="${y+20}" stroke="#fff" stroke-width="2.5"/>`;
+       s+=`<path d="M66,${y} H340" fill="none" stroke="${COL.mk}" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round" marker-end="url(#y§)"/>`+cn(350,y); } });
+   return {s,l:['me','obs:다음 사람','run:'+(o.m==='hoop'?'한 발씩 후프 밟기':o.m==='mk'?'마커마다 한 걸음':'칸마다 빠른 발')].concat(o.m==='mk'?['mk']:o.m==='hoop'?['ring:후프']:['cone'])}; },
+ /* 좌우 넘기(스피드 바운스) · 십자 뛰기 */
+ at_bounce:o=>{ let s=''; [[90,80],[200,80],[310,80],[90,180],[200,180],[310,180]].forEach(([x,y],k)=>{
+     if(o.cross){ s+=`<rect x="${x-24}" y="${y-24}" width="48" height="48" fill="none" stroke="#fff" stroke-width="2"/><line x1="${x}" y1="${y-24}" x2="${x}" y2="${y+24}" stroke="#fff" stroke-width="2"/><line x1="${x-24}" y1="${y}" x2="${x+24}" y2="${y}" stroke="#fff" stroke-width="2"/>`+[[-12,-12,1],[12,-12,2],[12,12,3],[-12,12,4]].map(([a,b,t])=>T(x+a,y+b+4,t,COL.mk,11)).join('');
+       if(k<3) s+=pl(x-12,y+12,COL.mint); else s+=pl(x-50,y,COL.obs); }
+     else if(o.rope){ s+=k<3?pl(x,y,COL.mint)+`<ellipse cx="${x}" cy="${y-6}" rx="18" ry="26" fill="none" stroke="${COL.cone}" stroke-width="2.6"/>`:pl(x,y,COL.obs)+sw(x+22,y); }
+     else { s+=WEDGE(x,y)+(k<3?pl(x-22,y,COL.mint)+`<path d="M${x-14},${y-18} Q${x},${y-36} ${x+14},${y-18}" fill="none" stroke="${COL.mk}" stroke-width="2.6" marker-end="url(#y§)" marker-start="url(#y§)"/>`:pl(x-40,y,COL.obs)+sw(x+30,y)); } });
+   if(o.rope) return {s,l:['me','obs:세는 친구','bar:줄넘기 줄']};
+   return {s,l:['me','obs:세는 친구'].concat(o.cross?['run:1→2→3→4 순서로 뛰기']:['run:두 발 모아 좌우로 넘기','wedge'])}; },
+ /* 제자리멀리뛰기 · 삼단뛰기 · 수직 점프 · 높이뛰기 */
+ at_sjump:o=>{ let s='';
+   if(o.m==='vert'){ s+=`<rect x="300" y="25" width="20" height="200" fill="rgba(255,255,255,.3)" stroke="#fff" stroke-width="2"/>`; [60,90,120,150].forEach((y,k)=>s+=`<line x1="292" y1="${y}" x2="300" y2="${y}" stroke="#fff" stroke-width="2"/>`+T(280,y+4,(4-k)*10,'#fff',10));
+     s+=pl(272,185,COL.mint)+`<path d="M272,168 V80" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+mk(298,82)+pl(160,185,COL.obs)+pl(120,185,COL.obs)+CLIP(210,185);
+     return {s,l:['me','obs:기다림','mk:손끝 닿은 자리','clip:기록지','run:제자리에서 위로']}; }
+   if(o.m==='high'){ s+=`<rect x="250" y="80" width="110" height="90" rx="6" fill="rgba(255,212,59,.45)" stroke="#fff" stroke-width="2.5"/><line x1="240" y1="70" x2="240" y2="180" stroke="#fff" stroke-width="2"/><circle cx="240" cy="70" r="4" fill="#fff"/><circle cx="240" cy="180" r="4" fill="#fff"/><path d="M240,74 Q246,125 240,176" fill="none" stroke="${COL.cone}" stroke-width="3"/>`;
+     s+=pl(70,210,COL.mint)+`<path d="M84,204 Q190,200 226,140" fill="none" stroke="${COL.mk}" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/><path d="M228,136 Q262,90 296,130" fill="none" stroke="${COL.mk}" stroke-width="3.5" marker-end="url(#y§)"/>`+pl(40,70,COL.obs)+pl(70,70,COL.obs);
+     return {s,l:['me','obs:기다림','run:비스듬히 달려와 뛰어넘기','bar:고무줄(낮게 시작)','mat']}; }
+   s+=`<line x1="80" y1="40" x2="80" y2="210" stroke="#fff" stroke-width="5"/>`+T(80,32,'구름선');
+   [[150,'1m'],[200,'1.5m'],[250,'2m']].forEach(([x,t])=>s+=`<line x1="${x}" y1="60" x2="${x}" y2="190" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="5 5"/>`+T(x,206,t,'#fff',11));
+   if(o.m==='triple'){ s+=pl(64,125,COL.mint)+[[80,150],[150,215],[215,290]].map(([a,b],k)=>`<path d="M${a+6},120 Q${(a+b)/2},${86+k*6} ${b},120" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+T(b,108,k+1,COL.mk,12)).join('');
+     return {s,l:['me','run:깡충 · 깡충 · 폴짝(세 번 이어 뛰기)','mk2:거리 선']}; }
+   [80,125,170].forEach(y=>s+=pl(62,y,COL.mint)); s+=`<path d="M80,118 Q140,58 210,118" fill="none" stroke="${COL.mk}" stroke-width="3.5" marker-end="url(#y§)"/>`+mk(214,128)+pl(30,90,COL.obs)+pl(30,160,COL.obs);
+   return {s,l:['me','obs:기다림','run:두 발 모아 멀리 뛰기','mk:뒤꿈치 닿은 자리','mk2:거리 선']}; },
+ /* 던지기: 과녁 · 점수 구역 · 뒤로 · 앉아서 · 돌아서 */
+ at_throw2:o=>{ let s=`<line x1="80" y1="30" x2="80" y2="220" stroke="#fff" stroke-width="5"/>`+T(80,24,'던지는 선');
+   const P=()=>[70,125,180].forEach(y=>s+=pl(60,y,COL.mint));
+   if(o.m==='target'){ P(); [[170,80,'1'],[220,170,'2'],[280,110,'3'],[340,190,'5']].forEach(([x,y,t])=>s+=HOOPG(x,y,20,t)); s+=bl(78,118)+arc(82,114,272,108,48); s+=pl(28,90,COL.obs)+pl(28,160,COL.obs);
+     return {s,l:['me','obs:기다림','ball','pass:던져 넣기','ring:과녁(숫자는 점수)']}; }
+   if(o.m==='zone'){ [[120,'1점','rgba(255,255,255,.08)'],[190,'2점','rgba(255,255,255,.16)'],[260,'3점','rgba(255,212,59,.25)'],[330,'5점','rgba(255,212,59,.4)']].forEach(([x,t,f])=>s+=`<rect x="${x-35}" y="40" width="70" height="170" fill="${f}" stroke="#fff" stroke-width="1.5" stroke-dasharray="5 5"/>`+T(x,58,t)); P(); s+=bl(78,118)+arc(82,114,250,140,60);
+     return {s,l:['me','ball','pass:던지기','mk2:점수 구역']}; }
+   if(o.m==='back'){ [70,125,180].forEach(y=>s+=pl(100,y,COL.mint)+`<path d="M108,${y-10} l-6,-8 m6,8 l6,-8" stroke="#fff" stroke-width="2"/>`); s=s.replace('x1="80" y1="30" x2="80" y2="220"','x1="80" y1="30" x2="80" y2="220"'); s+=`<path d="M100,108 Q120,40 250,100" fill="none" stroke="#fff" stroke-width="2.6" stroke-dasharray="6 5" marker-end="url(#w§)"/>`+bl(250,100)+T(160,232,'등을 보이고 서서 머리 위로 뒤로');
+     return {s,l:['me','ball','pass:두 손으로 뒤로 던지기']}; }
+   if(o.m==='sit'){ [70,125,180].forEach(y=>s+=`<ellipse cx="62" cy="${y+10}" rx="18" ry="6" fill="rgba(255,255,255,.35)"/>`+pl(60,y,COL.mint)); s+=bl(78,118)+`<path d="M84,118 L230,118" stroke="#fff" stroke-width="2.6" stroke-dasharray="6 5" marker-end="url(#w§)"/>`+mk(150,200)+mk(200,200)+mk(250,200)+T(200,232,'앉아서 가슴에서 밀기');
+     return {s,l:['me','ball','pass:가슴에서 앞으로 밀기','mk:거리 표시']}; }
+   if(o.m==='spin'){ s+=`<circle cx="60" cy="125" r="34" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 5"/>`+pl(60,125,COL.mint)+`<path d="M60,85 A40,40 0 1,1 26,108" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+bl(96,112)+arc(100,108,300,120,60)+pl(30,220,COL.obs)+pl(60,220,COL.obs);
+     return {s,l:['me','obs:선 뒤 기다림','run:한 바퀴 돌기','ball','pass:돌고 던지기']}; }
+   P(); [[160,'5m'],[240,'10m'],[320,'15m']].forEach(([x,t])=>s+=`<line x1="${x}" y1="40" x2="${x}" y2="210" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="5 5"/>`+T(x,222,t,'#fff',11));
+   s+=bl(78,118)+(o.step?`<path d="M30,140 L52,130" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`:'')+arc(82,114,280,96,70)+mk(282,104);
+   return {s,l:['me','ball','pass:어깨 너머로 던지기','mk:떨어진 자리','mk2:거리 선'].concat(o.step?['run:한 걸음 내딛기']:[])}; },
+ /* 한 발 서기 · 균형 */
+ at_balance:o=>{ let s=mkBox(); [[100,90],[200,90],[300,90],[100,175],[200,175],[300,175]].forEach(([x,y],k)=>{ s+=pl(x,y,k%3===1?COL.obs:COL.mint)+(k%3===1?sw(x+22,y-14):`<path d="M${x-14},${y+20} h28" stroke="#fff" stroke-width="2.5"/><circle cx="${x+4}" cy="${y+20}" r="3" fill="${COL.mk}"/>`); });
+   if(o.move) s+=rn(100,90,180,80,-14)+rn(300,175,220,185,-14);
+   return {s,l:['me:한 발로 서기','obs:시간 재는 친구'].concat(o.move?['run:움직이다 멈춰 한 발']:[])}; },
+ /* 허들 왕복 이어달리기 */
+ at_hurdle2:o=>{ let s=''; [75,175].forEach((y,k)=>{ const c=k?COL.red:COL.blue; [60,40,20].forEach(x=>s+=pl(x,y,c)); [130,190,250].forEach(x=>s+=SV.hurdle(x,y-14)); s+=cn(330,y)+`<path d="M78,${y-14} Q104,${y-44} 130,${y-20} T190,${y-20} T250,${y-20} T320,${y-12}" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+rn(330,y+16,80,y+24,-6); if(o.baton) s+=SV.baton(60,y+20); });
+   return {s,l:['blue:한 팀','red:다른 팀','hurdle','run:넘어가서 콘 돌아 옆길로','cone'].concat(o.baton?['mk:배턴']:[])}; },
+ /* 왕복 이어달리기(마주 보고 손바닥 치기) · 곡선 인계 */
+ at_relay2:o=>{ let s='';
+   if(o.curve){ s+=`<path d="M40,210 L180,210 A110,95 0 0,0 180,20 L40,20" fill="none" stroke="#fff" stroke-width="3"/><path d="M40,170 L180,170 A70,55 0 0,0 180,60 L40,60" fill="none" stroke="#fff" stroke-width="3"/>`+`<path d="M230,62 A92,75 0 0,1 280,130 L254,130 A66,55 0 0,0 218,82 Z" fill="rgba(255,212,59,.35)" stroke="#fff" stroke-dasharray="5 4"/>`;
+     s+=pl(150,190,COL.blue)+SV.baton(166,190)+`<path d="M170,188 Q250,186 266,138" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+pl(258,96,COL.mint)+rn(250,82,170,40,10);
+     return {s,l:['blue:주는 사람','me:받는 사람','run','mk:인계 구역']}; }
+   [70,180].forEach((y,k)=>{ const c=k?COL.red:COL.blue; [80,56,32].forEach(x=>s+=pl(x,y,c)); [320,344,368].forEach(x=>s+=pl(x,y,c)); s+=`<path d="M98,${y-6} H300" fill="none" stroke="${COL.mk}" stroke-width="3" marker-end="url(#y§)"/>`+`<path d="M300,${y+8} H98" fill="none" stroke="${COL.mk}" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#y§)"/>`+(o.obj?SV.baton(96,y+18):''); });
+   s+=`<line x1="200" y1="40" x2="200" y2="210" stroke="#fff" stroke-opacity=".4" stroke-width="2" stroke-dasharray="4 6"/>`;
+   return {s,l:['blue:한 팀','red:다른 팀','run:건너편 친구 손바닥 치기'].concat(o.obj?['mk:배턴']:[])}; },
+ /* 복합 코스: 사다리 → 허들 → 지그재그 → 결승선 */
+ at_course:o=>{ let s=`<rect x="40" y="40" width="110" height="36" fill="none" stroke="#fff" stroke-width="2.5"/>`; for(let x=62;x<150;x+=22) s+=`<line x1="${x}" y1="40" x2="${x}" y2="76" stroke="#fff" stroke-width="2.5"/>`;
+   [220,280,340].forEach(x=>s+=SV.hurdle(x,58)); [[330,140],[280,170],[230,140],[180,170]].forEach(([x,y])=>s+=cn(x,y)); s+=`<line x1="60" y1="190" x2="60" y2="230" stroke="${COL.mk}" stroke-width="5"/>`+T(84,240,'결승선',COL.mk,11);
+   s+=pl(24,58,COL.mint)+`<path d="M40,58 H190 Q220,30 250,54 T310,54 T370,80 Q380,120 340,130 L290,165 L240,135 L190,165 L130,200 L70,210" fill="none" stroke="${COL.mk}" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" marker-end="url(#y§)"/>`+pl(24,100,COL.obs)+YP(100,120)+sw(120,122);
+   return {s,l:['me','obs:다음 사람','mk3:시간 재는 사람','run:코스 따라가기','hurdle','cone']}; },
+ /* 티볼: 짝 받기(뜬공 · 땅볼 · 낙하 지점) */
+ tb_catch:o=>{ let s='';
+   [60,125,190].forEach((y,k)=>{ s+=pl(80,y,COL.blue)+pl(300,y,COL.mint)+bl(98,y-6);
+     if(o.m==='ground') s+=`<path d="M100,${y+4} L284,${y+4}" stroke="#fff" stroke-width="2.6" stroke-dasharray="3 5" marker-end="url(#w§)"/>`+`<path d="M292,${y+16} q8,6 16,0" stroke="#fff" stroke-width="2.4" fill="none"/>`;
+     else if(o.m==='move') s+=arc(100,y-10,250,y-6,50)+`<path d="M244,${y-2} l12,12 m0,-12 l-12,12" stroke="${COL.mk}" stroke-width="3"/>`+rn(300,y,262,y,-10);
+     else s+=arc(100,y-10,286,y-12,o.m==='low'?20:78); });
+   return {s,l:['blue:던져 주는 사람','me:받는 사람','ball'].concat(o.m==='ground'?['pass:굴려 주기']:o.m==='move'?['pass:높이 던져 주기','run:떨어질 자리로','mk:떨어질 자리']:['pass:'+(o.m==='low'?'가슴 높이로 던지기':'높이 던져 주기')])}; },
+ /* 티볼: 치기 연습 자리(그물 · 토스) */
+ tb_tees:o=>{ let s=`<line x1="340" y1="30" x2="340" y2="220" stroke="#fff" stroke-width="4"/>`+[50,80,110,140,170,200].map(y=>`<line x1="330" y1="${y}" x2="350" y2="${y}" stroke="#fff" stroke-opacity=".5"/>`).join('')+T(350,24,'그물·벽');
+   [70,125,180].forEach(y=>{ s+=SV.tee(200,y+6)+pl(176,y+14,COL.mint)+`<line x1="182" y1="${y+4}" x2="196" y2="${y-4}" stroke="${COL.ink}" stroke-width="4" stroke-linecap="round"/>`+`<path d="M206,${y} L326,${y-6}" stroke="#fff" stroke-width="2.4" stroke-dasharray="5 5" marker-end="url(#w§)"/>`+(o.toss?pl(232,y+30,COL.blue):pl(110,y+14,COL.obs)); });
+   return {s,l:['me:치는 사람'].concat(o.toss?['blue:옆에서 살짝 올려 주는 사람']:['obs:뒤에서 봐 주는 친구']).concat(['ball','pass:친 공','tee'])}; },
+ /* 티볼: 필드 점수 구역 · 빈 곳 */
+ tb_zones:o=>{ let s=diamond(); const {H}=DIA;
+   if(o.gap){ [[300,118],[200,72],[118,150],[250,60]].forEach(([x,y])=>s+=pl(x,y,COL.red)); s+=`<circle cx="120" cy="60" r="30" fill="rgba(255,212,59,.35)" stroke="${COL.mk}" stroke-width="2.5" stroke-dasharray="5 4"/>`+T(120,64,'빈 곳',COL.ink)+SV.tee(H[0],H[1]-18)+pl(176,214)+arc(200,206,124,72,30);
+     return {s,l:['blue:치는 사람','red:수비','ball','pass:빈 곳으로 치기','mk:빈 곳','tee','base']}; }
+   s+=`<path d="M200,228 L360,60 A230,230 0 0,0 40,60 Z" fill="none"/>`+`<path d="M86,92 Q200,10 314,92" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/><path d="M60,58 Q200,-30 340,58" fill="none" stroke="${COL.mk}" stroke-width="3" stroke-dasharray="6 5"/>`+T(200,110,'1점')+T(200,44,'2점')+T(200,14,o.hr?'홈런 구역':'3점',COL.mk);
+   s+=SV.tee(H[0],H[1]-18)+pl(176,214)+arc(200,206,280,40,40)+pl(60,236,COL.obs)+pl(90,236,COL.obs);
+   return {s,l:['blue:치는 사람','obs:대기','ball','pass:멀리 치기','mk2:점수 구역 선','tee','base']}; },
+ /* 티볼: 수비 자리(번호) · 배치 바꾸기 */
+ tb_pos:o=>{ let s=diamond(); const P=[[316,124,'1루'],[258,92,'2루 옆'],[142,92,'유격'],[84,124,'3루'],[200,160,'가운데'],[330,40,'외야'],[70,40,'외야']];
+   P.forEach(([x,y,t])=>s+=pl(x,y,COL.red)+T(x,y+28,t,'#fff',10));
+   if(o.shift) s+=rn(142,92,104,66,-10)+rn(258,92,296,66,10)+T(200,240,'치는 사람 보고 자리 옮기기',COL.mk,11);
+   return {s,l:['red:수비 자리'].concat(o.shift?['run:자리 옮기기']:[]).concat(['base'])}; },
+ /* 티볼: 베이스 커버 · 먼저 아웃 · 사이에 낀 주자 */
+ tb_force:o=>{ let s=diamond(); const {F,S}=DIA;
+   if(o.rundown){ s+=pl(250,95,COL.blue)+pl(296,130,COL.red)+pl(212,66,COL.red)+bl(284,126)+ps(282,124,226,74)+rn(250,95,276,118,8).replace(/stroke="[^"]+"/,'stroke="#fff"')+rn(250,95,224,74,-8);
+     return {s,l:['blue:베이스 사이 주자','red:수비','ball','pass:서로 던져 몰기','run:앞뒤로 피하기','base']}; }
+   s+=pl(310,140,COL.red)+pl(212,120,COL.red)+bl(222,126)+ps(222,124,298,146)+pl(176,214,COL.blue)+rn(190,214,288,160,-18)+`<circle cx="300" cy="140" r="22" fill="none" stroke="${COL.mk}" stroke-width="2.5" stroke-dasharray="4 4"/>`;
+   return {s,l:['red:수비(베이스 밟고 받기)','blue:주자','ball','pass:베이스로 던지기','run:달리기 경주','base']}; },
+ /* 티볼: 이어 던지기 · 베이스 돌기 릴레이 */
+ tb_relay:o=>{ let s=diamond(); const {H,F,S,T:TT}=DIA;
+   if(o.cut){ s+=[[340,40],[290,70],[240,100],[200,140]].map(([x,y])=>pl(x,y,COL.red)).join('')+bl(330,48)+ps(330,46,300,66)+ps(282,76,252,94)+ps(232,108,206,130)+ps(200,152,200,206)+sw(60,232)+pl(40,232,COL.obs);
+     return {s,l:['red:이어 던지는 수비','obs:시간 재는 사람','ball','pass:이어 던지기','base']}; }
+   s+=[[176,214],[160,226],[144,236]].map(([x,y])=>pl(x,y,COL.blue)).join('')+[[224,214],[240,226],[256,236]].map(([x,y])=>pl(x,y,COL.red)).join('')+`<path d="M204,212 L290,142 L206,64 L112,138 L190,214" fill="none" stroke="${COL.mk}" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" marker-end="url(#y§)"/>`;
+   return {s,l:['blue:한 팀','red:다른 팀','run:베이스 밟으며 한 바퀴','base']}; },
+ /* 농구: 다섯 자리 슛 · 레이업 길 */
+ bb_spots:o=>{ let s=bbHalf();
+   if(o.lay){ s+=pl(200,60)+bl(214,66)+`<path d="M214,72 Q260,80 290,100" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="3 3"/>`+`<ellipse cx="300" cy="108" rx="7" ry="4" fill="${COL.mk}"/>`+T(300,98,'하나',COL.mk,11)+`<ellipse cx="322" cy="118" rx="7" ry="4" fill="${COL.mk}"/>`+T(330,140,'둘',COL.mk,11)+`<path d="M326,112 Q340,96 352,118" fill="none" stroke="#fff" stroke-width="2.6" stroke-dasharray="5 4" marker-end="url(#w§)"/>`+pl(180,40,COL.obs)+pl(160,40,COL.obs);
+     return {s,l:['blue:슛하는 사람','obs:기다림','ball','mk:하나·둘 발 자리','pass:올려 놓기','basket']}; }
+   [[300,60,1],[240,80,2],[220,125,3],[240,170,4],[300,190,5]].forEach(([x,y,t])=>s+=mk(x,y)+T(x,y-10,t,COL.mk,13)); s+=pl(220,125,COL.mint)+bl(234,120)+`<path d="M236,116 Q300,70 346,118" fill="none" stroke="#fff" stroke-width="2.6" stroke-dasharray="5 4" marker-end="url(#w§)"/>`+pl(330,170,COL.blue)+rn(220,140,236,170,-10);
+   return {s,l:['me:슛하는 사람','blue:공 주워 주는 친구','ball','pass:슛','mk:슛 자리(번호 순서)','run:다음 자리로','basket']}; },
+ /* 농구·넷볼: 빠르게 앞으로(2 대 1 · 3 대 2 · 나란히 달리기) */
+ bb_fast:o=>{ let s=o.nb?nbCourt():bbCourt(); const n=o.n||2;
+   const B=n===3?[[110,70],[110,125],[110,180]]:[[110,90],[110,165]], R=(o.d===0?[]:o.d===2?[[270,95],[270,155]]:[[270,125]]);
+   B.forEach(([x,y])=>s+=pl(x,y)+rn(x+14,y,x+130,y+(y<125?14:y>125?-14:0),-6)); R.forEach(([x,y])=>s+=pl(x,y,COL.red)); s+=bl(124,96)+ps(126,100,176,160);
+   return {s,l:['blue:공격','red:수비'].slice(0,R.length?2:1).concat(['ball','pass','run:나란히 달리기',o.nb?'hoop':'basket'])}; },
+ /* 넷볼: 구역과 자리 · 센터 패스 */
+ nb_zones:o=>{ let s=nbCourt()+`<rect x="30" y="35" width="113" height="180" fill="rgba(47,111,214,.18)"/><rect x="257" y="35" width="113" height="180" fill="rgba(217,67,58,.18)"/>`+T(86,52,'우리 골 구역')+T(200,52,'가운데')+T(314,52,'공격 구역');
+   if(o.center){ s+=pl(200,125)+bl(214,120)+ps(214,124,260,170)+[[170,80],[230,80],[170,175],[260,170]].map(([x,y])=>pl(x,y)).join('')+[[230,175],[150,125],[250,125]].map(([x,y])=>pl(x,y,COL.red)).join('');
+     return {s,l:['blue:우리 편','red:상대','ball','pass:가운데에서 시작 패스','hoop']}; }
+   [[60,95],[110,150],[190,90],[220,170],[300,95],[340,150]].forEach(([x,y],k)=>s+=pl(x,y)+T(x,y+28,['막기1','막기2','가운데1','가운데2','슛1','슛2'][k],COL.mk,10));
+   return {s,l:['blue:자리마다 다닐 수 있는 구역','hoop']}; }
+});
+/* 새 범례 */
+(function(){ const _ll=legendList; legendList=function(ids,u){
+  const ex={racket:[RKT(17,16,30),'라켓'],board:[`<rect x="7" y="4" width="20" height="14" rx="2" fill="#fff" stroke="#1c2a21"/>`,'작전판'],clip:[CLIP(17,11),'기록지'],cloth:[`<rect x="6" y="6" width="22" height="10" rx="3" fill="rgba(255,212,59,.85)" stroke="#fff"/>`,'보자기'],
+    wedge:[`<rect x="13" y="3" width="8" height="16" rx="3" fill="#ffd43b" stroke="#fff"/>`,'낮은 스펀지 장애물'],bar:[`<path d="M4,6 Q17,14 30,6" fill="none" stroke="#ff7a1a" stroke-width="3"/>`,'고무줄']};
+  Object.keys(XB).forEach(k=>{ if(k!=='shuttle') ex['x_'+k]=[XB[k](17,11,5.5),XBN[k]]; });
+  const base=_ll(ids.filter(id=>!ex[id.split(':')[0]]),u);
+  const add=ids.filter(id=>ex[id.split(':')[0]]).map(id=>{const [k,lab]=id.split(':'); return `<li><svg viewBox="0 0 34 22" aria-hidden="true">${ex[k][0]}</svg>${lab||ex[k][1]}</li>`;}).join('');
+  return base.replace('</ul>',add+'</ul>'); }; })();
+
+/* ===== 술래잡기(오늘 뭐하지?) 그림 =====
+   tg_free 흩어져 움직이기 · tg_tag 술래 쫓기 · tg_slide 빈백 바닥 밀기 · tg_flip 빈백 뒤집기 · tg_plank 엎드려 하이파이브
+   tg_kho 스틱 교대 술래 · tg_tail 꼬리잡기 · tg_corner 네 모서리 기지 · tg_border 가운데 선 돌파 */
+const TAIL=(x,y)=>`<path d="M${x+6},${y+8} q8,6 3,16" fill="none" stroke="${COL.mk}" stroke-width="4" stroke-linecap="round"/>`;
+const STICK=(x,y)=>`<rect x="${x-2.5}" y="${y-18}" width="5" height="22" rx="2.5" fill="#29c4e8" stroke="#fff" stroke-width="1.2" transform="rotate(30 ${x} ${y})"/>`;
+const DOLL=(x,y)=>`<g><ellipse cx="${x-3}" cy="${y-10}" rx="2.6" ry="6" fill="#fff" stroke="${COL.ink}" stroke-width="1"/><ellipse cx="${x+3}" cy="${y-10}" rx="2.6" ry="6" fill="#fff" stroke="${COL.ink}" stroke-width="1"/><circle cx="${x}" cy="${y-2}" r="5" fill="#fff" stroke="${COL.ink}" stroke-width="1.2"/></g>`;
+const EARS=(x,y)=>`<path d="M${x-6},${y-12} l-3,-12 M${x+6},${y-12} l3,-12" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`;
+const BAG2=(x,y,c)=>`<rect x="${x-8}" y="${y-6}" width="16" height="12" rx="4" fill="${c}" stroke="#fff" stroke-width="1.5"/>`;
+const RPS=(x,y)=>`<g><rect x="${x-26}" y="${y-9}" width="52" height="18" rx="9" fill="#fff" stroke="${COL.ink}" stroke-width="1.2"/>${T(x,y+4,'가위바위보',COL.ink,10)}</g>`;
+const FLIP=(x,y)=>`<path d="M${x-10},${y-12} a10,10 0 1,1 12,14" fill="none" stroke="#fff" stroke-width="2.2" marker-end="url(#w§)"/>`;
+const CHARGE=(x,y,w=78,h=50)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="rgba(255,212,59,.28)" stroke="${COL.mk}" stroke-width="2" stroke-dasharray="5 4"/>`+T(x+w/2,y+h/2+4,'체력충전소',COL.mk,11);
+const FIELD=()=>cn(24,24)+cn(376,24)+cn(24,226)+cn(376,226)+`<rect x="24" y="24" width="352" height="202" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="6 6"/>`;
+const SP=[[70,70],[160,55],[250,80],[340,60],[95,150],[200,135],[300,150],[60,205],[170,200],[280,205],[350,195]];
+Object.assign(TPL,{
+ tg_free:o=>{ let s=o.field?FIELD():mkBox(); const P=SP.slice(0,o.pair?6:9);
+   if(o.pair){ P.forEach(([x,y],k)=>{ s+=pl(x,y,COL.mint)+pl(x-26,y+16,COL.blue)+rn(x+12,y,x+46,y+(k%2?22:-22),-10); }); return {s,l:['me:앞 친구','blue:따라가는 친구','run:방향 바꿔 달리기']}; }
+   P.forEach(([x,y],k)=>{ s+=pl(x,y,COL.mint);
+     if(o.obj==='bag') s+=XB.bag(x+16,y-12,5.5);
+     if(o.tail) s+=TAIL(x,y);
+     if(o.hop) s+=EARS(x,y)+`<path d="M${x-10},${y+20} q10,-12 20,0" fill="none" stroke="${COL.mk}" stroke-width="2.4" marker-end="url(#y§)"/>`;
+     else if(o.stop) s+=`<circle cx="${x}" cy="${y}" r="24" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="3 4"/>`;
+     else if(!o.rps) s+=rn(x+14,y+4,x+44,y+(k%2?24:-18),-12); });
+   if(o.rps) [[150,110],[280,175]].forEach(([x,y])=>s+=pl(x-16,y,COL.mint)+pl(x+16,y,COL.blue)+RPS(x,y-26));
+   return {s,l:['me'].concat(o.rps?['blue:만난 친구','rps:만나면 가위바위보']:o.hop?['run:토끼처럼 깡충']:o.stop?['mk2:둘레 1m 비우기']:['run:흩어져 움직이기']).concat(o.obj==='bag'?['x_bag:양면 빈백']:[]).concat(o.tail?['tail:꼬리']:[])}; },
+ tg_tag:o=>{ let s=mkBox();
+   if(o.m==='pair'){ [[90,80],[260,80],[90,180],[260,180]].forEach(([x,y])=>{ s+=pl(x,y,COL.red)+(o.obj==='stick'?STICK(x+14,y-6):'')+pl(x+70,y,COL.blue)+`<path d="M${x+20},${y} H${x+54}" stroke="#fff" stroke-width="2.2" stroke-dasharray="3 4" marker-end="url(#w§)"/>`; });
+     return {s,l:['red:대는 사람','blue:짝'].concat(o.obj==='stick'?['stick:플레이스틱(어깨 아래 톡)']:['run:손바닥으로 등 톡'])}; }
+   const R=[[130,100],[270,160],[300,70]], B=[[70,60],[190,60],[350,120],[90,190],[200,200],[330,210],[220,120]];
+   R.forEach(([x,y])=>{ s+=pl(x,y,COL.red)+(o.obj==='bag'?XB.bag(x+16,y-12,5.5):o.obj==='stick'?STICK(x+15,y-6):''); });
+   B.forEach(([x,y],k)=>{ if(o.rescue&&k===4){ s+=pl(x,y,COL.obs)+EARS(x,y); return; } s+=pl(x,y,COL.blue); });
+   s+=rn(144,96,186,70,-10)+rn(70,74,46,110,10)+rn(256,160,214,194,10)+rn(330,206,368,170,-10);
+   if(o.rescue) s+=YP(150,206)+DOLL(150,190)+rn(166,206,186,204,-6);
+   return {s,l:['red:술래','blue:피하는 친구'].concat(o.rescue?['obs:잡힌 친구(토끼 귀)','mk3:구조대']:[]).concat(o.obj==='bag'?['x_bag:술래가 든 빈백']:o.obj==='stick'?['stick:플레이스틱']:[]).concat(o.rescue?['doll:토끼 인형']:[]).concat(['run:피해 달리기'])}; },
+ tg_slide:o=>{ let s=mkBox();
+   if(o.pair){ [[70,70],[70,180],[230,70],[230,180]].forEach(([x,y])=>{ s+=pl(x,y,COL.mint)+XB.bag(x+20,y+10,5.5)+`<path d="M${x+28},${y+12} H${x+100}" stroke="#fff" stroke-width="2.2" stroke-dasharray="2 4" marker-end="url(#w§)"/>`+pl(x+118,y,COL.blue)+(o.jump?`<path d="M${x+108},${y-16} q10,-16 20,0" fill="none" stroke="${COL.mk}" stroke-width="2.4" marker-end="url(#y§)"/>`:''); });
+     return {s,l:['me:미는 사람','blue:짝','x_bag:빈백','pass:바닥으로 밀기'].concat(o.jump?['run:두 발 모아 폴짝']:[])}; }
+   if(o.lanes){ s+=ln(40,40,360,40)+ln(40,210,360,210); [70,130,190,250,310].forEach((x,k)=>{ s+=pl(x,22,COL.red)+pl(x+20,228,COL.red); if(k%2===0) s+=XB.bag(x,48,5)+`<path d="M${x},56 L${x+14},118" stroke="#fff" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#w§)"/>`; });
+     [[60,125],[150,140],[240,115],[330,135]].forEach(([x,y])=>s+=pl(x,y,COL.blue)+rn(x+12,y,x+40,y,0));
+     return {s,l:['red:옆줄에서 미는 팀','blue:건너는 팀','x_bag:빈백','pass:바닥으로 밀기','run:건너가기']}; }
+   SP.slice(0,9).forEach(([x,y],k)=>{ s+=pl(x,y,COL.mint); if(k%3===0) s+=XB.bag(x+18,y+12,5.5)+`<path d="M${x+26},${y+14} l38,${k%2?14:-10}" stroke="#fff" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#w§)"/>`; else s+=XB.bag(x-16,y-12,5); });
+   return {s,l:['me','x_bag:1인 1빈백','pass:발 쪽으로 바닥 밀기']}; },
+ tg_flip:o=>{ let s=mkBox(); [[80,60,1],[150,95,0],[220,55,1],[300,90,0],[340,170,1],[260,140,0],[180,180,1],[100,150,0],[60,205,1],[300,205,0],[200,120,1]].forEach(([x,y,c])=>s+=BAG2(x,y,c?COL.blue:COL.red));
+   if(o.rps){ [[130,125],[280,60]].forEach(([x,y])=>s+=(o.low?`<rect x="${x-34}" y="${y-6}" width="28" height="12" rx="6" fill="${COL.blue}" opacity=".6"/><rect x="${x+6}" y="${y-6}" width="28" height="12" rx="6" fill="${COL.red}" opacity=".6"/>`:'')+pl(x-18,y,COL.blue)+pl(x+18,y,COL.red)+RPS(x,y-24)); s+=FLIP(150,95);
+     return {s,l:['blue:파랑 팀','red:빨강 팀'].concat(o.low?['mk2:엎드려 하이파이브']:[]).concat(['rps:만나면 가위바위보','flip:이기면 하나 뒤집기','bag2:양면 빈백(두 색)'])}; }
+   [[110,60],[250,150]].forEach(([x,y])=>s+=pl(x,y,COL.blue)); [[190,170],[330,110]].forEach(([x,y])=>s+=pl(x,y,COL.red)); s+=FLIP(150,95)+FLIP(260,140);
+   return {s,l:['blue:파랑 팀','red:빨강 팀','flip:상대 색 뒤집기','bag2:양면 빈백(두 색)']}; },
+ tg_plank:o=>{ let s=''; const P=o.pair?[[110,80],[290,80],[110,180],[290,180]]:[[80,70],[200,70],[320,70],[80,180],[200,180],[320,180]];
+   P.forEach(([x,y])=>{ if(o.pair){ s+=`<rect x="${x-70}" y="${y-7}" width="50" height="14" rx="7" fill="${COL.mint}" stroke="#fff" stroke-width="2"/><circle cx="${x-16}" cy="${y}" r="9" fill="${COL.mint}" stroke="#fff" stroke-width="2.5"/><rect x="${x+20}" y="${y-7}" width="50" height="14" rx="7" fill="${COL.blue}" stroke="#fff" stroke-width="2"/><circle cx="${x+16}" cy="${y}" r="9" fill="${COL.blue}" stroke="#fff" stroke-width="2.5"/>`+(o.rps?RPS(x,y-26):`<path d="M${x-6},${y-16} l6,-8 l6,8" fill="none" stroke="${COL.mk}" stroke-width="2.4"/>`); }
+     else s+=`<rect x="${x-34}" y="${y-7}" width="52" height="14" rx="7" fill="${COL.mint}" stroke="#fff" stroke-width="2"/><circle cx="${x+22}" cy="${y}" r="9" fill="${COL.mint}" stroke="#fff" stroke-width="2.5"/><line x1="${x+16}" y1="${y+8}" x2="${x+16}" y2="${y+20}" stroke="#fff" stroke-width="3"/>`; });
+   return {s,l:o.pair?['me','blue:짝'].concat(o.rps?['rps:엎드린 채 가위바위보']:['mk2:손바닥 하이파이브']):['me:엎드려 버티기']}; },
+ tg_kho:o=>{ let s='';
+   if(o.m==='pass'||o.m==='tap'){ const X=[70,120,170,220,270,320]; s+=X.map(x=>mk(x,140)).join('');
+     X.forEach((x,k)=>s+=pl(x,125,COL.red)+`<path d="M${x},${k%2?107:143} l0,${k%2?-8:8}" stroke="#fff" stroke-width="2.4" marker-end="url(#w§)"/>`);
+     if(o.m==='tap'){ s+=YP(145,70)+`<path d="M152,82 L166,112" stroke="${COL.mk}" stroke-width="2.4" marker-end="url(#y§)"/>`+rn(170,140,240,200,-20); return {s,l:['red:앉아 기다리는 친구','mk3:"코!" 하고 어깨 톡','run:톡 받으면 출발']}; }
+     s+=STICK(84,118)+ps(84,112,112,112)+T(98,96,'코!',COL.mk,13); return {s,l:['red:한 줄로 선 팀','stick:플레이스틱','pass:"코!" 외치며 건네기','mk:서는 자리']}; }
+   s+=`<line x1="200" y1="30" x2="200" y2="220" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/>`+cn(200,22)+cn(200,228);
+   [50,85,120,155,190].forEach((y,k)=>s+=mk(200,y+6)+pl(200,y,COL.red)+`<path d="M${k%2?188:212},${y} l${k%2?-8:8},0" stroke="#fff" stroke-width="2.2" marker-end="url(#w§)"/>`);
+   if(o.m==='line') s=`<line x1="200" y1="30" x2="200" y2="220" stroke="#fff" stroke-width="4"/>`+cn(200,22)+cn(200,228);
+   s+=pl(250,110,COL.red)+STICK(264,104)+rn(262,118,300,150,-10)+[[310,160],[110,70],[120,190]].map(([x,y])=>pl(x,y,COL.blue)).join('')+rn(124,70,160,40,-10)+[[30,236],[56,236]].map(([x,y])=>pl(x,y,COL.obs)).join('');
+   return {s,l:o.m==='line'?['red:술래(가운데 줄 넘지 않기)','blue:피하는 3명','obs:교대 기다림','stick:플레이스틱','mk2:가운데 줄','cone:끝 콘']:['red:수비 팀(엇갈려 서기)','blue:공격 3명','obs:들어갈 차례','stick:플레이스틱 교대','run','cone:끝 콘']}; },
+ tg_tail:o=>{ let s=FIELD(); if(o.charge) s+=CHARGE(290,170);
+   if(o.m==='pair'||o.m==='feint'){ [[80,80],[250,80],[80,170],[250,170]].forEach(([x,y],k)=>{ if(o.ring) s+=`<circle cx="${x+30}" cy="${y}" r="44" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="4 5"/>`;
+       s+=pl(x,y,COL.mint)+TAIL(x,y)+pl(x+60,y,COL.red)+(o.m==='feint'?`<path d="M${x+52},${y-14} q-14,-18 -26,-6" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="3 3"/>`+rn(x+50,y+12,x+14,y+26,-16):rn(x+48,y-8,x+18,y-22,10)); });
+     return {s,l:['me:꼬리 단 친구','red:꼬리 노리는 친구','tail:꼬리'].concat(o.m==='feint'?['run:속이고 반대로 돌아 들어가기']:['run:돌아 들어가기']).concat(o.ring?['mk2:둘만의 원']:[])}; }
+   const R=o.m==='tagger'?[[140,100],[260,150],[320,70]]:[];
+   SP.slice(0,o.charge?9:10).forEach(([x,y],k)=>{ if(R.some(([a,b])=>Math.abs(a-x)<30&&Math.abs(b-y)<30)) return; s+=pl(x,y,COL.mint)+TAIL(x,y)+(o.three?`<path d="M${x-10},${y+4} q-8,6 -4,14" fill="none" stroke="${COL.mk}" stroke-width="3.4"/><path d="M${x+12},${y-2} q8,6 6,14" fill="none" stroke="${COL.mk}" stroke-width="3.4"/>`:'')+(k%3===0?rn(x+14,y,x+40,y+(k%2?20:-20),-10):''); });
+   R.forEach(([x,y])=>s+=pl(x,y,COL.red)+rn(x+12,y,x+40,y-14,-8));
+   if(!R.length&&!o.three) s+=`<path d="M180,195 q14,-6 22,4" stroke="#fff" stroke-width="2.2" fill="none"/>`;
+   return {s,l:['me'+(o.m==='tagger'?':꼬리 단 친구':'')].concat(R.length?['red:꼬리 없는 술래']:[]).concat(['tail:'+(o.three?'꼬리(옆구리 둘 · 허리 뒤 하나)':'꼬리'),'run']).concat(o.charge?['mk2:체력충전소(운동하고 다시)']:[])}; },
+ tg_corner:o=>{ let s=FIELD(); const C=[[54,54],[346,54],[54,196],[346,196]]; C.forEach(([x,y])=>s+=HOOPG(x,y,22)+mk(x,y));
+   if(o.relay){ C.forEach(([x,y],k)=>{ s+=pl(x+(x<200?36:-36),y,[COL.blue,COL.red,COL.mint,COL.obs][k])+rn(x+(x<200?50:-50),y,200+(x<200?-14:14),125+(y<125?-10:10),k%2?10:-10); }); s+=cn(200,125);
+     return {s,l:['blue:모둠','ring:우리 기지(후프)','cone:팔찌 놓는 곳','run:다녀오기']}; }
+   const P=[[150,100],[250,100],[200,150],[140,180],[270,170],[200,70]]; P.forEach(([x,y])=>s+=pl(x,y,o.tag&&x===200&&y===150?COL.red:COL.mint)+(o.tail?TAIL(x,y):''));
+   if(o.tag) s+=pl(54,54,COL.blue)+rn(214,150,250,170,-8); else s+=rn(150,100,72,64,10)+rn(270,170,330,190,-10)+rn(200,70,330,60,-12);
+   return {s,l:(o.tag?['me:피하는 친구','red:술래','blue:후프에서 5초 쉬기']:['me']).concat(o.tail?['tail:꼬리']:[]).concat(['ring:모서리 기지(후프)','run'])}; },
+ tg_border:o=>{ let s=FIELD()+`<line x1="200" y1="24" x2="200" y2="226" stroke="#fff" stroke-width="3" stroke-dasharray="7 5"/>`+`<rect x="24" y="24" width="44" height="202" fill="rgba(47,111,214,.25)"/><rect x="332" y="24" width="44" height="202" fill="rgba(217,67,58,.25)"/>`;
+   if(o.m==='cross'){ [[120,70],[120,125],[120,180]].forEach(([x,y])=>s+=pl(x,y,COL.blue)+TAIL(x,y)+rn(x+14,y,320,y+(y<125?16:y>125?-16:0),-10)); if(o.def) [[240,90],[270,160],[220,190]].forEach(([x,y])=>s+=pl(x,y,COL.red));
+     return {s,l:['blue:건너는 팀'].concat(o.def?['red:가운데 수비']:[]).concat(['tail:꼬리','run:반대 끝선까지','mk2:가운데 선'])}; }
+   s+=HOOPG(46,40,14)+HOOPG(354,40,14); [[150,80],[160,170],[260,120]].forEach(([x,y])=>s+=pl(x,y,COL.blue)+TAIL(x,y)); [[240,70],[250,190],[130,125]].forEach(([x,y])=>s+=pl(x,y,COL.red)+TAIL(x,y));
+   s+=rn(274,120,336,150,-12)+`<path d="M352,150 l8,6 -8,6" fill="none" stroke="${COL.mk}" stroke-width="3"/>`;
+   return {s,l:['blue:파랑 팀','red:빨강 팀','tail:꼬리 셋','run:상대 득점 구역으로','ring:우리 후프(왕꼬리 넣기)','mk2:가운데 선']}; }
+});
+(function(){ const _ll=legendList; legendList=function(ids,u){
+  const ex={tail:[`<path d="M12,4 q8,6 3,16" fill="none" stroke="#ffd43b" stroke-width="4" stroke-linecap="round"/>`,'꼬리'],stick:[`<rect x="14" y="2" width="5" height="18" rx="2.5" fill="#29c4e8" stroke="#fff" transform="rotate(30 17 11)"/>`,'플레이스틱'],
+    doll:[DOLL(17,17),'토끼 인형'],rps:[`<rect x="3" y="5" width="28" height="12" rx="6" fill="#fff" stroke="#1c2a21"/>`,'가위바위보'],flip:[`<path d="M8,10 a8,8 0 1,1 10,11" fill="none" stroke="#fff" stroke-width="2.2"/>`,'뒤집기'],
+    bag2:[`<rect x="5" y="5" width="12" height="12" rx="3" fill="#2f6fd6" stroke="#fff"/><rect x="17" y="5" width="12" height="12" rx="3" fill="#d9433a" stroke="#fff"/>`,'양면 빈백']};
+  const base=_ll(ids.filter(id=>!ex[id.split(':')[0]]),u);
+  const add=ids.filter(id=>ex[id.split(':')[0]]).map(id=>{const [k,lab]=id.split(':'); return `<li><svg viewBox="0 0 34 22" aria-hidden="true">${ex[k][0]}</svg>${lab||ex[k][1]}</li>`;}).join('');
+  return base.replace('</ul>',add+'</ul>'); }; })();

@@ -47,7 +47,8 @@ addLessons([
      "easy": "소프트 발리볼로 바꾸고 횟수 절반",
      "hard": "한 손으로 튀기기 · 눈 감고 몸 주위 돌리기",
      "d": {
-      "t": "nb_pair"
+      "t": "nb_pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "체육관 한 면 또는 운동장 · 20×20m 구역 · 1인 1 공 · 시작 전 손목·발목 돌리기",
@@ -79,7 +80,12 @@ addLessons([
      "easy": "걸어서 이동하고 멈추기",
      "hard": "전력으로 달리다 신호에 멈추기",
      "d": {
-      "t": "nb_group"
+      "t": "gen_shadow",
+      "mark": true,
+      "lab": {
+       "run": "두 발 착지 · 축발 돌기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "체육관 한 면 또는 운동장 · 20×20m 구역 · 1인 1 공 · 시작 전 손목·발목 돌리기",
@@ -112,7 +118,12 @@ addLessons([
      "easy": "제자리에서 받아 착지만",
      "hard": "달려 나오며 받아 착지",
      "d": {
-      "t": "nb_pair"
+      "t": "gen_shadow",
+      "mark": true,
+      "lab": {
+       "run": "두 발 착지 · 축발 돌기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "체육관 한 면 또는 운동장 · 20×20m 구역 · 1인 1 공 · 시작 전 손목·발목 돌리기",
@@ -144,7 +155,8 @@ addLessons([
      "easy": "5초 안에 패스",
      "hard": "3초 · 받는 사람이 움직이며 받기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "ball": "nball"
      },
      "t": {
       "prep": "체육관 한 면 또는 운동장 · 20×20m 구역 · 1인 1 공 · 시작 전 손목·발목 돌리기",
@@ -209,7 +221,12 @@ addLessons([
      "easy": "세 걸음으로 한 바퀴 돌기",
      "hard": "한 걸음(발레리나)으로 한 바퀴 돌기",
      "d": {
-      "t": "nb_pair"
+      "t": "gen_shadow",
+      "mark": true,
+      "lab": {
+       "run": "두 발 착지 · 축발 돌기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 마주 보기 · 원마커로 축발 자리 표시",
@@ -241,7 +258,12 @@ addLessons([
      "easy": "짝이 천천히 움직이기",
      "hard": "짝이 빠르게 좌우로 움직이기",
      "d": {
-      "t": "nb_pair"
+      "t": "gen_shadow",
+      "mark": true,
+      "lab": {
+       "run": "두 발 착지 · 축발 돌기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 마주 보기 · 원마커로 축발 자리 표시",
@@ -273,7 +295,8 @@ addLessons([
      "easy": "거리 3m · 제자리에서",
      "hard": "거리 6m · 체중을 앞뒤로 옮기며",
      "d": {
-      "t": "nb_pair"
+      "t": "nb_pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 마주 보기 · 원마커로 축발 자리 표시",
@@ -305,7 +328,8 @@ addLessons([
      "easy": "간격 3m · 바운드 패스 허용",
      "hard": "간격 7m · 체스트 패스만",
      "d": {
-      "t": "nb_group"
+      "t": "shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 마주 보기 · 원마커로 축발 자리 표시",
@@ -370,7 +394,8 @@ addLessons([
      "easy": "거리 5m · 두 손으로 던지기",
      "hard": "거리 10m · 한 손으로 정확히",
      "d": {
-      "t": "nb_pair"
+      "t": "nb_pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "6~10m 간격 두 줄 · 2인 1조 · 패스 종류별 레인 표시",
@@ -402,7 +427,12 @@ addLessons([
      "easy": "과녁을 바닥에 눕히고 거리 절반",
      "hard": "과녁을 좁히고 한 번 튀기면 무효",
      "d": {
-      "t": "nb_group"
+      "t": "at_throw2",
+      "m": "target",
+      "lab": {
+       "pass": "패스로 맞히기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "6~10m 간격 두 줄 · 2인 1조 · 패스 종류별 레인 표시",
@@ -434,7 +464,8 @@ addLessons([
      "easy": "거리 3m · 표시를 바닥에 붙여 주기",
      "hard": "거리 6m · 수비 한 명이 손을 들고 서 있기",
      "d": {
-      "t": "nb_pair"
+      "t": "nb_pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "6~10m 간격 두 줄 · 2인 1조 · 패스 종류별 레인 표시",
@@ -466,7 +497,8 @@ addLessons([
      "easy": "두 가지만 섞기",
      "hard": "교사 신호 없이 상황에 맞게 스스로 고르기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "ball": "nball"
      },
      "t": {
       "prep": "6~10m 간격 두 줄 · 2인 1조 · 패스 종류별 레인 표시",
@@ -531,7 +563,8 @@ addLessons([
      "easy": "서로 선 위에 서서 거리 고정",
      "hard": "공격이 움직일 때마다 거리 다시 맞추기",
      "d": {
-      "t": "nb_defend"
+      "t": "nb_defend",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 90cm 를 재는 막대 또는 줄 준비 · 평가 관찰은 연습 2 에서",
@@ -563,7 +596,11 @@ addLessons([
      "easy": "공격이 걸어서만 이동",
      "hard": "공격이 방향을 자주 바꾸며 이동",
      "d": {
-      "t": "nb_defend"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 90cm 를 재는 막대 또는 줄 준비 · 평가 관찰은 연습 2 에서",
@@ -595,7 +632,8 @@ addLessons([
      "easy": "수비 없이 3초만 지키기",
      "hard": "수비 두 명 · 구역 좁히기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 90cm 를 재는 막대 또는 줄 준비 · 평가 관찰은 연습 2 에서",
@@ -628,7 +666,11 @@ addLessons([
      "easy": "원을 10m 로 넓히기",
      "hard": "원을 6m 로 좁히고 수비 2명",
      "d": {
-      "t": "nb_court"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(마녀)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 90cm 를 재는 막대 또는 줄 준비 · 평가 관찰은 연습 2 에서",
@@ -693,7 +735,11 @@ addLessons([
      "easy": "걸어서 길만 익히기",
      "hard": "전력으로 달리며 꺾기",
      "d": {
-      "t": "nb_defend"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "지그재그 콘 레인 4줄 · 2인 1조 또는 4인 모둠 · 구역 10×10m",
@@ -725,7 +771,11 @@ addLessons([
      "easy": "콘 간격 4m · 걸어서",
      "hard": "콘 간격 2m · 전력으로",
      "d": {
-      "t": "nb_defend"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "지그재그 콘 레인 4줄 · 2인 1조 또는 4인 모둠 · 구역 10×10m",
@@ -757,7 +807,11 @@ addLessons([
      "easy": "수비가 소극적으로 따라가기",
      "hard": "수비가 적극적으로 따라붙기",
      "d": {
-      "t": "nb_defend"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "지그재그 콘 레인 4줄 · 2인 1조 또는 4인 모둠 · 구역 10×10m",
@@ -789,7 +843,8 @@ addLessons([
      "easy": "수비 2명으로 줄이기",
      "hard": "수비 4명 · 구역 좁히기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "ball": "nball"
      },
      "t": {
       "prep": "지그재그 콘 레인 4줄 · 2인 1조 또는 4인 모둠 · 구역 10×10m",
@@ -855,7 +910,11 @@ addLessons([
      "easy": "한 변 4m · 제자리에서",
      "hard": "한 변 7m · 받자마자 돌려보내기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "lab": {
+       "mk": "서는 자리"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "한 변 5m 삼각형 4세트 · 3인 또는 4인 모둠 · 원마커로 꼭짓점 표시",
@@ -887,7 +946,11 @@ addLessons([
      "easy": "공 하나로 번갈아",
      "hard": "공 두 개 · 간격 넓히기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "lab": {
+       "mk": "서는 자리"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "한 변 5m 삼각형 4세트 · 3인 또는 4인 모둠 · 원마커로 꼭짓점 표시",
@@ -919,7 +982,9 @@ addLessons([
      "easy": "걸어서 전진",
      "hard": "수비 1명을 넣고 전진",
      "d": {
-      "t": "nb_group"
+      "t": "bb_fast",
+      "nb": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "한 변 5m 삼각형 4세트 · 3인 또는 4인 모둠 · 원마커로 꼭짓점 표시",
@@ -951,7 +1016,11 @@ addLessons([
      "easy": "수비 1명",
      "hard": "수비 3명 · 구역 좁히기",
      "d": {
-      "t": "nb_group"
+      "t": "square",
+      "lab": {
+       "mk": "서는 자리"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "한 변 5m 삼각형 4세트 · 3인 또는 4인 모둠 · 원마커로 꼭짓점 표시",
@@ -1017,7 +1086,8 @@ addLessons([
      "easy": "공을 손바닥 전체에 올리고 두 손으로",
      "hard": "한 손으로 쏘고 반대 손은 받치기만",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "넷볼 골대 또는 농구 골대(백보드 사용 금지 안내) · 1m·2m·3m 마커 · 4인 모둠",
@@ -1049,7 +1119,8 @@ addLessons([
      "easy": "거리를 0.5m · 1m · 2m 로",
      "hard": "거리를 2m · 3m · 4m 로",
      "d": {
-      "t": "nb_shoot"
+      "t": "shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "넷볼 골대 또는 농구 골대(백보드 사용 금지 안내) · 1m·2m·3m 마커 · 4인 모둠",
@@ -1081,7 +1152,8 @@ addLessons([
      "easy": "제자리에서 받아 슛",
      "hard": "달려 나오며 받아 착지 후 슛",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "넷볼 골대 또는 농구 골대(백보드 사용 금지 안내) · 1m·2m·3m 마커 · 4인 모둠",
@@ -1113,7 +1185,8 @@ addLessons([
      "easy": "거리 1.5m 고정",
      "hard": "거리를 스스로 골라 먼 곳일수록 2 배",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "넷볼 골대 또는 농구 골대(백보드 사용 금지 안내) · 1m·2m·3m 마커 · 4인 모둠",
@@ -1179,7 +1252,8 @@ addLessons([
      "easy": "공격이 제자리에서 몸만 돌리기",
      "hard": "공격이 구역 안을 자유롭게 이동",
      "d": {
-      "t": "nb_defend"
+      "t": "nb_defend",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 2인 1조와 4인 모둠 · 90cm 기준을 다시 확인",
@@ -1211,7 +1285,8 @@ addLessons([
      "easy": "낮게 던져 주기",
      "hard": "높게 던지고 바로 수비 자세까지",
      "d": {
-      "t": "nb_pair"
+      "t": "nb_pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 2인 1조와 4인 모둠 · 90cm 기준을 다시 확인",
@@ -1243,7 +1318,8 @@ addLessons([
      "easy": "2:1 · 공격이 천천히 패스",
      "hard": "3:1 · 뒤에서 나오며 가로채기",
      "d": {
-      "t": "nb_defend"
+      "t": "nb_defend",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 2인 1조와 4인 모둠 · 90cm 기준을 다시 확인",
@@ -1275,7 +1351,8 @@ addLessons([
      "easy": "수비 2명",
      "hard": "수비 4명 · 구역 좁히기",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "10×10m 구역 4개 · 2인 1조와 4인 모둠 · 90cm 기준을 다시 확인",
@@ -1341,7 +1418,8 @@ addLessons([
      "easy": "자리를 미리 정해 주고 잡기만",
      "hard": "자리 싸움 없이 공만 보고 들어가기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "골대 2 곳 · 4인 모둠 · 골대에서 1m 지점을 원마커로 표시",
@@ -1373,7 +1451,8 @@ addLessons([
      "easy": "공이 한 번 튄 뒤 잡아도 인정",
      "hard": "공중에서 두 손으로 잡아야 인정",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "골대 2 곳 · 4인 모둠 · 골대에서 1m 지점을 원마커로 표시",
@@ -1405,7 +1484,8 @@ addLessons([
      "easy": "5초 안에 패스",
      "hard": "3초 안에 두 번 연결까지",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "골대 2 곳 · 4인 모둠 · 골대에서 1m 지점을 원마커로 표시",
@@ -1437,7 +1517,9 @@ addLessons([
      "easy": "네 번 안에 도달해도 인정",
      "hard": "두 번 안에 도달해야 인정",
      "d": {
-      "t": "nb_group"
+      "t": "bb_fast",
+      "nb": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "골대 2 곳 · 4인 모둠 · 골대에서 1m 지점을 원마커로 표시",
@@ -1503,7 +1585,8 @@ addLessons([
      "easy": "포지션을 네 개(GS · GA · GD · GK)만 써서 반코트로",
      "hard": "일곱 포지션 모두 쓰기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트를 세 구역(골서드 · 센터서드 · 골서드)으로 나누어 표시 · 골서클 반원 표시 · 포지션 조끼",
@@ -1535,7 +1618,11 @@ addLessons([
      "easy": "구역을 두 개로 나누기",
      "hard": "포지션을 바꿔 가며 반복",
      "d": {
-      "t": "nb_defend"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "코트를 세 구역(골서드 · 센터서드 · 골서드)으로 나누어 표시 · 골서클 반원 표시 · 포지션 조끼",
@@ -1568,7 +1655,8 @@ addLessons([
      "easy": "구역 두 개만 쓰기",
      "hard": "구역 세 개 · 수비 두 명 추가",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트를 세 구역(골서드 · 센터서드 · 골서드)으로 나누어 표시 · 골서클 반원 표시 · 포지션 조끼",
@@ -1600,7 +1688,8 @@ addLessons([
      "easy": "슛 없이 골서클 도달만으로 점수",
      "hard": "슛까지 성공해야 점수",
      "d": {
-      "t": "nb_court"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트를 세 구역(골서드 · 센터서드 · 골서드)으로 나누어 표시 · 골서클 반원 표시 · 포지션 조끼",
@@ -1666,7 +1755,9 @@ addLessons([
      "easy": "휘슬 없이 구령으로 연습",
      "hard": "3초를 재며 실제 휘슬로",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "center": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "센터서클(지름 0.9m) 표시 · 사이드라인과 골라인 표시 · 반 2팀 또는 4팀",
@@ -1698,7 +1789,9 @@ addLessons([
      "easy": "세 가지 중 두 가지만 지키면 인정",
      "hard": "수비를 세우고 실시",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "center": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "센터서클(지름 0.9m) 표시 · 사이드라인과 골라인 표시 · 반 2팀 또는 4팀",
@@ -1731,7 +1824,9 @@ addLessons([
      "easy": "3초 제한 없이 자리만 익히기",
      "hard": "3초 · 수비가 앞에 서 있는 상태로",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "center": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "센터서클(지름 0.9m) 표시 · 사이드라인과 골라인 표시 · 반 2팀 또는 4팀",
@@ -1763,7 +1858,9 @@ addLessons([
      "easy": "반칙을 불지 않고 흐름만 익히기",
      "hard": "모든 재개 규칙을 그대로 적용",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "center": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "센터서클(지름 0.9m) 표시 · 사이드라인과 골라인 표시 · 반 2팀 또는 4팀",
@@ -1829,7 +1926,8 @@ addLessons([
      "easy": "수비 없이 자리만 익히기",
      "hard": "수비가 적극적으로 막기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "반코트 2 면 · GS · GA · GD · GK 네 포지션만 사용 · 골서클 표시",
@@ -1861,7 +1959,8 @@ addLessons([
      "easy": "수비를 2명으로",
      "hard": "수비 4명 · 구역 좁히기",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "반코트 2 면 · GS · GA · GD · GK 네 포지션만 사용 · 골서클 표시",
@@ -1894,7 +1993,8 @@ addLessons([
      "easy": "한 명씩 번갈아 들어가기",
      "hard": "수비 두 명을 넣고 자리 만들기",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "반코트 2 면 · GS · GA · GD · GK 네 포지션만 사용 · 골서클 표시",
@@ -1926,7 +2026,8 @@ addLessons([
      "easy": "두 명만 잡아도 슛 가능",
      "hard": "전원 터치 + 3초 엄격 적용",
      "d": {
-      "t": "nb_shoot"
+      "t": "nb_shoot",
+      "ball": "nball"
      },
      "t": {
       "prep": "반코트 2 면 · GS · GA · GD · GK 네 포지션만 사용 · 골서클 표시",
@@ -1992,7 +2093,8 @@ addLessons([
      "easy": "수비 없이 연결만",
      "hard": "수비 두 명을 넣고 연결",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "전체 코트 1 면(또는 넓은 반면) · 다섯 포지션(GS · GA · C · GD · GK) 사용",
@@ -2024,7 +2126,8 @@ addLessons([
      "easy": "오프사이드를 느슨하게 적용",
      "hard": "오프사이드·오버서드 모두 적용",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "전체 코트 1 면(또는 넓은 반면) · 다섯 포지션(GS · GA · C · GD · GK) 사용",
@@ -2057,7 +2160,9 @@ addLessons([
      "easy": "네 번에 넘기기",
      "hard": "두 번에 넘기기",
      "d": {
-      "t": "nb_group"
+      "t": "bb_fast",
+      "nb": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "전체 코트 1 면(또는 넓은 반면) · 다섯 포지션(GS · GA · C · GD · GK) 사용",
@@ -2089,7 +2194,9 @@ addLessons([
      "easy": "다섯 번 안에 보내도 2점",
      "hard": "세 번 안에 보내야 2점",
      "d": {
-      "t": "nb_court"
+      "t": "bb_fast",
+      "nb": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "전체 코트 1 면(또는 넓은 반면) · 다섯 포지션(GS · GA · C · GD · GK) 사용",
@@ -2155,7 +2262,9 @@ addLessons([
      "easy": "컨택과 옵스트럭션 두 가지만",
      "hard": "스테핑과 헬드볼까지 여섯 가지",
      "d": {
-      "t": "nb_group"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 심판 2명 · 선심 2명 · 기록원 2명 · 평가 관찰은 연습 2 에서",
@@ -2187,7 +2296,8 @@ addLessons([
      "easy": "두 가지 중에서 고르기",
      "hard": "반칙 이름과 재개 방법까지 말하기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 심판 2명 · 선심 2명 · 기록원 2명 · 평가 관찰은 연습 2 에서",
@@ -2220,7 +2330,9 @@ addLessons([
      "easy": "교사가 옆에서 함께 판정",
      "hard": "학생 심판만으로 한 판 운영",
      "d": {
-      "t": "nb_court"
+      "t": "gen_ref",
+      "c": "nb",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 심판 2명 · 선심 2명 · 기록원 2명 · 평가 관찰은 연습 2 에서",
@@ -2253,7 +2365,9 @@ addLessons([
      "easy": "교사가 최종 판정",
      "hard": "학생 심판 판정을 그대로 따르기",
      "d": {
-      "t": "nb_court"
+      "t": "gen_ref",
+      "c": "nb",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 심판 2명 · 선심 2명 · 기록원 2명 · 평가 관찰은 연습 2 에서",
@@ -2319,7 +2433,8 @@ addLessons([
      "easy": "포지션 네 개만 다루기",
      "hard": "일곱 포지션 모두 돌기",
      "d": {
-      "t": "nb_group"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 포지션 조끼 · 로테이션 표를 팀마다 배부 · 쿼터마다 자리 바꾸기",
@@ -2351,7 +2466,9 @@ addLessons([
      "easy": "5분마다 교대",
      "hard": "2분마다 교대",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 포지션 조끼 · 로테이션 표를 팀마다 배부 · 쿼터마다 자리 바꾸기",
@@ -2384,7 +2501,8 @@ addLessons([
      "easy": "포지션만 고르기",
      "hard": "두 번째 자리까지 정하기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 포지션 조끼 · 로테이션 표를 팀마다 배부 · 쿼터마다 자리 바꾸기",
@@ -2416,7 +2534,8 @@ addLessons([
      "easy": "자리를 바꾸지 않고 진행",
      "hard": "쿼터마다 한 명씩 자리 교환",
      "d": {
-      "t": "nb_court"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 포지션 조끼 · 로테이션 표를 팀마다 배부 · 쿼터마다 자리 바꾸기",
@@ -2482,7 +2601,8 @@ addLessons([
      "easy": "항목을 세 가지로 좁혀 주기",
      "hard": "약한 부분을 메울 방법까지 적기",
      "d": {
-      "t": "nb_group"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "팀별 작전판 · 지금까지의 기록 카드를 펼쳐 놓고 의논 · 코트 한 면은 연습용",
@@ -2514,7 +2634,8 @@ addLessons([
      "easy": "교사가 두 가지 안을 제시",
      "hard": "팀이 스스로 두 가지 안을 만들어 비교",
      "d": {
-      "t": "nb_group"
+      "t": "nb_zones",
+      "ball": "nball"
      },
      "t": {
       "prep": "팀별 작전판 · 지금까지의 기록 카드를 펼쳐 놓고 의논 · 코트 한 면은 연습용",
@@ -2547,7 +2668,8 @@ addLessons([
      "easy": "센터패스 한 가지만",
      "hard": "공격과 수비 각각 한 가지씩",
      "d": {
-      "t": "nb_group"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "팀별 작전판 · 지금까지의 기록 카드를 펼쳐 놓고 의논 · 코트 한 면은 연습용",
@@ -2579,7 +2701,8 @@ addLessons([
      "easy": "한 판만 하고 의논 시간 늘리기",
      "hard": "두 판 하며 작전을 바꿔 적용",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "팀별 작전판 · 지금까지의 기록 카드를 펼쳐 놓고 의논 · 코트 한 면은 연습용",
@@ -2645,7 +2768,8 @@ addLessons([
      "easy": "패스 거리를 짧게",
      "hard": "가로채기 연습까지 넣기",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 4팀 리그 1라운드 · 전·후반 각 7~8분(초등 약식) · 심판과 기록은 쉬는 팀",
@@ -2677,7 +2801,9 @@ addLessons([
      "easy": "전·후반 각 5분",
      "hard": "전·후반 각 8분 · 쿼터제로",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 4팀 리그 1라운드 · 전·후반 각 7~8분(초등 약식) · 심판과 기록은 쉬는 팀",
@@ -2710,7 +2836,8 @@ addLessons([
      "easy": "교사가 과제를 지정",
      "hard": "팀이 과제와 방법까지 스스로",
      "d": {
-      "t": "nb_court"
+      "t": "nb_court",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 4팀 리그 1라운드 · 전·후반 각 7~8분(초등 약식) · 심판과 기록은 쉬는 팀",
@@ -2742,7 +2869,9 @@ addLessons([
      "easy": "전·후반 각 5분",
      "hard": "전·후반 각 8분",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 4팀 리그 1라운드 · 전·후반 각 7~8분(초등 약식) · 심판과 기록은 쉬는 팀",
@@ -2809,7 +2938,8 @@ addLessons([
      "easy": "교사가 함께 한 가지를 골라 주기",
      "hard": "공격·수비 각각 한 가지씩",
      "d": {
-      "t": "nb_group"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -2841,7 +2971,9 @@ addLessons([
      "easy": "전·후반 각 5분",
      "hard": "전·후반 각 8분",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -2874,7 +3006,8 @@ addLessons([
      "easy": "잘된 점만 말하기",
      "hard": "고칠 점을 동작으로 보여 주며",
      "d": {
-      "t": "nb_pair"
+      "t": "gen_watch",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -2906,7 +3039,9 @@ addLessons([
      "easy": "전·후반 각 5분",
      "hard": "교체 규칙을 적용해 전원 출전",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -2973,7 +3108,8 @@ addLessons([
      "easy": "거리를 0.5m 씩 당기기",
      "hard": "거리를 0.5m 씩 밀기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "코너 네 곳(슛 · 도지 · 패스 · 가로채기) · 모둠이 5분마다 순환 · 코너마다 안내판",
@@ -3005,7 +3141,11 @@ addLessons([
      "easy": "수비가 소극적으로",
      "hard": "수비가 적극적으로",
      "d": {
-      "t": "nb_group"
+      "t": "rondo",
+      "lab": {
+       "red": "수비(90cm 떨어져)"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "코너 네 곳(슛 · 도지 · 패스 · 가로채기) · 모둠이 5분마다 순환 · 코너마다 안내판",
@@ -3037,7 +3177,12 @@ addLessons([
      "easy": "과녁을 바닥에 눕히기",
      "hard": "과녁을 좁히기",
      "d": {
-      "t": "nb_group"
+      "t": "at_throw2",
+      "m": "target",
+      "lab": {
+       "pass": "패스로 맞히기"
+      },
+      "ball": "nball"
      },
      "t": {
       "prep": "코너 네 곳(슛 · 도지 · 패스 · 가로채기) · 모둠이 5분마다 순환 · 코너마다 안내판",
@@ -3069,7 +3214,8 @@ addLessons([
      "easy": "공격이 천천히 패스",
      "hard": "3대 1 로 수비 난도 올리기",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "코너 네 곳(슛 · 도지 · 패스 · 가로채기) · 모둠이 5분마다 순환 · 코너마다 안내판",
@@ -3134,7 +3280,8 @@ addLessons([
      "easy": "구호 없이 몸 풀기만",
      "hard": "팀 구호에 동작까지",
      "d": {
-      "t": "nb_group"
+      "t": "nb_group",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 1·2 위전과 3·4 위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3166,7 +3313,9 @@ addLessons([
      "easy": "전반 5분",
      "hard": "전반 8분",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 1·2 위전과 3·4 위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3199,7 +3348,9 @@ addLessons([
      "easy": "말로만 전하기",
      "hard": "장면을 구체적으로 적기",
      "d": {
-      "t": "nb_pair"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 1·2 위전과 3·4 위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3231,7 +3382,9 @@ addLessons([
      "easy": "시상 부문을 줄이고 칭찬 카드 읽기에 시간 쓰기",
      "hard": "팀별 소감 발표 추가",
      "d": {
-      "t": "nb_court"
+      "t": "gen_courts",
+      "kind": "goal",
+      "ball": "nball"
      },
      "t": {
       "prep": "코트 1 면 · 1·2 위전과 3·4 위전 · 시상은 전원이 한 가지 이상 받도록 구성",

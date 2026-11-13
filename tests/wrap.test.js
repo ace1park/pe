@@ -5,7 +5,7 @@ const widths=(process.argv[2]||'320,360,390,768').split(',').map(Number);
 const out={};
 for(const W of widths){
  const p=await (await b.newContext({viewport:{width:W,height:900},deviceScaleFactor:1})).newPage();
- await p.goto('file://'+require('path').resolve(__dirname,'..','index.html')+'');await p.waitForTimeout(700);
+ await p.goto('file://'+require('path').resolve(__dirname,'..','index.html')+'');await p.waitForTimeout(700); await p.evaluate(()=>{store.gsec='all';});
  const routes=await p.evaluate(()=>{ const r=['#guide','#teams','#score'];
    UORDER.forEach(u=>UMETA[u].grades.forEach(g=>{ r.push(unitRoute(u,g)); const id=lessonsOf(u,g)[0]; r.push('#lesson-'+id); }));
    return [...new Set(r)]; });

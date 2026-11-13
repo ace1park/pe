@@ -47,7 +47,8 @@ addLessons([
      "easy": "구역을 넓혀 여유 두기",
      "hard": "구역을 좁혀 빈 곳 찾기 어렵게",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "운동장 또는 체육관 20×20m · 콘 8개 · 원마커 20개 · 4색 조끼 · 호루라기",
@@ -79,7 +80,8 @@ addLessons([
      "easy": "한 번에 한 색만 부르기",
      "hard": "색 두세 개를 연속으로 부르기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "운동장 또는 체육관 20×20m · 콘 8개 · 원마커 20개 · 4색 조끼 · 호루라기",
@@ -111,7 +113,8 @@ addLessons([
      "easy": "거리 5m로 줄이기",
      "hard": "15m로 늘리고 두 모양 섞어 달리기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "운동장 또는 체육관 20×20m · 콘 8개 · 원마커 20개 · 4색 조끼 · 호루라기",
@@ -143,7 +146,8 @@ addLessons([
      "easy": "거리 7m로 줄이기",
      "hard": "반환점에서 동물 바꿔 돌아오기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "운동장 또는 체육관 20×20m · 콘 8개 · 원마커 20개 · 4색 조끼 · 호루라기",
@@ -209,7 +213,8 @@ addLessons([
      "easy": "다섯 걸음 안에 멈추기",
      "hard": "두 걸음 안에 멈추고 한 발로 버티기",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 원마커 · 호루라기 · 반환점 표시",
@@ -241,7 +246,10 @@ addLessons([
      "easy": "정지 자세를 두 발 서기로",
      "hard": "정지 자세를 한 발 서기로",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 원마커 · 호루라기 · 반환점 표시",
@@ -273,7 +281,8 @@ addLessons([
      "easy": "걸어서 돌기부터 연습",
      "hard": "콘 간격 10m, 연속 2회 왕복",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 원마커 · 호루라기 · 반환점 표시",
@@ -305,7 +314,8 @@ addLessons([
      "easy": "콘 간격 4m로 넓히기",
      "hard": "콘 간격 2m, 마지막 콘에서 한 바퀴 돌기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 원마커 · 호루라기 · 반환점 표시",
@@ -371,7 +381,8 @@ addLessons([
      "easy": "걸어서 천천히",
      "hard": "가볍게 달려와서 밀기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(접은 매트·벽에 댄 판) 4개 또는 콘 8개 · 원마커 · 호루라기",
@@ -403,7 +414,8 @@ addLessons([
      "easy": "거리 6m",
      "hard": "거리 10m + 왕복 4회 고정",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(접은 매트·벽에 댄 판) 4개 또는 콘 8개 · 원마커 · 호루라기",
@@ -435,7 +447,8 @@ addLessons([
      "easy": "편한 쪽만 반복",
      "hard": "신호에 따라 방향 지정",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(접은 매트·벽에 댄 판) 4개 또는 콘 8개 · 원마커 · 호루라기",
@@ -467,7 +480,8 @@ addLessons([
      "easy": "거리 6m",
      "hard": "거리 12m + 두 바퀴",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(접은 매트·벽에 댄 판) 4개 또는 콘 8개 · 원마커 · 호루라기",
@@ -533,7 +547,8 @@ addLessons([
      "easy": "구호에 맞춰 천천히",
      "hard": "눈 감고 손 감각만으로 받기",
      "d": {
-      "t": "at_relay"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개(접은 신문지 가능) · 콘 8개 · 조끼 4색",
@@ -565,7 +580,8 @@ addLessons([
      "easy": "원을 작게 만들기",
      "hard": "원을 넓히고 배턴 2개 동시에 돌리기",
      "d": {
-      "t": "at_relay"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개(접은 신문지 가능) · 콘 8개 · 조끼 4색",
@@ -598,7 +614,8 @@ addLessons([
      "easy": "제자리걸음 상태에서 주고받기",
      "hard": "가볍게 달리며 주고받기",
      "d": {
-      "t": "at_relay"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개(접은 신문지 가능) · 콘 8개 · 조끼 4색",
@@ -630,7 +647,8 @@ addLessons([
      "easy": "배턴 대신 손뼉 터치",
      "hard": "거리 15m, 배턴을 반드시 왼손으로 받기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개(접은 신문지 가능) · 콘 8개 · 조끼 4색",
@@ -696,7 +714,8 @@ addLessons([
      "easy": "걸어서 통과",
      "hard": "속도 올려 통과",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리 4세트(원마커 두 줄·바닥 테이프로 대체 가능) · 초시계 · 콘",
@@ -728,7 +747,8 @@ addLessons([
      "easy": "칸 수 6개",
      "hard": "칸 수 10개 + 시간 측정",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리 4세트(원마커 두 줄·바닥 테이프로 대체 가능) · 초시계 · 콘",
@@ -760,7 +780,8 @@ addLessons([
      "easy": "한 발만 넣고 빼기",
      "hard": "속도 올려 끝까지",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리 4세트(원마커 두 줄·바닥 테이프로 대체 가능) · 초시계 · 콘",
@@ -792,7 +813,8 @@ addLessons([
      "easy": "레더만 통과하고 복귀",
      "hard": "왕복 모두 레더 통과",
      "d": {
-      "t": "at_relay"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리 4세트(원마커 두 줄·바닥 테이프로 대체 가능) · 초시계 · 콘",
@@ -858,7 +880,8 @@ addLessons([
      "easy": "낮게 가볍게 뛰기",
      "hard": "두 손을 머리 위로 뻗어 높이 뛰기",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 24개 · 매트 2장 · 접은 매트(스피드 바운스용) · 초시계",
@@ -890,7 +913,8 @@ addLessons([
      "easy": "매트 없이 선만 넘기",
      "hard": "매트 두 장을 겹쳐 높이 올리기",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 24개 · 매트 2장 · 접은 매트(스피드 바운스용) · 초시계",
@@ -922,7 +946,9 @@ addLessons([
      "easy": "간격 40cm, 중간에 멈춰도 됨",
      "hard": "간격 70cm, 연속 8개",
      "d": {
-      "t": "at_jump"
+      "t": "at_ladder",
+      "m": "hoop",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 24개 · 매트 2장 · 접은 매트(스피드 바운스용) · 초시계",
@@ -954,7 +980,9 @@ addLessons([
      "easy": "칸 수를 4개로 줄이기",
      "hard": "칸 수 8개 + 마지막 칸은 한 발 착지",
      "d": {
-      "t": "at_relay"
+      "t": "at_ladder",
+      "m": "hoop",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 24개 · 매트 2장 · 접은 매트(스피드 바운스용) · 초시계",
@@ -1020,7 +1048,8 @@ addLessons([
      "easy": "벽이나 짝의 손을 짚고 하기",
      "hard": "눈을 감고 한 발 서기 5초",
      "d": {
-      "t": "at_jump"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "훌라후프 8개 · 분필 또는 테이프 · 원마커",
@@ -1052,7 +1081,9 @@ addLessons([
      "easy": "칸을 크게 그리기",
      "hard": "돌아올 때 반대 발만 사용",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "hoop",
+      "ball": "nball"
      },
      "t": {
       "prep": "훌라후프 8개 · 분필 또는 테이프 · 원마커",
@@ -1084,7 +1115,9 @@ addLessons([
      "easy": "후프 간격을 좁히고 두 발 허용",
      "hard": "후프를 지그재그로 놓기",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "hoop",
+      "ball": "nball"
      },
      "t": {
       "prep": "훌라후프 8개 · 분필 또는 테이프 · 원마커",
@@ -1116,7 +1149,8 @@ addLessons([
      "easy": "거리 5m, 한 발이 힘들면 두 발 허용",
      "hard": "거리 10m, 반환점에서 다리 바꾸기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "훌라후프 8개 · 분필 또는 테이프 · 원마커",
@@ -1182,7 +1216,8 @@ addLessons([
      "easy": "팔 동작만 따로",
      "hard": "속도 올려 리듬 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "줄넘기 23개(인원수) · 초시계 · 개인 기록 카드",
@@ -1214,7 +1249,9 @@ addLessons([
      "easy": "줄을 길게 잡아 넘기 쉽게",
      "hard": "30초 동안 총 횟수",
      "d": {
-      "t": "at_run"
+      "t": "at_bounce",
+      "rope": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "줄넘기 23개(인원수) · 초시계 · 개인 기록 카드",
@@ -1246,7 +1283,9 @@ addLessons([
      "easy": "제자리에서만",
      "hard": "뛰면서 이동",
      "d": {
-      "t": "at_run"
+      "t": "at_bounce",
+      "rope": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "줄넘기 23개(인원수) · 초시계 · 개인 기록 카드",
@@ -1278,7 +1317,9 @@ addLessons([
      "easy": "거리 5m + 걸으며 넘기",
      "hard": "거리 10m + 뛰며 넘기",
      "d": {
-      "t": "at_relay"
+      "t": "at_bounce",
+      "rope": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "줄넘기 23개(인원수) · 초시계 · 개인 기록 카드",
@@ -1344,7 +1385,8 @@ addLessons([
      "easy": "거리 신경 쓰지 않고 동작만",
      "hard": "착지 후 뒤로 넘어지지 않기 조건 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "줄자 2개 · 원마커 · 매트 2장 · 개인 기록 카드",
@@ -1376,7 +1418,8 @@ addLessons([
      "easy": "출발선을 조금 앞으로",
      "hard": "세 번 연속 자기 마커 넘기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "줄자 2개 · 원마커 · 매트 2장 · 개인 기록 카드",
@@ -1408,7 +1451,8 @@ addLessons([
      "easy": "두 번째는 가볍게만",
      "hard": "연속 3회로 늘리기",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "줄자 2개 · 원마커 · 매트 2장 · 개인 기록 카드",
@@ -1440,7 +1484,8 @@ addLessons([
      "easy": "출발선을 앞으로 당겨 주기",
      "hard": "마지막 주자는 한 발로 출발",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "줄자 2개 · 원마커 · 매트 2장 · 개인 기록 카드",
@@ -1506,7 +1551,8 @@ addLessons([
      "easy": "낮게 가볍게",
      "hard": "팔 동작 크게 + 최대 높이",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 또는 높이 표시판 · 분필 또는 스티커 · 매트 · 개인 기록 카드",
@@ -1538,7 +1584,9 @@ addLessons([
      "easy": "표시 없이 동작만",
      "hard": "세 번 모두 같은 높이 도전",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 또는 높이 표시판 · 분필 또는 스티커 · 매트 · 개인 기록 카드",
@@ -1570,7 +1618,9 @@ addLessons([
      "easy": "3회로 줄이기",
      "hard": "8회 + 높이 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 또는 높이 표시판 · 분필 또는 스티커 · 매트 · 개인 기록 카드",
@@ -1602,7 +1652,9 @@ addLessons([
      "easy": "칸을 크게 나누기",
      "hard": "한 걸음 도움닫기 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 또는 높이 표시판 · 분필 또는 스티커 · 매트 · 개인 기록 카드",
@@ -1668,7 +1720,10 @@ addLessons([
      "easy": "목표까지 2m로 가깝게",
      "hard": "목표까지 5m, 던진 뒤 자세 3초 유지",
      "d": {
-      "t": "at_throw"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "테니스공·콩주머니 20개 · 과녁(훌라후프·상자·표적지) · 콘",
@@ -1700,7 +1755,9 @@ addLessons([
      "easy": "후프를 가깝게·크게",
      "hard": "후프를 멀리 놓고 가운데 칸은 2점",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "테니스공·콩주머니 20개 · 과녁(훌라후프·상자·표적지) · 콘",
@@ -1733,7 +1790,9 @@ addLessons([
      "easy": "0.5m 지점 추가",
      "hard": "4m 지점 추가, 한 번에 성공해야 이동",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "테니스공·콩주머니 20개 · 과녁(훌라후프·상자·표적지) · 콘",
@@ -1765,7 +1824,9 @@ addLessons([
      "easy": "모든 과녁을 1점으로",
      "hard": "던지기 전 목표 점수를 팀이 미리 선언",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "테니스공·콩주머니 20개 · 과녁(훌라후프·상자·표적지) · 콘",
@@ -1831,7 +1892,9 @@ addLessons([
      "easy": "후프를 가깝게(2·3·4·5m)",
      "hard": "후프를 멀게(4·7·10·13m)",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "색깔 훌라후프 4개(빨강·파랑·초록·노랑) · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -1863,7 +1926,9 @@ addLessons([
      "easy": "모든 후프를 1점으로",
      "hard": "5개 모두 같은 색만 인정",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "색깔 훌라후프 4개(빨강·파랑·초록·노랑) · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -1895,7 +1960,8 @@ addLessons([
      "easy": "선 규칙 없이 동작만",
      "hard": "선 지키기 + 목표 후프 지정",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개(빨강·파랑·초록·노랑) · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -1927,7 +1993,8 @@ addLessons([
      "easy": "후프를 크게·가깝게",
      "hard": "후프를 작게·멀게",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개(빨강·파랑·초록·노랑) · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -1993,7 +2060,9 @@ addLessons([
      "easy": "가벼운 공 사용",
      "hard": "무거운 공(농구공)으로 바꾸기",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼·농구공 8개 · 매트 · 줄자 · 콘",
@@ -2025,7 +2094,9 @@ addLessons([
      "easy": "구역 간격을 좁히기",
      "hard": "앉은 자세에서 상체를 뒤로 젖히지 않고 밀기",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼·농구공 8개 · 매트 · 줄자 · 콘",
@@ -2057,7 +2128,9 @@ addLessons([
      "easy": "두 손으로 가까이 던지기",
      "hard": "한 손으로 바꿔 던지기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼·농구공 8개 · 매트 · 줄자 · 콘",
@@ -2089,7 +2162,8 @@ addLessons([
      "easy": "구역 점수를 모두 1점으로",
      "hard": "전원이 2m 이상 넘겨야 보너스 1점",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼·농구공 8개 · 매트 · 줄자 · 콘",
@@ -2155,7 +2229,8 @@ addLessons([
      "easy": "제자리에서 팔만 사용",
      "hard": "두 걸음 내딛고 던지기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콩주머니·테니스공 20개 · 구역 표시 콘 · 줄자",
@@ -2187,7 +2262,9 @@ addLessons([
      "easy": "구역을 가깝게",
      "hard": "구역을 멀리 + 선 밟으면 다시",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "콩주머니·테니스공 20개 · 구역 표시 콘 · 줄자",
@@ -2219,7 +2296,9 @@ addLessons([
      "easy": "선 규칙 없이 동작만",
      "hard": "두 걸음 내딛고 선 지키기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "step": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콩주머니·테니스공 20개 · 구역 표시 콘 · 줄자",
@@ -2251,7 +2330,8 @@ addLessons([
      "easy": "던지는 거리를 짧게",
      "hard": "주워 올 때 지그재그 콘 통과",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "콩주머니·테니스공 20개 · 구역 표시 콘 · 줄자",
@@ -2317,7 +2397,8 @@ addLessons([
      "easy": "발목 잡지 않고 들기만",
      "hard": "눈 감고 10초",
      "d": {
-      "t": "at_run"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 바닥 테이프 선·접은 매트) 4개 · 초시계 · 개인 기록 카드",
@@ -2349,7 +2430,8 @@ addLessons([
      "easy": "바닥 선 위에서 실시",
      "hard": "평균대 폭을 좁히기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 바닥 테이프 선·접은 매트) 4개 · 초시계 · 개인 기록 카드",
@@ -2381,7 +2463,8 @@ addLessons([
      "easy": "바닥 선 위에서",
      "hard": "물건을 머리에 얹고 걷기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 바닥 테이프 선·접은 매트) 4개 · 초시계 · 개인 기록 카드",
@@ -2413,7 +2496,8 @@ addLessons([
      "easy": "5초를 3초로",
      "hard": "통과 중 한 번 멈춰 한 발 서기",
      "d": {
-      "t": "at_relay"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 바닥 테이프 선·접은 매트) 4개 · 초시계 · 개인 기록 카드",
@@ -2479,7 +2563,8 @@ addLessons([
      "easy": "간격을 좁히기",
      "hard": "간격 1.5m + 속도 올리기",
      "d": {
-      "t": "at_relay"
+      "t": "gen_line",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼 4개 · 접은 매트 또는 터널 · 콘 · 팀 매트 4장",
@@ -2511,7 +2596,8 @@ addLessons([
      "easy": "머리 위로만 통일",
      "hard": "공 두 개를 동시에 돌리기",
      "d": {
-      "t": "at_run"
+      "t": "gen_line",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼 4개 · 접은 매트 또는 터널 · 콘 · 팀 매트 4장",
@@ -2543,7 +2629,8 @@ addLessons([
      "easy": "옆 구르기 또는 생략",
      "hard": "앞구르기 후 바로 달려 나가기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼 4개 · 접은 매트 또는 터널 · 콘 · 팀 매트 4장",
@@ -2575,7 +2662,8 @@ addLessons([
      "easy": "구르기 생략",
      "hard": "구르기 + 터널 통과 추가",
      "d": {
-      "t": "at_relay"
+      "t": "gen_line",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트볼 4개 · 접은 매트 또는 터널 · 콘 · 팀 매트 4장",
@@ -2641,7 +2729,8 @@ addLessons([
      "easy": "각 코너 1회만",
      "hard": "각 코너 2회 + 기록 비교",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트(스피드 바운스) 4 · 초시계 · 개인 점수 카드",
@@ -2673,7 +2762,8 @@ addLessons([
      "easy": "바닥 선 위에서",
      "hard": "평균대 폭 좁히기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트(스피드 바운스) 4 · 초시계 · 개인 점수 카드",
@@ -2705,7 +2795,8 @@ addLessons([
      "easy": "출발선 앞당기기",
      "hard": "착지 후 균형 유지 조건",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트(스피드 바운스) 4 · 초시계 · 개인 점수 카드",
@@ -2737,7 +2828,8 @@ addLessons([
      "easy": "매트 없이 선 넘기",
      "hard": "매트 두 장 겹치기",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트(스피드 바운스) 4 · 초시계 · 개인 점수 카드",
@@ -2802,7 +2894,8 @@ addLessons([
      "easy": "기초 단계만 먼저 경험",
      "hard": "단계를 미리 선언하고 도전",
      "d": {
-      "t": "stations"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "3개 스테이션 세트 · 팀 기록 카드 · 초시계 · 호루라기",
@@ -2834,7 +2927,8 @@ addLessons([
      "easy": "거리 7m",
      "hard": "거리 15m + 지그재그 콘",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "3개 스테이션 세트 · 팀 기록 카드 · 초시계 · 호루라기",
@@ -2867,7 +2961,8 @@ addLessons([
      "easy": "출발선 앞당기기",
      "hard": "마지막 주자 한 발 출발",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "3개 스테이션 세트 · 팀 기록 카드 · 초시계 · 호루라기",
@@ -2899,7 +2994,9 @@ addLessons([
      "easy": "과녁 가깝게",
      "hard": "과녁 멀리 + 목표 점수 선언",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "3개 스테이션 세트 · 팀 기록 카드 · 초시계 · 호루라기",
@@ -2965,7 +3062,8 @@ addLessons([
      "easy": "교사가 역할 예시 제시",
      "hard": "팀이 스스로 순서까지 결정",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "10차시와 동일 · 팀 역할 카드(주자·도약·투척·기록)",
@@ -2997,7 +3095,8 @@ addLessons([
      "easy": "거리 7m",
      "hard": "거리 15m",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "10차시와 동일 · 팀 역할 카드(주자·도약·투척·기록)",
@@ -3030,7 +3129,8 @@ addLessons([
      "easy": "출발선 앞당기기",
      "hard": "두 번 연속 뛰기로 잇기",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "10차시와 동일 · 팀 역할 카드(주자·도약·투척·기록)",
@@ -3062,7 +3162,8 @@ addLessons([
      "easy": "과녁 가깝게",
      "hard": "전원 1점 이상 획득해야 보너스",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "10차시와 동일 · 팀 역할 카드(주자·도약·투척·기록)",
@@ -3128,7 +3229,9 @@ addLessons([
      "easy": "그림이나 ○표로 표시",
      "hard": "이유까지 한 문장으로 쓰기",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드(1차시~11차시) · 미션 여권 · 시상 카드",
@@ -3160,7 +3263,8 @@ addLessons([
      "easy": "기초 단계 코너 별도 운영",
      "hard": "도전 단계 코너 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드(1차시~11차시) · 미션 여권 · 시상 카드",
@@ -3192,7 +3296,8 @@ addLessons([
      "easy": "과녁 가깝게",
      "hard": "목표 선언 후 성공 시 특별 도장",
      "d": {
-      "t": "at_throw"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드(1차시~11차시) · 미션 여권 · 시상 카드",
@@ -3224,7 +3329,8 @@ addLessons([
      "easy": "교사가 부문 지정",
      "hard": "학생들이 서로 추천해 수여",
      "d": {
-      "t": "at_run"
+      "t": "gen_courts",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드(1차시~11차시) · 미션 여권 · 시상 카드",
@@ -3290,7 +3396,9 @@ addLessons([
      "easy": "마커 수를 6개로 줄이기",
      "hard": "간격을 불규칙하게 섞어 배치",
      "d": {
-      "t": "at_agility"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 40개 · 콘 8개 · 30m 직선 레인 4개 · 호루라기",
@@ -3322,7 +3430,9 @@ addLessons([
      "easy": "10m 구간으로 줄이기",
      "hard": "목표 걸음 수를 미리 선언하고 맞히기",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 40개 · 콘 8개 · 30m 직선 레인 4개 · 호루라기",
@@ -3354,7 +3464,10 @@ addLessons([
      "easy": "무릎 높이를 낮추고 거리 10m",
      "hard": "무릎 올리기 구간을 30m로 늘리기",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 40개 · 콘 8개 · 30m 직선 레인 4개 · 호루라기",
@@ -3386,7 +3499,9 @@ addLessons([
      "easy": "마커 밟기 의무 없음",
      "hard": "마커를 모두 정확히 밟아야 인정",
      "d": {
-      "t": "at_relay"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 40개 · 콘 8개 · 30m 직선 레인 4개 · 호루라기",
@@ -3452,7 +3567,10 @@ addLessons([
      "easy": "거리 10m, 속도 천천히",
      "hard": "거리 20m + 질주 20m 연결",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리(또는 원마커 줄) 4세트 · 초시계 · 콘",
@@ -3484,7 +3602,8 @@ addLessons([
      "easy": "한 발씩만 넣기",
      "hard": "옆으로 넣고 빼기(인·아웃)",
      "d": {
-      "t": "at_agility"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리(또는 원마커 줄) 4세트 · 초시계 · 콘",
@@ -3516,7 +3635,10 @@ addLessons([
      "easy": "제자리에서만 20회",
      "hard": "뒤꿈치 → 무릎 올리기 → 질주 3단 연결",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리(또는 원마커 줄) 4세트 · 초시계 · 콘",
@@ -3548,7 +3670,8 @@ addLessons([
      "easy": "사다리 칸 수 줄이기",
      "hard": "사다리를 왕복 모두 통과",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "사다리(또는 원마커 줄) 4세트 · 초시계 · 콘",
@@ -3614,7 +3737,8 @@ addLessons([
      "easy": "칸 간격 넓히기",
      "hard": "칸 간격 좁히고 속도 올리기",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼(사다리·원마커 두 줄·바닥 테이프로 대체) 4세트 · 콘 · 초시계",
@@ -3646,7 +3770,8 @@ addLessons([
      "easy": "2회 왕복",
      "hard": "4회 왕복 + 칸 모두 정확히",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼(사다리·원마커 두 줄·바닥 테이프로 대체) 4세트 · 콘 · 초시계",
@@ -3678,7 +3803,8 @@ addLessons([
      "easy": "질주 거리 5m",
      "hard": "질주 거리 20m",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼(사다리·원마커 두 줄·바닥 테이프로 대체) 4세트 · 콘 · 초시계",
@@ -3710,7 +3836,8 @@ addLessons([
      "easy": "칸 수 줄이기",
      "hard": "왕복 모두 칸 통과",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼(사다리·원마커 두 줄·바닥 테이프로 대체) 4세트 · 콘 · 초시계",
@@ -3776,7 +3903,9 @@ addLessons([
      "easy": "상체 기울기를 작게",
      "hard": "출발 후 10m까지 상체 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 20m 레인 4개",
@@ -3808,7 +3937,9 @@ addLessons([
      "easy": "신호를 한 종류로 고정",
      "hard": "두 신호 중 하나에만 반응(선택 반응)",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 20m 레인 4개",
@@ -3840,7 +3971,9 @@ addLessons([
      "easy": "자세 두 가지만",
      "hard": "자세를 신호와 함께 지정(복합 반응)",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 20m 레인 4개",
@@ -3872,7 +4005,9 @@ addLessons([
      "easy": "거리 10m",
      "hard": "거리 20m + 반환점에서 방향 지시 카드 확인",
      "d": {
-      "t": "at_relay"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 20m 레인 4개",
@@ -3938,7 +4073,9 @@ addLessons([
      "easy": "곡선을 크게(반지름 넓게)",
      "hard": "곡선을 작게 만들어 기울기 크게",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개로 곡선 주로 2개 · 원마커 · 호루라기",
@@ -3970,7 +4107,9 @@ addLessons([
      "easy": "주로 폭을 넓히기",
      "hard": "주로 폭을 좁히고 술래 2명",
      "d": {
-      "t": "at_agility"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개로 곡선 주로 2개 · 원마커 · 호루라기",
@@ -4002,7 +4141,9 @@ addLessons([
      "easy": "곡선 구간 짧게",
      "hard": "곡선을 S자로 연결",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개로 곡선 주로 2개 · 원마커 · 호루라기",
@@ -4034,7 +4175,9 @@ addLessons([
      "easy": "배턴 대신 손뼉 터치",
      "hard": "곡선 안쪽 선을 밟지 않기 조건 추가",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "curve": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개로 곡선 주로 2개 · 원마커 · 호루라기",
@@ -4100,7 +4243,8 @@ addLessons([
      "easy": "걸어서 동작만",
      "hard": "전력으로 달려와 밀기",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(벽에 고정한 판·세운 매트) 4개 또는 콘 · 원마커 · 초시계",
@@ -4132,7 +4276,8 @@ addLessons([
      "easy": "접근 속도 70%",
      "hard": "전력 접근 + 턴 직후 가속 유지",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(벽에 고정한 판·세운 매트) 4개 또는 콘 · 원마커 · 초시계",
@@ -4164,7 +4309,8 @@ addLessons([
      "easy": "편한 쪽만",
      "hard": "신호로 방향 지정",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(벽에 고정한 판·세운 매트) 4개 또는 콘 · 원마커 · 초시계",
@@ -4196,7 +4342,8 @@ addLessons([
      "easy": "거리 8m",
      "hard": "거리 15m + 두 바퀴",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "반환점 보드(벽에 고정한 판·세운 매트) 4개 또는 콘 · 원마커 · 초시계",
@@ -4262,7 +4409,8 @@ addLessons([
      "easy": "거리 7m",
      "hard": "거리 12m",
      "d": {
-      "t": "at_run"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 초시계 · 호루라기 · 팀 매트",
@@ -4294,7 +4442,8 @@ addLessons([
      "easy": "6회 왕복",
      "hard": "10회 + 마지막 2회 전력",
      "d": {
-      "t": "at_run"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 초시계 · 호루라기 · 팀 매트",
@@ -4326,7 +4475,8 @@ addLessons([
      "easy": "감속 구간 5m 허용",
      "hard": "감속 구간 2m",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 초시계 · 호루라기 · 팀 매트",
@@ -4358,7 +4508,8 @@ addLessons([
      "easy": "2회 왕복씩",
      "hard": "6회 왕복씩",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 초시계 · 호루라기 · 팀 매트",
@@ -4424,7 +4575,8 @@ addLessons([
      "easy": "거리 신경 쓰지 않고 리듬만",
      "hard": "가볍게 달리며 연속으로",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 · 낮은 장애물(접은 매트·고무줄) 8개 · 매트",
@@ -4456,7 +4608,9 @@ addLessons([
      "easy": "가장 좁은 폭 추가",
      "hard": "가장 넓은 폭 추가 + 도움닫기 3걸음 제한",
      "d": {
-      "t": "at_jump"
+      "t": "at_ladder",
+      "m": "hoop",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 · 낮은 장애물(접은 매트·고무줄) 8개 · 매트",
@@ -4488,7 +4642,9 @@ addLessons([
      "easy": "간격 1m, 3개",
      "hard": "간격 1.5m, 7개",
      "d": {
-      "t": "at_run"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 · 낮은 장애물(접은 매트·고무줄) 8개 · 매트",
@@ -4520,7 +4676,9 @@ addLessons([
      "easy": "장애물 높이를 낮추거나 선으로 대체",
      "hard": "장애물 간격을 불규칙하게",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle2",
+      "baton": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "원마커 · 낮은 장애물(접은 매트·고무줄) 8개 · 매트",
@@ -4586,7 +4744,9 @@ addLessons([
      "easy": "앞뒤 방향만",
      "hard": "순서를 불규칙하게 지시",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "cross": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "바닥 테이프로 십자(+) 4세트 · 초시계 · 원마커",
@@ -4618,7 +4778,9 @@ addLessons([
      "easy": "15초로 줄이기",
      "hard": "30초 + 순서를 중간에 바꾸기",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "cross": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "바닥 테이프로 십자(+) 4세트 · 초시계 · 원마커",
@@ -4650,7 +4812,9 @@ addLessons([
      "easy": "두 발 유지",
      "hard": "한 발로 20초 연속",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "cross": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "바닥 테이프로 십자(+) 4세트 · 초시계 · 원마커",
@@ -4682,7 +4846,9 @@ addLessons([
      "easy": "1세트를 4회로 줄이기",
      "hard": "1세트를 8회 + 한 발 섞기",
      "d": {
-      "t": "at_relay"
+      "t": "at_bounce",
+      "cross": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "바닥 테이프로 십자(+) 4세트 · 초시계 · 원마커",
@@ -4748,7 +4914,8 @@ addLessons([
      "easy": "매트 대신 바닥 선",
      "hard": "매트 두 장 겹쳐 높이 올리기",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4개 · 줄넘기 20개 · 초시계 · 벽 또는 높이 표시판",
@@ -4780,7 +4947,9 @@ addLessons([
      "easy": "줄 없이 흉내 내며 뛰기",
      "hard": "앞으로 이동하며 줄넘기",
      "d": {
-      "t": "at_run"
+      "t": "at_bounce",
+      "rope": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4개 · 줄넘기 20개 · 초시계 · 벽 또는 높이 표시판",
@@ -4812,7 +4981,8 @@ addLessons([
      "easy": "표시 없이 동작만",
      "hard": "제자리 → 한 걸음 도움닫기 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4개 · 줄넘기 20개 · 초시계 · 벽 또는 높이 표시판",
@@ -4844,7 +5014,8 @@ addLessons([
      "easy": "15초로 줄이기",
      "hard": "25초 + 중간에 한 발 구간",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4개 · 줄넘기 20개 · 초시계 · 벽 또는 높이 표시판",
@@ -4910,7 +5081,8 @@ addLessons([
      "easy": "걸어서 세 걸음 후 뛰기",
      "hard": "다섯 걸음으로 늘리기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 발구름 표시판 · 줄자 · 원마커",
@@ -4942,7 +5114,8 @@ addLessons([
      "easy": "구역 폭 1m",
      "hard": "구역 폭 30cm",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 발구름 표시판 · 줄자 · 원마커",
@@ -4974,7 +5147,10 @@ addLessons([
      "easy": "제자리 멀리뛰기로 자세만",
      "hard": "착지 후 균형 3초 유지",
      "d": {
-      "t": "at_jump"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 발구름 표시판 · 줄자 · 원마커",
@@ -5006,7 +5182,8 @@ addLessons([
      "easy": "도움닫기 없이 제자리로",
      "hard": "도움닫기 5걸음 + 발구름 구역 지키기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 발구름 표시판 · 줄자 · 원마커",
@@ -5072,7 +5249,9 @@ addLessons([
      "easy": "표시 없이 동작만",
      "hard": "세 번 모두 같은 높이 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 높이 표시판 또는 눈금판 4개 · 분필 · 접은 매트 · 초시계 · 기록 카드",
@@ -5104,7 +5283,9 @@ addLessons([
      "easy": "눈금 간격 크게",
      "hard": "한 걸음 도움닫기 추가",
      "d": {
-      "t": "at_throw"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 높이 표시판 또는 눈금판 4개 · 분필 · 접은 매트 · 초시계 · 기록 카드",
@@ -5136,7 +5317,8 @@ addLessons([
      "easy": "5회로 줄이기",
      "hard": "15회 + 높이 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 높이 표시판 또는 눈금판 4개 · 분필 · 접은 매트 · 초시계 · 기록 카드",
@@ -5168,7 +5350,9 @@ addLessons([
      "easy": "눈금 간격 크게",
      "hard": "전원이 기준선 이상 넘겨야 보너스",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 높이 표시판 또는 눈금판 4개 · 분필 · 접은 매트 · 초시계 · 기록 카드",
@@ -5234,7 +5418,8 @@ addLessons([
      "easy": "가벼운 공으로",
      "hard": "농구공 또는 물 1/3 채운 페트병",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개(메디신볼 대용) · 매트 · 구역 표시 콘 · 줄자",
@@ -5266,7 +5451,9 @@ addLessons([
      "easy": "구역 간격 좁히기",
      "hard": "구역 간격 넓히고 무릎 사용 필수 조건",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개(메디신볼 대용) · 매트 · 구역 표시 콘 · 줄자",
@@ -5298,7 +5485,9 @@ addLessons([
      "easy": "가벼운 공, 짧은 거리",
      "hard": "무거운 공 + 던진 뒤 제자리 유지",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "back",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개(메디신볼 대용) · 매트 · 구역 표시 콘 · 줄자",
@@ -5330,7 +5519,9 @@ addLessons([
      "easy": "모든 구역 1점",
      "hard": "전원이 4m 이상 넘겨야 보너스",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개(메디신볼 대용) · 매트 · 구역 표시 콘 · 줄자",
@@ -5396,7 +5587,9 @@ addLessons([
      "easy": "제자리에서 가까이",
      "hard": "내딛는 발을 크게 + 거리 구역 도전",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 매트",
@@ -5428,7 +5621,9 @@ addLessons([
      "easy": "구역 가깝게",
      "hard": "구역 멀게 + 선 넘지 않기",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 매트",
@@ -5460,7 +5655,8 @@ addLessons([
      "easy": "두 손으로 가까이",
      "hard": "내딛는 발 + 허리 사용 강조",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 매트",
@@ -5492,7 +5688,8 @@ addLessons([
      "easy": "줍기 거리 짧게",
      "hard": "줍기 구간에 지그재그 콘 추가",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 매트",
@@ -5558,7 +5755,8 @@ addLessons([
      "easy": "짧은 거리에서 자세만",
      "hard": "구역 도달 목표 추가",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개(신문지 말이+테이프로 대체 가능) · 구역 표시 · 안전선 콘",
@@ -5590,7 +5788,8 @@ addLessons([
      "easy": "줄 높이 1.5m",
      "hard": "줄 높이 2.5m + 거리 구역 동시 충족",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개(신문지 말이+테이프로 대체 가능) · 구역 표시 · 안전선 콘",
@@ -5622,7 +5821,9 @@ addLessons([
      "easy": "한 걸음만 내딛기",
      "hard": "가볍게 달리며 다섯 걸음",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "step": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개(신문지 말이+테이프로 대체 가능) · 구역 표시 · 안전선 콘",
@@ -5654,7 +5855,9 @@ addLessons([
      "easy": "구역 가깝게",
      "hard": "구역 멀게 + 줄 넘기기 동시 충족",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개(신문지 말이+테이프로 대체 가능) · 구역 표시 · 안전선 콘",
@@ -5720,7 +5923,9 @@ addLessons([
      "easy": "3·4·5·6m로 좁히기",
      "hard": "4·7·10·13m로 넓히기",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -5752,7 +5957,8 @@ addLessons([
      "easy": "모든 후프 1점 통일",
      "hard": "가장 먼 후프만 3점",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -5784,7 +5990,8 @@ addLessons([
      "easy": "선 규칙 없이",
      "hard": "선 지키기 + 목표 후프 지정",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -5816,7 +6023,8 @@ addLessons([
      "easy": "후프 가깝게·크게",
      "hard": "후프 멀게·작게",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 줄자 · 멈춤 보드(벤치)",
@@ -5882,7 +6090,8 @@ addLessons([
      "easy": "걸으며 주고받기",
      "hard": "전달 구간을 5m로 제한",
      "d": {
-      "t": "at_relay"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 소프트볼 4개 · 콘 · 낮은 장애물 4개",
@@ -5914,7 +6123,8 @@ addLessons([
      "easy": "머리 위로만",
      "hard": "공 두 개를 동시에 돌리기",
      "d": {
-      "t": "at_relay"
+      "t": "gen_line",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 소프트볼 4개 · 콘 · 낮은 장애물 4개",
@@ -5947,7 +6157,8 @@ addLessons([
      "easy": "장애물을 선으로 대체",
      "hard": "장애물 간격 불규칙",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 소프트볼 4개 · 콘 · 낮은 장애물 4개",
@@ -5979,7 +6190,8 @@ addLessons([
      "easy": "코스 30m로 줄이기",
      "hard": "코스 50m + 배턴 전달 구역 지정",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 소프트볼 4개 · 콘 · 낮은 장애물 4개",
@@ -6045,7 +6257,9 @@ addLessons([
      "easy": "원을 크게",
      "hard": "원을 작게",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "원형 코스(반지름 10m) 콘 표시 · 배턴 4개 · 팀 매트 4장 · 초시계 · 호루라기",
@@ -6077,7 +6291,8 @@ addLessons([
      "easy": "출발 간격을 넓히기",
      "hard": "출발 간격을 좁히기",
      "d": {
-      "t": "at_relay"
+      "t": "at_oval",
+      "ball": "nball"
      },
      "t": {
       "prep": "원형 코스(반지름 10m) 콘 표시 · 배턴 4개 · 팀 매트 4장 · 초시계 · 호루라기",
@@ -6110,7 +6325,9 @@ addLessons([
      "easy": "반 바퀴씩",
      "hard": "한 바퀴 + 속도 유지",
      "d": {
-      "t": "at_relay"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "원형 코스(반지름 10m) 콘 표시 · 배턴 4개 · 팀 매트 4장 · 초시계 · 호루라기",
@@ -6142,7 +6359,8 @@ addLessons([
      "easy": "시간 40초",
      "hard": "시간 1분 30초 + 코스 확대",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "원형 코스(반지름 10m) 콘 표시 · 배턴 4개 · 팀 매트 4장 · 초시계 · 호루라기",
@@ -6208,7 +6426,8 @@ addLessons([
      "easy": "모두 기초 단계로 시작",
      "hard": "도전 단계를 미리 선언",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "세 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 기록 도우미 조끼",
@@ -6240,7 +6459,8 @@ addLessons([
      "easy": "20m",
      "hard": "40m + 곡선 포함",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "세 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 기록 도우미 조끼",
@@ -6273,7 +6493,8 @@ addLessons([
      "easy": "제자리 멀리뛰기로 대체",
      "hard": "다섯 걸음 도움닫기",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "세 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 기록 도우미 조끼",
@@ -6305,7 +6526,8 @@ addLessons([
      "easy": "구역 가깝게",
      "hard": "전원 목표 구역 달성 시 보너스",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "세 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 기록 도우미 조끼",
@@ -6370,7 +6592,8 @@ addLessons([
      "easy": "발목 잡지 않고 들기만",
      "hard": "눈 감고 10초",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 접은 매트·바닥 선) 4개 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -6402,7 +6625,8 @@ addLessons([
      "easy": "바닥 선 위에서 실시",
      "hard": "평균대 폭을 좁히기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 접은 매트·바닥 선) 4개 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -6434,7 +6658,8 @@ addLessons([
      "easy": "바닥 선 위에서",
      "hard": "콩주머니를 머리에 얹고",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 접은 매트·바닥 선) 4개 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -6466,7 +6691,8 @@ addLessons([
      "easy": "최대 30초로 단축",
      "hard": "최대 60초 전원 도전",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대(또는 접은 매트·바닥 선) 4개 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -6532,7 +6758,8 @@ addLessons([
      "easy": "세 종목만",
      "hard": "다섯 종목 연속",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 · 제자리멀리뛰기 매트 · 접은 매트 · 색깔 후프 세트 · 하이스텝퍼 · 개인 점수 카드 · 등급표",
@@ -6564,7 +6791,8 @@ addLessons([
      "easy": "균형 30초로 단축",
      "hard": "기준 기록 선언 후 도전",
      "d": {
-      "t": "at_jump"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 · 제자리멀리뛰기 매트 · 접은 매트 · 색깔 후프 세트 · 하이스텝퍼 · 개인 점수 카드 · 등급표",
@@ -6596,7 +6824,8 @@ addLessons([
      "easy": "바운스 15초 · 후프 가깝게",
      "hard": "바운스 25초 · 후프 멀게",
      "d": {
-      "t": "at_throw"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 · 제자리멀리뛰기 매트 · 접은 매트 · 색깔 후프 세트 · 하이스텝퍼 · 개인 점수 카드 · 등급표",
@@ -6628,7 +6857,8 @@ addLessons([
      "easy": "왕복 2회",
      "hard": "왕복 4회 + 칸 정확도 조건",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 · 제자리멀리뛰기 매트 · 접은 매트 · 색깔 후프 세트 · 하이스텝퍼 · 개인 점수 카드 · 등급표",
@@ -6693,7 +6923,9 @@ addLessons([
      "easy": "○표나 그림으로 표시",
      "hard": "이유까지 두 문장으로",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 팀 점수판 · 시상 카드",
@@ -6725,7 +6957,8 @@ addLessons([
      "easy": "기초 코너 별도 운영",
      "hard": "도전 코너 추가 + 목표 선언",
      "d": {
-      "t": "at_throw"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 팀 점수판 · 시상 카드",
@@ -6757,7 +6990,8 @@ addLessons([
      "easy": "코스 짧게",
      "hard": "코스 길게 + 장애물 추가",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 팀 점수판 · 시상 카드",
@@ -6789,7 +7023,8 @@ addLessons([
      "easy": "교사가 부문 지정",
      "hard": "학생 추천으로 수여",
      "d": {
-      "t": "at_run"
+      "t": "gen_courts",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 팀 점수판 · 시상 카드",
@@ -6855,7 +7090,10 @@ addLessons([
      "easy": "허들을 바닥 선으로 대체",
      "hard": "허들 높이를 한 단계 올리기",
      "d": {
-      "t": "at_hurdle"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개(접은 매트·고무줄·콘+막대로 대체) · 콘 · 40m 레인 4개",
@@ -6887,7 +7125,8 @@ addLessons([
      "easy": "간격 7m로 넓히기",
      "hard": "간격 5m로 좁히기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개(접은 매트·고무줄·콘+막대로 대체) · 콘 · 40m 레인 4개",
@@ -6919,7 +7158,8 @@ addLessons([
      "easy": "허들 2개만",
      "hard": "허들 4개 연속",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개(접은 매트·고무줄·콘+막대로 대체) · 콘 · 40m 레인 4개",
@@ -6951,7 +7191,8 @@ addLessons([
      "easy": "허들 2개",
      "hard": "왕복 모두 허들 통과",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개(접은 매트·고무줄·콘+막대로 대체) · 콘 · 40m 레인 4개",
@@ -7017,7 +7258,8 @@ addLessons([
      "easy": "걸어서 리듬만 먼저",
      "hard": "구호 없이 스스로 리듬 유지",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 원마커 · 줄자 · 40m 레인 4개",
@@ -7049,7 +7291,8 @@ addLessons([
      "easy": "간격 7m + 5보 허용",
      "hard": "간격 5.5m + 3보 고정",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 원마커 · 줄자 · 40m 레인 4개",
@@ -7081,7 +7324,8 @@ addLessons([
      "easy": "허들 2개 사이에서만",
      "hard": "허들 4개 중 중간에 간격 변화",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 원마커 · 줄자 · 40m 레인 4개",
@@ -7113,7 +7357,8 @@ addLessons([
      "easy": "리듬 점수만 운영",
      "hard": "속도와 리듬 모두 충족해야 득점",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 원마커 · 줄자 · 40m 레인 4개",
@@ -7179,7 +7424,9 @@ addLessons([
      "easy": "가장 넓은 간격부터",
      "hard": "세 간격을 연속으로 통과",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 줄자 · 콘 · 레인 4개(간격 5·6·7m 다르게)",
@@ -7211,7 +7458,9 @@ addLessons([
      "easy": "두 간격 중 선택",
      "hard": "간격을 보지 않고 출발 후 판단",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 줄자 · 콘 · 레인 4개(간격 5·6·7m 다르게)",
@@ -7243,7 +7492,9 @@ addLessons([
      "easy": "간격 차이를 작게",
      "hard": "간격 차이를 크게 + 4개 허들",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 줄자 · 콘 · 레인 4개(간격 5·6·7m 다르게)",
@@ -7275,7 +7526,9 @@ addLessons([
      "easy": "넓은 레인만 운영",
      "hard": "레인을 매 주자마다 바꾸기",
      "d": {
-      "t": "at_relay"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 줄자 · 콘 · 레인 4개(간격 5·6·7m 다르게)",
@@ -7341,7 +7594,8 @@ addLessons([
      "easy": "간격 4m",
      "hard": "간격 2.5m",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 8개 · 콘 16개 · 초시계 · 레인 4개",
@@ -7373,7 +7627,8 @@ addLessons([
      "easy": "허들을 선으로 대체",
      "hard": "구간 순서를 매번 바꾸기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 8개 · 콘 16개 · 초시계 · 레인 4개",
@@ -7405,7 +7660,8 @@ addLessons([
      "easy": "걸어서 전환만",
      "hard": "전환 지점을 두 군데로",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 8개 · 콘 16개 · 초시계 · 레인 4개",
@@ -7437,7 +7693,8 @@ addLessons([
      "easy": "코스 길이 20m",
      "hard": "코스 30m + 허들 3개",
      "d": {
-      "t": "at_relay"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 8개 · 콘 16개 · 초시계 · 레인 4개",
@@ -7503,7 +7760,8 @@ addLessons([
      "easy": "칸 간격 넓히기",
      "hard": "칸 간격 좁히고 속도 올리기",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼 4세트 · 콘 16개 · 반환점 보드 또는 매트 · 초시계",
@@ -7535,7 +7793,8 @@ addLessons([
      "easy": "2회 왕복",
      "hard": "6회 왕복",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼 4세트 · 콘 16개 · 반환점 보드 또는 매트 · 초시계",
@@ -7567,7 +7826,8 @@ addLessons([
      "easy": "구간 두 개만",
      "hard": "구간 순서를 매번 바꾸기",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼 4세트 · 콘 16개 · 반환점 보드 또는 매트 · 초시계",
@@ -7599,7 +7859,8 @@ addLessons([
      "easy": "코스 20m",
      "hard": "코스 30m + 허들 추가",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "하이스텝퍼 4세트 · 콘 16개 · 반환점 보드 또는 매트 · 초시계",
@@ -7665,7 +7926,8 @@ addLessons([
      "easy": "구간 수를 줄이기",
      "hard": "구간 수를 늘리고 순서 변경",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개 · 접이식 허들 4개 · 터널(또는 매트 아치) 1~2개 · 콩주머니 4개 · 팀 매트 4장 · 조끼 4색",
@@ -7697,7 +7959,8 @@ addLessons([
      "easy": "걸어서 전달",
      "hard": "속도 유지하며 전달",
      "d": {
-      "t": "at_relay"
+      "t": "gen_line",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개 · 접이식 허들 4개 · 터널(또는 매트 아치) 1~2개 · 콩주머니 4개 · 팀 매트 4장 · 조끼 4색",
@@ -7729,7 +7992,9 @@ addLessons([
      "easy": "구르기 생략하고 출발",
      "hard": "구르기 후 즉시 가속",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개 · 접이식 허들 4개 · 터널(또는 매트 아치) 1~2개 · 콩주머니 4개 · 팀 매트 4장 · 조끼 4색",
@@ -7761,7 +8026,8 @@ addLessons([
      "easy": "코스 길이 줄이기",
      "hard": "코스 길이 늘리고 허들 추가",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개 · 접이식 허들 4개 · 터널(또는 매트 아치) 1~2개 · 콩주머니 4개 · 팀 매트 4장 · 조끼 4색",
@@ -7826,7 +8092,8 @@ addLessons([
      "easy": "구호에 맞춰 천천히",
      "hard": "눈을 감고 손 감각만으로",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 원마커 · 콘 · 직선 레인 4개(50m)",
@@ -7858,7 +8125,8 @@ addLessons([
      "easy": "걸으며 주고받기",
      "hard": "전달 전까지 구호 없이 타이밍 맞추기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 원마커 · 콘 · 직선 레인 4개(50m)",
@@ -7890,7 +8158,9 @@ addLessons([
      "easy": "교사가 마커 위치 지정",
      "hard": "짝을 바꿔 다시 조정",
      "d": {
-      "t": "at_relay"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 원마커 · 콘 · 직선 레인 4개(50m)",
@@ -7922,7 +8192,8 @@ addLessons([
      "easy": "거리 15m씩",
      "hard": "거리 30m씩 + 전달 구역 10m 제한",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 원마커 · 콘 · 직선 레인 4개(50m)",
@@ -7988,7 +8259,8 @@ addLessons([
      "easy": "구역 15m로 넓히기",
      "hard": "구역 7m로 좁히기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(10m) 표시 · 레인 4개",
@@ -8020,7 +8292,8 @@ addLessons([
      "easy": "걸으며 전달",
      "hard": "전력으로 달리며 전달",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(10m) 표시 · 레인 4개",
@@ -8052,7 +8325,9 @@ addLessons([
      "easy": "마커 위치를 교사가 제시",
      "hard": "주자를 바꿔 가며 다시 조정",
      "d": {
-      "t": "at_relay"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(10m) 표시 · 레인 4개",
@@ -8084,7 +8359,8 @@ addLessons([
      "easy": "구간 30m씩",
      "hard": "구간 60m씩 + 곡선 포함",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(10m) 표시 · 레인 4개",
@@ -8150,7 +8426,9 @@ addLessons([
      "easy": "속도 신경 쓰지 않고 규칙만",
      "hard": "규칙 지키며 속도 올리기",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 30m 레인 4개 · 초시계 · 원마커",
@@ -8182,7 +8460,9 @@ addLessons([
      "easy": "거리 10m",
      "hard": "거리 30m + 시간 측정",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 30m 레인 4개 · 초시계 · 원마커",
@@ -8214,7 +8494,10 @@ addLessons([
      "easy": "팔 동작만 제자리에서",
      "hard": "팔·다리 리듬 유지하며 속도",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 30m 레인 4개 · 초시계 · 원마커",
@@ -8246,7 +8529,9 @@ addLessons([
      "easy": "거리 15m",
      "hard": "거리 25m + 위반 시 2초 추가",
      "d": {
-      "t": "at_relay"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 30m 레인 4개 · 초시계 · 원마커",
@@ -8312,7 +8597,8 @@ addLessons([
      "easy": "구간 두 개만",
      "hard": "네 구간 연속",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 4 · 하이스텝퍼 4 · 접은 매트(스피드 바운스) 4 · 접이식 허들 8 · 반환점 보드 · 팀 매트",
@@ -8344,7 +8630,8 @@ addLessons([
      "easy": "전환 사이 간격 넓히기",
      "hard": "전환 사이 간격 좁히기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 4 · 하이스텝퍼 4 · 접은 매트(스피드 바운스) 4 · 접이식 허들 8 · 반환점 보드 · 팀 매트",
@@ -8376,7 +8663,8 @@ addLessons([
      "easy": "바운스 5회로 줄이기",
      "hard": "바운스 10회 정확히",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 4 · 하이스텝퍼 4 · 접은 매트(스피드 바운스) 4 · 접이식 허들 8 · 반환점 보드 · 팀 매트",
@@ -8408,7 +8696,9 @@ addLessons([
      "easy": "벌칙 시간 없이 운영",
      "hard": "벌칙 적용 + 코스 확대",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle2",
+      "baton": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 4 · 하이스텝퍼 4 · 접은 매트(스피드 바운스) 4 · 접이식 허들 8 · 반환점 보드 · 팀 매트",
@@ -8474,7 +8764,8 @@ addLessons([
      "easy": "걸어서 순서만 익히기",
      "hard": "세 동작을 연속으로 바로",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 2장 또는 모래밭 · 원마커 · 줄자 · 개인 기록 카드",
@@ -8506,7 +8797,8 @@ addLessons([
      "easy": "구호를 교사가 외쳐 주기",
      "hard": "구호 없이 수행",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 2장 또는 모래밭 · 원마커 · 줄자 · 개인 기록 카드",
@@ -8538,7 +8830,9 @@ addLessons([
      "easy": "간격 좁게",
      "hard": "간격 넓게 + 마커 없이",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 2장 또는 모래밭 · 원마커 · 줄자 · 개인 기록 카드",
@@ -8570,7 +8864,8 @@ addLessons([
      "easy": "두 동작(홉-점프)만",
      "hard": "세 동작 + 착지 균형 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 2장 또는 모래밭 · 원마커 · 줄자 · 개인 기록 카드",
@@ -8636,7 +8931,9 @@ addLessons([
      "easy": "세 번 뛰기부터",
      "hard": "다섯 번 모두 같은 거리 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 또는 모래밭 · 원마커 · 줄자 · 콘",
@@ -8668,7 +8965,9 @@ addLessons([
      "easy": "간격 1m",
      "hard": "간격 1.6m",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 또는 모래밭 · 원마커 · 줄자 · 콘",
@@ -8700,7 +8999,10 @@ addLessons([
      "easy": "팔을 가볍게만",
      "hard": "팔을 크게 쓰며 리듬 유지",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 또는 모래밭 · 원마커 · 줄자 · 콘",
@@ -8732,7 +9034,9 @@ addLessons([
      "easy": "3단으로 줄이기",
      "hard": "5단 + 마지막 두 발 착지 유지",
      "d": {
-      "t": "at_relay"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "매트 또는 모래밭 · 원마커 · 줄자 · 콘",
@@ -8798,7 +9102,8 @@ addLessons([
      "easy": "5걸음으로 줄이기",
      "hard": "9걸음으로 늘리기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 줄자 · 원마커",
@@ -8830,7 +9135,8 @@ addLessons([
      "easy": "구역 폭 80cm",
      "hard": "구역 폭 25cm",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 줄자 · 원마커",
@@ -8862,7 +9168,8 @@ addLessons([
      "easy": "속도 신경 쓰지 않고 정확도만",
      "hard": "전력 도움닫기 + 구역 지키기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 줄자 · 원마커",
@@ -8894,7 +9201,8 @@ addLessons([
      "easy": "구역 넓게",
      "hard": "구역 좁게 + 전원 성공 시 보너스",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 줄자 · 원마커",
@@ -8960,7 +9268,8 @@ addLessons([
      "easy": "가로대 대신 바닥 선",
      "hard": "가로대 높이 올리기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(또는 매트 4장 겹치기) · 가로대(고무줄·끈으로 대체) · 높이뛰기 대 또는 콘 · 줄자",
@@ -8992,7 +9301,9 @@ addLessons([
      "easy": "시작 높이 낮추고 간격 3cm",
      "hard": "간격 7cm",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(또는 매트 4장 겹치기) · 가로대(고무줄·끈으로 대체) · 높이뛰기 대 또는 콘 · 줄자",
@@ -9024,7 +9335,8 @@ addLessons([
      "easy": "걸어서 각도만 확인",
      "hard": "도움닫기 5걸음 고정",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(또는 매트 4장 겹치기) · 가로대(고무줄·끈으로 대체) · 높이뛰기 대 또는 콘 · 줄자",
@@ -9056,7 +9368,9 @@ addLessons([
      "easy": "최소 높이를 낮게 설정",
      "hard": "전원이 기준 높이 이상 도전",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(또는 매트 4장 겹치기) · 가로대(고무줄·끈으로 대체) · 높이뛰기 대 또는 콘 · 줄자",
@@ -9122,7 +9436,9 @@ addLessons([
      "easy": "눈금 간격 크게",
      "hard": "세 번 모두 같은 높이 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 눈금판 4개 · 분필 · 접은 매트 4 · 초시계 · 개인 기록 카드",
@@ -9154,7 +9470,9 @@ addLessons([
      "easy": "두 번 시도",
      "hard": "한 걸음 도움닫기 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 눈금판 4개 · 분필 · 접은 매트 4 · 초시계 · 개인 기록 카드",
@@ -9186,7 +9504,8 @@ addLessons([
      "easy": "5회",
      "hard": "15회 + 높이 유지",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 눈금판 4개 · 분필 · 접은 매트 4 · 초시계 · 개인 기록 카드",
@@ -9218,7 +9537,8 @@ addLessons([
      "easy": "한 종목만",
      "hard": "두 종목 모두 도전 단계",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "벽 눈금판 4개 · 분필 · 접은 매트 4 · 초시계 · 개인 기록 카드",
@@ -9283,7 +9603,8 @@ addLessons([
      "easy": "가벼운 공으로 동작만",
      "hard": "무거운 공 + 던진 뒤 자세 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 안전선",
@@ -9315,7 +9636,9 @@ addLessons([
      "easy": "구역 가깝게",
      "hard": "구역 멀게 + 무거운 공",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "back",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 안전선",
@@ -9347,7 +9670,8 @@ addLessons([
      "easy": "비교만 하고 기록 없음",
      "hard": "두 방법의 차이를 문장으로 쓰기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 안전선",
@@ -9379,7 +9703,8 @@ addLessons([
      "easy": "모든 구역 1점",
      "hard": "전원이 6m 이상 넘겨야 보너스",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "농구공·소프트볼 8개 · 구역 표시 콘 · 줄자 · 안전선",
@@ -9445,7 +9770,9 @@ addLessons([
      "easy": "제자리에서 상체만",
      "hard": "한 바퀴 돌며 던지기",
      "d": {
-      "t": "at_agility"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개(원반 대용) · 구역 표시 · 안전선 · 콘",
@@ -9477,7 +9804,8 @@ addLessons([
      "easy": "구역 가깝게",
      "hard": "구역 멀게 + 수평 유지 조건",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개(원반 대용) · 구역 표시 · 안전선 · 콘",
@@ -9509,7 +9837,8 @@ addLessons([
      "easy": "두 각도만 비교",
      "hard": "각도를 말로 설명하고 재현",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개(원반 대용) · 구역 표시 · 안전선 · 콘",
@@ -9541,7 +9870,9 @@ addLessons([
      "easy": "회전 없이 던져도 인정",
      "hard": "회전 필수 + 안전선 지키기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개(원반 대용) · 구역 표시 · 안전선 · 콘",
@@ -9607,7 +9938,9 @@ addLessons([
      "easy": "3·5·7·9m로 좁히기",
      "hard": "5·9·13·17m로 넓히기",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "target",
+      "ball": "bag"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 멈춤 보드 · 줄자 · 안전선 콘",
@@ -9639,7 +9972,8 @@ addLessons([
      "easy": "모든 후프 1점 통일",
      "hard": "가장 먼 후프만 3점",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 멈춤 보드 · 줄자 · 안전선 콘",
@@ -9671,7 +10005,9 @@ addLessons([
      "easy": "제자리에서 던지기",
      "hard": "다섯 걸음 + 선 지키기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "step": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 멈춤 보드 · 줄자 · 안전선 콘",
@@ -9703,7 +10039,8 @@ addLessons([
      "easy": "후프 가깝게·크게",
      "hard": "후프 멀게·작게 + 걸으며 던지기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "색깔 훌라후프 4개 · 색깔 콩주머니 20개 · 멈춤 보드 · 줄자 · 안전선 콘",
@@ -9769,7 +10106,8 @@ addLessons([
      "easy": "짧고 가벼운 원목",
      "hard": "길고 조금 무거운 원목",
      "d": {
-      "t": "at_run"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "원목(길이 1m 내외 가벼운 통나무·스펀지 막대·신문지 말이) 4개 · 바닥 테이프로 점수 구역 · 안전선",
@@ -9801,7 +10139,8 @@ addLessons([
      "easy": "거리 짧게 + 방향만",
      "hard": "반대 끝이 던진 지점에서 멀리 떨어지게",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "원목(길이 1m 내외 가벼운 통나무·스펀지 막대·신문지 말이) 4개 · 바닥 테이프로 점수 구역 · 안전선",
@@ -9833,7 +10172,9 @@ addLessons([
      "easy": "구역을 넓게",
      "hard": "구역을 좁게",
      "d": {
-      "t": "at_agility"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "원목(길이 1m 내외 가벼운 통나무·스펀지 막대·신문지 말이) 4개 · 바닥 테이프로 점수 구역 · 안전선",
@@ -9865,7 +10206,9 @@ addLessons([
      "easy": "원목 가볍게",
      "hard": "원목 길게 + 구역 좁게",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "원목(길이 1m 내외 가벼운 통나무·스펀지 막대·신문지 말이) 4개 · 바닥 테이프로 점수 구역 · 안전선",
@@ -9931,7 +10274,9 @@ addLessons([
      "easy": "허들 2개",
      "hard": "허들 4개 + 손 바꿔 통과",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle2",
+      "baton": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 배턴 8개 · 콘 · 레인 4개(편도 30m)",
@@ -9963,7 +10308,8 @@ addLessons([
      "easy": "구간 짧게",
      "hard": "구간을 더 길게 + 허들 추가",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 배턴 8개 · 콘 · 레인 4개(편도 30m)",
@@ -9995,7 +10341,8 @@ addLessons([
      "easy": "허들과 구역 사이 거리 넓게",
      "hard": "거리 좁혀 빠른 판단 요구",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 배턴 8개 · 콘 · 레인 4개(편도 30m)",
@@ -10027,7 +10374,9 @@ addLessons([
      "easy": "허들 2개",
      "hard": "허들 4개 + 곡선 구간 추가",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle2",
+      "baton": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "낮은 허들 12개 · 배턴 8개 · 콘 · 레인 4개(편도 30m)",
@@ -10093,7 +10442,8 @@ addLessons([
      "easy": "모두 기초 단계로",
      "hard": "도전 단계 미리 선언",
      "d": {
-      "t": "at_hurdle"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "다섯 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 도우미 조끼",
@@ -10125,7 +10475,8 @@ addLessons([
      "easy": "거리 줄이기",
      "hard": "거리 늘리고 허들 4개",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "다섯 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 도우미 조끼",
@@ -10158,7 +10509,9 @@ addLessons([
      "easy": "제자리 멀리뛰기·3단뛰기로",
      "hard": "도움닫기 7걸음 고정",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "다섯 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 도우미 조끼",
@@ -10190,7 +10543,8 @@ addLessons([
      "easy": "던지기 방법 자유 선택",
      "hard": "두 방법 모두 수행해 합산",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "다섯 종목 세트 · 팀 점수 카드 · 초시계 · 줄자 · 도우미 조끼",
@@ -10255,7 +10609,8 @@ addLessons([
      "easy": "바닥 선 위에서",
      "hard": "평균대 폭 좁히기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트 4 · 초시계 · 개인 기록 카드 · 안전 매트",
@@ -10287,7 +10642,8 @@ addLessons([
      "easy": "무효 규칙 없이 동작만",
      "hard": "규칙 모두 적용",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트 4 · 초시계 · 개인 기록 카드 · 안전 매트",
@@ -10319,7 +10675,8 @@ addLessons([
      "easy": "15초로 단축",
      "hard": "25초 + 매트 높이 올리기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트 4 · 초시계 · 개인 기록 카드 · 안전 매트",
@@ -10351,7 +10708,8 @@ addLessons([
      "easy": "두 종목만",
      "hard": "세 종목 + 기록 작성까지",
      "d": {
-      "t": "stations"
+      "t": "stations",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기 매트 4 · 접은 매트 4 · 초시계 · 개인 기록 카드 · 안전 매트",
@@ -10416,7 +10774,8 @@ addLessons([
      "easy": "다섯 종목만",
      "hard": "열 종목 연속",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -10448,7 +10807,8 @@ addLessons([
      "easy": "측정 시간·거리 완화",
      "hard": "기준 기록 선언 후 도전",
      "d": {
-      "t": "at_agility"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -10480,7 +10840,8 @@ addLessons([
      "easy": "시도 횟수 줄이기",
      "hard": "모든 종목 3회 전부 수행",
      "d": {
-      "t": "at_run"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -10512,7 +10873,8 @@ addLessons([
      "easy": "여덟 종목으로 축소",
      "hard": "열 종목 전부 + 목표 등급 선언",
      "d": {
-      "t": "at_throw"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -10577,7 +10939,9 @@ addLessons([
      "easy": "항목에 ○표만",
      "hard": "이유를 두 문장으로",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 자기평가지 · 시상 카드",
@@ -10609,7 +10973,8 @@ addLessons([
      "easy": "기초 코너 별도 운영",
      "hard": "도전 코너 + 목표 선언",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 자기평가지 · 시상 카드",
@@ -10641,7 +11006,9 @@ addLessons([
      "easy": "허들 2개",
      "hard": "허들 4개 + 곡선 포함",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle2",
+      "baton": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 자기평가지 · 시상 카드",
@@ -10673,7 +11040,8 @@ addLessons([
      "easy": "교사가 부문 지정",
      "hard": "학생 추천으로 수여",
      "d": {
-      "t": "at_run"
+      "t": "gen_courts",
+      "ball": "nball"
      },
      "t": {
       "prep": "전 차시 교구 · 개인 기록 카드 · 미션 여권 · 자기평가지 · 시상 카드",
@@ -10739,7 +11107,8 @@ addLessons([
      "easy": "30m를 세 구간으로",
      "hard": "구간별 시간을 각각 측정",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 초시계 · 50m 레인 4개 · 학습지",
@@ -10771,7 +11140,8 @@ addLessons([
      "easy": "관찰 항목 1개만",
      "hard": "항목 3개 모두 관찰",
      "d": {
-      "t": "at_relay"
+      "t": "gen_watch",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 초시계 · 50m 레인 4개 · 학습지",
@@ -10803,7 +11173,9 @@ addLessons([
      "easy": "20m 구간",
      "hard": "시간까지 함께 측정해 비교",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 초시계 · 50m 레인 4개 · 학습지",
@@ -10835,7 +11207,8 @@ addLessons([
      "easy": "교사가 구간 추천",
      "hard": "구간을 두 개 고르기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 초시계 · 50m 레인 4개 · 학습지",
@@ -10900,7 +11273,9 @@ addLessons([
      "easy": "상체 기울기 작게",
      "hard": "첫 열 걸음까지 자세 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 초시계 · 30m 레인 4개",
@@ -10932,7 +11307,9 @@ addLessons([
      "easy": "신호 한 종류",
      "hard": "신호 세 종류 중 두 개에 반응",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 초시계 · 30m 레인 4개",
@@ -10964,7 +11341,9 @@ addLessons([
      "easy": "자세 두 가지",
      "hard": "자세를 신호와 함께 지정",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 초시계 · 30m 레인 4개",
@@ -10996,7 +11375,9 @@ addLessons([
      "easy": "거리 15m",
      "hard": "거리 25m + 반환점에서 카드 확인",
      "d": {
-      "t": "at_relay"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 호루라기 · 색 카드 · 초시계 · 30m 레인 4개",
@@ -11062,7 +11443,10 @@ addLessons([
      "easy": "각도를 작게",
      "hard": "각도 유지 거리를 20m로",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 고무줄 또는 긴 끈 · 30m 레인 4개",
@@ -11094,7 +11478,9 @@ addLessons([
      "easy": "마커 수 줄이기",
      "hard": "마커 간격을 더 넓게",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 고무줄 또는 긴 끈 · 30m 레인 4개",
@@ -11126,7 +11512,8 @@ addLessons([
      "easy": "저항 없이 자세만",
      "hard": "저항 구간을 15m로",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 고무줄 또는 긴 끈 · 30m 레인 4개",
@@ -11158,7 +11545,8 @@ addLessons([
      "easy": "거리 15m",
      "hard": "거리 25m + 출발 자세 무작위",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 원마커 · 고무줄 또는 긴 끈 · 30m 레인 4개",
@@ -11224,7 +11612,10 @@ addLessons([
      "easy": "무릎 높이 낮추기",
      "hard": "전환 거리 늘리기",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 사다리 또는 원마커 · 초시계 · 50m 레인 4개",
@@ -11256,7 +11647,8 @@ addLessons([
      "easy": "측정 구간 15m",
      "hard": "측정 구간 30m",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 사다리 또는 원마커 · 초시계 · 50m 레인 4개",
@@ -11288,7 +11680,10 @@ addLessons([
      "easy": "제자리에서만",
      "hard": "질주 중 팔 동작 유지 30m",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 사다리 또는 원마커 · 초시계 · 50m 레인 4개",
@@ -11320,7 +11715,8 @@ addLessons([
      "easy": "거리 줄이기",
      "hard": "전달 구역을 좁혀 정확도 요구",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 사다리 또는 원마커 · 초시계 · 50m 레인 4개",
@@ -11386,7 +11782,8 @@ addLessons([
      "easy": "거리 40m",
      "hard": "거리 80m",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 결승 테이프 또는 끈 · 초시계 · 60m 레인 4개",
@@ -11418,7 +11815,8 @@ addLessons([
      "easy": "통과만 연습",
      "hard": "가슴 내밀기 동작까지",
      "d": {
-      "t": "at_run"
+      "t": "gen_courts",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 결승 테이프 또는 끈 · 초시계 · 60m 레인 4개",
@@ -11450,7 +11848,9 @@ addLessons([
      "easy": "40m를 두 구간으로",
      "hard": "구간별 시간 각각 측정",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 결승 테이프 또는 끈 · 초시계 · 60m 레인 4개",
@@ -11482,7 +11882,8 @@ addLessons([
      "easy": "거리 30m",
      "hard": "거리 50m",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 · 결승 테이프 또는 끈 · 초시계 · 60m 레인 4개",
@@ -11548,7 +11949,8 @@ addLessons([
      "easy": "거리 7m",
      "hard": "거리 12m",
      "d": {
-      "t": "at_agility"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 반환점 보드 또는 매트 · 초시계 · 팀 매트",
@@ -11580,7 +11982,8 @@ addLessons([
      "easy": "6회 왕복",
      "hard": "10회 + 마지막 2회 전력",
      "d": {
-      "t": "at_run"
+      "t": "at_shuttle",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 반환점 보드 또는 매트 · 초시계 · 팀 매트",
@@ -11612,7 +12015,8 @@ addLessons([
      "easy": "감속 구간 5m 허용",
      "hard": "감속 구간 2m",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 반환점 보드 또는 매트 · 초시계 · 팀 매트",
@@ -11644,7 +12048,8 @@ addLessons([
      "easy": "2회 왕복씩",
      "hard": "6회 왕복씩",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 16개(10m 코스 4개) · 반환점 보드 또는 매트 · 초시계 · 팀 매트",
@@ -11710,7 +12115,10 @@ addLessons([
      "easy": "곡선을 크게",
      "hard": "곡선을 작게",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개로 곡선 주로 2개 · 원마커 · 초시계",
@@ -11742,7 +12150,10 @@ addLessons([
      "easy": "속도 늦춰 동작만",
      "hard": "전력으로 유지",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개로 곡선 주로 2개 · 원마커 · 초시계",
@@ -11774,7 +12185,9 @@ addLessons([
      "easy": "곡선 구간 짧게",
      "hard": "곡선을 S자로 연결",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개로 곡선 주로 2개 · 원마커 · 초시계",
@@ -11806,7 +12219,9 @@ addLessons([
      "easy": "곡선 크게 + 선 규칙 없음",
      "hard": "곡선 작게 + 선 밟으면 다시",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "curve": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 20개로 곡선 주로 2개 · 원마커 · 초시계",
@@ -11872,7 +12287,9 @@ addLessons([
      "easy": "교사가 위치 제시",
      "hard": "짝을 바꿔 다시 조정",
      "d": {
-      "t": "at_relay"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(20m) · 원마커 · 레인 4개",
@@ -11904,7 +12321,8 @@ addLessons([
      "easy": "70% 속도로",
      "hard": "전력 + 구역 좁히기",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(20m) · 원마커 · 레인 4개",
@@ -11936,7 +12354,8 @@ addLessons([
      "easy": "같은 손으로 통일",
      "hard": "곡선 구간 포함해 손 지정",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(20m) · 원마커 · 레인 4개",
@@ -11968,7 +12387,8 @@ addLessons([
      "easy": "구간 30m",
      "hard": "구간 60m + 곡선 포함",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "배턴 8개 · 콘으로 인계 구역(20m) · 원마커 · 레인 4개",
@@ -12034,7 +12454,9 @@ addLessons([
      "easy": "곡선 크게 + 구역 넓게",
      "hard": "곡선 작게 + 구역 좁게",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "curve": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "곡선 포함 코스 2개 · 배턴 8개 · 콘 · 인계 구역 표시",
@@ -12066,7 +12488,8 @@ addLessons([
      "easy": "교사가 순서 예시 제시",
      "hard": "순서를 두 가지 세우고 비교",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "곡선 포함 코스 2개 · 배턴 8개 · 콘 · 인계 구역 표시",
@@ -12099,7 +12522,8 @@ addLessons([
      "easy": "두 명 구간만 연습",
      "hard": "전 구간 연속 주행",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay",
+      "ball": "nball"
      },
      "t": {
       "prep": "곡선 포함 코스 2개 · 배턴 8개 · 콘 · 인계 구역 표시",
@@ -12131,7 +12555,9 @@ addLessons([
      "easy": "코스 짧게",
      "hard": "코스 길게 + 구역 좁게",
      "d": {
-      "t": "at_relay"
+      "t": "at_relay2",
+      "curve": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "곡선 포함 코스 2개 · 배턴 8개 · 콘 · 인계 구역 표시",
@@ -12197,7 +12623,9 @@ addLessons([
      "easy": "규칙 하나씩 따로",
      "hard": "두 규칙 동시에 지키며 속도",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 40m 레인 4개 · 초시계 · 원마커 · 학습지",
@@ -12229,7 +12657,8 @@ addLessons([
      "easy": "규칙 하나만 관찰",
      "hard": "두 규칙 모두 관찰하고 기록",
      "d": {
-      "t": "at_run"
+      "t": "gen_ref",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 40m 레인 4개 · 초시계 · 원마커 · 학습지",
@@ -12261,7 +12690,10 @@ addLessons([
      "easy": "제자리에서 팔 동작만",
      "hard": "팔·다리 리듬 유지하며 속도 올리기",
      "d": {
-      "t": "at_run"
+      "t": "gen_shadow",
+      "low": true,
+      "mark": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 40m 레인 4개 · 초시계 · 원마커 · 학습지",
@@ -12293,7 +12725,9 @@ addLessons([
      "easy": "거리 20m + 위반 벌칙 없음",
      "hard": "거리 40m + 벌칙 적용",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘 12개 · 직선 40m 레인 4개 · 초시계 · 원마커 · 학습지",
@@ -12358,7 +12792,9 @@ addLessons([
      "easy": "차이 8초 이내 인정",
      "hard": "차이 3초 이내",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 코스 · 초시계 · 기록 카드 · 호루라기",
@@ -12390,7 +12826,8 @@ addLessons([
      "easy": "한 바퀴만",
      "hard": "세 바퀴 + 속도 지시 변화",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 코스 · 초시계 · 기록 카드 · 호루라기",
@@ -12422,7 +12859,9 @@ addLessons([
      "easy": "속도 두 단계만",
      "hard": "신호 간격 짧게",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 코스 · 초시계 · 기록 카드 · 호루라기",
@@ -12454,7 +12893,9 @@ addLessons([
      "easy": "반 바퀴씩",
      "hard": "두 바퀴씩",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "walk": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 코스 · 초시계 · 기록 카드 · 호루라기",
@@ -12520,7 +12961,9 @@ addLessons([
      "easy": "차이 5초 이내 인정",
      "hard": "차이 2초 이내",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 사각 코스 · 초시계 · 개인 기록 카드",
@@ -12552,7 +12995,8 @@ addLessons([
      "easy": "한 바퀴만",
      "hard": "세 바퀴 + 속도 지시 변화",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 사각 코스 · 초시계 · 개인 기록 카드",
@@ -12584,7 +13028,9 @@ addLessons([
      "easy": "걷기와 섞어서",
      "hard": "리듬 유지하며 속도 올리기",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 사각 코스 · 초시계 · 개인 기록 카드",
@@ -12616,7 +13062,9 @@ addLessons([
      "easy": "6분으로 줄이기 + 걷기 허용",
      "hard": "10분 + 바퀴 수 목표 선언",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 50×25m 사각 코스 · 초시계 · 개인 기록 카드",
@@ -12682,7 +13130,9 @@ addLessons([
      "easy": "속도 두 단계만",
      "hard": "신호 간격을 짧게",
      "d": {
-      "t": "at_run"
+      "t": "at_start",
+      "react": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 사각 코스 · 호루라기 · 초시계 · 기록 카드",
@@ -12714,7 +13164,9 @@ addLessons([
      "easy": "빠르게 구간을 짧게",
      "hard": "빠르게 구간을 두 변으로",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 사각 코스 · 호루라기 · 초시계 · 기록 카드",
@@ -12746,7 +13198,8 @@ addLessons([
      "easy": "두 바퀴로 줄이기",
      "hard": "네 바퀴로 늘리기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 사각 코스 · 호루라기 · 초시계 · 기록 카드",
@@ -12778,7 +13231,9 @@ addLessons([
      "easy": "걷기 섞어도 완주 인정",
      "hard": "목표 바퀴 수 팀이 선언",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "콘으로 사각 코스 · 호루라기 · 초시계 · 기록 카드",
@@ -12843,7 +13298,9 @@ addLessons([
      "easy": "교사 구령에 맞춰 함께 세기",
      "hard": "스스로 재고 계산까지",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "초시계 4개 · 개인 기록 카드 · 콘으로 사각 코스 · 필기구",
@@ -12875,7 +13332,9 @@ addLessons([
      "easy": "교사가 계산 도와주기",
      "hard": "두 번 재서 평균 내기",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "초시계 4개 · 개인 기록 카드 · 콘으로 사각 코스 · 필기구",
@@ -12907,7 +13366,9 @@ addLessons([
      "easy": "반 바퀴만",
      "hard": "두 바퀴 + 3분까지 회복 추적",
      "d": {
-      "t": "at_run"
+      "t": "at_oval",
+      "time": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "초시계 4개 · 개인 기록 카드 · 콘으로 사각 코스 · 필기구",
@@ -12939,7 +13400,8 @@ addLessons([
      "easy": "직후와 1분 후만",
      "hard": "단원 초·말 수치를 비교",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "초시계 4개 · 개인 기록 카드 · 콘으로 사각 코스 · 필기구",
@@ -13004,7 +13466,9 @@ addLessons([
      "easy": "걸어서 순서만",
      "hard": "세 동작 모두 같은 거리로",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 원마커 · 줄자 · 발구름 표시",
@@ -13036,7 +13500,9 @@ addLessons([
      "easy": "간격 좁게",
      "hard": "간격 넓게 + 마커 없이 재현",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "m": "mk",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 원마커 · 줄자 · 발구름 표시",
@@ -13068,7 +13534,8 @@ addLessons([
      "easy": "걸어서 도움닫기",
      "hard": "일곱 걸음 도움닫기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 원마커 · 줄자 · 발구름 표시",
@@ -13100,7 +13567,8 @@ addLessons([
      "easy": "제자리 삼단뛰기로",
      "hard": "도움닫기 + 발구름 구역 지키기",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 2장 · 원마커 · 줄자 · 발구름 표시",
@@ -13166,7 +13634,8 @@ addLessons([
      "easy": "5걸음으로",
      "hard": "9걸음 + 전력 도움닫기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 벽 높이 표시 · 줄자",
@@ -13198,7 +13667,8 @@ addLessons([
      "easy": "구역 폭 60cm",
      "hard": "구역 폭 20cm",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 벽 높이 표시 · 줄자",
@@ -13230,7 +13700,9 @@ addLessons([
      "easy": "표시 없이 동작만",
      "hard": "한 걸음 도움닫기 추가",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "vert",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 벽 높이 표시 · 줄자",
@@ -13262,7 +13734,9 @@ addLessons([
      "easy": "제자리 멀리뛰기로 대체",
      "hard": "두 종목 모두 도전 단계",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "모래밭 또는 매트 · 발구름 표시판 · 벽 높이 표시 · 줄자",
@@ -13328,7 +13802,8 @@ addLessons([
      "easy": "세 걸음 도움닫기",
      "hard": "일곱 걸음 도움닫기",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(매트 4장 겹치기) · 가로대(고무줄·끈) · 높이뛰기 대 또는 콘 · 줄자 · 보조 매트",
@@ -13360,7 +13835,8 @@ addLessons([
      "easy": "마커 범위를 넓게",
      "hard": "마커 범위 30cm 이내",
      "d": {
-      "t": "at_run"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(매트 4장 겹치기) · 가로대(고무줄·끈) · 높이뛰기 대 또는 콘 · 줄자 · 보조 매트",
@@ -13392,7 +13868,9 @@ addLessons([
      "easy": "간격 3cm",
      "hard": "간격 7cm",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(매트 4장 겹치기) · 가로대(고무줄·끈) · 높이뛰기 대 또는 콘 · 줄자 · 보조 매트",
@@ -13424,7 +13902,9 @@ addLessons([
      "easy": "기준 높이 낮게",
      "hard": "기준 높이 올리기",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "높이뛰기 매트(매트 4장 겹치기) · 가로대(고무줄·끈) · 높이뛰기 대 또는 콘 · 줄자 · 보조 매트",
@@ -13490,7 +13970,8 @@ addLessons([
      "easy": "10회로 줄이기",
      "hard": "30회 + 높이 유지",
      "d": {
-      "t": "at_run"
+      "t": "at_ladder",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4 · 벽 눈금판 · 초시계 · 개인 기록 카드",
@@ -13522,7 +14003,8 @@ addLessons([
      "easy": "20초",
      "hard": "30초 + 매트 두 장 겹치기",
      "d": {
-      "t": "at_jump"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4 · 벽 눈금판 · 초시계 · 개인 기록 카드",
@@ -13554,7 +14036,9 @@ addLessons([
      "easy": "한 가지만",
      "hard": "둘을 번갈아 지시",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "high",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4 · 벽 눈금판 · 초시계 · 개인 기록 카드",
@@ -13586,7 +14070,8 @@ addLessons([
      "easy": "20초로 단축",
      "hard": "30초 + 높이 조건 추가",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "접은 매트 4 · 벽 눈금판 · 초시계 · 개인 기록 카드",
@@ -13652,7 +14137,9 @@ addLessons([
      "easy": "상체만 돌리기",
      "hard": "한 바퀴 돌아 던지기",
      "d": {
-      "t": "at_agility"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개 · 구역 표시 · 안전선 · 콘",
@@ -13684,7 +14171,8 @@ addLessons([
      "easy": "거리 짧게 + 수평만",
      "hard": "수평 유지 + 거리 구역 동시 충족",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개 · 구역 표시 · 안전선 · 콘",
@@ -13716,7 +14204,9 @@ addLessons([
      "easy": "비교만 하고 기록 없음",
      "hard": "차이를 문장으로 설명",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개 · 구역 표시 · 안전선 · 콘",
@@ -13748,7 +14238,9 @@ addLessons([
      "easy": "회전 없이도 인정",
      "hard": "회전 필수 + 안전선 엄수",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비 8개 · 구역 표시 · 안전선 · 콘",
@@ -13814,7 +14306,8 @@ addLessons([
      "easy": "가벼운 고무 링",
      "hard": "조금 무거운 PVC 원반",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비·실내용 PVC 원반 4개 · 안전선 콘 · 구역 표시 · 줄자",
@@ -13846,7 +14339,8 @@ addLessons([
      "easy": "짧은 거리에서 수평만",
      "hard": "수평 + 거리 구역 동시 충족",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비·실내용 PVC 원반 4개 · 안전선 콘 · 구역 표시 · 줄자",
@@ -13878,7 +14372,9 @@ addLessons([
      "easy": "제자리에서 상체만 회전",
      "hard": "한 바퀴 돌며 수평 유지",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "spin",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비·실내용 PVC 원반 4개 · 안전선 콘 · 구역 표시 · 줄자",
@@ -13910,7 +14406,8 @@ addLessons([
      "easy": "회전 없이도 인정",
      "hard": "회전 필수 + 수평 유지",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "고무 링·프리스비·실내용 PVC 원반 4개 · 안전선 콘 · 구역 표시 · 줄자",
@@ -13976,7 +14473,8 @@ addLessons([
      "easy": "걸어서 들고 가기",
      "hard": "속도 올려 달리기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개 · 구역 표시 · 안전선 · 도움닫기 레인 표시",
@@ -14008,7 +14506,9 @@ addLessons([
      "easy": "세 걸음으로",
      "hard": "일곱 걸음 + 선 지키기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "step": true,
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개 · 구역 표시 · 안전선 · 도움닫기 레인 표시",
@@ -14040,7 +14540,8 @@ addLessons([
      "easy": "두 각도만 비교",
      "hard": "각도를 말로 설명하고 재현",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개 · 구역 표시 · 안전선 · 도움닫기 레인 표시",
@@ -14072,7 +14573,9 @@ addLessons([
      "easy": "구역 가깝게 + 제자리 던지기 허용",
      "hard": "구역 멀게 + 도움닫기 필수",
      "d": {
-      "t": "at_run"
+      "t": "at_throw2",
+      "m": "zone",
+      "ball": "nball"
      },
      "t": {
       "prep": "소프트 창 8개 · 구역 표시 · 안전선 · 도움닫기 레인 표시",
@@ -14138,7 +14641,9 @@ addLessons([
      "easy": "가벼운 공",
      "hard": "메디신볼로 바꾸기",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "m": "sit",
+      "ball": "nball"
      },
      "t": {
       "prep": "4호 축구공·1~2kg 메디신볼·소프트 창·고무 링·원목(스펀지 막대) · 의자 2개 · 구역 표시 · 안전선",
@@ -14170,7 +14675,8 @@ addLessons([
      "easy": "거리 짧게",
      "hard": "구역 점수 도전",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "4호 축구공·1~2kg 메디신볼·소프트 창·고무 링·원목(스펀지 막대) · 의자 2개 · 구역 표시 · 안전선",
@@ -14202,7 +14708,8 @@ addLessons([
      "easy": "가벼운 도구",
      "hard": "걸으며 던지기 + 방향 조건",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw2",
+      "ball": "nball"
      },
      "t": {
       "prep": "4호 축구공·1~2kg 메디신볼·소프트 창·고무 링·원목(스펀지 막대) · 의자 2개 · 구역 표시 · 안전선",
@@ -14234,7 +14741,8 @@ addLessons([
      "easy": "두 가지만 선택",
      "hard": "여섯 가지 모두 수행",
      "d": {
-      "t": "at_run"
+      "t": "at_run",
+      "ball": "nball"
      },
      "t": {
       "prep": "4호 축구공·1~2kg 메디신볼·소프트 창·고무 링·원목(스펀지 막대) · 의자 2개 · 구역 표시 · 안전선",
@@ -14300,7 +14808,8 @@ addLessons([
      "easy": "바닥 선 위에서",
      "hard": "평균대 폭 좁히기",
      "d": {
-      "t": "at_agility"
+      "t": "at_balance",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기·삼단뛰기 매트 · 접은 매트 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -14332,7 +14841,9 @@ addLessons([
      "easy": "연속이 어려우면 홉→건너뛰기→두 발 착지",
      "hard": "세 동작 거리를 고르게",
      "d": {
-      "t": "at_jump"
+      "t": "at_sjump",
+      "m": "triple",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기·삼단뛰기 매트 · 접은 매트 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -14364,7 +14875,8 @@ addLessons([
      "easy": "20초",
      "hard": "30초 + 매트 겹치기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_bounce",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기·삼단뛰기 매트 · 접은 매트 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -14396,7 +14908,9 @@ addLessons([
      "easy": "두 종목만",
      "hard": "세 종목 + 기록 작성까지",
      "d": {
-      "t": "stations"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "평균대 4 · 제자리멀리뛰기·삼단뛰기 매트 · 접은 매트 · 초시계 · 안전 매트 · 개인 기록 카드",
@@ -14461,7 +14975,8 @@ addLessons([
      "easy": "다섯 종목만",
      "hard": "열 종목 연속",
      "d": {
-      "t": "at_agility"
+      "t": "at_agility",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -14493,7 +15008,8 @@ addLessons([
      "easy": "측정 시간·횟수 완화",
      "hard": "기준 기록 선언 후 도전",
      "d": {
-      "t": "at_agility"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -14525,7 +15041,8 @@ addLessons([
      "easy": "시도 횟수 줄이기",
      "hard": "모든 종목 3회 전부",
      "d": {
-      "t": "at_run"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -14557,7 +15074,8 @@ addLessons([
      "easy": "여덟 종목으로 축소",
      "hard": "열 종목 전부 + 목표 등급 선언",
      "d": {
-      "t": "at_throw"
+      "t": "at_course",
+      "ball": "nball"
      },
      "t": {
       "prep": "10개 코너 세트 · 개인 점수 카드 · 등급표 · 증명서 양식 · 초시계 · 줄자 · 도우미 조끼",
@@ -14622,7 +15140,8 @@ addLessons([
      "easy": "교사가 배정안 예시 제시",
      "hard": "팀이 두 가지 안을 만들어 비교",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "열 개 종목 스테이션 · 팀 점수 카드 · 10종 경기 다이어그램 · 도우미 조끼",
@@ -14654,7 +15173,8 @@ addLessons([
      "easy": "거리·개수 줄이기",
      "hard": "거리·개수 늘리기",
      "d": {
-      "t": "at_hurdle"
+      "t": "at_hurdle",
+      "ball": "nball"
      },
      "t": {
       "prep": "열 개 종목 스테이션 · 팀 점수 카드 · 10종 경기 다이어그램 · 도우미 조끼",
@@ -14687,7 +15207,8 @@ addLessons([
      "easy": "제자리 종목으로 대체",
      "hard": "도움닫기 고정 + 구역 지키기",
      "d": {
-      "t": "at_jump"
+      "t": "at_jump",
+      "ball": "nball"
      },
      "t": {
       "prep": "열 개 종목 스테이션 · 팀 점수 카드 · 10종 경기 다이어그램 · 도우미 조끼",
@@ -14719,7 +15240,8 @@ addLessons([
      "easy": "제자리 던지기 허용",
      "hard": "두 종목 모두 도전 단계",
      "d": {
-      "t": "at_throw"
+      "t": "at_throw",
+      "ball": "nball"
      },
      "t": {
       "prep": "열 개 종목 스테이션 · 팀 점수 카드 · 10종 경기 다이어그램 · 도우미 조끼",
@@ -14784,7 +15306,8 @@ addLessons([
      "easy": "한 종목만 수정",
      "hard": "전체 배정 다시 설계",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "ball": "nball"
      },
      "t": {
       "prep": "15차시와 동일 · 개인 기록 카드 전체 · 자기평가지 · 미션 여권 · 시상 카드",
@@ -14816,7 +15339,8 @@ addLessons([
      "easy": "종목 수를 6개로 줄이기",
      "hard": "열 종목 전부 + 목표 점수 선언",
      "d": {
-      "t": "stations"
+      "t": "stations",
+      "ball": "nball"
      },
      "t": {
       "prep": "15차시와 동일 · 개인 기록 카드 전체 · 자기평가지 · 미션 여권 · 시상 카드",
@@ -14848,7 +15372,9 @@ addLessons([
      "easy": "항목에 ○표만",
      "hard": "이유를 세 문장으로",
      "d": {
-      "t": "at_run"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "nball"
      },
      "t": {
       "prep": "15차시와 동일 · 개인 기록 카드 전체 · 자기평가지 · 미션 여권 · 시상 카드",
@@ -14880,7 +15406,8 @@ addLessons([
      "easy": "교사가 부문 지정",
      "hard": "학생 추천으로 수여",
      "d": {
-      "t": "at_run"
+      "t": "gen_courts",
+      "ball": "nball"
      },
      "t": {
       "prep": "15차시와 동일 · 개인 기록 카드 전체 · 자기평가지 · 미션 여권 · 시상 카드",

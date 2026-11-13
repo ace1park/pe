@@ -47,7 +47,8 @@ addLessons([
      "easy": "낮게 던져 올리기",
      "hard": "던져 올리고 한 바퀴 돌아 받기",
      "d": {
-      "t": "bm_solo"
+      "t": "bm_solo",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "체육관 한 면 · 2인 1조 3m 간격 · 바람이 없는 곳",
@@ -79,7 +80,13 @@ addLessons([
      "easy": "거리 2m · 아래에서 크게 띄워 주기",
      "hard": "거리 5m · 낮게 보내 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "체육관 한 면 · 2인 1조 3m 간격 · 바람이 없는 곳",
@@ -111,7 +118,15 @@ addLessons([
      "easy": "짝이 제자리로 띄워 주기",
      "hard": "좌우·앞뒤로 비껴 띄워 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "체육관 한 면 · 2인 1조 3m 간격 · 바람이 없는 곳",
@@ -143,7 +158,13 @@ addLessons([
      "easy": "거리 2m · 후프 두 개 겹쳐 크게",
      "hard": "거리 5m · 후프 하나",
      "d": {
-      "t": "bm_double"
+      "t": "pk_target",
+      "zone": "hoop",
+      "racket": true,
+      "lab": {
+       "pass": "후프 안에 떨어뜨리기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "체육관 한 면 · 2인 1조 3m 간격 · 바람이 없는 곳",
@@ -208,7 +229,9 @@ addLessons([
      "easy": "손잡이 가운데를 짧게 잡기",
      "hard": "손잡이 끝을 길게 잡기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 휘두르는 구역을 원마커로 표시",
@@ -240,7 +263,8 @@ addLessons([
      "easy": "두 가지만 바꾸기",
      "hard": "교사가 빠르게 섞어 말하기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 휘두르는 구역을 원마커로 표시",
@@ -272,7 +296,13 @@ addLessons([
      "easy": "제자리에서 들고 있기만",
      "hard": "지그재그로 걷기",
      "d": {
-      "t": "bm_solo"
+      "t": "pk_carry",
+      "racket": true,
+      "lab": {
+       "shuttle": "라켓 위의 셔틀콕",
+       "blue": "가는 사람"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 휘두르는 구역을 원마커로 표시",
@@ -304,7 +334,13 @@ addLessons([
      "easy": "거리 6m · 걸어서",
      "hard": "거리 15m · 빠르게 걷기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_carry",
+      "racket": true,
+      "lab": {
+       "shuttle": "라켓 위의 셔틀콕",
+       "blue": "가는 사람"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 휘두르는 구역을 원마커로 표시",
@@ -369,7 +405,9 @@ addLessons([
      "easy": "셔틀콕을 라켓에 대고 밀어 올리기",
      "hard": "눈으로 보지 않고 소리로만 판단",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 줄 가운데를 손가락으로 짚어 확인하고 시작",
@@ -401,7 +439,8 @@ addLessons([
      "easy": "손으로 한 번 던져 올리고 라켓으로 한 번만",
      "hard": "머리 높이로 띄우기",
      "d": {
-      "t": "bm_solo"
+      "t": "bm_solo",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 줄 가운데를 손가락으로 짚어 확인하고 시작",
@@ -433,7 +472,9 @@ addLessons([
      "easy": "한 면으로만",
      "hard": "두 면을 한 번씩 번갈아",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 줄 가운데를 손가락으로 짚어 확인하고 시작",
@@ -465,7 +506,8 @@ addLessons([
      "easy": "거리 6m · 손으로 던져 올려도 됨",
      "hard": "거리 15m · 라켓으로만",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 넓게 흩어져 서기 · 라켓 줄 가운데를 손가락으로 짚어 확인하고 시작",
@@ -530,7 +572,9 @@ addLessons([
      "easy": "앉은 자세에서 동작만",
      "hard": "한 발을 앞으로 내디디며",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 · 출발선에서 3m · 5m · 7m 자리에 원마커로 선 표시",
@@ -562,7 +606,14 @@ addLessons([
      "easy": "선을 2m · 3m · 4m로 가깝게",
      "hard": "선을 4m · 7m · 10m로 멀게",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 · 출발선에서 3m · 5m · 7m 자리에 원마커로 선 표시",
@@ -594,7 +645,13 @@ addLessons([
      "easy": "거리 3m · 짝이 손으로 던져 줌",
      "hard": "거리 6m · 둘 다 라켓으로",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 · 출발선에서 3m · 5m · 7m 자리에 원마커로 선 표시",
@@ -626,7 +683,10 @@ addLessons([
      "easy": "기준 높이를 낮게 정하기",
      "hard": "높이와 함께 떨어지는 자리까지 정하기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "4m 간격 두 줄 · 2인 1조 · 출발선에서 3m · 5m · 7m 자리에 원마커로 선 표시",
@@ -691,7 +751,14 @@ addLessons([
      "easy": "네트 높이 1m · 거리 1.5m",
      "hard": "네트 높이 1.4m · 거리 3m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "네트 앞에서 짧게 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면(가로 4m × 세로 8m) · 2인 1조로 마주 서기",
@@ -723,7 +790,13 @@ addLessons([
      "easy": "한 번 튄 뒤 쳐도 인정",
      "hard": "바닥에 닿기 전에만 인정",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면(가로 4m × 세로 8m) · 2인 1조로 마주 서기",
@@ -755,7 +828,14 @@ addLessons([
      "easy": "두 번 성공하면 물러나기",
      "hard": "다섯 번 성공해야 물러나기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면(가로 4m × 세로 8m) · 2인 1조로 마주 서기",
@@ -787,7 +867,13 @@ addLessons([
      "easy": "손으로 받아 라켓으로 넘겨도 인정",
      "hard": "라켓으로만 주고받기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면(가로 4m × 세로 8m) · 2인 1조로 마주 서기",
@@ -852,7 +938,14 @@ addLessons([
      "easy": "거리 3m",
      "hard": "거리 5m · 짝이 제자리에 발을 붙이고",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면 · 2인 1조 · 평가 관찰은 연습2에서",
@@ -884,7 +977,8 @@ addLessons([
      "easy": "한 번 튄 뒤 쳐도 인정",
      "hard": "다섯 번마다 한 걸음씩 물러나기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면 · 2인 1조 · 평가 관찰은 연습2에서",
@@ -916,7 +1010,13 @@ addLessons([
      "easy": "열 번을 목표로 · 네트 높이 1m",
      "hard": "서른 번을 목표로 · 거리 4m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면 · 2인 1조 · 평가 관찰은 연습2에서",
@@ -949,7 +1049,13 @@ addLessons([
      "easy": "순서 없이 아무나 치기",
      "hard": "순서를 지키며 네 명이 돌아가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.2m · 코트 4면 · 2인 1조 · 평가 관찰은 연습2에서",
@@ -1014,7 +1120,9 @@ addLessons([
      "easy": "두 방향만 · 걸어서",
      "hard": "네 방향 · 전력으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 앞·뒤·좌·우 네 지점에 콘",
@@ -1046,7 +1154,9 @@ addLessons([
      "easy": "20초 · 두 방향",
      "hard": "40초 · 네 방향",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 앞·뒤·좌·우 네 지점에 콘",
@@ -1078,7 +1188,15 @@ addLessons([
      "easy": "한 걸음 안에서 닿게 보내 주기",
      "hard": "두세 걸음 가야 닿게 보내 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 앞·뒤·좌·우 네 지점에 콘",
@@ -1110,7 +1228,15 @@ addLessons([
      "easy": "두 사람이 가까이 서서 보내기",
      "hard": "두 사람이 멀리 벌려 서서 보내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 앞·뒤·좌·우 네 지점에 콘",
@@ -1175,7 +1301,14 @@ addLessons([
      "easy": "후프 두 개를 겹쳐 크게",
      "hard": "후프 하나 · 네트 바로 뒤에 두기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞 구역과 뒤 구역으로 나눠 원마커로 표시",
@@ -1207,7 +1340,14 @@ addLessons([
      "easy": "구역 두 개를 넓게",
      "hard": "구역 세 개로 나누기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞 구역과 뒤 구역으로 나눠 원마커로 표시",
@@ -1239,7 +1379,14 @@ addLessons([
      "easy": "코트 길이를 6m로 줄이기",
      "hard": "코트 길이를 10m로 늘리기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞 구역과 뒤 구역으로 나눠 원마커로 표시",
@@ -1271,7 +1418,14 @@ addLessons([
      "easy": "앞뒤 차이를 크게 두기",
      "hard": "앞뒤를 예고 없이 섞기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞 구역과 뒤 구역으로 나눠 원마커로 표시",
@@ -1336,7 +1490,11 @@ addLessons([
      "easy": "밖으로 나간 것은 세지 않기",
      "hard": "선 밖은 모두 상대 점수",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면(가로 4m × 세로 8m) · 네트 높이 1.2m · 학급 규칙판 게시",
@@ -1368,7 +1526,8 @@ addLessons([
      "easy": "3점 내기",
      "hard": "7점 내기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면(가로 4m × 세로 8m) · 네트 높이 1.2m · 학급 규칙판 게시",
@@ -1400,7 +1559,14 @@ addLessons([
      "easy": "세 번 이상 주고받기",
      "hard": "일곱 번 이상 주고받기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면(가로 4m × 세로 8m) · 네트 높이 1.2m · 학급 규칙판 게시",
@@ -1432,7 +1598,8 @@ addLessons([
      "easy": "심판 없이 스스로 세기",
      "hard": "심판이 선 밖 판정까지 맡기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면(가로 4m × 세로 8m) · 네트 높이 1.2m · 학급 규칙판 게시",
@@ -1497,7 +1664,9 @@ addLessons([
      "easy": "항목을 세 가지로 줄이기",
      "hard": "늘어난 까닭까지 한 문장으로 적기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -1529,7 +1698,13 @@ addLessons([
      "easy": "한 번 튄 뒤 쳐도 인정",
      "hard": "순서를 지키며 이어 가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -1561,7 +1736,9 @@ addLessons([
      "easy": "말로만 전하기",
      "hard": "장면을 구체적으로 적기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -1593,7 +1770,8 @@ addLessons([
      "easy": "시상에 시간을 더 쓰기",
      "hard": "모둠 대표전을 한 판 더",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -1659,7 +1837,9 @@ addLessons([
      "easy": "손잡이를 짧게 잡기",
      "hard": "손잡이 끝을 잡고 손목만으로 면 바꾸기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 흩어져 서기 · 네트 4면 준비 · 손목 돌리기 먼저",
@@ -1691,7 +1871,8 @@ addLessons([
      "easy": "스펀지 셔틀콕으로",
      "hard": "두 면을 번갈아 쓰며 띄우기",
      "d": {
-      "t": "bm_solo"
+      "t": "bm_solo",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 흩어져 서기 · 네트 4면 준비 · 손목 돌리기 먼저",
@@ -1723,7 +1904,13 @@ addLessons([
      "easy": "거리 2m · 스펀지 셔틀콕",
      "hard": "거리 5m · 나일론 셔틀콕",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 흩어져 서기 · 네트 4면 준비 · 손목 돌리기 먼저",
@@ -1755,7 +1942,13 @@ addLessons([
      "easy": "네트 높이 1.2m",
      "hard": "다섯 번마다 한 걸음씩 물러나기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "2m 간격으로 흩어져 서기 · 네트 4면 준비 · 손목 돌리기 먼저",
@@ -1820,7 +2013,9 @@ addLessons([
      "easy": "셔틀콕을 라켓 위에 올려 밀어 올리기",
      "hard": "떨어뜨린 셔틀콕을 받아 치기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 4면 · 시작선과 받는 구역을 원마커로 표시",
@@ -1852,7 +2047,14 @@ addLessons([
      "easy": "구역을 넓게 · 후프 두 개",
      "hard": "구역을 좁게 · 후프 하나",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 4면 · 시작선과 받는 구역을 원마커로 표시",
@@ -1884,7 +2086,15 @@ addLessons([
      "easy": "한 가지만 연습",
      "hard": "교사가 말하는 대로 바꿔 치기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 4면 · 시작선과 받는 구역을 원마커로 표시",
@@ -1916,7 +2126,15 @@ addLessons([
      "easy": "받는 사람 없이 구역만 맞히기",
      "hard": "받는 사람이 적극적으로 움직이기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 4면 · 시작선과 받는 구역을 원마커로 표시",
@@ -1981,7 +2199,9 @@ addLessons([
      "easy": "제자리에서 팔만",
      "hard": "앞발을 크게 내디디며",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 뒤쪽 2m를 원마커로 표시 · 2인 1조",
@@ -2013,7 +2233,14 @@ addLessons([
      "easy": "코트 길이 8m로 줄이기",
      "hard": "코트 길이 12m로 늘리기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 뒤쪽 2m를 원마커로 표시 · 2인 1조",
@@ -2045,7 +2272,14 @@ addLessons([
      "easy": "기준을 네트 기둥 높이로 낮게 정하기",
      "hard": "기준을 농구 백보드 윗선으로 높게 정하기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 뒤쪽 2m를 원마커로 표시 · 2인 1조",
@@ -2077,7 +2311,13 @@ addLessons([
      "easy": "코트를 짧게",
      "hard": "코트를 길게 · 높이 기준까지 적용",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 뒤쪽 2m를 원마커로 표시 · 2인 1조",
@@ -2142,7 +2382,9 @@ addLessons([
      "easy": "제자리에서 동작만",
      "hard": "띄운 셔틀콕을 맞혀 내리기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 앞쪽 2m를 원마커로 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -2174,7 +2416,14 @@ addLessons([
      "easy": "구역을 넓게 · 네트 높이 1.2m",
      "hard": "구역을 좁게 · 네트 높이 1.5m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 앞쪽 2m를 원마커로 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -2206,7 +2455,8 @@ addLessons([
      "easy": "짝이 제자리로 올려 주기",
      "hard": "좌우로 비껴 올려 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 앞쪽 2m를 원마커로 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -2238,7 +2488,8 @@ addLessons([
      "easy": "구역을 넓게 두기",
      "hard": "구역을 좁히고 2분으로 늘리기",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 코트 앞쪽 2m를 원마커로 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -2303,7 +2554,14 @@ addLessons([
      "easy": "네트 높이 1.2m · 거리 1m",
      "hard": "네트 높이 1.5m · 거리 2m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 네트에서 1.5m 지점에 선 표시 · 2인 1조로 네트 앞에 서기",
@@ -2335,7 +2593,14 @@ addLessons([
      "easy": "선을 2.5m로 넓히기",
      "hard": "선을 1m로 좁히기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "네트 앞에서 짧게 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 네트에서 1.5m 지점에 선 표시 · 2인 1조로 네트 앞에 서기",
@@ -2367,7 +2632,8 @@ addLessons([
      "easy": "물러나지 않고 짧게 치기만",
      "hard": "짧게 치고 물러나 길게 받기까지",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 네트에서 1.5m 지점에 선 표시 · 2인 1조로 네트 앞에 서기",
@@ -2399,7 +2665,14 @@ addLessons([
      "easy": "짧게·길게를 미리 말하고 보내기",
      "hard": "예고 없이 섞어 보내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.4m · 네트에서 1.5m 지점에 선 표시 · 2인 1조로 네트 앞에 서기",
@@ -2464,7 +2737,9 @@ addLessons([
      "easy": "두 방향만 · 걸어서",
      "hard": "네 방향 · 전력으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 네 방향에 콘 · 평가 관찰은 연습2에서",
@@ -2496,7 +2771,9 @@ addLessons([
      "easy": "20초 · 두 방향",
      "hard": "45초 · 네 방향",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 네 방향에 콘 · 평가 관찰은 연습2에서",
@@ -2528,7 +2805,15 @@ addLessons([
      "easy": "한 걸음 안에서 닿게 보내 주기",
      "hard": "두세 걸음 가야 닿게 보내 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 네 방향에 콘 · 평가 관찰은 연습2에서",
@@ -2561,7 +2846,10 @@ addLessons([
      "easy": "두 사람이 가까이 서기",
      "hard": "두 사람이 멀리 벌려 서기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 표시 · 네 방향에 콘 · 평가 관찰은 연습2에서",
@@ -2626,7 +2914,14 @@ addLessons([
      "easy": "거리 3m",
      "hard": "거리 5m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2인 1조 · 네트 높이 1.4m · 기록 카드 준비",
@@ -2658,7 +2953,13 @@ addLessons([
      "easy": "열 번 목표",
      "hard": "서른 번 목표",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2인 1조 · 네트 높이 1.4m · 기록 카드 준비",
@@ -2690,7 +2991,9 @@ addLessons([
      "easy": "돌아오기 규칙 없이",
      "hard": "돌아오기 + 가슴 높이로 보내기 모두 적용",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2인 1조 · 네트 높이 1.4m · 기록 카드 준비",
@@ -2722,7 +3025,13 @@ addLessons([
      "easy": "순서 없이 아무나 치기",
      "hard": "순서를 지키며 네 명이 돌아가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2인 1조 · 네트 높이 1.4m · 기록 카드 준비",
@@ -2787,7 +3096,14 @@ addLessons([
      "easy": "구역을 두 개로 나누기",
      "hard": "3초 안에 찾아 말하기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 나눠 원마커로 표시 · 2인 1조",
@@ -2819,7 +3135,8 @@ addLessons([
      "easy": "구역 두 개로 넓히기",
      "hard": "구역 네 개로 좁히기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 나눠 원마커로 표시 · 2인 1조",
@@ -2851,7 +3168,14 @@ addLessons([
      "easy": "짝이 천천히 움직이기",
      "hard": "짝이 빠르게 돌아오기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 나눠 원마커로 표시 · 2인 1조",
@@ -2883,7 +3207,8 @@ addLessons([
      "easy": "구역 구분 없이 점수",
      "hard": "구역 네 개 · 말하고 치기까지 적용",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 나눠 원마커로 표시 · 2인 1조",
@@ -2948,7 +3273,9 @@ addLessons([
      "easy": "교사가 정한 규칙만 확인",
      "hard": "모둠마다 두 가지씩 제안하고 투표",
      "d": {
-      "t": "bm_double"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.4m · 학급 규칙판 게시 · 심판과 기록 역할 배정",
@@ -2980,7 +3307,10 @@ addLessons([
      "easy": "선택지를 두 개 주고 고르기",
      "hard": "상황을 학생이 만들어 내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.4m · 학급 규칙판 게시 · 심판과 기록 역할 배정",
@@ -3012,7 +3342,8 @@ addLessons([
      "easy": "교사가 옆에서 함께 판정",
      "hard": "학생 심판만으로 한 판",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.4m · 학급 규칙판 게시 · 심판과 기록 역할 배정",
@@ -3044,7 +3375,11 @@ addLessons([
      "easy": "5점 내기",
      "hard": "9점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.4m · 학급 규칙판 게시 · 심판과 기록 역할 배정",
@@ -3109,7 +3444,8 @@ addLessons([
      "easy": "주고받기 거리를 짧게",
      "hard": "움직이며 주고받기까지",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 돌아가며 리그 · 한 경기 7점 내기 · 기록지에 결과 적기",
@@ -3141,7 +3477,8 @@ addLessons([
      "easy": "5점 내기",
      "hard": "9점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 돌아가며 리그 · 한 경기 7점 내기 · 기록지에 결과 적기",
@@ -3173,7 +3510,14 @@ addLessons([
      "easy": "교사가 과제를 지정",
      "hard": "스스로 과제와 방법까지 정하기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 돌아가며 리그 · 한 경기 7점 내기 · 기록지에 결과 적기",
@@ -3205,7 +3549,8 @@ addLessons([
      "easy": "5점 내기",
      "hard": "두 판 연속",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 돌아가며 리그 · 한 경기 7점 내기 · 기록지에 결과 적기",
@@ -3270,7 +3615,10 @@ addLessons([
      "easy": "가운데로는 보내지 않기",
      "hard": "가운데로도 보내고 '내 거!'로 정하기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2 대 2 · 코트를 좌우로 나눈 선을 원마커로 표시",
@@ -3302,7 +3650,10 @@ addLessons([
      "easy": "가운데 구역을 좁게",
      "hard": "가운데 구역을 넓게",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2 대 2 · 코트를 좌우로 나눈 선을 원마커로 표시",
@@ -3334,7 +3685,14 @@ addLessons([
      "easy": "역할을 고정하고 반복",
      "hard": "공이 간 곳에 따라 자리를 바꾸기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2 대 2 · 코트를 좌우로 나눈 선을 원마커로 표시",
@@ -3366,7 +3724,11 @@ addLessons([
      "easy": "5점 내기 · 좌우로만 나누기",
      "hard": "9점 내기 · 앞뒤로 바꿔 가며",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 2 대 2 · 코트를 좌우로 나눈 선을 원마커로 표시",
@@ -3431,7 +3793,9 @@ addLessons([
      "easy": "항목을 세 가지로 줄이기",
      "hard": "늘어난 까닭까지 한 문장으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3463,7 +3827,13 @@ addLessons([
      "easy": "순서 없이 아무나 치기",
      "hard": "순서를 지키며 이어 가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3495,7 +3865,9 @@ addLessons([
      "easy": "말로만 전하기",
      "hard": "장면을 구체적으로 적기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3527,7 +3899,8 @@ addLessons([
      "easy": "시상에 시간을 더 쓰기",
      "hard": "학급 대표전을 한 판 더",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대항 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -3593,7 +3966,9 @@ addLessons([
      "easy": "한 면으로만 띄우기",
      "hard": "면을 한 번씩 번갈아 띄우기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -3625,7 +4000,13 @@ addLessons([
      "easy": "스무 번 목표 · 거리 3m",
      "hard": "쉰 번 목표 · 거리 5m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -3657,7 +4038,9 @@ addLessons([
      "easy": "돌아오기 규칙 없이",
      "hard": "돌아오기 + 가슴 높이로 보내기 모두 적용",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -3689,7 +4072,13 @@ addLessons([
      "easy": "순서 없이 아무나 치기",
      "hard": "순서를 지키며 네 명이 돌아가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -3754,7 +4143,9 @@ addLessons([
      "easy": "제자리에서 팔만 · 스펀지 셔틀콕",
      "hard": "한 발 뒤로 물러서며 치기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 뒤쪽 2m를 원마커로 표시 · 조명이나 농구 백보드 윗선을 '오늘의 높이 기준'으로 함께 정하기",
@@ -3786,7 +4177,14 @@ addLessons([
      "easy": "기준을 네트 기둥 높이로 · 코트 9m",
      "hard": "기준을 농구 백보드 윗선으로 · 코트 12m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 뒤쪽 2m를 원마커로 표시 · 조명이나 농구 백보드 윗선을 '오늘의 높이 기준'으로 함께 정하기",
@@ -3818,7 +4216,14 @@ addLessons([
      "easy": "코트 길이 9m",
      "hard": "코트 길이 12m · 높이 기준까지 적용",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "deep": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "뒤에서 뒤로 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 뒤쪽 2m를 원마커로 표시 · 조명이나 농구 백보드 윗선을 '오늘의 높이 기준'으로 함께 정하기",
@@ -3850,7 +4255,10 @@ addLessons([
      "easy": "세 명이 가까이 서서 보내기",
      "hard": "세 명이 멀리 벌려 서서 보내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 뒤쪽 2m를 원마커로 표시 · 조명이나 농구 백보드 윗선을 '오늘의 높이 기준'으로 함께 정하기",
@@ -3915,7 +4323,9 @@ addLessons([
      "easy": "앞에서 밀어 올리기만",
      "hard": "높이 보내기와 번갈아 하며 자세 같게",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞쪽 2m를 원마커로 표시 · 훌라후프를 네트 뒤에 두기",
@@ -3947,7 +4357,13 @@ addLessons([
      "easy": "후프 두 개를 겹쳐 크게",
      "hard": "후프 하나 · 네트에 더 가깝게",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "hoop",
+      "racket": true,
+      "lab": {
+       "pass": "후프 안에 떨어뜨리기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞쪽 2m를 원마커로 표시 · 훌라후프를 네트 뒤에 두기",
@@ -3979,7 +4395,8 @@ addLessons([
      "easy": "한 가지씩 따로 연습",
      "hard": "교사 신호 없이 스스로 골라 치기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞쪽 2m를 원마커로 표시 · 훌라후프를 네트 뒤에 두기",
@@ -4011,7 +4428,14 @@ addLessons([
      "easy": "구역을 앞뒤 둘로만 나누기",
      "hard": "앞뒤·좌우 네 구역으로",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞쪽 2m를 원마커로 표시 · 훌라후프를 네트 뒤에 두기",
@@ -4076,7 +4500,9 @@ addLessons([
      "easy": "두 가지를 미리 말하고 치기",
      "hard": "짝이 앞에서 보며 맞히기",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞·뒤 두 구역으로 표시 · 평가 관찰은 연습2에서",
@@ -4108,7 +4534,14 @@ addLessons([
      "easy": "가운데도 1점 주기",
      "hard": "구역을 네 개로 나누기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞·뒤 두 구역으로 표시 · 평가 관찰은 연습2에서",
@@ -4140,7 +4573,14 @@ addLessons([
      "easy": "교사가 상황을 말해 주기",
      "hard": "주고받는 중에 스스로 판단",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞·뒤 두 구역으로 표시 · 평가 관찰은 연습2에서",
@@ -4173,7 +4613,8 @@ addLessons([
      "easy": "5점 내기 · 구역 둘",
      "hard": "9점 내기 · 구역 넷",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 앞·뒤 두 구역으로 표시 · 평가 관찰은 연습2에서",
@@ -4238,7 +4679,14 @@ addLessons([
      "easy": "네트 높이 1.3m · 거리 1m",
      "hard": "네트 높이 1.6m · 거리 2m",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "네트 앞에서 짧게 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.5m · 네트 앞 2m 구역을 표시 · 2인 1조로 네트 앞에 마주 서기",
@@ -4270,7 +4718,14 @@ addLessons([
      "easy": "구역을 2.5m로 넓히기",
      "hard": "구역을 1m로 좁히기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "네트 앞에서 짧게 주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.5m · 네트 앞 2m 구역을 표시 · 2인 1조로 네트 앞에 마주 서기",
@@ -4302,7 +4757,14 @@ addLessons([
      "easy": "밀어 올릴 때를 교사가 말해 주기",
      "hard": "주고받는 중에 스스로 고르기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.5m · 네트 앞 2m 구역을 표시 · 2인 1조로 네트 앞에 마주 서기",
@@ -4334,7 +4796,14 @@ addLessons([
      "easy": "앞뒤를 미리 말하고 보내기",
      "hard": "예고 없이 섞어 보내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "네트 높이 1.5m · 네트 앞 2m 구역을 표시 · 2인 1조로 네트 앞에 마주 서기",
@@ -4399,7 +4868,9 @@ addLessons([
      "easy": "두 방향만 · 걸어서",
      "hard": "네 방향 · 전력으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 · 네 방향 끝에 콘 · 코트 크기 5.5m × 11m",
@@ -4431,7 +4902,9 @@ addLessons([
      "easy": "20초 · 두 방향",
      "hard": "45초 · 네 방향 · 라켓 내밀기까지",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_home",
+      "shuttle": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 · 네 방향 끝에 콘 · 코트 크기 5.5m × 11m",
@@ -4463,7 +4936,15 @@ addLessons([
      "easy": "앞뒤 두 방향만",
      "hard": "네 방향 · 예고 없이",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 · 네 방향 끝에 콘 · 코트 크기 5.5m × 11m",
@@ -4495,7 +4976,8 @@ addLessons([
      "easy": "세 명이 가까이 서서 보내기",
      "hard": "세 명이 네 구석으로 벌려 서기",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 가운데 자리를 원마커로 · 네 방향 끝에 콘 · 코트 크기 5.5m × 11m",
@@ -4560,7 +5042,15 @@ addLessons([
      "easy": "한 가지씩 따로 연습 · 구역을 넓게",
      "hard": "두 가지를 섞어 · 구역을 좁게",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작선과 받는 구역을 원마커로 표시 · 2인 1조",
@@ -4592,7 +5082,15 @@ addLessons([
      "easy": "자세 들키기 감점 없이",
      "hard": "짝이 앞에서 보며 미리 맞히기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작선과 받는 구역을 원마커로 표시 · 2인 1조",
@@ -4624,7 +5122,13 @@ addLessons([
      "easy": "짧게만 또는 길게만 주기",
      "hard": "예고 없이 섞어 주기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작선과 받는 구역을 원마커로 표시 · 2인 1조",
@@ -4656,7 +5160,15 @@ addLessons([
      "easy": "받는 사람이 제자리에 서 있기",
      "hard": "받는 사람이 적극적으로 움직이기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작선과 받는 구역을 원마커로 표시 · 2인 1조",
@@ -4721,7 +5233,14 @@ addLessons([
      "easy": "5초 주고 교사가 함께 짚어 주기",
      "hard": "2초 안에 찾아 말하기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2인 1조와 4인 모둠",
@@ -4753,7 +5272,14 @@ addLessons([
      "easy": "세 번 안에 끝내도 2점",
      "hard": "반드시 두 번 만에",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "zone": "deep",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "뒤쪽까지 높고 길게"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2인 1조와 4인 모둠",
@@ -4785,7 +5311,8 @@ addLessons([
      "easy": "구역을 둘로만 나누기",
      "hard": "구역을 넷으로 나누기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2인 1조와 4인 모둠",
@@ -4817,7 +5344,14 @@ addLessons([
      "easy": "5점 내기",
      "hard": "9점 내기 · 같은 곳 두 번 금지까지",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2인 1조와 4인 모둠",
@@ -4882,7 +5416,9 @@ addLessons([
      "easy": "교사가 정한 규칙만 확인",
      "hard": "모둠마다 두 가지씩 제안하고 투표",
      "d": {
-      "t": "bm_double"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 심판과 기록 역할 배정 · 11점 내기",
@@ -4914,7 +5450,10 @@ addLessons([
      "easy": "선택지를 두 개 주고 고르기",
      "hard": "상황을 학생이 만들어 내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 심판과 기록 역할 배정 · 11점 내기",
@@ -4946,7 +5485,8 @@ addLessons([
      "easy": "점수만 적기",
      "hard": "점수 · 주고받은 횟수 · 길게 주고받은 장면까지",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 심판과 기록 역할 배정 · 11점 내기",
@@ -4978,7 +5518,11 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 심판과 기록 역할 배정 · 11점 내기",
@@ -5043,7 +5587,8 @@ addLessons([
      "easy": "교사가 작전 한 가지를 제안",
      "hard": "상대에 따라 작전을 다르게",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 리그 · 한 경기 11점 내기 · 기록지에 결과와 주고받은 횟수 적기",
@@ -5075,7 +5620,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 리그 · 한 경기 11점 내기 · 기록지에 결과와 주고받은 횟수 적기",
@@ -5107,7 +5653,8 @@ addLessons([
      "easy": "교사가 과제를 지정",
      "hard": "스스로 과제와 방법까지",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 리그 · 한 경기 11점 내기 · 기록지에 결과와 주고받은 횟수 적기",
@@ -5139,7 +5686,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "두 판 연속",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 안 리그 · 한 경기 11점 내기 · 기록지에 결과와 주고받은 횟수 적기",
@@ -5205,7 +5753,8 @@ addLessons([
      "easy": "두 가지 판정만",
      "hard": "네트 터치와 시작 치기 반칙까지",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 모둠에서 맡기 · 역할은 판마다 교대",
@@ -5237,7 +5786,8 @@ addLessons([
      "easy": "차이가 분명한 상황만",
      "hard": "아슬아슬한 상황을 일부러",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 모둠에서 맡기 · 역할은 판마다 교대",
@@ -5269,7 +5819,9 @@ addLessons([
      "easy": "점수만 적기",
      "hard": "어느 구역으로 보냈는지까지 적기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 모둠에서 맡기 · 역할은 판마다 교대",
@@ -5301,7 +5853,8 @@ addLessons([
      "easy": "교사가 옆에서 함께 판정",
      "hard": "학생 심판만으로 두 판",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 모둠에서 맡기 · 역할은 판마다 교대",
@@ -5366,7 +5919,9 @@ addLessons([
      "easy": "항목을 세 가지로 줄이기",
      "hard": "늘어난 까닭까지 한 문장으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대표전 또는 순위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -5398,7 +5953,13 @@ addLessons([
      "easy": "네트 높이 1.3m",
      "hard": "네 방향으로 움직이며 이어 가기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대표전 또는 순위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -5430,7 +5991,9 @@ addLessons([
      "easy": "말로만 전하기",
      "hard": "장면을 구체적으로 적기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대표전 또는 순위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -5462,7 +6025,8 @@ addLessons([
      "easy": "시상에 시간을 더 쓰기",
      "hard": "학급 대표전을 한 판 더",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 모둠 대표전 또는 순위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -5528,7 +6092,14 @@ addLessons([
      "easy": "두 가지만 점검",
      "hard": "세 가지를 섞어 연속으로",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -5560,7 +6131,13 @@ addLessons([
      "easy": "서른 번 목표",
      "hard": "쉰 번 목표 · 네 방향으로 움직이며",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -5592,7 +6169,15 @@ addLessons([
      "easy": "좌우만 섞기",
      "hard": "네 방향 모두 섞기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "side": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -5624,7 +6209,13 @@ addLessons([
      "easy": "순서 없이 아무나 치기",
      "hard": "순서를 지키며 네 명이 돌아가기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 네트 높이 1.5m · 2인 1조 · 손목·어깨 돌리기 먼저",
@@ -5689,7 +6280,9 @@ addLessons([
      "easy": "제자리에서 팔만",
      "hard": "띄운 셔틀콕을 실제로 맞히기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "hang": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞·가운데 구역을 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -5721,7 +6314,14 @@ addLessons([
      "easy": "구역을 넓게 · 스펀지 셔틀콕",
      "hard": "구역을 좁게 · 나일론 셔틀콕",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_target",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "네트 앞 표적에 떨어뜨리기",
+       "ring": "표적(후프·원 마커)"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞·가운데 구역을 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -5753,7 +6353,8 @@ addLessons([
      "easy": "미리 말하고 치기",
      "hard": "말 없이 섞어 치기",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞·가운데 구역을 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -5785,7 +6386,13 @@ addLessons([
      "easy": "스펀지 셔틀콕 · 천천히",
      "hard": "나일론 셔틀콕 · 빠르게",
      "d": {
-      "t": "bm_double"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트 앞·가운데 구역을 표시 · 얼굴 높이로 치지 않기를 먼저 약속",
@@ -5850,7 +6457,9 @@ addLessons([
      "easy": "제자리에서 동작만",
      "hard": "좌우로 한 걸음 옮기며",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_shadow",
+      "racket": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 받는 사람은 가운데보다 조금 뒤에 서기 · 2인 1조",
@@ -5882,7 +6491,13 @@ addLessons([
      "easy": "스펀지 셔틀콕 · 천천히",
      "hard": "나일론 셔틀콕 · 빠르게",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "nonet": true,
+      "racket": true,
+      "lab": {
+       "pass2": "주고받기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 받는 사람은 가운데보다 조금 뒤에 서기 · 2인 1조",
@@ -5914,7 +6529,14 @@ addLessons([
      "easy": "천천히 보내 주기",
      "hard": "빠르게 보내 주고 바로 또 보내기",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 받는 사람은 가운데보다 조금 뒤에 서기 · 2인 1조",
@@ -5946,7 +6568,10 @@ addLessons([
      "easy": "두 번 연속 넘겨도 2점",
      "hard": "다섯 번 연속 넘겨야 2점",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 받는 사람은 가운데보다 조금 뒤에 서기 · 2인 1조",
@@ -6011,7 +6636,10 @@ addLessons([
      "easy": "가운데로는 보내지 않기",
      "hard": "가운데로도 보내고 \"내 거!\"로 정하기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 코트를 좌우로 나눈 선과 앞뒤로 나눈 선을 모두 표시 · 2 대 2",
@@ -6043,7 +6671,11 @@ addLessons([
      "easy": "가운데 구역을 좁게",
      "hard": "가운데 구역을 넓게",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 코트를 좌우로 나눈 선과 앞뒤로 나눈 선을 모두 표시 · 2 대 2",
@@ -6075,7 +6707,14 @@ addLessons([
      "easy": "역할을 고정하고 반복",
      "hard": "짧게와 길게를 예고 없이 섞기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 코트를 좌우로 나눈 선과 앞뒤로 나눈 선을 모두 표시 · 2 대 2",
@@ -6107,7 +6746,10 @@ addLessons([
      "easy": "5점 내기",
      "hard": "11점 내기 · 자리를 바꿔 가며",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 코트를 좌우로 나눈 선과 앞뒤로 나눈 선을 모두 표시 · 2 대 2",
@@ -6172,7 +6814,15 @@ addLessons([
      "easy": "자리를 원마커로 표시해 주기",
      "hard": "점수에 따라 좌우 칸을 바꿔 서기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작하는 자리와 받는 자리를 원마커로 표시 · 2 대 2",
@@ -6204,7 +6854,15 @@ addLessons([
      "easy": "구역을 넓게 · 후프 두 개",
      "hard": "구역을 좁게 · 받는 사람이 적극적으로",
      "d": {
-      "t": "bm_double"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작하는 자리와 받는 자리를 원마커로 표시 · 2 대 2",
@@ -6236,7 +6894,8 @@ addLessons([
      "easy": "천천히 넘겨 주기",
      "hard": "짧게와 길게를 섞어 주기",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작하는 자리와 받는 자리를 원마커로 표시 · 2 대 2",
@@ -6268,7 +6927,15 @@ addLessons([
      "easy": "5점 내기 · 점수 차등 없이",
      "hard": "11점 내기 · 자리 바꿔 가며",
      "d": {
-      "t": "bm_double"
+      "t": "pk_target",
+      "zone": "serve",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "대각선으로 시작 치기",
+       "mk": "떨어뜨릴 곳"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 시작하는 자리와 받는 자리를 원마커로 표시 · 2 대 2",
@@ -6333,7 +7000,14 @@ addLessons([
      "easy": "교사가 자리를 말해 주기",
      "hard": "상황만 보고 스스로 자리 잡기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "run": true,
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "run": "앞뒤로 나눠 서기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 좌우 선과 앞뒤 선 모두 표시 · 2 대 2 · 평가 관찰은 연습2에서",
@@ -6365,7 +7039,10 @@ addLessons([
      "easy": "5초 안에 서기 · 상황을 말해 주기",
      "hard": "2초 안에 서기 · 말 없이",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 좌우 선과 앞뒤 선 모두 표시 · 2 대 2 · 평가 관찰은 연습2에서",
@@ -6397,7 +7074,13 @@ addLessons([
      "easy": "두 가지 자리를 교사 신호로 바꾸기",
      "hard": "신호 없이 스스로 바꾸기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_lines",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass": "넘기기"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 좌우 선과 앞뒤 선 모두 표시 · 2 대 2 · 평가 관찰은 연습2에서",
@@ -6430,7 +7113,11 @@ addLessons([
      "easy": "7점 내기 · 점수 차등 없이",
      "hard": "15점 내기 · 기록원이 자리를 채점",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 좌우 선과 앞뒤 선 모두 표시 · 2 대 2 · 평가 관찰은 연습2에서",
@@ -6495,7 +7182,8 @@ addLessons([
      "easy": "항목을 세 가지로 좁혀 주기",
      "hard": "약한 부분을 메울 방법까지",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝별 작전판 · 1~6차시 기록 카드를 펼쳐 놓고 의논",
@@ -6527,7 +7215,8 @@ addLessons([
      "easy": "역할을 고정하고 한 판",
      "hard": "한 판마다 바꿔 보고 비교",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝별 작전판 · 1~6차시 기록 카드를 펼쳐 놓고 의논",
@@ -6559,7 +7248,8 @@ addLessons([
      "easy": "시작 치기 뒤 한 가지만",
      "hard": "공격과 수비 각각 한 가지씩",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_talk",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝별 작전판 · 1~6차시 기록 카드를 펼쳐 놓고 의논",
@@ -6591,7 +7281,10 @@ addLessons([
      "easy": "7점 내기 · 의논 시간 늘리기",
      "hard": "15점 내기 · 작전을 바꿔 가며",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝별 작전판 · 1~6차시 기록 카드를 펼쳐 놓고 의논",
@@ -6656,7 +7349,11 @@ addLessons([
      "easy": "구역을 둘로 나누기",
      "hard": "2초 안에 찾아 말하기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2 대 2 · 기록지 준비",
@@ -6688,7 +7385,8 @@ addLessons([
      "easy": "네 번 안에 끝내도 2점",
      "hard": "반드시 세 번 만에",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2 대 2 · 기록지 준비",
@@ -6720,7 +7418,10 @@ addLessons([
      "easy": "교사가 올릴 때와 누를 때를 말해 주기",
      "hard": "스스로 보고 판단",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2 대 2 · 기록지 준비",
@@ -6752,7 +7453,11 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기 · 같은 곳 두 번 금지까지",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 상대 코트를 네 구역으로 표시 · 2 대 2 · 기록지 준비",
@@ -6817,7 +7522,9 @@ addLessons([
      "easy": "교사가 정한 규칙만 확인",
      "hard": "모둠마다 두 가지씩 제안하고 투표",
      "d": {
-      "t": "bm_double"
+      "t": "gen_talk",
+      "m": "class",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -6849,7 +7556,8 @@ addLessons([
      "easy": "선택지를 두 개 주고 고르기",
      "hard": "상황을 학생이 만들어 내기",
      "d": {
-      "t": "bm_double"
+      "t": "bm_double",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -6881,7 +7589,10 @@ addLessons([
      "easy": "교사가 멈춘 곳을 짚어 주기",
      "hard": "시간을 재어 비교하기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -6913,7 +7624,11 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "pk_double",
+      "both": true,
+      "racket": true,
+      "nokit": true,
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 학급 규칙판 게시 · 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -6978,7 +7693,8 @@ addLessons([
      "easy": "두 가지 판정만",
      "hard": "네트 터치와 두 번 치기까지",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 쉬는 모둠이 맡기 · 역할은 판마다 교대",
@@ -7010,7 +7726,8 @@ addLessons([
      "easy": "차이가 분명한 상황만",
      "hard": "아슬아슬한 상황을 일부러",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 쉬는 모둠이 맡기 · 역할은 판마다 교대",
@@ -7042,7 +7759,9 @@ addLessons([
      "easy": "점수만 적기",
      "hard": "어느 구역으로 보냈는지까지",
      "d": {
-      "t": "bm_double"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 쉬는 모둠이 맡기 · 역할은 판마다 교대",
@@ -7074,7 +7793,8 @@ addLessons([
      "easy": "교사가 옆에서 함께 판정",
      "hard": "학생 심판만으로 두 판",
      "d": {
-      "t": "bm_double"
+      "t": "gen_ref",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 심판 1 · 선심 2 · 기록 1을 쉬는 모둠이 맡기 · 역할은 판마다 교대",
@@ -7139,7 +7859,14 @@ addLessons([
      "easy": "주고받기 거리를 짧게",
      "hard": "자리 바꾸기 연습까지",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝 단위 리그 1라운드 · 한 경기 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -7171,7 +7898,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝 단위 리그 1라운드 · 한 경기 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -7203,7 +7931,8 @@ addLessons([
      "easy": "교사가 과제를 지정",
      "hard": "짝이 과제와 방법까지 스스로",
      "d": {
-      "t": "bm_pair"
+      "t": "bm_pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝 단위 리그 1라운드 · 한 경기 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -7235,7 +7964,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기 · 자리 바꾸기 채점까지",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 짝 단위 리그 1라운드 · 한 경기 11점 내기 · 심판과 기록은 쉬는 모둠",
@@ -7301,7 +8031,8 @@ addLessons([
      "easy": "교사가 함께 한 가지를 골라 주기",
      "hard": "공격과 수비 각각 한 가지씩",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_talk",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -7333,7 +8064,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -7365,7 +8097,8 @@ addLessons([
      "easy": "잘된 점만 말하기",
      "hard": "고칠 점을 동작으로 보여 주며",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_watch",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -7397,7 +8130,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 2라운드 · 앞 경기 기록지를 펼쳐 놓고 시작",
@@ -7463,7 +8197,9 @@ addLessons([
      "easy": "항목을 세 가지로 줄이기",
      "hard": "늘어난 까닭까지 한 문장으로",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 3라운드 · 개인 기록 카드와 기록지를 모두 꺼내 둠",
@@ -7495,7 +8231,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 3라운드 · 개인 기록 카드와 기록지를 모두 꺼내 둠",
@@ -7527,7 +8264,9 @@ addLessons([
      "easy": "잘한 것만 고르기",
      "hard": "근거가 되는 기록을 함께 적기",
      "d": {
-      "t": "bm_pair"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 3라운드 · 개인 기록 카드와 기록지를 모두 꺼내 둠",
@@ -7559,7 +8298,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 리그 3라운드 · 개인 기록 카드와 기록지를 모두 꺼내 둠",
@@ -7625,7 +8365,14 @@ addLessons([
      "easy": "구호 없이 몸 풀기만",
      "hard": "구호에 동작까지",
      "d": {
-      "t": "bm_pair"
+      "t": "pk_pair",
+      "racket": true,
+      "nokit": true,
+      "lab": {
+       "pass2": "주고받기",
+       "mk": "서는 자리"
+      },
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 1·2위전과 3·4위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -7657,7 +8404,8 @@ addLessons([
      "easy": "7점 내기",
      "hard": "15점 내기",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 1·2위전과 3·4위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -7689,7 +8437,9 @@ addLessons([
      "easy": "말로만 전하기",
      "hard": "장면을 구체적으로 적기",
      "d": {
-      "t": "bm_solo"
+      "t": "gen_talk",
+      "m": "pair",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 1·2위전과 3·4위전 · 시상은 전원이 한 가지 이상 받도록 구성",
@@ -7721,7 +8471,8 @@ addLessons([
      "easy": "시상에 시간을 더 쓰기",
      "hard": "학급 대표전을 한 판 더",
      "d": {
-      "t": "bm_double"
+      "t": "gen_courts",
+      "ball": "shuttle"
      },
      "t": {
       "prep": "코트 4면 · 1·2위전과 3·4위전 · 시상은 전원이 한 가지 이상 받도록 구성",

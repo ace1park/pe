@@ -19,6 +19,7 @@ const jobs=[
     ['누르기 점검', 'clicks.test.js', {}],
     ['차시 원 한 줄 점검', 'nodes.test.js', {}],
     ['줄바뀜 점검 · 320~768px', 'wrap.test.js', {}],
+    ['홈 버튼 점검', 'home.test.js', {}],
     ['새 종목 넣기 점검', 'newunit.test.js', {}],
   ]),
 ];

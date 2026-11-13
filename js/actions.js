@@ -9,6 +9,8 @@ document.addEventListener('click',e=>{
     case 'open': { const k=toId(t.dataset.n), sk=t.dataset.sk; ui.sel[sk]=ui.sel[sk]===k?0:k; render();
       if(ui.sel[sk]){ const c=document.getElementById('pick-'+sk); c&&c.scrollIntoView({behavior:'smooth',block:'nearest'}); } break; }
     case 'card': openCard(+t.dataset.no); break;
+    case 'gterms': location.hash='guide'; setTimeout(()=>{ const g=document.getElementById('g-terms'); if(g) g.scrollIntoView({block:'start'}); },120); break;
+    case 'gsec': store.gsec=t.dataset.v; save(); renderGuide(); { const g=document.getElementById('gnav'); if(g) g.scrollIntoView({block:'start'}); } break;
     case 'cardscore': document.getElementById('peek').classList.remove('open'); ui.route=ui.route; openScoreOver(null); break;
     case 'liteform': ui.liteForm[t.dataset.key]=t.dataset.v; renderLesson(n); break;
     case 'bigform': { store.big=store.big||{}; if(t.dataset.v) store.big[t.dataset.key]=t.dataset.v; else delete store.big[t.dataset.key]; save(); ui.open['big-'+t.dataset.key]=true; renderLesson(n); break; }
@@ -22,7 +24,10 @@ document.addEventListener('click',e=>{
     case 'cmpeople': cmPeek('우리 반은 몇 명?', peopleBox()); break;
     case 'step': ui.step[n]=+t.dataset.k; ui.cleared[n]=false; resetClock(); renderLesson(n); break;
     case 'next': goNext(n); break;
-    case 'play': toggleMain(); break;
+    case 'play': if(ui.lpFired){ ui.lpFired=false; break; } toggleMain(); break;
+    case 'tset': openTimeSet(); break;
+    case 'tpre': setMain(+t.dataset.s); break;
+    case 'tapply': { const m=+(document.getElementById('tsMin')||{}).value||0, s2=+(document.getElementById('tsSec')||{}).value||0; if(m*60+s2<5){ toast('5초 이상으로 넣어 주세요'); break; } setMain(m*60+s2); break; }
     case 'reset': main.left=main.total=600; main.run=false; paintClock(); break;
     case 'adj': addMin(+t.dataset.d); break;
     case 'sub': { const M=getD(n).m[stepOf(n)-1], j=+t.dataset.j; startTick();
@@ -130,3 +135,22 @@ try{ document.fonts&&document.fonts.addEventListener&&document.fonts.addEventLis
 function unlockAudio(){ try{ actx = actx || new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume(); const b=actx.createBuffer(1,1,22050), s=actx.createBufferSource(); s.buffer=b; s.connect(actx.destination); s.start(0); }catch(e){} document.removeEventListener('touchend',unlockAudio,true); document.removeEventListener('click',unlockAudio,true); }
 document.addEventListener('touchend',unlockAudio,true); document.addEventListener('click',unlockAudio,true);
 document.getElementById('stopOver').addEventListener('click',e=>{ if(!e.target.closest('[data-action=rewhistle]')) e.currentTarget.classList.remove('open'); });
+
+/* 홈 버튼: 이미 홈이면 맨 위로 */
+document.addEventListener('click',e=>{ const a=e.target.closest('[data-home]'); if(!a) return; const h=(location.hash||'#map').slice(1); if(h==='map'||h===''){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); } });
+/* 앱 안 이동 링크(#…): 주소를 직접 바꿔 이동 → 같은 카드를 다시 눌러도, 미리보기 창처럼 링크가 막힌 곳에서도 열림 */
+document.addEventListener('click',e=>{
+  if(e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  if(a.hasAttribute('data-home')&&/^#?(map)?$/.test(location.hash)) return;   /* 홈에서 홈 버튼은 맨 위로(위 처리) */
+  const h=a.getAttribute('href').slice(1)||'map'; e.preventDefault();
+  if((location.hash||'#map').slice(1)===h){ ui.route=''; route(); } else location.hash=h;
+});
+/* 타이머 길게 누르기(0.6초) → 시간 정하기 창 */
+(function(){ let tm=null;
+  const off=()=>{ if(tm){ clearTimeout(tm); tm=null; } };
+  document.addEventListener('pointerdown',e=>{ const b=e.target.closest('[data-action=play]'); if(!b) return; off(); ui.lpFired=false; tm=setTimeout(()=>{ tm=null; ui.lpFired=true; buzz&&buzz(30); openTimeSet(); },600); });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>document.addEventListener(ev,off,true));
+  document.addEventListener('contextmenu',e=>{ if(e.target.closest('[data-action=play]')) e.preventDefault(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id&&/^ts(Min|Sec)$/.test(e.target.id)){ e.preventDefault(); const b=document.querySelector('[data-action=tapply]'); b&&b.click(); } });
+})();
