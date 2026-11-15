@@ -1,4 +1,7 @@
 /* [프로그램] 단원·학년·차시 찾기 도구 */
+/* 장소 여러 곳: '강당 · 운동장'처럼 · 로 이어 적으면 두 곳 모두에 나옴(앞에 적은 곳이 원래 맞춘 곳) */
+const placeList=s=>String(s||'').split(/\s*[·,\/]\s*/).filter(Boolean);
+function placesOf(id){ const r=PL[id]||{}; return placeList(r.place||(UMETA[r.unit]||{}).place); }
 function isFoot(id){ return typeof id==='number'; }
 /* 발로 하는 공놀이: 4학년 1~20, 3학년 101~120 (data/foot3.js) */
 function fBase(id){ return id>100?id-100:id; }
@@ -21,7 +24,6 @@ function unitRoute(unit,g){ const m=UMETA[unit]; if(m.track==='fun') return '#ma
 function isFunU(u){ return !!(UMETA[u]&&UMETA[u].track==='fun'); }
 function LUNITS(){ return UORDER.filter(u=>!isFunU(u)); }
 function FUNITS(){ return UORDER.filter(isFunU); }
-function lessonNo(id){ return isFoot(id)?fBase(id):PL[id].n; }
 /* 종목 아이콘 */
 const SPICON={
  foot:()=>icBall(32,32,18),
@@ -43,6 +45,7 @@ const NEWICON={
  '피클볼':()=>`<g transform="rotate(-28 26 30)"><rect x="12" y="6" width="28" height="32" rx="12" fill="#ff7a1a" stroke="${INK}" stroke-width="2.6"/><rect x="22" y="37" width="8" height="18" rx="3" fill="#fff" stroke="${INK}" stroke-width="2.4"/></g><circle cx="48" cy="46" r="9" fill="#d8f25a" stroke="${INK}" stroke-width="2.2"/><circle cx="45" cy="43" r="1.5" fill="${INK}"/><circle cx="51" cy="43" r="1.5" fill="${INK}"/><circle cx="48" cy="49" r="1.5" fill="${INK}"/>`,
  '플로어볼':()=>`<path d="M44,8 L22,46 Q19,52 12,51 L8,50" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/><path d="M44,8 L22,46 Q19,52 12,51" fill="none" stroke="#2f6fd6" stroke-width="2.4" stroke-linecap="round"/><circle cx="44" cy="48" r="8" fill="#fff" stroke="${INK}" stroke-width="2.2"/><circle cx="41" cy="46" r="1.6" fill="${INK}"/><circle cx="47" cy="46" r="1.6" fill="${INK}"/><circle cx="44" cy="51" r="1.6" fill="${INK}"/>`,
  '술래':()=>`<circle cx="20" cy="16" r="6" fill="#ff8f86" stroke="${INK}" stroke-width="2.4"/><path d="M20,22 L18,38 M18,38 L10,50 M18,38 L26,50 M19,27 L30,22 M19,27 L9,32" fill="none" stroke="${INK}" stroke-width="3.2" stroke-linecap="round"/><circle cx="46" cy="22" r="6" fill="#7fc4ff" stroke="${INK}" stroke-width="2.4"/><path d="M46,28 L48,42 M48,42 L42,54 M48,42 L56,52 M47,32 L56,38 M47,32 L38,30" fill="none" stroke="${INK}" stroke-width="3.2" stroke-linecap="round"/><path d="M50,42 q8,4 6,12" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/>`,
+ '피구':()=>`<circle cx="36" cy="30" r="16" fill="#ff8fb8" stroke="${INK}" stroke-width="2.6"/><path d="M24,22 q12,6 24,0 M24,38 q12,-6 24,0" fill="none" stroke="${INK}" stroke-width="2" opacity=".6"/><path d="M6,22 h10 M4,32 h12 M8,42 h9" stroke="${INK}" stroke-width="3" stroke-linecap="round"/><circle cx="52" cy="52" r="7" fill="#7fc4ff" stroke="${INK}" stroke-width="2.2"/>`,
  '공':()=>icBall(32,32,18),
  '교실':()=>`<rect x="10" y="26" width="44" height="8" rx="2" fill="#e0b77a" stroke="${INK}" stroke-width="2.4"/><path d="M15,34 V52 M49,34 V52" stroke="${INK}" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="18" r="7" fill="#ffd43b" stroke="${INK}" stroke-width="2.2"/><path d="M36,22 l4,-10 l4,10 z" fill="#e2463b" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/><rect x="38" y="14" width="14" height="10" rx="2" fill="#fff" stroke="${INK}" stroke-width="2" opacity="0"/>`
 };

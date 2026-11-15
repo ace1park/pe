@@ -18,4 +18,8 @@ function markMedia(){ document.querySelectorAll('.media[data-mkey]').forEach(el=
 try{ const stn=document.getElementById('static'); if(stn) stn.remove(); }catch(e){}
 function start(){ ui.route=''; route(); if(!MEDIA.started){ MEDIA.started=true; mediaInit(); } }
 start();
-
+/* 새 판 알림: 인터넷이 될 때 사이트의 판 번호를 확인해 더 새 판이면 아래에 버튼을 띄움 */
+function checkNewVer(){ try{ if(!/^https?:$/.test(location.protocol)||!navigator.onLine) return;
+  fetch('js/version.js?check='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():'').then(t=>{ const m=String(t).match(/APP_VER\s*=\s*'([^']+)'/);
+    if(m&&m[1]>APP_VER){ const b=document.getElementById('installBar'); if(!b) return; b.innerHTML=`<div class="ib-t"><b>새 판이 나왔어요 · ${m[1]}</b><span>누르면 새 판으로 바꿔 다시 열어요</span></div><button class="ib-go" data-action="appupdate">새 판으로</button><button class="ib-x" data-action="updno" aria-label="닫기">다음에</button>`; b.hidden=false; } }).catch(()=>{}); }catch(e){} }
+setTimeout(checkNewVer,2500);

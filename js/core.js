@@ -57,7 +57,6 @@ let ui={route:'', step:{1:0,14:0}, form:'four', shuffle:true, seed:1, freeTeams:
 function stampsOf(n){ return store.stamps[n] || (store.stamps[n]=[false,false,false,false,false,false]); }
 const MFORM={'1-2':'pair','14-1':'group','14-2':'four','14-3':'group','14-4':'six'};
 const MSCORE={'14-2':'four','14-4':'six'};
-const PLAYABLE=[1,14]; // 미션 카드까지 다 넣은 차시
 ui.sel={1:0,2:0,3:0,4:0,5:0,6:0}; ui.liteForm={};
 function stepOf(n){ return ui.step[n]||0; }
 function getD(n){
@@ -68,7 +67,6 @@ function getD(n){
     reflect:['오늘 가장 잘된 동작은?','오늘 나를 도와준 친구 한 명','오늘 기분을 낱말 하나로!'],
     m:l.acts.map(a=>({name:a, lite:true}))};
 }
-const BALLURI=`data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%27-50%20-50%20100%20100%27%3E%3Cpolygon%20points%3D%270.0%2C-15.0%2014.3%2C-4.6%208.8%2C12.1%20-8.8%2C12.1%20-14.3%2C-4.6%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3Cpolygon%20points%3D%2717.0%2C-23.5%2011.6%2C-40.2%2025.9%2C-50.6%2040.1%2C-40.2%2034.7%2C-23.5%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3Cpolygon%20points%3D%2727.6%2C9.0%2041.8%2C-1.4%2056.1%2C9.0%2050.7%2C25.7%2033.0%2C25.7%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3Cpolygon%20points%3D%27-0.0%2C29.0%2014.3%2C39.4%208.8%2C56.1%20-8.8%2C56.1%20-14.3%2C39.4%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3Cpolygon%20points%3D%27-27.6%2C9.0%20-33.0%2C25.7%20-50.7%2C25.7%20-56.1%2C9.0%20-41.8%2C-1.4%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3Cpolygon%20points%3D%27-17.0%2C-23.5%20-34.7%2C-23.5%20-40.1%2C-40.2%20-25.9%2C-50.6%20-11.6%2C-40.2%27%20fill%3D%27rgba%280%2C0%2C0%2C0.14%29%27/%3E%3C/svg%3E`;
 const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 

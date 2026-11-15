@@ -95,7 +95,28 @@ const STEPICON=[
  `<svg viewBox="-50 -50 100 100" aria-hidden="true">${'§BALL'}</svg>`,
  `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20 C5 15 3 11.5 3 8.5 C3 5.5 5.5 4 7.6 4 C9.6 4 11 5.2 12 6.8 C13 5.2 14.4 4 16.4 4 C18.5 4 21 5.5 21 8.5 C21 11.5 19 15 12 20 Z" fill="${COL.red}" stroke="currentColor" stroke-width="1.5"/></svg>`
 ];
-function stepIcon(k){ const i=k===0?0:k===5?3:(k%2===1?1:2); return STEPICON[i].replace('§BALL',ballSVG()); }
+/* 종목별 공 모양: 차시 원 바탕 · '게임' 단계 아이콘 (보기 -50~50, 숫자가 잘 보이게 옅은 색) */
+const SPB={
+ soccer:()=>ballSVG(),
+ soft:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><path d="M-27,-36 Q-6,0 -27,36 M27,-36 Q6,0 27,36" fill="none" stroke="#d9433a" stroke-width="4" stroke-dasharray="6 5"/>`,
+ shuttle:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><path d="M-22,-30 H22 L10,12 H-10 Z" fill="#eef2ef" stroke="#8a9a90" stroke-width="3"/><path d="M-11,-30 L-4,12 M0,-30 V12 M11,-30 L4,12" stroke="#b5c2ba" stroke-width="2"/><circle cy="22" r="12" fill="#ffd43b" stroke="#a88700" stroke-width="3"/>`,
+ vball:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><path d="M-44,-10 Q0,-18 18,-42 M-26,38 Q2,6 44,8 M-6,-45 Q-10,10 -40,24" fill="none" stroke="#9cbcf2" stroke-width="7"/><path d="M-44,-10 Q0,-18 18,-42 M-26,38 Q2,6 44,8" fill="none" stroke="#f5cf4d" stroke-width="3"/>`,
+ bball:()=>`<circle r="46" fill="#f7b27a" stroke="${COL.ink}" stroke-width="4"/><path d="M-46,0 H46 M0,-46 V46 M-32,-33 Q-12,0 -32,33 M32,-33 Q12,0 32,33" fill="none" stroke="#8a4a1e" stroke-width="3.5"/>`,
+ nball:()=>`<circle r="46" fill="#fff7e2" stroke="${COL.ink}" stroke-width="4"/><path d="M-45,6 Q0,-26 45,6 M0,-46 Q24,0 0,46 M-34,30 Q-6,10 -10,-44" fill="none" stroke="#c9b48a" stroke-width="3.5"/>`,
+ track:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><ellipse rx="34" ry="22" fill="none" stroke="#f2b08a" stroke-width="12"/><ellipse rx="34" ry="22" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="5 4"/>`,
+ ck:()=>`<circle r="46" fill="#fff4b8" stroke="${COL.ink}" stroke-width="4"/><path d="M-28,-28 H28 V28 H-28 Z M-28,-9 H28 M-28,9 H28 M-9,-28 V28 M9,-28 V28" fill="none" stroke="#c9b85a" stroke-width="2.5"/>`,
+ disc:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><circle r="36" fill="#ffe680" stroke="#c9a300" stroke-width="3"/><circle r="22" fill="none" stroke="#c9a300" stroke-width="2.5"/>`,
+ fball:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/>${[[0,-28],[-25,-14],[25,-14],[-25,14],[25,14],[0,28],[-12,0],[12,0]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6" fill="#aab6ae"/>`).join('')}`,
+ pball:()=>`<circle r="46" fill="#e9f7a6" stroke="${COL.ink}" stroke-width="4"/>${[[0,-28],[-25,-14],[25,-14],[-25,14],[25,14],[0,28],[-12,0],[12,0]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6" fill="#a9bd52"/>`).join('')}`,
+ paper:()=>`<circle r="46" fill="#f2f0ea" stroke="${COL.ink}" stroke-width="4"/><path d="M-34,-12 L-10,-20 L4,-6 L26,-18 M-30,14 L-6,4 L10,20 L32,8 M-14,-36 L-8,-14 M18,-34 L8,-6 M-4,30 L4,8" fill="none" stroke="#b9b4a6" stroke-width="3"/>`,
+ dodge:()=>`<circle r="46" fill="#ffd1e3" stroke="${COL.ink}" stroke-width="4"/><path d="M-40,-14 Q0,-30 40,-14 M-40,14 Q0,30 40,14" fill="none" stroke="#e88bb0" stroke-width="3.5"/>`,
+ tail:()=>`<circle r="46" fill="#fff" stroke="${COL.ink}" stroke-width="4"/><path d="M-30,-20 Q0,-36 6,-6 T30,30" fill="none" stroke="#ffd43b" stroke-width="12" stroke-linecap="round"/><path d="M-30,-20 Q0,-36 6,-6 T30,30" fill="none" stroke="#e0b400" stroke-width="2" stroke-linecap="round"/>`
+};
+const SPBOF={foot:'soccer',sc:'soccer',tb4:'soft',tb56:'soft',bad:'shuttle',vb:'vball',ath:'track',nb:'nball',bb:'bball',ck:'ck',fd:'disc',fb:'fball',pk:'pball',cp:'paper',tg:'tail',dg:'dodge'};
+function sportBallSVG(u){ return (SPB[SPBOF[u]]||SPB.nball)(); }
+const _BURI={};
+function ballURIOf(u){ return _BURI[u]||(_BURI[u]='data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">${sportBallSVG(u)}</svg>`)); }
+function stepIcon(k,u){ const i=k===0?0:k===5?3:(k%2===1?1:2); return STEPICON[i].replace('§BALL',u?sportBallSVG(u):ballSVG()); }
 const NO=(inner)=>`<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="#fff"/>${inner}<circle cx="24" cy="24" r="20" fill="none" stroke="${COL.red}" stroke-width="4.5"/><line x1="10" y1="38" x2="38" y2="10" stroke="${COL.red}" stroke-width="4.5"/></svg>`;
 const RULEICON=[
  NO(`<circle cx="15" cy="24" r="6" fill="${COL.blue}"/><circle cx="33" cy="24" r="6" fill="${COL.red}"/><path d="M20 24 h7" stroke="${COL.ink}" stroke-width="3"/><path d="M25 20 l4 4 l-4 4" fill="none" stroke="${COL.ink}" stroke-width="2.5"/>`),
@@ -113,8 +134,6 @@ function jersey(num,col){ const light=col===COL.mk||col==='#e9b400'||col==='#f7f
   return `<svg class="jersey" viewBox="0 0 48 48" role="img" aria-label="${num}번"><path d="M10 8 L18 4 Q24 9 30 4 L38 8 L46 17 L39 22 L38 44 L10 44 L9 22 L2 17 Z" fill="${col}" stroke="${COL.ink}" stroke-width="2" stroke-linejoin="round"/><text x="24" y="33" text-anchor="middle" font-size="16" font-weight="800" font-family="Gothic A1, sans-serif" fill="${light?COL.ink:'#fff'}">${num}</text></svg>`; }
 const GOALICON=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3,8 h18 M5,8 v11 M7,8 v11 M9.5,8 v11 M12,8 v11 M14.5,8 v11 M17,8 v11 M19,8 v11 M4,11.5 h16 M4,15 h16" stroke="currentColor" stroke-opacity=".35" stroke-width=".9"/><path d="M3,20 V6 H21 V20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const STARICON=`<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.5 9,9" fill="${COL.mk}" stroke="currentColor" stroke-width="1.5"/></svg>`;
-function ringSVG(){ const r=96,C=2*Math.PI*r; let ticks=''; for(let i=0;i<10;i++){const a=(i*36-90)*Math.PI/180; ticks+=`<line x1="${110+108*Math.cos(a)}" y1="${110+108*Math.sin(a)}" x2="${110+100*Math.cos(a)}" y2="${110+100*Math.sin(a)}" stroke="rgba(255,255,255,.5)" stroke-width="3"/>`;}
-  return `<svg viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="110" r="${r}" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="14"/><circle id="ringP" cx="110" cy="110" r="${r}" fill="none" stroke="${COL.mk}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="0" transform="rotate(-90 110 110)" style="transition:stroke-dashoffset .3s linear"/>${ticks}</svg>`; }
 
 
 

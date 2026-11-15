@@ -5,6 +5,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.qcard')) chime();
   const t=e.target.closest('[data-action]'); if(!t) return;
   const a=t.dataset.action, n=curId();
+  if(typeof findAction==='function'&&findAction(a,t)) return;
   switch(a){
     case 'open': { const k=toId(t.dataset.n), sk=t.dataset.sk; ui.sel[sk]=ui.sel[sk]===k?0:k; render();
       if(ui.sel[sk]){ const c=document.getElementById('pick-'+sk); c&&c.scrollIntoView({behavior:'smooth',block:'nearest'}); } break; }
@@ -26,6 +27,11 @@ document.addEventListener('click',e=>{
     case 'next': goNext(n); break;
     case 'play': if(ui.lpFired){ ui.lpFired=false; break; } toggleMain(); break;
     case 'tset': openTimeSet(); break;
+    case 'recbox': recBox(); break;
+    case 'recexport': recExport(); break;
+    case 'recapply': recApply(); break;
+    case 'appupdate': appUpdate(); break;
+    case 'updno': { const b=document.getElementById('installBar'); if(b) b.hidden=true; break; }
     case 'tpre': setMain(+t.dataset.s); break;
     case 'tapply': { const m=+(document.getElementById('tsMin')||{}).value||0, s2=+(document.getElementById('tsSec')||{}).value||0; if(m*60+s2<5){ toast('5초 이상으로 넣어 주세요'); break; } setMain(m*60+s2); break; }
     case 'reset': main.left=main.total=600; main.run=false; paintClock(); break;
@@ -154,3 +160,8 @@ document.addEventListener('click',e=>{
   document.addEventListener('contextmenu',e=>{ if(e.target.closest('[data-action=play]')) e.preventDefault(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id&&/^ts(Min|Sec)$/.test(e.target.id)){ e.preventDefault(); const b=document.querySelector('[data-action=tapply]'); b&&b.click(); } });
 })();
+/* 기록 파일 고르기 */
+document.addEventListener('change',e=>{ if(e.target&&e.target.id==='recFile'){ recRead(e.target.files&&e.target.files[0]); e.target.value=''; } });
+/* 새 판으로 바꾸기: 저장해 둔 옛 파일을 지우고 다시 열기 */
+async function appUpdate(){ try{ if(window.caches){ const ks=await caches.keys(); await Promise.all(ks.map(k=>caches.delete(k))); }
+  if(navigator.serviceWorker){ const r=await navigator.serviceWorker.getRegistration(); if(r) await r.update(); } }catch(e){} location.reload(); }

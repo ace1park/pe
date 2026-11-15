@@ -163,7 +163,8 @@ function renderShelf(){
   ${(window.DATAERR||[]).length?`<div class="dataerrbar"><b>자료 파일을 확인해 주세요</b>${[...new Set(window.DATAERR)].map(x=>`<span><code>${esc(x)}</code></span>`).join('')}<small>따옴표(")·쉼표(,)·괄호가 빠졌는지 보고, 바로 전에 고친 곳을 되돌리면 다시 나옵니다.</small></div>`:''}
   ${todayHTML()}
   ${contHTML()}
-  ${trackHTML()}`;
+  ${trackHTML()}
+  <a class="hfind" href="#find">${ICON_FIND}<span><b>활동 찾기</b><small>이름 · 준비물 · 장소 · 학년으로 찾기</small></span></a>`;
   if(store.track==='fun'){ h+=funHomeHTML()+toolsHTML(); app.innerHTML=h; return; }
   h+=`<div class="hview" role="group" aria-label="보는 방식">${[['grade','학년으로 보기'],['sport','종목으로 보기']].map(([v,t])=>`<button aria-pressed="${view===v}" data-action="hview" data-v="${v}">${t}</button>`).join('')}</div>`;
   if(view==='grade'){
@@ -174,18 +175,50 @@ function renderShelf(){
   } else {
     h+=`<h2 class="sec">종목 고르기 <small>${totalLessons()}차시 · ${LUNITS().length}개 단원</small></h2>${groupShelf(LUNITS(),u=>ucardHTML(u))}`;
   }
-  h+=toolsHTML()+`<footer class="maker">만든 사람 · ${MAKER}<small>수업에는 마음껏, 나눌 때는 이름과 함께 · <button class="lnk" data-action="gterms">함께 쓰는 약속</button></small></footer>`;
+  h+=toolsHTML()+`<footer class="maker">만든 사람 · ${MAKER} · ${APP_VER} 판<small>수업에는 마음껏, 나눌 때는 이름과 함께 · <button class="lnk" data-action="gterms">함께 쓰는 약속</button></small></footer>`;
   app.innerHTML=h;
 }
 function toolsHTML(){ return `
   <h2 class="sec">수업 도구</h2><section class="tools">
     <a class="tool" href="#teams">${ICON_TEAM}<span>팀 나누기<small>번호로 짝·모둠·팀</small></span></a>
     <a class="tool" href="#score">${ICON_SCORE}<span>점수판<small>골과 페어플레이</small></span></a>
+    <button class="tool trec" data-action="recbox">${ICON_REC}<span>기록 옮기기<small>파일로 저장 · 불러오기</small></span></button>
   </section>`; }
+/* 기록 옮기기: 이 기기에 저장된 기록(왕관·도장·점수·인원 설정)을 파일로 내보내고 가져오기 */
+const ICON_FIND=`<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="12" fill="#fff" stroke="#1c2a21" stroke-width="3.5"/><path d="M30 30 L40 40" stroke="#1c2a21" stroke-width="5" stroke-linecap="round"/></svg>`;
+const ICON_REC=`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 6 H30 L38 14 V42 H10 Z" fill="#fff" stroke="#1c2a21" stroke-width="2.5"/><path d="M30 6 V14 H38" fill="none" stroke="#1c2a21" stroke-width="2.5"/><path d="M24 18 V34 M17 27 L24 34 L31 27" fill="none" stroke="#137a42" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const REC_APP='내 손 안의 체육';
+function recSum(st){ st=st||{}; const sv=Object.values(st.stamps||{}).filter(Array.isArray);
+  return {crowns:sv.filter(a=>a.length&&a.every(Boolean)).length, stamps:sv.reduce((n,a)=>n+a.filter(Boolean).length,0), scores:Object.keys(st.scores||{}).length, people:st.people||22}; }
+function recSumText(st){ const r=recSum(st); return `왕관 ${r.crowns}개 · 활동 도장 ${r.stamps}개 · 점수판 ${r.scores}개 · 우리 반 ${r.people}명`; }
+function recBox(){
+  cmPeek('기록 옮기기',`<p class="tsnow">이 기기의 기록 · <b class="rsum">${recSumText(store)}</b></p>
+   <div class="recbtns"><button class="btn y" data-action="recexport">파일로 내보내기</button><label class="btn recin">파일에서 가져오기<input id="recFile" type="file" accept=".json,application/json" hidden></label></div>
+   <div id="recPending"></div>
+   <ul class="recnote"><li>파일 이름은 pe-record-날짜.json 입니다. 왕관·도장·점수·인원 설정·결석 번호가 들어 있고, 학생 이름은 없습니다.</li><li>직접 넣은 영상·사진은 들어가지 않습니다.</li><li>브라우저 기록을 지우면 사라지니 학기 중간과 끝에 한 번씩 내보내 두세요.</li></ul>`);
+}
+function recExport(){
+  const d=new Date(), ymd=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const blob=new Blob([JSON.stringify({app:REC_APP,ver:APP_VER,date:d.toISOString(),data:store})],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`pe-record-${ymd}.json`; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000); toast('기록 파일을 내보냈어요');
+}
+function recRead(file){
+  const box=document.getElementById('recPending'); if(!file||!box) return;
+  const fr=new FileReader();
+  fr.onload=()=>{ let o=null; try{ o=JSON.parse(fr.result); }catch(e){}
+    if(!o||o.app!==REC_APP||!o.data||typeof o.data!=='object'){ box.innerHTML=`<p class="recerr">이 앱에서 내보낸 기록 파일이 아니에요.</p>`; ui.recPending=null; return; }
+    ui.recPending=o.data;
+    box.innerHTML=`<div class="recok"><p><b>${esc(String(o.date||'').slice(0,10))}</b>에 내보낸 기록 · ${recSumText(o.data)}</p><p>가져오면 이 기기의 지금 기록은 이 파일 내용으로 바뀝니다.</p><button class="btn y" data-action="recapply">이 기록으로 바꾸기</button></div>`; };
+  fr.readAsText(file);
+}
+function recApply(){ const d=ui.recPending; if(!d) return;
+  store=Object.assign({stamps:{}, emo:{}, diff:{}, people:22, scores:{}}, d); save(); ui.recPending=null;
+  document.getElementById('peek').classList.remove('open'); toast('기록을 가져왔어요'); render(); }
 /* 두 갈래 고르기: 차근차근 배울까?(단원) · 오늘 뭐하지?(40분 놀이 한 판) */
 function trackHTML(){ const t=store.track==='fun'?'fun':'learn';
   return `<div class="htrack" role="group" aria-label="수업 고르기">${[['learn','차근차근 배울까?','단원으로 깊게 배우기'],['fun','오늘 뭐하지?','40분 놀이 한 판']].map(([v,b,s])=>`<button aria-pressed="${t===v}" data-action="track" data-v="${v}"><b>${b}</b><small>${s}</small></button>`).join('')}</div>`; }
-function funIds(place){ return FUNITS().flatMap(u=>UMETA[u].grades.flatMap(g=>lessonsOf(u,g))).filter(id=>!place||(PL[id].place||UMETA[PL[id].unit].place)===place); }
+function funIds(place){ return FUNITS().flatMap(u=>UMETA[u].grades.flatMap(g=>lessonsOf(u,g))).filter(id=>!place||placesOf(id).includes(place)); }
 const FPLACES=['교실','강당','운동장'];
 function funHomeHTML(){
   const has=FPLACES.filter(p=>funIds(p).length);
@@ -231,7 +264,7 @@ function renderUnit(unit,g){
     h+=`<li class="pstage" style="--c:${s.c}"><span class="pnum">${s.n}</span><div class="pbody">
       <div class="phead"><div><h3 class="fit">${s.n}단계 ${esc(s.name)}</h3><small>${s.range}차시</small></div><svg class="zicon" viewBox="0 0 116 68" aria-hidden="true">${unit==='foot'&&ZICON[s.n]?ZICON[s.n]():`<g transform="translate(26,-1) scale(1.08)">${SPICON[m.sport]()}</g>`}</svg></div>
       <div class="nodes" style="--n:${s.ids.length}">${s.ids.map(id=>{ const L=LI(id), k=stampsOf(id).filter(Boolean).length, ok=lessonDone(id), pop=ok&&ui.justCrowned===id;
-        return `<button class="node ${sel===id?'play':''} ${ok?'crowned':''} ${pop?'pop':''}" ${ok?'':`style="background-image:url('${BALLURI}')"`} data-action="open" data-n="${id}" data-sk="${sk}" aria-pressed="${sel===id}" aria-label="${L.n}차시 ${esc(L.t)}${ok?' · 성공 왕관':''}">${ok?crownSVG(L.n):L.n}${L.ev?'<span class="star">★</span>':''}${L.ext?'<span class="ext">◇</span>':''}${!ok&&k?'<span class="doing"></span>':''}</button>`;}).join('')}</div>
+        return `<button class="node ${sel===id?'play':''} ${ok?'crowned':''} ${pop?'pop':''}" ${ok?'':`style="background-image:url('${ballURIOf(unit)}')"`} data-action="open" data-n="${id}" data-sk="${sk}" aria-pressed="${sel===id}" aria-label="${L.n}차시 ${esc(L.t)}${ok?' · 성공 왕관':''}">${ok?crownSVG(L.n):L.n}${L.ev?'<span class="star">★</span>':''}${L.ext?'<span class="ext">◇</span>':''}${!ok&&k?'<span class="doing"></span>':''}</button>`;}).join('')}</div>
       <ul class="ztitles">${s.ids.map(id=>{const L=LI(id); return `<li><b>${L.n}</b>${esc(L.t)}${L.ev?' ★':''}${L.ext?' ◇':''}</li>`;}).join('')}</ul>
       <div class="pick" id="pick-${sk}">${sel?qcardHTML(sel):''}</div>
     </div></li>`;
@@ -306,19 +339,7 @@ function scoreHTML(key,form,count){
 function fold(id,summary,inner,icon=''){ return `<details class="fold" id="f-${id}" ${ui.open[id]?'open':''}><summary>${icon}<span>${summary}</span></summary><div class="fold-in">${inner}</div></details>`; }
 const ICON_TEAM=`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12 L14 9 Q18 12 22 9 L28 12 L33 18 L28 21 L27 38 L9 38 L8 21 L3 18 Z" fill="${COL.blue}" stroke="${COL.ink}" stroke-width="2"/><path d="M20 16 L26 13 Q30 16 34 13 L40 16 L45 22 L40 25 L39 42 L21 42 L20 25 L15 22 Z" fill="${COL.red}" stroke="${COL.ink}" stroke-width="2"/></svg>`;
 const ICON_SCORE=`<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="10" width="40" height="28" rx="6" fill="${COL.ink}"/><text x="24" y="31" text-anchor="middle" font-family="Black Han Sans, sans-serif" font-size="17" fill="${COL.mk}">2:1</text></svg>`;
-const ICON_GUIDE=`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10 Q16 6 24 12 Q32 6 42 10 V38 Q32 34 24 40 Q16 34 6 38 Z" fill="#fff" stroke="${COL.ink}" stroke-width="2.5"/><line x1="24" y1="12" x2="24" y2="40" stroke="${COL.ink}" stroke-width="2"/><path d="M10 17 h9 M10 23 h9 M29 17 h9 M29 23 h9" stroke="${COL.turf||'#168b4b'}" stroke-width="2.5"/></svg>`;
 const ICON_PLAN=`<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="6" width="30" height="38" rx="4" fill="#fff" stroke="${COL.ink}" stroke-width="2.5"/><rect x="17" y="3" width="14" height="7" rx="2" fill="${COL.mk}" stroke="${COL.ink}" stroke-width="2"/><path d="M15 19 h18 M15 26 h18 M15 33 h11" stroke="${COL.ink}" stroke-width="2.5"/></svg>`;
-
-function renderPeek(n){
-  const b=fBase(n), l=LESSONS.find(x=>x.n===b), s=STAGES[l.s-1], box=document.getElementById('peekBox');
-  box.style.setProperty('--c',s.c);
-  box.innerHTML=`<p style="margin:0;font-weight:800;color:var(--muted)">${s.n}단계 ${esc(s.name)} · ${b}차시${EVAL[b]?' · ★ '+EVAL[b]:''}</p>
-   <h3 id="peekTitle">${esc(l.t)}</h3>
-   <ol>${l.acts.map((a,i)=>`<li><span>${SLOTS[i]}</span>${esc(a)}</li>`).join('')}</ol>
-   <p style="margin:0 0 14px;font-size:15px;color:var(--muted)">이 차시의 미션 카드는 아직 넣지 않았어요. 샘플에는 1차시와 14차시만 들어 있어요.</p>
-   <button class="btn" data-action="closepeek" style="width:100%">닫기</button>`;
-  document.getElementById('peek').classList.add('open'); box.querySelector('button').focus();
-}
 
 /* ===== 차시 화면 ===== */
 function stepName(k,D){ return k===0?'약속':k===5?'돌아보기':SLOTS[k-1]; }
@@ -400,7 +421,7 @@ function renderLesson(n){
   document.getElementById('brandTitle').textContent=U.title; document.getElementById('brandSub').textContent=(U.grades.length>1?l.g+'학년':U.grades[0]+'학년')+' · '+l.s+'단계 '+l.sn;
   let h=`<section class="lhead" style="--c:${s.c}"><div class="lhrow"><a class="back" href="${unitRoute(l.unit,l.g)}">← ${isFunU(l.unit)?'오늘 뭐하지?':esc(U.title)+(U.grades.length>1?' '+l.g+'학년':'')}</a><button class="cm-toggle" data-action="classmode" data-v="1"><b>수업 중 모드</b><small>크게 보고 바로 진행</small></button></div>
     <h1><span class="licon">${anyIcon(n)}</span><span class="lno">${isFunU(l.unit)?esc(U.title):l.n+'차시'}${l.ext?' ◇':''}${l.ev?' ★':''}</span><span class="fit">${esc(l.t.split(' — ')[0])}</span></h1>${l.t.includes(' — ')?`<p class="lsubt fit">${esc(l.t.split(' — ').slice(1).join(' — '))}</p>`:''}<p class="goal fit" title="${esc(D.goal)}">오늘의 목표 · ${esc(D.short)}</p>
-    <nav class="prog" aria-label="차시 순서">${[0,1,2,3,4,5].map(k=>`<button class="pill2 ${st[k]?'done':''}" ${k===i?'aria-current="step"':''} data-action="step" data-k="${k}">${stepIcon(k)}<span>${stepName(k,D)}</span></button>`).join('')}</nav></section>
+    <nav class="prog" aria-label="차시 순서">${[0,1,2,3,4,5].map(k=>`<button class="pill2 ${st[k]?'done':''}" ${k===i?'aria-current="step"':''} data-action="step" data-k="${k}">${stepIcon(k,l.unit)}<span>${stepName(k,D)}</span></button>`).join('')}</nav></section>
   <section class="stage ${(i>=1&&i<=4&&hasDiag(n,i))?'':'one'}">`;
   if(i===0){
     h+=`<div class="card"><div class="slot">출발 전</div><h2>우리의 약속</h2>
@@ -656,13 +677,18 @@ function renderGuide(){
     <dt>리그 순위는 어떻게 매기나요?</dt><dd>리그표가 있는 차시(발로 하는 공놀이 19·20차시)의 경기 화면 리그표에 골과 페어플레이 ★를 넣고 '경기 끝'을 누르면 순위가 자동으로 계산됩니다. 이기면 3점, 비기면 2점, 져도 1점이고 ★ 1개는 1점입니다.</dd>
     <dt>다른 종목으로 바꾸려면?</dt><dd>오른쪽 위 홈 버튼 → 종목 카드를 누르면 됩니다. 다른 학년 단원은 '학년으로 보기'에서 학년을 바꾸거나 '종목으로 보기'를 누릅니다. 도장과 점수는 종목·차시마다 따로 남습니다.</dd>
     <dt>경기 용어를 잘 몰라요.</dt><dd>활동 화면 아래 <b>낱말 풀이</b> 칸을 열면 그 활동에 나온 용어만 쉬운 말로 나옵니다. 전체 목록은 이 안내사항의 7번에 있습니다. 학생에게는 '이렇게 해요' 세 줄만 읽어 주어도 활동이 됩니다.</dd>
+    <dt>원하는 활동을 빨리 찾으려면?</dt><dd>홈의 <b>활동 찾기</b>에서 '콘', '술래', '풍선'처럼 낱말을 넣거나 장소·학년·유형·조건(공·도구 없이, 짝 활동, ★ 평가 차시)을 고르면 됩니다. 결과를 누르면 그 차시의 찾은 활동이 바로 열립니다.</dd>
+    <dt>새 판이 나왔는지 어떻게 알아요?</dt><dd>홈 맨 아래와 이 안내사항 맨 끝에 판 번호(날짜)가 있습니다. 인터넷이 될 때 사이트에 더 새 판이 올라와 있으면 화면 아래에 <b>새 판으로</b> 버튼이 뜹니다. 누르면 새 판으로 바꿔 다시 엽니다.</dd>
+    <dt>기록을 다른 기기로 옮기려면?</dt><dd>왕관·도장·점수·인원 설정은 그 기기에만 저장됩니다. 홈의 <b>기록 옮기기</b>에서 파일로 내보낸 뒤, 다른 기기에서 같은 곳의 <b>파일에서 가져오기</b>로 불러오면 됩니다. 학생 이름은 들어 있지 않습니다. 브라우저 기록을 지우면 사라지니 학기 중간과 끝에 한 번씩 내보내 두세요.</dd>
     <dt>차시를 건너뛰어도 되나요?</dt><dd>됩니다. 홈에서 원하는 차시 번호를 누르면 됩니다. 끝낸 차시는 왕관, 하다 만 차시는 노란 점으로 표시됩니다.</dd>
    </dl></div>
 
   <div class="gsec gend" id="g-terms"><h2><i>✎</i>함께 쓰는 약속</h2>
    <p class="glead">원저작자 · ${MAKER}</p>
    <ul class="gterms">${TERMS.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
-   <p class="gnote">수업에서 고칠 곳이나 더 넣고 싶은 활동이 있으면 만든 사람에게 알려 주세요. 함께 고쳐 가는 앱입니다.</p></div>
+   <p class="gnote">수업에서 고칠 곳이나 더 넣고 싶은 활동이 있으면 만든 사람에게 알려 주세요. 함께 고쳐 가는 앱입니다.</p>
+   <h3 class="gverh">이 판 · ${APP_VER}</h3>
+   <ul class="gnotes">${APP_NOTES.slice(0,3).map(([d,t])=>`<li><b>${d}</b><span>${esc(t)}</span></li>`).join('')}</ul></div>
   </section>`;
   guideTabs();
 }
@@ -691,8 +717,9 @@ function render(){
   if(ui.route==='teams') renderTeams();
   else if(ui.route==='score') renderScore();
   else if(ui.route==='guide') renderGuide();
+  else if(ui.route==='find') renderFind();
   else if(ui.route.startsWith('lesson-')) renderLesson(curId());
-  else if(ui.route.startsWith('u-')){ const [,u,g]=ui.route.split('-'); const m=UMETA[u]; if(m.track==='fun'){ store.track='fun'; if(m.place) store.fplace=m.place; save(); renderShelf(); } else { const gg=m.grades.find(x=>gk(x)===g)||m.grades[0]; renderUnit(u,gg); } }
+  else if(ui.route.startsWith('u-')){ const [,u,g]=ui.route.split('-'); const m=UMETA[u]; if(m.track==='fun'){ store.track='fun'; if(m.place) store.fplace=placeList(m.place)[0]; save(); renderShelf(); } else { const gg=m.grades.find(x=>gk(x)===g)||m.grades[0]; renderUnit(u,gg); } }
   else renderShelf();
   if(!ui.route.startsWith('lesson-')){ document.getElementById('brandTitle').textContent=ui.route.startsWith('u-')?UMETA[ui.route.split('-')[1]].title:'내 손 안의 체육'; document.getElementById('brandSub').textContent=ui.route.startsWith('u-')?UMETA[ui.route.split('-')[1]].area:totalsText(); }
 }
@@ -700,7 +727,7 @@ function route(){
   const h=(location.hash||'#map').slice(1);
   const okLesson=h.startsWith('lesson-') && (()=>{ const id=toId(h.slice(7)); return isFoot(id)?((id>=1&&id<=20)||(id>=101&&id<=120)):!!PL[id]; })();
   const okUnit=/^u-[a-z0-9]+(-\d+)?$/.test(h) && !!UMETA[h.split('-')[1]];
-  const next=['map','teams','score','guide'].includes(h)||okLesson||okUnit?h:'map';
+  const next=['map','teams','score','guide','find'].includes(h)||okLesson||okUnit?h:'map';
   if(next!==h){ try{ history.replaceState(null,'','#'+next); }catch(e){} }   /* 없는 주소면 주소 칸도 홈으로 맞춤(같은 카드를 다시 눌러도 열리게) */
   if(next!==ui.route){ resetClock(); if(!next.startsWith('lesson-')) keepAwake(false); }
   ui.route=next; document.getElementById('scoreOver').classList.remove('open'); render(); window.scrollTo(0,0);

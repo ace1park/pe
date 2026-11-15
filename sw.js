@@ -17,6 +17,7 @@ const CORE=[
   'icons/icon-512.png',
   'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png',
+  'js/version.js',
   'data/foot.js',
   'js/core.js',
   'js/people.js',
@@ -29,10 +30,24 @@ const CORE=[
   'data/units/begin.js',
   'data/units/list.js',
   'data/tb_cards.js',
-  'js/sport_diagrams.js',
+  'js/diagrams/common.js',
+  'js/diagrams/tb.js',
+  'js/diagrams/bad.js',
+  'js/diagrams/vb.js',
+  'js/diagrams/ath.js',
+  'js/diagrams/nb.js',
+  'js/diagrams/bb.js',
+  'js/diagrams/ck.js',
+  'js/diagrams/fd.js',
+  'js/diagrams/fb.js',
+  'js/diagrams/pk.js',
+  'js/diagrams/cp.js',
+  'js/diagrams/tg.js',
+  'js/diagrams/dg.js',
   'data/units.js',
   'js/units.js',
   'js/screens.js',
+  'js/find.js',
   'js/actions.js',
   'data/links.js',
   'js/media.js',
@@ -52,6 +67,7 @@ self.addEventListener('activate',e=>{
 self.addEventListener('fetch',e=>{
   const req=e.request, url=new URL(req.url);
   if(req.method!=='GET' || url.origin!==location.origin) return;           // 유튜브 썸네일 등 바깥 주소는 그대로
+  if(url.pathname.endsWith('/js/version.js') && url.searchParams.has('check')){ e.respondWith(fetch(req,{cache:'no-store'}).catch(()=>new Response('',{status:504}))); return; }   // 새 판 확인은 저장본 말고 인터넷에서
   const isPage=req.mode==='navigate';
   const key=isPage?'index.html':req;
   e.respondWith(caches.open(CACHE).then(async cache=>{

@@ -1,7 +1,7 @@
 /* 내 손 안의 체육 · 화면 모양(색·크기·배치) */
 :root{
   /* 레이아웃: 처음 화면은 '바로 시작' 카드 → 전체 맵. 차시 화면은 미션 카드 하나 + 아래 버튼 줄(정지 · 타이머 · 다음) */
-  --turf:#168b4b;
+  --turf:#137a42;
   --turf-deep:#0d6334;
   --tape:#ffd43b;
   --cream:#f7f4df;
@@ -310,7 +310,7 @@ div.gcard{display:grid;gap:8px;margin-top:10px}
 .gc-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;background:#fff;border-radius:10px;padding:8px 12px}
 .gtag{background:var(--ink);color:#fff;border-radius:999px;padding:4px 10px;font-weight:800;font-size:14px;text-align:center}
 .gtag.y{background:var(--tape);color:var(--ink)}.gtag.w{background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
-.glegend{list-style:none;margin:0;padding:10px 12px;background:#178c4b;border-radius:10px;display:flex;flex-wrap:wrap;gap:8px 16px;color:#fff;font-weight:800;font-size:14px}
+.glegend{list-style:none;margin:0;padding:10px 12px;background:#137a42;border-radius:10px;display:flex;flex-wrap:wrap;gap:8px 16px;color:#fff;font-weight:800;font-size:14px}
 .glegend li{display:flex;align-items:center;gap:6px}
 .glegend svg{width:34px;height:22px}
 .gsounds{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
@@ -398,7 +398,7 @@ div.gcard{display:grid;gap:8px;margin-top:10px}
 .sorow > span{font-weight:800}
 .sorow .pill{color:var(--ink)}
 .sorow .pill[aria-pressed="true"]{color:var(--tape);background:var(--ink);border-color:var(--tape)}
-.sorow .btn.ghost{color:#fff}
+.scoreover .sorow .btn.ghost{color:#fff}
 .sogrid{flex:1;display:grid;gap:12px;grid-template-columns:repeat(2,1fr);min-height:0}
 .sogrid.n4{grid-template-columns:repeat(2,1fr)}
 .sogrid.n6{grid-template-columns:repeat(3,1fr)}
@@ -1175,3 +1175,70 @@ body.lesson .installbar{bottom:calc(var(--barH) + 16px + env(safe-area-inset-bot
 .tsin input{width:84px;font:inherit;font-family:var(--display);font-size:30px;text-align:center;padding:6px 4px;border:3px solid var(--ink);border-radius:12px;background:#fff}
 .tsnote{margin:10px 0 0;font-size:14px;color:var(--muted);font-weight:600}
 @media (orientation: portrait){.actionbar .b-adj button{font-size:clamp(13px,2vw,26px)}}
+
+/* 글자 대비 보완 (접근성 점검: 4.5 대 1 이상) */
+.uarea{color:var(--ink);color:color-mix(in srgb,var(--uc,var(--turf)) 62%,#000)}
+.htrack [aria-pressed="true"] small{color:#3f4a42}
+.gkey.k-stop small{opacity:1}
+.btn.ghost{color:var(--ink)}
+.scoreover .btn.ghost{color:#fff}
+th .kbd{color:var(--ink)}
+
+/* 판 번호 · 바뀐 점 */
+.gverh{margin:18px 0 6px;font-size:18px}
+.gnotes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.gnotes li{background:#fff;border-radius:10px;padding:8px 12px;font-size:14px;font-weight:600;color:var(--muted)}
+.gnotes li b{display:block;color:var(--ink);font-size:14px}
+/* 기록 옮기기 */
+.tools .trec{border:0;font:inherit;font-weight:800;color:var(--ink);text-align:left;cursor:pointer}
+@media (min-width:621px){ .tools{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:620px){ .tools .trec{grid-column:1 / -1;flex-direction:row;text-align:left;justify-content:center} }
+.recbtns{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 10px}
+.recin{cursor:pointer;background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.recnote{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--muted);font-weight:600;display:grid;gap:3px}
+.recnote li{background:none;padding:0;display:list-item}
+.recok{background:#fff;border-radius:12px;padding:10px 14px;border-left:6px solid var(--tape)}
+.recok p{margin:0 0 8px;font-weight:600}
+.recerr{color:var(--stop);font-weight:800}
+.tsnow b.rsum{display:block;font-family:inherit;font-size:16px;font-weight:800;margin:4px 0 0}
+
+/* 활동 찾기 */
+.hfind{display:flex;align-items:center;gap:12px;margin:12px 0 4px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:10px 14px;text-decoration:none;color:var(--ink);box-shadow:0 4px 0 var(--ink)}
+.hfind svg{width:36px;height:36px;flex:none}
+.hfind b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1.1}
+.hfind small{font-size:13px;font-weight:700;color:var(--muted)}
+.hfind:active{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.findp{display:grid;gap:10px}
+.findp h1{font-family:var(--display);font-weight:400;color:var(--chalk);font-size:clamp(28px,6vw,44px);margin:6px 0 0}
+.fbar{display:flex;gap:8px;align-items:center}
+.fbar input{flex:1;min-width:0;font:inherit;font-size:18px;font-weight:700;padding:12px 14px;border:3px solid var(--ink);border-radius:14px;background:#fff}
+.fbar .btn.ghost{color:var(--chalk);white-space:nowrap}
+.fquick{display:flex;gap:6px;flex-wrap:wrap}
+.fgrp{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:rgba(0,0,0,.12);border-radius:12px;padding:8px 10px}
+.fgrp>span{color:var(--tape);font-weight:800;font-size:14px;min-width:34px}
+.findp .pill{font-size:14px;padding:6px 12px}
+.fcnt{margin:4px 0 0;color:var(--chalk);font-weight:800}
+.fres-list{display:grid;gap:10px}
+@media (min-width:760px){ .fres-list{grid-template-columns:1fr 1fr} }
+.fres{display:grid;gap:3px;text-align:left;background:#fff;border:0;border-left:10px solid var(--uc);border-radius:14px;padding:10px 14px;font:inherit;color:var(--ink);cursor:pointer;min-width:0}
+.frtop{font-size:13px;font-weight:700;color:var(--muted)}.frtop b{color:var(--ink)}
+.frt{font-size:18px;font-weight:800;line-height:1.25}
+.fracts{display:flex;flex-wrap:wrap;gap:4px}
+.fracts i{font-style:normal;font-size:13px;font-weight:700;background:var(--cream);border-radius:999px;padding:2px 9px}
+.fracts i.sub{background:none;padding:0;color:var(--muted)}
+.fres small{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fmore{justify-self:center;grid-column:1 / -1}
+.fnone{color:var(--chalk);font-weight:700}
+.findp{grid-template-columns:minmax(0,1fr)}
+.fres-list{grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){ .fres-list{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+.fopts{display:grid;gap:8px}
+.fopts>summary{cursor:pointer;list-style:none;color:var(--chalk);font-weight:800;background:rgba(0,0,0,.18);border-radius:12px;padding:10px 14px}
+.fopts>summary::-webkit-details-marker{display:none}
+.fopts>summary::after{content:' ▾'}
+.fopts[open]>summary::after{content:' ▴'}
+.fopts>summary b{margin-left:6px;background:var(--tape);color:var(--ink);border-radius:999px;padding:1px 9px;font-size:13px}
+.fopts[open]{gap:8px}
+.fopts .fgrp{margin-top:8px}
+.fopts>summary b:empty{display:none}

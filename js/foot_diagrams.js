@@ -15,8 +15,11 @@ function legendList(ids,u){
     cone:[`<polygon points="17,3 11,18 23,18" fill="${COL.cone}" stroke="#fff" stroke-width="1"/>`,'콘'],
     mk:[`<ellipse cx="17" cy="11" rx="7" ry="4.5" fill="${COL.mk}"/>`,'원 마커']
   };
-  return `<ul class="legend2">${ids.map(id=>{const [k,lab]=id.split(':'); const it=L[k]; return it?`<li>${mini(it[0])}${lab||it[1]}</li>`:'';}).join('')}</ul>`;
+  const ex=Object.assign({},...LEGX.map(f=>f()));   /* 종목별로 더한 범례(addLegend) — 같은 이름이면 나중에 더한 것이 이김 */
+  return `<ul class="legend2">${ids.map(id=>{const [k,lab]=id.split(':'); if(ex[k]) return `<li><svg viewBox="0 0 34 22" aria-hidden="true">${ex[k][0]}</svg>${lab||ex[k][1]}</li>`; const it=L[k]; return it?`<li>${mini(it[0])}${lab||it[1]}</li>`:'';}).join('')}</ul>`;
 }
+/* 범례 더하기: addLegend(()=>({키:[작은 그림 SVG, '이름'], ...})) — 그림 틀 파일마다 자기 범례를 여기에 등록 */
+const LEGX=[]; function addLegend(f){ LEGX.push(f); }
 const gkp=(x,y)=>pl(x,y,GKC);
 const goalR=(x,y,h=50)=>{ const line=x<200?x+10:x, back=x<200?x:x+10, top=y-h/2; let net=''; for(let k=1;k<5;k++) net+=`<line x1="${Math.min(line,back)}" y1="${top+h*k/5}" x2="${Math.max(line,back)}" y2="${top+h*k/5}" stroke="#fff" stroke-opacity=".6" stroke-width="1"/>`;
   return `<path d="M${line},${top} H${back} V${top+h} H${line}" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="2"/>${net}<circle cx="${line}" cy="${top}" r="3.6" fill="#fff" stroke="${COL.ink}" stroke-width="1.2"/><circle cx="${line}" cy="${top+h}" r="3.6" fill="#fff" stroke="${COL.ink}" stroke-width="1.2"/>`; };
