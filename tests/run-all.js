@@ -2,6 +2,7 @@
 const {spawnSync}=require('child_process');
 const quick=process.argv[2]==='quick';
 const jobs=[
+  ['자료 점검 · 빠진 칸·그림', 'data.test.js', {}],
   ['기능 점검 · iPhone 13', 'func.test.js', {DEV:'iPhone 13'}],
   ['기능 점검 · Galaxy S9+', 'func.test.js', {DEV:'Galaxy S9+'}],
   ...(quick?[]:[
@@ -20,6 +21,8 @@ const jobs=[
     ['차시 원 한 줄 점검', 'nodes.test.js', {}],
     ['줄바뀜 점검 · 320~768px', 'wrap.test.js', {}],
     ['홈 버튼 점검', 'home.test.js', {}],
+    ['기록 옮기기·판 번호 점검', 'record.test.js', {}],
+    ['활동 찾기 점검', 'find.test.js', {}],
     ['새 종목 넣기 점검', 'newunit.test.js', {}],
   ]),
 ];

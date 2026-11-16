@@ -1,0 +1,25 @@
+/* 기록 옮기기 점검: 내보내기 파일 이름·내용 → 지운 뒤 가져오기로 되살리기 · 다른 파일은 거절 · 종목별 차시 공 모양 · 판 번호 표시 */
+const path=require('path'), fs=require('fs'), os=require('os');
+const {chromium}=require('playwright');
+(async()=>{const b=await chromium.launch(); const c=await b.newContext({viewport:{width:390,height:844},acceptDownloads:true}); const p=await c.newPage();
+ const errs=[]; p.on('pageerror',e=>errs.push(e.message)); const out=[]; const T=(n,ok)=>out.push((ok?'OK  ':'FAIL')+' '+n);
+ await p.goto('file://'+path.resolve(__dirname,'..','index.html')+'#map'); await p.waitForTimeout(700);
+ await p.evaluate(()=>{ store.stamps['tg-1']=[true,true,true,true,true,true]; store.people=21; save(); render(); });
+ T('홈에 판 번호', await p.evaluate(()=>document.querySelector('footer.maker').textContent.includes(APP_VER)));
+ await p.click('[data-action=recbox]'); await p.waitForTimeout(200);
+ const [dl]=await Promise.all([p.waitForEvent('download'), p.click('[data-action=recexport]')]);
+ const fp=path.join(os.tmpdir(),'pe-record-test.json'); await dl.saveAs(fp); const j=JSON.parse(fs.readFileSync(fp,'utf8'));
+ T('내보낸 파일 이름 영어', /^pe-record-\d{4}-\d\d-\d\d\.json$/.test(dl.suggestedFilename()));
+ T('내보낸 내용', j.app==='내 손 안의 체육' && j.data.people===21);
+ await p.evaluate(()=>{ store.stamps={}; store.people=22; save(); });
+ await p.setInputFiles('#recFile',fp); await p.waitForTimeout(300); await p.click('[data-action=recapply]'); await p.waitForTimeout(200);
+ T('가져오면 되살아남', await p.evaluate(()=>store.people===21 && lessonDone('tg-1') && JSON.parse(localStorage.getItem(KEY)).people===21));
+ const bad=path.join(os.tmpdir(),'pe-bad.json'); fs.writeFileSync(bad,'{"x":1}');
+ await p.click('[data-action=recbox]'); await p.setInputFiles('#recFile',bad); await p.waitForTimeout(300);
+ T('다른 파일은 거절', await p.evaluate(()=>!!document.querySelector('.recerr') && !document.querySelector('[data-action=recapply]')));
+ await p.click('[data-action=closepeek]');
+ await p.evaluate(()=>{location.hash='u-pk-5'}); await p.waitForTimeout(300);
+ T('피클볼 차시 원은 피클볼 공', await p.evaluate(()=>decodeURIComponent(document.querySelector('.node').style.backgroundImage).includes('#e9f7a6')));
+ await p.evaluate(()=>{store.gsec='all';save();location.hash='guide'}); await p.waitForTimeout(300);
+ T('안내사항에 판 번호', await p.evaluate(()=>document.querySelector('.gverh').textContent.includes(APP_VER)));
+ console.log(out.join('\n')); console.log('errors',errs); const fail=out.some(x=>x.startsWith('FAIL'))||errs.length; console.log(fail?'실패':'통과 '+out.length+'개'); if(fail) process.exitCode=1; await b.close(); })();

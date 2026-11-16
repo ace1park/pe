@@ -72,7 +72,13 @@
 | `manifest.webmanifest`, `icons/` | 홈 화면 아이콘과 앱 이름, 아이폰 시작 화면 | 없음 |
 | `fonts/` | 글꼴(Black Han Sans, Gothic A1 · SIL Open Font License 1.1) | 없음 |
 | `tests/` | 자동 점검 (`tests/README.md`) | 없음 |
-| `tools/` | 파일용 HTML 만들기 도구 | 없음 |
+| `tools/` | 파일용 HTML 만들기 도구 (`tests/README.md` 맨 아래) | 없음 |
+
+### 파일 수 (GitHub 웹 화면은 한 번에 100개까지 올림)
+
+- **앱(사이트에 꼭 필요한 것) 78개**: `tests` · `tools` · `.github` 빼고 전부 → 이것만 올려도 앱이 모두 작동함
+- **점검·도구 20개**: `tests` 16 · `tools` 3 · `.github` 1 → 선생님 휴대폰·사이트에는 필요 없음, 저장소에 두면 올릴 때마다 자동 점검
+- 둘을 합쳐도 98개라 한 번에 올릴 수 있음. 새 종목을 더하면 파일이 2개(`data/units/종목.js`, `js/diagrams/종목.js`) 늘어나므로, 그 뒤로는 앱 묶음과 점검 묶음을 나눠 올림
 
 ## 확인이 필요한 내용
 
